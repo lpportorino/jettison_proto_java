@@ -81,6 +81,16 @@ public final class JonSharedDataGps {
      * @return The useManual.
      */
     boolean getUseManual();
+
+    /**
+     * <pre>
+     * GPS timestamp from satellite (Unix time in seconds)
+     * </pre>
+     *
+     * <code>int64 timestamp = 9;</code>
+     * @return The timestamp.
+     */
+    long getTimestamp();
   }
   /**
    * Protobuf type {@code ser.JonGuiDataGps}
@@ -215,6 +225,21 @@ public final class JonSharedDataGps {
       return useManual_;
     }
 
+    public static final int TIMESTAMP_FIELD_NUMBER = 9;
+    private long timestamp_ = 0L;
+    /**
+     * <pre>
+     * GPS timestamp from satellite (Unix time in seconds)
+     * </pre>
+     *
+     * <code>int64 timestamp = 9;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -252,6 +277,9 @@ public final class JonSharedDataGps {
       }
       if (useManual_ != false) {
         output.writeBool(8, useManual_);
+      }
+      if (timestamp_ != 0L) {
+        output.writeInt64(9, timestamp_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -294,6 +322,10 @@ public final class JonSharedDataGps {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, useManual_);
       }
+      if (timestamp_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(9, timestamp_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -330,6 +362,8 @@ public final class JonSharedDataGps {
       if (fixType_ != other.fixType_) return false;
       if (getUseManual()
           != other.getUseManual()) return false;
+      if (getTimestamp()
+          != other.getTimestamp()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -364,6 +398,9 @@ public final class JonSharedDataGps {
       hash = (37 * hash) + USE_MANUAL_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getUseManual());
+      hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTimestamp());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -503,6 +540,7 @@ public final class JonSharedDataGps {
         manualAltitude_ = 0D;
         fixType_ = 0;
         useManual_ = false;
+        timestamp_ = 0L;
         return this;
       }
 
@@ -560,6 +598,9 @@ public final class JonSharedDataGps {
         if (((from_bitField0_ & 0x00000080) != 0)) {
           result.useManual_ = useManual_;
         }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.timestamp_ = timestamp_;
+        }
       }
 
       @java.lang.Override
@@ -597,6 +638,9 @@ public final class JonSharedDataGps {
         }
         if (other.getUseManual() != false) {
           setUseManual(other.getUseManual());
+        }
+        if (other.getTimestamp() != 0L) {
+          setTimestamp(other.getTimestamp());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -664,6 +708,11 @@ public final class JonSharedDataGps {
                 bitField0_ |= 0x00000080;
                 break;
               } // case 64
+              case 72: {
+                timestamp_ = input.readInt64();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 72
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -958,6 +1007,50 @@ public final class JonSharedDataGps {
         return this;
       }
 
+      private long timestamp_ ;
+      /**
+       * <pre>
+       * GPS timestamp from satellite (Unix time in seconds)
+       * </pre>
+       *
+       * <code>int64 timestamp = 9;</code>
+       * @return The timestamp.
+       */
+      @java.lang.Override
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      /**
+       * <pre>
+       * GPS timestamp from satellite (Unix time in seconds)
+       * </pre>
+       *
+       * <code>int64 timestamp = 9;</code>
+       * @param value The timestamp to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTimestamp(long value) {
+
+        timestamp_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * GPS timestamp from satellite (Unix time in seconds)
+       * </pre>
+       *
+       * <code>int64 timestamp = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:ser.JonGuiDataGps)
     }
 
@@ -1025,7 +1118,7 @@ public final class JonSharedDataGps {
     java.lang.String[] descriptorData = {
       "\n\031jon_shared_data_gps.proto\022\003ser\032\033buf/va" +
       "lidate/validate.proto\032\033jon_shared_data_t" +
-      "ypes.proto\"\365\002\n\rJonGuiDataGps\022*\n\tlongitud" +
+      "ypes.proto\"\210\003\n\rJonGuiDataGps\022*\n\tlongitud" +
       "e\030\001 \001(\001B\027\272H\024\022\022\031\000\000\000\000\000\200f@)\000\000\000\000\000\200f\300\022)\n\010lati" +
       "tude\030\002 \001(\001B\027\272H\024\022\022\031\000\000\000\000\000\200V@)\000\000\000\000\000\200V\300\022)\n\010a" +
       "ltitude\030\003 \001(\001B\027\272H\024\022\022\031\000\000\000\000\000j\370@)\000\000\000\000\000\340z\300\0221" +
@@ -1034,9 +1127,10 @@ public final class JonSharedDataGps {
       "\022\031\000\000\000\000\000\200V@)\000\000\000\000\000\200V\300\0220\n\017manual_altitude\030\006" +
       " \001(\001B\027\272H\024\022\022\031\000\000\000\000\000j\370@)\000\000\000\000\000\340z\300\0227\n\010fix_typ" +
       "e\030\007 \001(\0162\031.ser.JonGuiDataGpsFixTypeB\n\272H\007\202" +
-      "\001\004\020\001 \000\022\022\n\nuse_manual\030\010 \001(\010BKZIgit-codeco" +
-      "mmit.eu-central-1.amazonaws.com/v1/repos" +
-      "/jettison/jonp/data/gpsb\006proto3"
+      "\001\004\020\001 \000\022\022\n\nuse_manual\030\010 \001(\010\022\021\n\ttimestamp\030" +
+      "\t \001(\003BKZIgit-codecommit.eu-central-1.ama" +
+      "zonaws.com/v1/repos/jettison/jonp/data/g" +
+      "psb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1049,7 +1143,7 @@ public final class JonSharedDataGps {
     internal_static_ser_JonGuiDataGps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ser_JonGuiDataGps_descriptor,
-        new java.lang.String[] { "Longitude", "Latitude", "Altitude", "ManualLongitude", "ManualLatitude", "ManualAltitude", "FixType", "UseManual", });
+        new java.lang.String[] { "Longitude", "Latitude", "Altitude", "ManualLongitude", "ManualLatitude", "ManualAltitude", "FixType", "UseManual", "Timestamp", });
     descriptor.resolveAllFeaturesImmutable();
     build.buf.validate.ValidateProto.getDescriptor();
     ser.JonSharedDataTypes.getDescriptor();
