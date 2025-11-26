@@ -182,6 +182,23 @@ public final class JonSharedDataSystem {
      * @return The accumulatorState.
      */
     ser.JonSharedDataTypes.JonGuiDataAccumulatorStateIdx getAccumulatorState();
+
+    /**
+     * <code>int32 ext_bat_capacity = 25 [(.buf.validate.field) = { ... }</code>
+     * @return The extBatCapacity.
+     */
+    int getExtBatCapacity();
+
+    /**
+     * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+     * @return The enum numeric value on the wire for extBatStatus.
+     */
+    int getExtBatStatusValue();
+    /**
+     * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+     * @return The extBatStatus.
+     */
+    ser.JonSharedDataTypes.JonGuiDataExtBatStatus getExtBatStatus();
   }
   /**
    * Protobuf type {@code ser.JonGuiDataSystem}
@@ -207,6 +224,7 @@ public final class JonSharedDataSystem {
     private JonGuiDataSystem() {
       loc_ = 0;
       accumulatorState_ = 0;
+      extBatStatus_ = 0;
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -500,6 +518,35 @@ public final class JonSharedDataSystem {
       return result == null ? ser.JonSharedDataTypes.JonGuiDataAccumulatorStateIdx.UNRECOGNIZED : result;
     }
 
+    public static final int EXT_BAT_CAPACITY_FIELD_NUMBER = 25;
+    private int extBatCapacity_ = 0;
+    /**
+     * <code>int32 ext_bat_capacity = 25 [(.buf.validate.field) = { ... }</code>
+     * @return The extBatCapacity.
+     */
+    @java.lang.Override
+    public int getExtBatCapacity() {
+      return extBatCapacity_;
+    }
+
+    public static final int EXT_BAT_STATUS_FIELD_NUMBER = 26;
+    private int extBatStatus_ = 0;
+    /**
+     * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+     * @return The enum numeric value on the wire for extBatStatus.
+     */
+    @java.lang.Override public int getExtBatStatusValue() {
+      return extBatStatus_;
+    }
+    /**
+     * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+     * @return The extBatStatus.
+     */
+    @java.lang.Override public ser.JonSharedDataTypes.JonGuiDataExtBatStatus getExtBatStatus() {
+      ser.JonSharedDataTypes.JonGuiDataExtBatStatus result = ser.JonSharedDataTypes.JonGuiDataExtBatStatus.forNumber(extBatStatus_);
+      return result == null ? ser.JonSharedDataTypes.JonGuiDataExtBatStatus.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -585,6 +632,12 @@ public final class JonSharedDataSystem {
       }
       if (accumulatorState_ != ser.JonSharedDataTypes.JonGuiDataAccumulatorStateIdx.JON_GUI_DATA_ACCUMULATOR_STATE_UNSPECIFIED.getNumber()) {
         output.writeEnum(24, accumulatorState_);
+      }
+      if (extBatCapacity_ != 0) {
+        output.writeInt32(25, extBatCapacity_);
+      }
+      if (extBatStatus_ != ser.JonSharedDataTypes.JonGuiDataExtBatStatus.JON_GUI_DATA_EXT_BAT_STATUS_UNSPECIFIED.getNumber()) {
+        output.writeEnum(26, extBatStatus_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -691,6 +744,14 @@ public final class JonSharedDataSystem {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(24, accumulatorState_);
       }
+      if (extBatCapacity_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(25, extBatCapacity_);
+      }
+      if (extBatStatus_ != ser.JonSharedDataTypes.JonGuiDataExtBatStatus.JON_GUI_DATA_EXT_BAT_STATUS_UNSPECIFIED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(26, extBatStatus_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -757,6 +818,9 @@ public final class JonSharedDataSystem {
       if (getRecognitionMode()
           != other.getRecognitionMode()) return false;
       if (accumulatorState_ != other.accumulatorState_) return false;
+      if (getExtBatCapacity()
+          != other.getExtBatCapacity()) return false;
+      if (extBatStatus_ != other.extBatStatus_) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -831,6 +895,10 @@ public final class JonSharedDataSystem {
           getRecognitionMode());
       hash = (37 * hash) + ACCUMULATOR_STATE_FIELD_NUMBER;
       hash = (53 * hash) + accumulatorState_;
+      hash = (37 * hash) + EXT_BAT_CAPACITY_FIELD_NUMBER;
+      hash = (53 * hash) + getExtBatCapacity();
+      hash = (37 * hash) + EXT_BAT_STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + extBatStatus_;
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -986,6 +1054,8 @@ public final class JonSharedDataSystem {
         cvDumping_ = false;
         recognitionMode_ = false;
         accumulatorState_ = 0;
+        extBatCapacity_ = 0;
+        extBatStatus_ = 0;
         return this;
       }
 
@@ -1091,6 +1161,12 @@ public final class JonSharedDataSystem {
         if (((from_bitField0_ & 0x00800000) != 0)) {
           result.accumulatorState_ = accumulatorState_;
         }
+        if (((from_bitField0_ & 0x01000000) != 0)) {
+          result.extBatCapacity_ = extBatCapacity_;
+        }
+        if (((from_bitField0_ & 0x02000000) != 0)) {
+          result.extBatStatus_ = extBatStatus_;
+        }
       }
 
       @java.lang.Override
@@ -1176,6 +1252,12 @@ public final class JonSharedDataSystem {
         }
         if (other.accumulatorState_ != 0) {
           setAccumulatorStateValue(other.getAccumulatorStateValue());
+        }
+        if (other.getExtBatCapacity() != 0) {
+          setExtBatCapacity(other.getExtBatCapacity());
+        }
+        if (other.extBatStatus_ != 0) {
+          setExtBatStatusValue(other.getExtBatStatusValue());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1323,6 +1405,16 @@ public final class JonSharedDataSystem {
                 bitField0_ |= 0x00800000;
                 break;
               } // case 192
+              case 200: {
+                extBatCapacity_ = input.readInt32();
+                bitField0_ |= 0x01000000;
+                break;
+              } // case 200
+              case 208: {
+                extBatStatus_ = input.readEnum();
+                bitField0_ |= 0x02000000;
+                break;
+              } // case 208
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2150,6 +2242,91 @@ public final class JonSharedDataSystem {
         return this;
       }
 
+      private int extBatCapacity_ ;
+      /**
+       * <code>int32 ext_bat_capacity = 25 [(.buf.validate.field) = { ... }</code>
+       * @return The extBatCapacity.
+       */
+      @java.lang.Override
+      public int getExtBatCapacity() {
+        return extBatCapacity_;
+      }
+      /**
+       * <code>int32 ext_bat_capacity = 25 [(.buf.validate.field) = { ... }</code>
+       * @param value The extBatCapacity to set.
+       * @return This builder for chaining.
+       */
+      public Builder setExtBatCapacity(int value) {
+
+        extBatCapacity_ = value;
+        bitField0_ |= 0x01000000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 ext_bat_capacity = 25 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearExtBatCapacity() {
+        bitField0_ = (bitField0_ & ~0x01000000);
+        extBatCapacity_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int extBatStatus_ = 0;
+      /**
+       * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+       * @return The enum numeric value on the wire for extBatStatus.
+       */
+      @java.lang.Override public int getExtBatStatusValue() {
+        return extBatStatus_;
+      }
+      /**
+       * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+       * @param value The enum numeric value on the wire for extBatStatus to set.
+       * @return This builder for chaining.
+       */
+      public Builder setExtBatStatusValue(int value) {
+        extBatStatus_ = value;
+        bitField0_ |= 0x02000000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+       * @return The extBatStatus.
+       */
+      @java.lang.Override
+      public ser.JonSharedDataTypes.JonGuiDataExtBatStatus getExtBatStatus() {
+        ser.JonSharedDataTypes.JonGuiDataExtBatStatus result = ser.JonSharedDataTypes.JonGuiDataExtBatStatus.forNumber(extBatStatus_);
+        return result == null ? ser.JonSharedDataTypes.JonGuiDataExtBatStatus.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+       * @param value The extBatStatus to set.
+       * @return This builder for chaining.
+       */
+      public Builder setExtBatStatus(ser.JonSharedDataTypes.JonGuiDataExtBatStatus value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x02000000;
+        extBatStatus_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ser.JonGuiDataExtBatStatus ext_bat_status = 26;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearExtBatStatus() {
+        bitField0_ = (bitField0_ & ~0x02000000);
+        extBatStatus_ = 0;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:ser.JonGuiDataSystem)
     }
 
@@ -2217,7 +2394,7 @@ public final class JonSharedDataSystem {
     java.lang.String[] descriptorData = {
       "\n\034jon_shared_data_system.proto\022\003ser\032\033buf" +
       "/validate/validate.proto\032\033jon_shared_dat" +
-      "a_types.proto\"\235\010\n\020JonGuiDataSystem\022K\n\017cp" +
+      "a_types.proto\"\367\010\n\020JonGuiDataSystem\022K\n\017cp" +
       "u_temperature\030\001 \001(\001B2\272H/\022-\031\000\000\000\000\000\300b@)ffff" +
       "f\022q\300I\000\000\000\000\000\2009@I\000\000\000\000\000\000N@I\000\000\000\000\000 T@\022K\n\017gpu_t" +
       "emperature\030\002 \001(\001B2\272H/\022-\031\000\000\000\000\000\300b@)fffff\022q" +
@@ -2243,9 +2420,12 @@ public final class JonSharedDataSystem {
       "\024 \001(\010\022\025\n\rgeodesic_mode\030\025 \001(\010\022\022\n\ncv_dumpi" +
       "ng\030\026 \001(\010\022\030\n\020recognition_mode\030\027 \001(\010\022I\n\021ac" +
       "cumulator_state\030\030 \001(\0162\".ser.JonGuiDataAc" +
-      "cumulatorStateIdxB\n\272H\007\202\001\004\020\001 \000BNZLgit-cod" +
-      "ecommit.eu-central-1.amazonaws.com/v1/re" +
-      "pos/jettison/jonp/data/systemb\006proto3"
+      "cumulatorStateIdxB\n\272H\007\202\001\004\020\001 \000\022#\n\020ext_bat" +
+      "_capacity\030\031 \001(\005B\t\272H\006\032\004\030d(\000\0223\n\016ext_bat_st" +
+      "atus\030\032 \001(\0162\033.ser.JonGuiDataExtBatStatusB" +
+      "NZLgit-codecommit.eu-central-1.amazonaws" +
+      ".com/v1/repos/jettison/jonp/data/systemb" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2258,7 +2438,7 @@ public final class JonSharedDataSystem {
     internal_static_ser_JonGuiDataSystem_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ser_JonGuiDataSystem_descriptor,
-        new java.lang.String[] { "CpuTemperature", "GpuTemperature", "GpuLoad", "CpuLoad", "PowerConsumption", "Loc", "CurVideoRecDirYear", "CurVideoRecDirMonth", "CurVideoRecDirDay", "CurVideoRecDirHour", "CurVideoRecDirMinute", "CurVideoRecDirSecond", "RecEnabled", "ImportantRecEnabled", "LowDiskSpace", "NoDiskSpace", "DiskSpace", "Tracking", "VampireMode", "StabilizationMode", "GeodesicMode", "CvDumping", "RecognitionMode", "AccumulatorState", });
+        new java.lang.String[] { "CpuTemperature", "GpuTemperature", "GpuLoad", "CpuLoad", "PowerConsumption", "Loc", "CurVideoRecDirYear", "CurVideoRecDirMonth", "CurVideoRecDirDay", "CurVideoRecDirHour", "CurVideoRecDirMinute", "CurVideoRecDirSecond", "RecEnabled", "ImportantRecEnabled", "LowDiskSpace", "NoDiskSpace", "DiskSpace", "Tracking", "VampireMode", "StabilizationMode", "GeodesicMode", "CvDumping", "RecognitionMode", "AccumulatorState", "ExtBatCapacity", "ExtBatStatus", });
     descriptor.resolveAllFeaturesImmutable();
     build.buf.validate.ValidateProto.getDescriptor();
     ser.JonSharedDataTypes.getDescriptor();
