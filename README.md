@@ -2,5 +2,5 @@
 
 Auto-generated Java bindings with buf.validate support.
 
-Generated: 2026-01-26 10:26:33 UTC
-Commit: ed9015a238619500913d87e0a1035aaf46dc7cf6
+Generated: 2026-01-26 13:48:14 UTC
+Commit: 11f7feaf5b4dc98176a404fae052e55c41d8257c
