@@ -4700,47 +4700,18 @@ public final class JonSharedCmdHeater {
 
     /**
      * <pre>
-     * Target temperature in Celsius
+     * Target temperature in Celsius (persisted via manifold state storage)
      * </pre>
      *
      * <code>float target_temperature = 1 [(.buf.validate.field) = { ... }</code>
      * @return The targetTemperature.
      */
     float getTargetTemperature();
-
-    /**
-     * <pre>
-     * Proportional gain
-     * </pre>
-     *
-     * <code>float kp = 2 [(.buf.validate.field) = { ... }</code>
-     * @return The kp.
-     */
-    float getKp();
-
-    /**
-     * <pre>
-     * Integral gain
-     * </pre>
-     *
-     * <code>float ki = 3 [(.buf.validate.field) = { ... }</code>
-     * @return The ki.
-     */
-    float getKi();
-
-    /**
-     * <pre>
-     * Derivative gain
-     * </pre>
-     *
-     * <code>float kd = 4 [(.buf.validate.field) = { ... }</code>
-     * @return The kd.
-     */
-    float getKd();
   }
   /**
    * <pre>
    * AutomaticControlChannelParams contains automatic regulation parameters for a single heater channel
+   * Note: PID gains (kp, ki, kd) are loaded from Redis config_editor, not sent via command
    * </pre>
    *
    * Protobuf type {@code cmd.Heater.AutomaticControlChannelParams}
@@ -4783,7 +4754,7 @@ public final class JonSharedCmdHeater {
     private float targetTemperature_ = 0F;
     /**
      * <pre>
-     * Target temperature in Celsius
+     * Target temperature in Celsius (persisted via manifold state storage)
      * </pre>
      *
      * <code>float target_temperature = 1 [(.buf.validate.field) = { ... }</code>
@@ -4792,51 +4763,6 @@ public final class JonSharedCmdHeater {
     @java.lang.Override
     public float getTargetTemperature() {
       return targetTemperature_;
-    }
-
-    public static final int KP_FIELD_NUMBER = 2;
-    private float kp_ = 0F;
-    /**
-     * <pre>
-     * Proportional gain
-     * </pre>
-     *
-     * <code>float kp = 2 [(.buf.validate.field) = { ... }</code>
-     * @return The kp.
-     */
-    @java.lang.Override
-    public float getKp() {
-      return kp_;
-    }
-
-    public static final int KI_FIELD_NUMBER = 3;
-    private float ki_ = 0F;
-    /**
-     * <pre>
-     * Integral gain
-     * </pre>
-     *
-     * <code>float ki = 3 [(.buf.validate.field) = { ... }</code>
-     * @return The ki.
-     */
-    @java.lang.Override
-    public float getKi() {
-      return ki_;
-    }
-
-    public static final int KD_FIELD_NUMBER = 4;
-    private float kd_ = 0F;
-    /**
-     * <pre>
-     * Derivative gain
-     * </pre>
-     *
-     * <code>float kd = 4 [(.buf.validate.field) = { ... }</code>
-     * @return The kd.
-     */
-    @java.lang.Override
-    public float getKd() {
-      return kd_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4856,15 +4782,6 @@ public final class JonSharedCmdHeater {
       if (java.lang.Float.floatToRawIntBits(targetTemperature_) != 0) {
         output.writeFloat(1, targetTemperature_);
       }
-      if (java.lang.Float.floatToRawIntBits(kp_) != 0) {
-        output.writeFloat(2, kp_);
-      }
-      if (java.lang.Float.floatToRawIntBits(ki_) != 0) {
-        output.writeFloat(3, ki_);
-      }
-      if (java.lang.Float.floatToRawIntBits(kd_) != 0) {
-        output.writeFloat(4, kd_);
-      }
       getUnknownFields().writeTo(output);
     }
 
@@ -4877,18 +4794,6 @@ public final class JonSharedCmdHeater {
       if (java.lang.Float.floatToRawIntBits(targetTemperature_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(1, targetTemperature_);
-      }
-      if (java.lang.Float.floatToRawIntBits(kp_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, kp_);
-      }
-      if (java.lang.Float.floatToRawIntBits(ki_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(3, ki_);
-      }
-      if (java.lang.Float.floatToRawIntBits(kd_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(4, kd_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -4908,15 +4813,6 @@ public final class JonSharedCmdHeater {
       if (java.lang.Float.floatToIntBits(getTargetTemperature())
           != java.lang.Float.floatToIntBits(
               other.getTargetTemperature())) return false;
-      if (java.lang.Float.floatToIntBits(getKp())
-          != java.lang.Float.floatToIntBits(
-              other.getKp())) return false;
-      if (java.lang.Float.floatToIntBits(getKi())
-          != java.lang.Float.floatToIntBits(
-              other.getKi())) return false;
-      if (java.lang.Float.floatToIntBits(getKd())
-          != java.lang.Float.floatToIntBits(
-              other.getKd())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -4931,15 +4827,6 @@ public final class JonSharedCmdHeater {
       hash = (37 * hash) + TARGET_TEMPERATURE_FIELD_NUMBER;
       hash = (53 * hash) + java.lang.Float.floatToIntBits(
           getTargetTemperature());
-      hash = (37 * hash) + KP_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getKp());
-      hash = (37 * hash) + KI_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getKi());
-      hash = (37 * hash) + KD_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getKd());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5040,6 +4927,7 @@ public final class JonSharedCmdHeater {
     /**
      * <pre>
      * AutomaticControlChannelParams contains automatic regulation parameters for a single heater channel
+     * Note: PID gains (kp, ki, kd) are loaded from Redis config_editor, not sent via command
      * </pre>
      *
      * Protobuf type {@code cmd.Heater.AutomaticControlChannelParams}
@@ -5076,9 +4964,6 @@ public final class JonSharedCmdHeater {
         super.clear();
         bitField0_ = 0;
         targetTemperature_ = 0F;
-        kp_ = 0F;
-        ki_ = 0F;
-        kd_ = 0F;
         return this;
       }
 
@@ -5115,15 +5000,6 @@ public final class JonSharedCmdHeater {
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.targetTemperature_ = targetTemperature_;
         }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.kp_ = kp_;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.ki_ = ki_;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.kd_ = kd_;
-        }
       }
 
       @java.lang.Override
@@ -5140,15 +5016,6 @@ public final class JonSharedCmdHeater {
         if (other == cmd.Heater.JonSharedCmdHeater.AutomaticControlChannelParams.getDefaultInstance()) return this;
         if (other.getTargetTemperature() != 0F) {
           setTargetTemperature(other.getTargetTemperature());
-        }
-        if (other.getKp() != 0F) {
-          setKp(other.getKp());
-        }
-        if (other.getKi() != 0F) {
-          setKi(other.getKi());
-        }
-        if (other.getKd() != 0F) {
-          setKd(other.getKd());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -5181,21 +5048,6 @@ public final class JonSharedCmdHeater {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 13
-              case 21: {
-                kp_ = input.readFloat();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 21
-              case 29: {
-                ki_ = input.readFloat();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 29
-              case 37: {
-                kd_ = input.readFloat();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 37
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -5216,7 +5068,7 @@ public final class JonSharedCmdHeater {
       private float targetTemperature_ ;
       /**
        * <pre>
-       * Target temperature in Celsius
+       * Target temperature in Celsius (persisted via manifold state storage)
        * </pre>
        *
        * <code>float target_temperature = 1 [(.buf.validate.field) = { ... }</code>
@@ -5228,7 +5080,7 @@ public final class JonSharedCmdHeater {
       }
       /**
        * <pre>
-       * Target temperature in Celsius
+       * Target temperature in Celsius (persisted via manifold state storage)
        * </pre>
        *
        * <code>float target_temperature = 1 [(.buf.validate.field) = { ... }</code>
@@ -5244,7 +5096,7 @@ public final class JonSharedCmdHeater {
       }
       /**
        * <pre>
-       * Target temperature in Celsius
+       * Target temperature in Celsius (persisted via manifold state storage)
        * </pre>
        *
        * <code>float target_temperature = 1 [(.buf.validate.field) = { ... }</code>
@@ -5253,138 +5105,6 @@ public final class JonSharedCmdHeater {
       public Builder clearTargetTemperature() {
         bitField0_ = (bitField0_ & ~0x00000001);
         targetTemperature_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float kp_ ;
-      /**
-       * <pre>
-       * Proportional gain
-       * </pre>
-       *
-       * <code>float kp = 2 [(.buf.validate.field) = { ... }</code>
-       * @return The kp.
-       */
-      @java.lang.Override
-      public float getKp() {
-        return kp_;
-      }
-      /**
-       * <pre>
-       * Proportional gain
-       * </pre>
-       *
-       * <code>float kp = 2 [(.buf.validate.field) = { ... }</code>
-       * @param value The kp to set.
-       * @return This builder for chaining.
-       */
-      public Builder setKp(float value) {
-
-        kp_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Proportional gain
-       * </pre>
-       *
-       * <code>float kp = 2 [(.buf.validate.field) = { ... }</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearKp() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        kp_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float ki_ ;
-      /**
-       * <pre>
-       * Integral gain
-       * </pre>
-       *
-       * <code>float ki = 3 [(.buf.validate.field) = { ... }</code>
-       * @return The ki.
-       */
-      @java.lang.Override
-      public float getKi() {
-        return ki_;
-      }
-      /**
-       * <pre>
-       * Integral gain
-       * </pre>
-       *
-       * <code>float ki = 3 [(.buf.validate.field) = { ... }</code>
-       * @param value The ki to set.
-       * @return This builder for chaining.
-       */
-      public Builder setKi(float value) {
-
-        ki_ = value;
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Integral gain
-       * </pre>
-       *
-       * <code>float ki = 3 [(.buf.validate.field) = { ... }</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearKi() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        ki_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      private float kd_ ;
-      /**
-       * <pre>
-       * Derivative gain
-       * </pre>
-       *
-       * <code>float kd = 4 [(.buf.validate.field) = { ... }</code>
-       * @return The kd.
-       */
-      @java.lang.Override
-      public float getKd() {
-        return kd_;
-      }
-      /**
-       * <pre>
-       * Derivative gain
-       * </pre>
-       *
-       * <code>float kd = 4 [(.buf.validate.field) = { ... }</code>
-       * @param value The kd to set.
-       * @return This builder for chaining.
-       */
-      public Builder setKd(float value) {
-
-        kd_ = value;
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Derivative gain
-       * </pre>
-       *
-       * <code>float kd = 4 [(.buf.validate.field) = { ... }</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearKd() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        kd_ = 0F;
         onChanged();
         return this;
       }
@@ -6492,18 +6212,16 @@ public final class JonSharedCmdHeater {
       "\272H\014\n\n\035\000\000 B-\000\000\000\000\022%\n\014temp_error_2\030\006 \001(\002B\017\272" +
       "H\014\n\n\035\000\000 B-\000\000\000\000\"\013\n\tGetStatus\"\030\n\026EnableAut" +
       "omaticControl\"\031\n\027DisableAutomaticControl" +
-      "\"\224\001\n\035AutomaticControlChannelParams\022+\n\022ta" +
-      "rget_temperature\030\001 \001(\002B\017\272H\014\n\n\035\000\000\310B-\000\000\000\000\022" +
-      "\026\n\002kp\030\002 \001(\002B\n\272H\007\n\005-\000\000\000\000\022\026\n\002ki\030\003 \001(\002B\n\272H\007" +
-      "\n\005-\000\000\000\000\022\026\n\002kd\030\004 \001(\002B\n\272H\007\n\005-\000\000\000\000\"\325\001\n\031SetA" +
-      "utomaticControlParams\022<\n\tchannel_0\030\001 \001(\013" +
-      "2).cmd.Heater.AutomaticControlChannelPar" +
-      "ams\022<\n\tchannel_1\030\002 \001(\0132).cmd.Heater.Auto" +
-      "maticControlChannelParams\022<\n\tchannel_2\030\003" +
-      " \001(\0132).cmd.Heater.AutomaticControlChanne" +
-      "lParamsBMZKgit-codecommit.eu-central-1.a" +
-      "mazonaws.com/v1/repos/jettison/jonp/cmd/" +
-      "heaterb\006proto3"
+      "\"L\n\035AutomaticControlChannelParams\022+\n\022tar" +
+      "get_temperature\030\001 \001(\002B\017\272H\014\n\n\035\000\000pB-\000\000\000\000\"\325" +
+      "\001\n\031SetAutomaticControlParams\022<\n\tchannel_" +
+      "0\030\001 \001(\0132).cmd.Heater.AutomaticControlCha" +
+      "nnelParams\022<\n\tchannel_1\030\002 \001(\0132).cmd.Heat" +
+      "er.AutomaticControlChannelParams\022<\n\tchan" +
+      "nel_2\030\003 \001(\0132).cmd.Heater.AutomaticContro" +
+      "lChannelParamsBMZKgit-codecommit.eu-cent" +
+      "ral-1.amazonaws.com/v1/repos/jettison/jo" +
+      "np/cmd/heaterb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6557,7 +6275,7 @@ public final class JonSharedCmdHeater {
     internal_static_cmd_Heater_AutomaticControlChannelParams_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_cmd_Heater_AutomaticControlChannelParams_descriptor,
-        new java.lang.String[] { "TargetTemperature", "Kp", "Ki", "Kd", });
+        new java.lang.String[] { "TargetTemperature", });
     internal_static_cmd_Heater_SetAutomaticControlParams_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_cmd_Heater_SetAutomaticControlParams_fieldAccessorTable = new

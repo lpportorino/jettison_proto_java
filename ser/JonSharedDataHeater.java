@@ -713,46 +713,82 @@ public final class JonSharedDataHeater {
     float getPowerW();
 
     /**
+     * <pre>
+     * Day camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
      * @return Whether the channel0 field is set.
      */
     boolean hasChannel0();
     /**
+     * <pre>
+     * Day camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
      * @return The channel0.
      */
     ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus getChannel0();
     /**
+     * <pre>
+     * Day camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
      */
     ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder getChannel0OrBuilder();
 
     /**
+     * <pre>
+     * LRF glass (15W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
      * @return Whether the channel1 field is set.
      */
     boolean hasChannel1();
     /**
+     * <pre>
+     * LRF glass (15W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
      * @return The channel1.
      */
     ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus getChannel1();
     /**
+     * <pre>
+     * LRF glass (15W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
      */
     ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder getChannel1OrBuilder();
 
     /**
+     * <pre>
+     * Heat camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
      * @return Whether the channel2 field is set.
      */
     boolean hasChannel2();
     /**
+     * <pre>
+     * Heat camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
      * @return The channel2.
      */
     ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus getChannel2();
     /**
+     * <pre>
+     * Heat camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
      */
     ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder getChannel2OrBuilder();
@@ -762,6 +798,28 @@ public final class JonSharedDataHeater {
      * @return The automaticControlEnabled.
      */
     boolean getAutomaticControlEnabled();
+
+    /**
+     * <pre>
+     * Target temperatures for PID control (persisted via state storage)
+     * </pre>
+     *
+     * <code>float target_temp_channel_0 = 8 [(.buf.validate.field) = { ... }</code>
+     * @return The targetTempChannel0.
+     */
+    float getTargetTempChannel0();
+
+    /**
+     * <code>float target_temp_channel_1 = 9 [(.buf.validate.field) = { ... }</code>
+     * @return The targetTempChannel1.
+     */
+    float getTargetTempChannel1();
+
+    /**
+     * <code>float target_temp_channel_2 = 10 [(.buf.validate.field) = { ... }</code>
+     * @return The targetTempChannel2.
+     */
+    float getTargetTempChannel2();
   }
   /**
    * <pre>
@@ -841,6 +899,10 @@ public final class JonSharedDataHeater {
     public static final int CHANNEL_0_FIELD_NUMBER = 4;
     private ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus channel0_;
     /**
+     * <pre>
+     * Day camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
      * @return Whether the channel0 field is set.
      */
@@ -849,6 +911,10 @@ public final class JonSharedDataHeater {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
+     * <pre>
+     * Day camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
      * @return The channel0.
      */
@@ -857,6 +923,10 @@ public final class JonSharedDataHeater {
       return channel0_ == null ? ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.getDefaultInstance() : channel0_;
     }
     /**
+     * <pre>
+     * Day camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
      */
     @java.lang.Override
@@ -867,6 +937,10 @@ public final class JonSharedDataHeater {
     public static final int CHANNEL_1_FIELD_NUMBER = 5;
     private ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus channel1_;
     /**
+     * <pre>
+     * LRF glass (15W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
      * @return Whether the channel1 field is set.
      */
@@ -875,6 +949,10 @@ public final class JonSharedDataHeater {
       return ((bitField0_ & 0x00000002) != 0);
     }
     /**
+     * <pre>
+     * LRF glass (15W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
      * @return The channel1.
      */
@@ -883,6 +961,10 @@ public final class JonSharedDataHeater {
       return channel1_ == null ? ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.getDefaultInstance() : channel1_;
     }
     /**
+     * <pre>
+     * LRF glass (15W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
      */
     @java.lang.Override
@@ -893,6 +975,10 @@ public final class JonSharedDataHeater {
     public static final int CHANNEL_2_FIELD_NUMBER = 6;
     private ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus channel2_;
     /**
+     * <pre>
+     * Heat camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
      * @return Whether the channel2 field is set.
      */
@@ -901,6 +987,10 @@ public final class JonSharedDataHeater {
       return ((bitField0_ & 0x00000004) != 0);
     }
     /**
+     * <pre>
+     * Heat camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
      * @return The channel2.
      */
@@ -909,6 +999,10 @@ public final class JonSharedDataHeater {
       return channel2_ == null ? ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.getDefaultInstance() : channel2_;
     }
     /**
+     * <pre>
+     * Heat camera glass (60W)
+     * </pre>
+     *
      * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
      */
     @java.lang.Override
@@ -925,6 +1019,43 @@ public final class JonSharedDataHeater {
     @java.lang.Override
     public boolean getAutomaticControlEnabled() {
       return automaticControlEnabled_;
+    }
+
+    public static final int TARGET_TEMP_CHANNEL_0_FIELD_NUMBER = 8;
+    private float targetTempChannel0_ = 0F;
+    /**
+     * <pre>
+     * Target temperatures for PID control (persisted via state storage)
+     * </pre>
+     *
+     * <code>float target_temp_channel_0 = 8 [(.buf.validate.field) = { ... }</code>
+     * @return The targetTempChannel0.
+     */
+    @java.lang.Override
+    public float getTargetTempChannel0() {
+      return targetTempChannel0_;
+    }
+
+    public static final int TARGET_TEMP_CHANNEL_1_FIELD_NUMBER = 9;
+    private float targetTempChannel1_ = 0F;
+    /**
+     * <code>float target_temp_channel_1 = 9 [(.buf.validate.field) = { ... }</code>
+     * @return The targetTempChannel1.
+     */
+    @java.lang.Override
+    public float getTargetTempChannel1() {
+      return targetTempChannel1_;
+    }
+
+    public static final int TARGET_TEMP_CHANNEL_2_FIELD_NUMBER = 10;
+    private float targetTempChannel2_ = 0F;
+    /**
+     * <code>float target_temp_channel_2 = 10 [(.buf.validate.field) = { ... }</code>
+     * @return The targetTempChannel2.
+     */
+    @java.lang.Override
+    public float getTargetTempChannel2() {
+      return targetTempChannel2_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -962,6 +1093,15 @@ public final class JonSharedDataHeater {
       if (automaticControlEnabled_ != false) {
         output.writeBool(7, automaticControlEnabled_);
       }
+      if (java.lang.Float.floatToRawIntBits(targetTempChannel0_) != 0) {
+        output.writeFloat(8, targetTempChannel0_);
+      }
+      if (java.lang.Float.floatToRawIntBits(targetTempChannel1_) != 0) {
+        output.writeFloat(9, targetTempChannel1_);
+      }
+      if (java.lang.Float.floatToRawIntBits(targetTempChannel2_) != 0) {
+        output.writeFloat(10, targetTempChannel2_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -998,6 +1138,18 @@ public final class JonSharedDataHeater {
       if (automaticControlEnabled_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(7, automaticControlEnabled_);
+      }
+      if (java.lang.Float.floatToRawIntBits(targetTempChannel0_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(8, targetTempChannel0_);
+      }
+      if (java.lang.Float.floatToRawIntBits(targetTempChannel1_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(9, targetTempChannel1_);
+      }
+      if (java.lang.Float.floatToRawIntBits(targetTempChannel2_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(10, targetTempChannel2_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1040,6 +1192,15 @@ public final class JonSharedDataHeater {
       }
       if (getAutomaticControlEnabled()
           != other.getAutomaticControlEnabled()) return false;
+      if (java.lang.Float.floatToIntBits(getTargetTempChannel0())
+          != java.lang.Float.floatToIntBits(
+              other.getTargetTempChannel0())) return false;
+      if (java.lang.Float.floatToIntBits(getTargetTempChannel1())
+          != java.lang.Float.floatToIntBits(
+              other.getTargetTempChannel1())) return false;
+      if (java.lang.Float.floatToIntBits(getTargetTempChannel2())
+          != java.lang.Float.floatToIntBits(
+              other.getTargetTempChannel2())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1075,6 +1236,15 @@ public final class JonSharedDataHeater {
       hash = (37 * hash) + AUTOMATIC_CONTROL_ENABLED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getAutomaticControlEnabled());
+      hash = (37 * hash) + TARGET_TEMP_CHANNEL_0_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getTargetTempChannel0());
+      hash = (37 * hash) + TARGET_TEMP_CHANNEL_1_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getTargetTempChannel1());
+      hash = (37 * hash) + TARGET_TEMP_CHANNEL_2_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getTargetTempChannel2());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1237,6 +1407,9 @@ public final class JonSharedDataHeater {
           channel2Builder_ = null;
         }
         automaticControlEnabled_ = false;
+        targetTempChannel0_ = 0F;
+        targetTempChannel1_ = 0F;
+        targetTempChannel2_ = 0F;
         return this;
       }
 
@@ -1301,6 +1474,15 @@ public final class JonSharedDataHeater {
         if (((from_bitField0_ & 0x00000040) != 0)) {
           result.automaticControlEnabled_ = automaticControlEnabled_;
         }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.targetTempChannel0_ = targetTempChannel0_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.targetTempChannel1_ = targetTempChannel1_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.targetTempChannel2_ = targetTempChannel2_;
+        }
         result.bitField0_ |= to_bitField0_;
       }
 
@@ -1336,6 +1518,15 @@ public final class JonSharedDataHeater {
         }
         if (other.getAutomaticControlEnabled() != false) {
           setAutomaticControlEnabled(other.getAutomaticControlEnabled());
+        }
+        if (other.getTargetTempChannel0() != 0F) {
+          setTargetTempChannel0(other.getTargetTempChannel0());
+        }
+        if (other.getTargetTempChannel1() != 0F) {
+          setTargetTempChannel1(other.getTargetTempChannel1());
+        }
+        if (other.getTargetTempChannel2() != 0F) {
+          setTargetTempChannel2(other.getTargetTempChannel2());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1404,6 +1595,21 @@ public final class JonSharedDataHeater {
                 bitField0_ |= 0x00000040;
                 break;
               } // case 56
+              case 69: {
+                targetTempChannel0_ = input.readFloat();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 69
+              case 77: {
+                targetTempChannel1_ = input.readFloat();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 77
+              case 85: {
+                targetTempChannel2_ = input.readFloat();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 85
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1521,6 +1727,10 @@ public final class JonSharedDataHeater {
       private com.google.protobuf.SingleFieldBuilder<
           ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus, ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.Builder, ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder> channel0Builder_;
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        * @return Whether the channel0 field is set.
        */
@@ -1528,6 +1738,10 @@ public final class JonSharedDataHeater {
         return ((bitField0_ & 0x00000008) != 0);
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        * @return The channel0.
        */
@@ -1539,6 +1753,10 @@ public final class JonSharedDataHeater {
         }
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        */
       public Builder setChannel0(ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus value) {
@@ -1555,6 +1773,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        */
       public Builder setChannel0(
@@ -1569,6 +1791,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        */
       public Builder mergeChannel0(ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus value) {
@@ -1590,6 +1816,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        */
       public Builder clearChannel0() {
@@ -1603,6 +1833,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        */
       public ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.Builder getChannel0Builder() {
@@ -1611,6 +1845,10 @@ public final class JonSharedDataHeater {
         return getChannel0FieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        */
       public ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder getChannel0OrBuilder() {
@@ -1622,6 +1860,10 @@ public final class JonSharedDataHeater {
         }
       }
       /**
+       * <pre>
+       * Day camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_0 = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
@@ -1642,6 +1884,10 @@ public final class JonSharedDataHeater {
       private com.google.protobuf.SingleFieldBuilder<
           ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus, ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.Builder, ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder> channel1Builder_;
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        * @return Whether the channel1 field is set.
        */
@@ -1649,6 +1895,10 @@ public final class JonSharedDataHeater {
         return ((bitField0_ & 0x00000010) != 0);
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        * @return The channel1.
        */
@@ -1660,6 +1910,10 @@ public final class JonSharedDataHeater {
         }
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        */
       public Builder setChannel1(ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus value) {
@@ -1676,6 +1930,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        */
       public Builder setChannel1(
@@ -1690,6 +1948,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        */
       public Builder mergeChannel1(ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus value) {
@@ -1711,6 +1973,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        */
       public Builder clearChannel1() {
@@ -1724,6 +1990,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        */
       public ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.Builder getChannel1Builder() {
@@ -1732,6 +2002,10 @@ public final class JonSharedDataHeater {
         return getChannel1FieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        */
       public ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder getChannel1OrBuilder() {
@@ -1743,6 +2017,10 @@ public final class JonSharedDataHeater {
         }
       }
       /**
+       * <pre>
+       * LRF glass (15W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_1 = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
@@ -1763,6 +2041,10 @@ public final class JonSharedDataHeater {
       private com.google.protobuf.SingleFieldBuilder<
           ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus, ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.Builder, ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder> channel2Builder_;
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        * @return Whether the channel2 field is set.
        */
@@ -1770,6 +2052,10 @@ public final class JonSharedDataHeater {
         return ((bitField0_ & 0x00000020) != 0);
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        * @return The channel2.
        */
@@ -1781,6 +2067,10 @@ public final class JonSharedDataHeater {
         }
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        */
       public Builder setChannel2(ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus value) {
@@ -1797,6 +2087,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        */
       public Builder setChannel2(
@@ -1811,6 +2105,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        */
       public Builder mergeChannel2(ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus value) {
@@ -1832,6 +2130,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        */
       public Builder clearChannel2() {
@@ -1845,6 +2147,10 @@ public final class JonSharedDataHeater {
         return this;
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        */
       public ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatus.Builder getChannel2Builder() {
@@ -1853,6 +2159,10 @@ public final class JonSharedDataHeater {
         return getChannel2FieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        */
       public ser.JonSharedDataHeater.JonGuiDataHeaterChannelStatusOrBuilder getChannel2OrBuilder() {
@@ -1864,6 +2174,10 @@ public final class JonSharedDataHeater {
         }
       }
       /**
+       * <pre>
+       * Heat camera glass (60W)
+       * </pre>
+       *
        * <code>.ser.JonGuiDataHeaterChannelStatus channel_2 = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
@@ -1908,6 +2222,114 @@ public final class JonSharedDataHeater {
       public Builder clearAutomaticControlEnabled() {
         bitField0_ = (bitField0_ & ~0x00000040);
         automaticControlEnabled_ = false;
+        onChanged();
+        return this;
+      }
+
+      private float targetTempChannel0_ ;
+      /**
+       * <pre>
+       * Target temperatures for PID control (persisted via state storage)
+       * </pre>
+       *
+       * <code>float target_temp_channel_0 = 8 [(.buf.validate.field) = { ... }</code>
+       * @return The targetTempChannel0.
+       */
+      @java.lang.Override
+      public float getTargetTempChannel0() {
+        return targetTempChannel0_;
+      }
+      /**
+       * <pre>
+       * Target temperatures for PID control (persisted via state storage)
+       * </pre>
+       *
+       * <code>float target_temp_channel_0 = 8 [(.buf.validate.field) = { ... }</code>
+       * @param value The targetTempChannel0 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTargetTempChannel0(float value) {
+
+        targetTempChannel0_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Target temperatures for PID control (persisted via state storage)
+       * </pre>
+       *
+       * <code>float target_temp_channel_0 = 8 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTargetTempChannel0() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        targetTempChannel0_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float targetTempChannel1_ ;
+      /**
+       * <code>float target_temp_channel_1 = 9 [(.buf.validate.field) = { ... }</code>
+       * @return The targetTempChannel1.
+       */
+      @java.lang.Override
+      public float getTargetTempChannel1() {
+        return targetTempChannel1_;
+      }
+      /**
+       * <code>float target_temp_channel_1 = 9 [(.buf.validate.field) = { ... }</code>
+       * @param value The targetTempChannel1 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTargetTempChannel1(float value) {
+
+        targetTempChannel1_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float target_temp_channel_1 = 9 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTargetTempChannel1() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        targetTempChannel1_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float targetTempChannel2_ ;
+      /**
+       * <code>float target_temp_channel_2 = 10 [(.buf.validate.field) = { ... }</code>
+       * @return The targetTempChannel2.
+       */
+      @java.lang.Override
+      public float getTargetTempChannel2() {
+        return targetTempChannel2_;
+      }
+      /**
+       * <code>float target_temp_channel_2 = 10 [(.buf.validate.field) = { ... }</code>
+       * @param value The targetTempChannel2 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTargetTempChannel2(float value) {
+
+        targetTempChannel2_ = value;
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float target_temp_channel_2 = 10 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTargetTempChannel2() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        targetTempChannel2_ = 0F;
         onChanged();
         return this;
       }
@@ -1987,7 +2409,7 @@ public final class JonSharedDataHeater {
       "eaterChannelStatus\022\023\n\013temperature\030\001 \001(\002\022" +
       "%\n\021applied_voltage_V\030\002 \001(\002B\n\272H\007\n\005-\000\000\000\000\022$" +
       "\n\020target_voltage_V\030\003 \001(\002B\n\272H\007\n\005-\000\000\000\000\022\017\n\007" +
-      "enabled\030\004 \001(\010\"\271\002\n\020JonGuiDataHeater\022!\n\rbu" +
+      "enabled\030\004 \001(\010\"\311\003\n\020JonGuiDataHeater\022!\n\rbu" +
       "s_voltage_V\030\001 \001(\002B\n\272H\007\n\005-\000\000\000\000\022\035\n\tcurrent" +
       "_A\030\002 \001(\002B\n\272H\007\n\005-\000\000\000\000\022\033\n\007power_W\030\003 \001(\002B\n\272" +
       "H\007\n\005-\000\000\000\000\0225\n\tchannel_0\030\004 \001(\0132\".ser.JonGu" +
@@ -1995,9 +2417,13 @@ public final class JonSharedDataHeater {
       "\001(\0132\".ser.JonGuiDataHeaterChannelStatus\022" +
       "5\n\tchannel_2\030\006 \001(\0132\".ser.JonGuiDataHeate" +
       "rChannelStatus\022!\n\031automatic_control_enab" +
-      "led\030\007 \001(\010BNZLgit-codecommit.eu-central-1" +
-      ".amazonaws.com/v1/repos/jettison/jonp/da" +
-      "ta/heaterb\006proto3"
+      "led\030\007 \001(\010\022.\n\025target_temp_channel_0\030\010 \001(\002" +
+      "B\017\272H\014\n\n\035\000\000pB-\000\000\000\000\022.\n\025target_temp_channel" +
+      "_1\030\t \001(\002B\017\272H\014\n\n\035\000\000pB-\000\000\000\000\022.\n\025target_temp" +
+      "_channel_2\030\n \001(\002B\017\272H\014\n\n\035\000\000pB-\000\000\000\000BNZLgit" +
+      "-codecommit.eu-central-1.amazonaws.com/v" +
+      "1/repos/jettison/jonp/data/heaterb\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2015,7 +2441,7 @@ public final class JonSharedDataHeater {
     internal_static_ser_JonGuiDataHeater_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ser_JonGuiDataHeater_descriptor,
-        new java.lang.String[] { "BusVoltageV", "CurrentA", "PowerW", "Channel0", "Channel1", "Channel2", "AutomaticControlEnabled", });
+        new java.lang.String[] { "BusVoltageV", "CurrentA", "PowerW", "Channel0", "Channel1", "Channel2", "AutomaticControlEnabled", "TargetTempChannel0", "TargetTempChannel1", "TargetTempChannel2", });
     descriptor.resolveAllFeaturesImmutable();
     build.buf.validate.ValidateProto.getDescriptor();
     com.google.protobuf.ExtensionRegistry registry =
