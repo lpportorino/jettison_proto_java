@@ -228,6 +228,10 @@ public final class UiAst {
      * <code>WIDGET_TABLE = 18;</code>
      */
     WIDGET_TABLE(18),
+    /**
+     * <code>WIDGET_TABVIEW = 19;</code>
+     */
+    WIDGET_TABVIEW(19),
     UNRECOGNIZED(-1),
     ;
 
@@ -316,6 +320,10 @@ public final class UiAst {
      * <code>WIDGET_TABLE = 18;</code>
      */
     public static final int WIDGET_TABLE_VALUE = 18;
+    /**
+     * <code>WIDGET_TABVIEW = 19;</code>
+     */
+    public static final int WIDGET_TABVIEW_VALUE = 19;
 
 
     public final int getNumber() {
@@ -361,6 +369,7 @@ public final class UiAst {
         case 16: return WIDGET_SCALE;
         case 17: return WIDGET_BUTTONMATRIX;
         case 18: return WIDGET_TABLE;
+        case 19: return WIDGET_TABVIEW;
         default: return null;
       }
     }
@@ -8892,6 +8901,21 @@ java.lang.String defaultValue);
     ui.UiAst.TablePropsOrBuilder getTablePropsOrBuilder();
 
     /**
+     * <code>.ui.TabviewProps tabview_props = 38;</code>
+     * @return Whether the tabviewProps field is set.
+     */
+    boolean hasTabviewProps();
+    /**
+     * <code>.ui.TabviewProps tabview_props = 38;</code>
+     * @return The tabviewProps.
+     */
+    ui.UiAst.TabviewProps getTabviewProps();
+    /**
+     * <code>.ui.TabviewProps tabview_props = 38;</code>
+     */
+    ui.UiAst.TabviewPropsOrBuilder getTabviewPropsOrBuilder();
+
+    /**
      * <pre>
      * Conditional visibility binding (show/hide based on subject value)
      * </pre>
@@ -9076,6 +9100,18 @@ java.lang.String defaultValue);
      */
     boolean getBare();
 
+    /**
+     * <pre>
+     * Tab-bar slot selector — meaningful ONLY on a direct child of a
+     * WIDGET_TABVIEW node: true builds this child inside the tab bar
+     * (lv_tabview_get_tab_bar) instead of zipping into a tab page.
+     * </pre>
+     *
+     * <code>bool in_tab_bar = 39;</code>
+     * @return The inTabBar.
+     */
+    boolean getInTabBar();
+
     ui.UiAst.WidgetNode.WidgetPropsCase getWidgetPropsCase();
   }
   /**
@@ -9165,6 +9201,7 @@ java.lang.String defaultValue);
       SCALE_PROPS(26),
       BUTTONMATRIX_PROPS(27),
       TABLE_PROPS(28),
+      TABVIEW_PROPS(38),
       WIDGETPROPS_NOT_SET(0);
       private final int value;
       private WidgetPropsCase(int value) {
@@ -9201,6 +9238,7 @@ java.lang.String defaultValue);
           case 26: return SCALE_PROPS;
           case 27: return BUTTONMATRIX_PROPS;
           case 28: return TABLE_PROPS;
+          case 38: return TABVIEW_PROPS;
           case 0: return WIDGETPROPS_NOT_SET;
           default: return null;
         }
@@ -10194,6 +10232,37 @@ java.lang.String defaultValue) {
       return ui.UiAst.TableProps.getDefaultInstance();
     }
 
+    public static final int TABVIEW_PROPS_FIELD_NUMBER = 38;
+    /**
+     * <code>.ui.TabviewProps tabview_props = 38;</code>
+     * @return Whether the tabviewProps field is set.
+     */
+    @java.lang.Override
+    public boolean hasTabviewProps() {
+      return widgetPropsCase_ == 38;
+    }
+    /**
+     * <code>.ui.TabviewProps tabview_props = 38;</code>
+     * @return The tabviewProps.
+     */
+    @java.lang.Override
+    public ui.UiAst.TabviewProps getTabviewProps() {
+      if (widgetPropsCase_ == 38) {
+         return (ui.UiAst.TabviewProps) widgetProps_;
+      }
+      return ui.UiAst.TabviewProps.getDefaultInstance();
+    }
+    /**
+     * <code>.ui.TabviewProps tabview_props = 38;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.TabviewPropsOrBuilder getTabviewPropsOrBuilder() {
+      if (widgetPropsCase_ == 38) {
+         return (ui.UiAst.TabviewProps) widgetProps_;
+      }
+      return ui.UiAst.TabviewProps.getDefaultInstance();
+    }
+
     public static final int VISIBILITY_FIELD_NUMBER = 29;
     private ui.UiAst.VisibilityBinding visibility_;
     /**
@@ -10482,6 +10551,23 @@ java.lang.String defaultValue) {
       return bare_;
     }
 
+    public static final int IN_TAB_BAR_FIELD_NUMBER = 39;
+    private boolean inTabBar_ = false;
+    /**
+     * <pre>
+     * Tab-bar slot selector — meaningful ONLY on a direct child of a
+     * WIDGET_TABVIEW node: true builds this child inside the tab bar
+     * (lv_tabview_get_tab_bar) instead of zipping into a tab page.
+     * </pre>
+     *
+     * <code>bool in_tab_bar = 39;</code>
+     * @return The inTabBar.
+     */
+    @java.lang.Override
+    public boolean getInTabBar() {
+      return inTabBar_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -10621,6 +10707,12 @@ java.lang.String defaultValue) {
       }
       if (bare_ != false) {
         output.writeBool(37, bare_);
+      }
+      if (widgetPropsCase_ == 38) {
+        output.writeMessage(38, (ui.UiAst.TabviewProps) widgetProps_);
+      }
+      if (inTabBar_ != false) {
+        output.writeBool(39, inTabBar_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -10810,6 +10902,14 @@ java.lang.String defaultValue) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(37, bare_);
       }
+      if (widgetPropsCase_ == 38) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(38, (ui.UiAst.TabviewProps) widgetProps_);
+      }
+      if (inTabBar_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(39, inTabBar_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -10869,6 +10969,8 @@ java.lang.String defaultValue) {
           .equals(other.getGridRowDscList())) return false;
       if (getBare()
           != other.getBare()) return false;
+      if (getInTabBar()
+          != other.getInTabBar()) return false;
       if (!getWidgetPropsCase().equals(other.getWidgetPropsCase())) return false;
       switch (widgetPropsCase_) {
         case 10:
@@ -10947,6 +11049,10 @@ java.lang.String defaultValue) {
           if (!getTableProps()
               .equals(other.getTableProps())) return false;
           break;
+        case 38:
+          if (!getTabviewProps()
+              .equals(other.getTabviewProps())) return false;
+          break;
         case 0:
         default:
       }
@@ -11016,6 +11122,9 @@ java.lang.String defaultValue) {
       hash = (37 * hash) + BARE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getBare());
+      hash = (37 * hash) + IN_TAB_BAR_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getInTabBar());
       switch (widgetPropsCase_) {
         case 10:
           hash = (37 * hash) + OBJ_PROPS_FIELD_NUMBER;
@@ -11092,6 +11201,10 @@ java.lang.String defaultValue) {
         case 28:
           hash = (37 * hash) + TABLE_PROPS_FIELD_NUMBER;
           hash = (53 * hash) + getTableProps().hashCode();
+          break;
+        case 38:
+          hash = (37 * hash) + TABVIEW_PROPS_FIELD_NUMBER;
+          hash = (53 * hash) + getTabviewProps().hashCode();
           break;
         case 0:
         default:
@@ -11354,6 +11467,9 @@ java.lang.String defaultValue) {
         if (tablePropsBuilder_ != null) {
           tablePropsBuilder_.clear();
         }
+        if (tabviewPropsBuilder_ != null) {
+          tabviewPropsBuilder_.clear();
+        }
         visibility_ = null;
         if (visibilityBuilder_ != null) {
           visibilityBuilder_.dispose();
@@ -11367,6 +11483,7 @@ java.lang.String defaultValue) {
         gridColDsc_ = emptyIntList();
         gridRowDsc_ = emptyIntList();
         bare_ = false;
+        inTabBar_ = false;
         widgetPropsCase_ = 0;
         widgetProps_ = null;
         return this;
@@ -11455,21 +11572,18 @@ java.lang.String defaultValue) {
               : layoutBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
-        if (((from_bitField0_ & 0x10000000) != 0)) {
+        if (((from_bitField0_ & 0x20000000) != 0)) {
           result.visibility_ = visibilityBuilder_ == null
               ? visibility_
               : visibilityBuilder_.build();
           to_bitField0_ |= 0x00000004;
         }
-        if (((from_bitField0_ & 0x20000000) != 0)) {
+        if (((from_bitField0_ & 0x40000000) != 0)) {
           result.bindFormats_ = internalGetBindFormats();
           result.bindFormats_.makeImmutable();
         }
-        if (((from_bitField0_ & 0x40000000) != 0)) {
-          result.objFlags_ = objFlags_;
-        }
         if (((from_bitField0_ & 0x80000000) != 0)) {
-          result.objFlagsClear_ = objFlagsClear_;
+          result.objFlags_ = objFlags_;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -11477,21 +11591,27 @@ java.lang.String defaultValue) {
       private void buildPartial1(ui.UiAst.WidgetNode result) {
         int from_bitField1_ = bitField1_;
         if (((from_bitField1_ & 0x00000001) != 0)) {
-          result.states_ = states_;
+          result.objFlagsClear_ = objFlagsClear_;
         }
         if (((from_bitField1_ & 0x00000002) != 0)) {
-          result.scrollDir_ = scrollDir_;
+          result.states_ = states_;
         }
         if (((from_bitField1_ & 0x00000004) != 0)) {
+          result.scrollDir_ = scrollDir_;
+        }
+        if (((from_bitField1_ & 0x00000008) != 0)) {
           gridColDsc_.makeImmutable();
           result.gridColDsc_ = gridColDsc_;
         }
-        if (((from_bitField1_ & 0x00000008) != 0)) {
+        if (((from_bitField1_ & 0x00000010) != 0)) {
           gridRowDsc_.makeImmutable();
           result.gridRowDsc_ = gridRowDsc_;
         }
-        if (((from_bitField1_ & 0x00000010) != 0)) {
+        if (((from_bitField1_ & 0x00000020) != 0)) {
           result.bare_ = bare_;
+        }
+        if (((from_bitField1_ & 0x00000040) != 0)) {
+          result.inTabBar_ = inTabBar_;
         }
       }
 
@@ -11573,6 +11693,10 @@ java.lang.String defaultValue) {
         if (widgetPropsCase_ == 28 &&
             tablePropsBuilder_ != null) {
           result.widgetProps_ = tablePropsBuilder_.build();
+        }
+        if (widgetPropsCase_ == 38 &&
+            tabviewPropsBuilder_ != null) {
+          result.widgetProps_ = tabviewPropsBuilder_.build();
         }
       }
 
@@ -11668,7 +11792,7 @@ java.lang.String defaultValue) {
         }
         internalGetMutableBindFormats().mergeFrom(
             other.internalGetBindFormats());
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         if (other.getObjFlags() != 0) {
           setObjFlags(other.getObjFlags());
         }
@@ -11685,7 +11809,7 @@ java.lang.String defaultValue) {
           if (gridColDsc_.isEmpty()) {
             gridColDsc_ = other.gridColDsc_;
             gridColDsc_.makeImmutable();
-            bitField1_ |= 0x00000004;
+            bitField1_ |= 0x00000008;
           } else {
             ensureGridColDscIsMutable();
             gridColDsc_.addAll(other.gridColDsc_);
@@ -11696,7 +11820,7 @@ java.lang.String defaultValue) {
           if (gridRowDsc_.isEmpty()) {
             gridRowDsc_ = other.gridRowDsc_;
             gridRowDsc_.makeImmutable();
-            bitField1_ |= 0x00000008;
+            bitField1_ |= 0x00000010;
           } else {
             ensureGridRowDscIsMutable();
             gridRowDsc_.addAll(other.gridRowDsc_);
@@ -11705,6 +11829,9 @@ java.lang.String defaultValue) {
         }
         if (other.getBare() != false) {
           setBare(other.getBare());
+        }
+        if (other.getInTabBar() != false) {
+          setInTabBar(other.getInTabBar());
         }
         switch (other.getWidgetPropsCase()) {
           case OBJ_PROPS: {
@@ -11781,6 +11908,10 @@ java.lang.String defaultValue) {
           }
           case TABLE_PROPS: {
             mergeTableProps(other.getTableProps());
+            break;
+          }
+          case TABVIEW_PROPS: {
+            mergeTabviewProps(other.getTabviewProps());
             break;
           }
           case WIDGETPROPS_NOT_SET: {
@@ -12019,7 +12150,7 @@ java.lang.String defaultValue) {
                 input.readMessage(
                     getVisibilityFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x10000000;
+                bitField0_ |= 0x20000000;
                 break;
               } // case 234
               case 242: {
@@ -12028,27 +12159,27 @@ java.lang.String defaultValue) {
                     BindFormatsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
                 internalGetMutableBindFormats().getMutableMap().put(
                     bindFormats__.getKey(), bindFormats__.getValue());
-                bitField0_ |= 0x20000000;
+                bitField0_ |= 0x40000000;
                 break;
               } // case 242
               case 248: {
                 objFlags_ = input.readUInt32();
-                bitField0_ |= 0x40000000;
+                bitField0_ |= 0x80000000;
                 break;
               } // case 248
               case 256: {
                 objFlagsClear_ = input.readUInt32();
-                bitField0_ |= 0x80000000;
+                bitField1_ |= 0x00000001;
                 break;
               } // case 256
               case 264: {
                 states_ = input.readUInt32();
-                bitField1_ |= 0x00000001;
+                bitField1_ |= 0x00000002;
                 break;
               } // case 264
               case 272: {
                 scrollDir_ = input.readUInt32();
-                bitField1_ |= 0x00000002;
+                bitField1_ |= 0x00000004;
                 break;
               } // case 272
               case 280: {
@@ -12085,9 +12216,21 @@ java.lang.String defaultValue) {
               } // case 290
               case 296: {
                 bare_ = input.readBool();
-                bitField1_ |= 0x00000010;
+                bitField1_ |= 0x00000020;
                 break;
               } // case 296
+              case 306: {
+                input.readMessage(
+                    getTabviewPropsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                widgetPropsCase_ = 38;
+                break;
+              } // case 306
+              case 312: {
+                inTabBar_ = input.readBool();
+                bitField1_ |= 0x00000040;
+                break;
+              } // case 312
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -16151,6 +16294,148 @@ java.lang.String defaultValue) {
         return tablePropsBuilder_;
       }
 
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.TabviewProps, ui.UiAst.TabviewProps.Builder, ui.UiAst.TabviewPropsOrBuilder> tabviewPropsBuilder_;
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       * @return Whether the tabviewProps field is set.
+       */
+      @java.lang.Override
+      public boolean hasTabviewProps() {
+        return widgetPropsCase_ == 38;
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       * @return The tabviewProps.
+       */
+      @java.lang.Override
+      public ui.UiAst.TabviewProps getTabviewProps() {
+        if (tabviewPropsBuilder_ == null) {
+          if (widgetPropsCase_ == 38) {
+            return (ui.UiAst.TabviewProps) widgetProps_;
+          }
+          return ui.UiAst.TabviewProps.getDefaultInstance();
+        } else {
+          if (widgetPropsCase_ == 38) {
+            return tabviewPropsBuilder_.getMessage();
+          }
+          return ui.UiAst.TabviewProps.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       */
+      public Builder setTabviewProps(ui.UiAst.TabviewProps value) {
+        if (tabviewPropsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          widgetProps_ = value;
+          onChanged();
+        } else {
+          tabviewPropsBuilder_.setMessage(value);
+        }
+        widgetPropsCase_ = 38;
+        return this;
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       */
+      public Builder setTabviewProps(
+          ui.UiAst.TabviewProps.Builder builderForValue) {
+        if (tabviewPropsBuilder_ == null) {
+          widgetProps_ = builderForValue.build();
+          onChanged();
+        } else {
+          tabviewPropsBuilder_.setMessage(builderForValue.build());
+        }
+        widgetPropsCase_ = 38;
+        return this;
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       */
+      public Builder mergeTabviewProps(ui.UiAst.TabviewProps value) {
+        if (tabviewPropsBuilder_ == null) {
+          if (widgetPropsCase_ == 38 &&
+              widgetProps_ != ui.UiAst.TabviewProps.getDefaultInstance()) {
+            widgetProps_ = ui.UiAst.TabviewProps.newBuilder((ui.UiAst.TabviewProps) widgetProps_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            widgetProps_ = value;
+          }
+          onChanged();
+        } else {
+          if (widgetPropsCase_ == 38) {
+            tabviewPropsBuilder_.mergeFrom(value);
+          } else {
+            tabviewPropsBuilder_.setMessage(value);
+          }
+        }
+        widgetPropsCase_ = 38;
+        return this;
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       */
+      public Builder clearTabviewProps() {
+        if (tabviewPropsBuilder_ == null) {
+          if (widgetPropsCase_ == 38) {
+            widgetPropsCase_ = 0;
+            widgetProps_ = null;
+            onChanged();
+          }
+        } else {
+          if (widgetPropsCase_ == 38) {
+            widgetPropsCase_ = 0;
+            widgetProps_ = null;
+          }
+          tabviewPropsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       */
+      public ui.UiAst.TabviewProps.Builder getTabviewPropsBuilder() {
+        return getTabviewPropsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       */
+      @java.lang.Override
+      public ui.UiAst.TabviewPropsOrBuilder getTabviewPropsOrBuilder() {
+        if ((widgetPropsCase_ == 38) && (tabviewPropsBuilder_ != null)) {
+          return tabviewPropsBuilder_.getMessageOrBuilder();
+        } else {
+          if (widgetPropsCase_ == 38) {
+            return (ui.UiAst.TabviewProps) widgetProps_;
+          }
+          return ui.UiAst.TabviewProps.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.ui.TabviewProps tabview_props = 38;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.TabviewProps, ui.UiAst.TabviewProps.Builder, ui.UiAst.TabviewPropsOrBuilder> 
+          getTabviewPropsFieldBuilder() {
+        if (tabviewPropsBuilder_ == null) {
+          if (!(widgetPropsCase_ == 38)) {
+            widgetProps_ = ui.UiAst.TabviewProps.getDefaultInstance();
+          }
+          tabviewPropsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ui.UiAst.TabviewProps, ui.UiAst.TabviewProps.Builder, ui.UiAst.TabviewPropsOrBuilder>(
+                  (ui.UiAst.TabviewProps) widgetProps_,
+                  getParentForChildren(),
+                  isClean());
+          widgetProps_ = null;
+        }
+        widgetPropsCase_ = 38;
+        onChanged();
+        return tabviewPropsBuilder_;
+      }
+
       private ui.UiAst.VisibilityBinding visibility_;
       private com.google.protobuf.SingleFieldBuilder<
           ui.UiAst.VisibilityBinding, ui.UiAst.VisibilityBinding.Builder, ui.UiAst.VisibilityBindingOrBuilder> visibilityBuilder_;
@@ -16163,7 +16448,7 @@ java.lang.String defaultValue) {
        * @return Whether the visibility field is set.
        */
       public boolean hasVisibility() {
-        return ((bitField0_ & 0x10000000) != 0);
+        return ((bitField0_ & 0x20000000) != 0);
       }
       /**
        * <pre>
@@ -16196,7 +16481,7 @@ java.lang.String defaultValue) {
         } else {
           visibilityBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x10000000;
+        bitField0_ |= 0x20000000;
         onChanged();
         return this;
       }
@@ -16214,7 +16499,7 @@ java.lang.String defaultValue) {
         } else {
           visibilityBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x10000000;
+        bitField0_ |= 0x20000000;
         onChanged();
         return this;
       }
@@ -16227,7 +16512,7 @@ java.lang.String defaultValue) {
        */
       public Builder mergeVisibility(ui.UiAst.VisibilityBinding value) {
         if (visibilityBuilder_ == null) {
-          if (((bitField0_ & 0x10000000) != 0) &&
+          if (((bitField0_ & 0x20000000) != 0) &&
             visibility_ != null &&
             visibility_ != ui.UiAst.VisibilityBinding.getDefaultInstance()) {
             getVisibilityBuilder().mergeFrom(value);
@@ -16238,7 +16523,7 @@ java.lang.String defaultValue) {
           visibilityBuilder_.mergeFrom(value);
         }
         if (visibility_ != null) {
-          bitField0_ |= 0x10000000;
+          bitField0_ |= 0x20000000;
           onChanged();
         }
         return this;
@@ -16251,7 +16536,7 @@ java.lang.String defaultValue) {
        * <code>.ui.VisibilityBinding visibility = 29;</code>
        */
       public Builder clearVisibility() {
-        bitField0_ = (bitField0_ & ~0x10000000);
+        bitField0_ = (bitField0_ & ~0x20000000);
         visibility_ = null;
         if (visibilityBuilder_ != null) {
           visibilityBuilder_.dispose();
@@ -16268,7 +16553,7 @@ java.lang.String defaultValue) {
        * <code>.ui.VisibilityBinding visibility = 29;</code>
        */
       public ui.UiAst.VisibilityBinding.Builder getVisibilityBuilder() {
-        bitField0_ |= 0x10000000;
+        bitField0_ |= 0x20000000;
         onChanged();
         return getVisibilityFieldBuilder().getBuilder();
       }
@@ -16327,7 +16612,7 @@ java.lang.String defaultValue) {
         if (!bindFormats_.isMutable()) {
           bindFormats_ = bindFormats_.copy();
         }
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         onChanged();
         return bindFormats_;
       }
@@ -16403,7 +16688,7 @@ java.lang.String defaultValue) {
         return map.get(key);
       }
       public Builder clearBindFormats() {
-        bitField0_ = (bitField0_ & ~0x20000000);
+        bitField0_ = (bitField0_ & ~0x40000000);
         internalGetMutableBindFormats().getMutableMap()
             .clear();
         return this;
@@ -16428,7 +16713,7 @@ java.lang.String defaultValue) {
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
           getMutableBindFormats() {
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         return internalGetMutableBindFormats().getMutableMap();
       }
       /**
@@ -16445,7 +16730,7 @@ java.lang.String defaultValue) {
         if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableBindFormats().getMutableMap()
             .put(key, value);
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         return this;
       }
       /**
@@ -16459,7 +16744,7 @@ java.lang.String defaultValue) {
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableBindFormats().getMutableMap()
             .putAll(values);
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         return this;
       }
 
@@ -16490,7 +16775,7 @@ java.lang.String defaultValue) {
       public Builder setObjFlags(int value) {
 
         objFlags_ = value;
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x80000000;
         onChanged();
         return this;
       }
@@ -16504,7 +16789,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearObjFlags() {
-        bitField0_ = (bitField0_ & ~0x40000000);
+        bitField0_ = (bitField0_ & ~0x80000000);
         objFlags_ = 0;
         onChanged();
         return this;
@@ -16535,7 +16820,7 @@ java.lang.String defaultValue) {
       public Builder setObjFlagsClear(int value) {
 
         objFlagsClear_ = value;
-        bitField0_ |= 0x80000000;
+        bitField1_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -16548,7 +16833,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearObjFlagsClear() {
-        bitField0_ = (bitField0_ & ~0x80000000);
+        bitField1_ = (bitField1_ & ~0x00000001);
         objFlagsClear_ = 0;
         onChanged();
         return this;
@@ -16579,7 +16864,7 @@ java.lang.String defaultValue) {
       public Builder setStates(int value) {
 
         states_ = value;
-        bitField1_ |= 0x00000001;
+        bitField1_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -16592,7 +16877,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearStates() {
-        bitField1_ = (bitField1_ & ~0x00000001);
+        bitField1_ = (bitField1_ & ~0x00000002);
         states_ = 0;
         onChanged();
         return this;
@@ -16623,7 +16908,7 @@ java.lang.String defaultValue) {
       public Builder setScrollDir(int value) {
 
         scrollDir_ = value;
-        bitField1_ |= 0x00000002;
+        bitField1_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -16636,7 +16921,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearScrollDir() {
-        bitField1_ = (bitField1_ & ~0x00000002);
+        bitField1_ = (bitField1_ & ~0x00000004);
         scrollDir_ = 0;
         onChanged();
         return this;
@@ -16647,7 +16932,7 @@ java.lang.String defaultValue) {
         if (!gridColDsc_.isModifiable()) {
           gridColDsc_ = makeMutableCopy(gridColDsc_);
         }
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000008;
       }
       /**
        * <pre>
@@ -16708,7 +16993,7 @@ java.lang.String defaultValue) {
 
         ensureGridColDscIsMutable();
         gridColDsc_.setInt(index, value);
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -16727,7 +17012,7 @@ java.lang.String defaultValue) {
 
         ensureGridColDscIsMutable();
         gridColDsc_.addInt(value);
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -16747,7 +17032,7 @@ java.lang.String defaultValue) {
         ensureGridColDscIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, gridColDsc_);
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -16763,7 +17048,7 @@ java.lang.String defaultValue) {
        */
       public Builder clearGridColDsc() {
         gridColDsc_ = emptyIntList();
-        bitField1_ = (bitField1_ & ~0x00000004);
+        bitField1_ = (bitField1_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -16773,7 +17058,7 @@ java.lang.String defaultValue) {
         if (!gridRowDsc_.isModifiable()) {
           gridRowDsc_ = makeMutableCopy(gridRowDsc_);
         }
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
       }
       /**
        * <code>repeated int32 grid_row_dsc = 36;</code>
@@ -16810,7 +17095,7 @@ java.lang.String defaultValue) {
 
         ensureGridRowDscIsMutable();
         gridRowDsc_.setInt(index, value);
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -16823,7 +17108,7 @@ java.lang.String defaultValue) {
 
         ensureGridRowDscIsMutable();
         gridRowDsc_.addInt(value);
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -16837,7 +17122,7 @@ java.lang.String defaultValue) {
         ensureGridRowDscIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, gridRowDsc_);
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -16847,7 +17132,7 @@ java.lang.String defaultValue) {
        */
       public Builder clearGridRowDsc() {
         gridRowDsc_ = emptyIntList();
-        bitField1_ = (bitField1_ & ~0x00000008);
+        bitField1_ = (bitField1_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -16879,7 +17164,7 @@ java.lang.String defaultValue) {
       public Builder setBare(boolean value) {
 
         bare_ = value;
-        bitField1_ |= 0x00000010;
+        bitField1_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -16893,8 +17178,58 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearBare() {
-        bitField1_ = (bitField1_ & ~0x00000010);
+        bitField1_ = (bitField1_ & ~0x00000020);
         bare_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean inTabBar_ ;
+      /**
+       * <pre>
+       * Tab-bar slot selector — meaningful ONLY on a direct child of a
+       * WIDGET_TABVIEW node: true builds this child inside the tab bar
+       * (lv_tabview_get_tab_bar) instead of zipping into a tab page.
+       * </pre>
+       *
+       * <code>bool in_tab_bar = 39;</code>
+       * @return The inTabBar.
+       */
+      @java.lang.Override
+      public boolean getInTabBar() {
+        return inTabBar_;
+      }
+      /**
+       * <pre>
+       * Tab-bar slot selector — meaningful ONLY on a direct child of a
+       * WIDGET_TABVIEW node: true builds this child inside the tab bar
+       * (lv_tabview_get_tab_bar) instead of zipping into a tab page.
+       * </pre>
+       *
+       * <code>bool in_tab_bar = 39;</code>
+       * @param value The inTabBar to set.
+       * @return This builder for chaining.
+       */
+      public Builder setInTabBar(boolean value) {
+
+        inTabBar_ = value;
+        bitField1_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab-bar slot selector — meaningful ONLY on a direct child of a
+       * WIDGET_TABVIEW node: true builds this child inside the tab bar
+       * (lv_tabview_get_tab_bar) instead of zipping into a tab page.
+       * </pre>
+       *
+       * <code>bool in_tab_bar = 39;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearInTabBar() {
+        bitField1_ = (bitField1_ & ~0x00000040);
+        inTabBar_ = false;
         onChanged();
         return this;
       }
@@ -30869,6 +31204,1023 @@ java.lang.String defaultValue) {
 
   }
 
+  public interface TabviewPropsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ui.TabviewProps)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @return A list containing the tabNames.
+     */
+    java.util.List<java.lang.String>
+        getTabNamesList();
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The count of tabNames.
+     */
+    int getTabNamesCount();
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @param index The index of the element to return.
+     * @return The tabNames at the given index.
+     */
+    java.lang.String getTabNames(int index);
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the tabNames at the given index.
+     */
+    com.google.protobuf.ByteString
+        getTabNamesBytes(int index);
+
+    /**
+     * <pre>
+     * Tab bar size in px (height for top/bottom bars, width for left/right);
+     * 0 = keep the LVGL default (DPI-derived).
+     * </pre>
+     *
+     * <code>int32 tab_bar_size = 2;</code>
+     * @return The tabBarSize.
+     */
+    int getTabBarSize();
+
+    /**
+     * <pre>
+     * Initially active tab index (applied LAST, with LV_ANIM_OFF).
+     * </pre>
+     *
+     * <code>uint32 active_index = 3;</code>
+     * @return The activeIndex.
+     */
+    int getActiveIndex();
+
+    /**
+     * <pre>
+     * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+     * the LVGL default (top).
+     * </pre>
+     *
+     * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for tabBarPosition.
+     */
+    int getTabBarPositionValue();
+    /**
+     * <pre>
+     * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+     * the LVGL default (top).
+     * </pre>
+     *
+     * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The tabBarPosition.
+     */
+    ui.UiAst.Dir getTabBarPosition();
+  }
+  /**
+   * Protobuf type {@code ui.TabviewProps}
+   */
+  public static final class TabviewProps extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ui.TabviewProps)
+      TabviewPropsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        TabviewProps.class.getName());
+    }
+    // Use TabviewProps.newBuilder() to construct.
+    private TabviewProps(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private TabviewProps() {
+      tabNames_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      tabBarPosition_ = 0;
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ui.UiAst.internal_static_ui_TabviewProps_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ui.UiAst.internal_static_ui_TabviewProps_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ui.UiAst.TabviewProps.class, ui.UiAst.TabviewProps.Builder.class);
+    }
+
+    public static final int TAB_NAMES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList tabNames_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @return A list containing the tabNames.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getTabNamesList() {
+      return tabNames_;
+    }
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The count of tabNames.
+     */
+    public int getTabNamesCount() {
+      return tabNames_.size();
+    }
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @param index The index of the element to return.
+     * @return The tabNames at the given index.
+     */
+    public java.lang.String getTabNames(int index) {
+      return tabNames_.get(index);
+    }
+    /**
+     * <pre>
+     * Tab names, one per content child of the tabview node — child i of the
+     * node's regular children list becomes tab i's page content (children
+     * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+     * </pre>
+     *
+     * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the tabNames at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getTabNamesBytes(int index) {
+      return tabNames_.getByteString(index);
+    }
+
+    public static final int TAB_BAR_SIZE_FIELD_NUMBER = 2;
+    private int tabBarSize_ = 0;
+    /**
+     * <pre>
+     * Tab bar size in px (height for top/bottom bars, width for left/right);
+     * 0 = keep the LVGL default (DPI-derived).
+     * </pre>
+     *
+     * <code>int32 tab_bar_size = 2;</code>
+     * @return The tabBarSize.
+     */
+    @java.lang.Override
+    public int getTabBarSize() {
+      return tabBarSize_;
+    }
+
+    public static final int ACTIVE_INDEX_FIELD_NUMBER = 3;
+    private int activeIndex_ = 0;
+    /**
+     * <pre>
+     * Initially active tab index (applied LAST, with LV_ANIM_OFF).
+     * </pre>
+     *
+     * <code>uint32 active_index = 3;</code>
+     * @return The activeIndex.
+     */
+    @java.lang.Override
+    public int getActiveIndex() {
+      return activeIndex_;
+    }
+
+    public static final int TAB_BAR_POSITION_FIELD_NUMBER = 4;
+    private int tabBarPosition_ = 0;
+    /**
+     * <pre>
+     * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+     * the LVGL default (top).
+     * </pre>
+     *
+     * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for tabBarPosition.
+     */
+    @java.lang.Override public int getTabBarPositionValue() {
+      return tabBarPosition_;
+    }
+    /**
+     * <pre>
+     * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+     * the LVGL default (top).
+     * </pre>
+     *
+     * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The tabBarPosition.
+     */
+    @java.lang.Override public ui.UiAst.Dir getTabBarPosition() {
+      ui.UiAst.Dir result = ui.UiAst.Dir.forNumber(tabBarPosition_);
+      return result == null ? ui.UiAst.Dir.UNRECOGNIZED : result;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < tabNames_.size(); i++) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, tabNames_.getRaw(i));
+      }
+      if (tabBarSize_ != 0) {
+        output.writeInt32(2, tabBarSize_);
+      }
+      if (activeIndex_ != 0) {
+        output.writeUInt32(3, activeIndex_);
+      }
+      if (tabBarPosition_ != ui.UiAst.Dir.DIR_NONE.getNumber()) {
+        output.writeEnum(4, tabBarPosition_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < tabNames_.size(); i++) {
+          dataSize += computeStringSizeNoTag(tabNames_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getTabNamesList().size();
+      }
+      if (tabBarSize_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, tabBarSize_);
+      }
+      if (activeIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, activeIndex_);
+      }
+      if (tabBarPosition_ != ui.UiAst.Dir.DIR_NONE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(4, tabBarPosition_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ui.UiAst.TabviewProps)) {
+        return super.equals(obj);
+      }
+      ui.UiAst.TabviewProps other = (ui.UiAst.TabviewProps) obj;
+
+      if (!getTabNamesList()
+          .equals(other.getTabNamesList())) return false;
+      if (getTabBarSize()
+          != other.getTabBarSize()) return false;
+      if (getActiveIndex()
+          != other.getActiveIndex()) return false;
+      if (tabBarPosition_ != other.tabBarPosition_) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getTabNamesCount() > 0) {
+        hash = (37 * hash) + TAB_NAMES_FIELD_NUMBER;
+        hash = (53 * hash) + getTabNamesList().hashCode();
+      }
+      hash = (37 * hash) + TAB_BAR_SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + getTabBarSize();
+      hash = (37 * hash) + ACTIVE_INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getActiveIndex();
+      hash = (37 * hash) + TAB_BAR_POSITION_FIELD_NUMBER;
+      hash = (53 * hash) + tabBarPosition_;
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ui.UiAst.TabviewProps parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ui.UiAst.TabviewProps parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ui.UiAst.TabviewProps parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.TabviewProps parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ui.UiAst.TabviewProps prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ui.TabviewProps}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ui.TabviewProps)
+        ui.UiAst.TabviewPropsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ui.UiAst.internal_static_ui_TabviewProps_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ui.UiAst.internal_static_ui_TabviewProps_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ui.UiAst.TabviewProps.class, ui.UiAst.TabviewProps.Builder.class);
+      }
+
+      // Construct using ui.UiAst.TabviewProps.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        tabNames_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
+        tabBarSize_ = 0;
+        activeIndex_ = 0;
+        tabBarPosition_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ui.UiAst.internal_static_ui_TabviewProps_descriptor;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.TabviewProps getDefaultInstanceForType() {
+        return ui.UiAst.TabviewProps.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ui.UiAst.TabviewProps build() {
+        ui.UiAst.TabviewProps result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.TabviewProps buildPartial() {
+        ui.UiAst.TabviewProps result = new ui.UiAst.TabviewProps(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ui.UiAst.TabviewProps result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          tabNames_.makeImmutable();
+          result.tabNames_ = tabNames_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.tabBarSize_ = tabBarSize_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.activeIndex_ = activeIndex_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.tabBarPosition_ = tabBarPosition_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ui.UiAst.TabviewProps) {
+          return mergeFrom((ui.UiAst.TabviewProps)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ui.UiAst.TabviewProps other) {
+        if (other == ui.UiAst.TabviewProps.getDefaultInstance()) return this;
+        if (!other.tabNames_.isEmpty()) {
+          if (tabNames_.isEmpty()) {
+            tabNames_ = other.tabNames_;
+            bitField0_ |= 0x00000001;
+          } else {
+            ensureTabNamesIsMutable();
+            tabNames_.addAll(other.tabNames_);
+          }
+          onChanged();
+        }
+        if (other.getTabBarSize() != 0) {
+          setTabBarSize(other.getTabBarSize());
+        }
+        if (other.getActiveIndex() != 0) {
+          setActiveIndex(other.getActiveIndex());
+        }
+        if (other.tabBarPosition_ != 0) {
+          setTabBarPositionValue(other.getTabBarPositionValue());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureTabNamesIsMutable();
+                tabNames_.add(s);
+                break;
+              } // case 10
+              case 16: {
+                tabBarSize_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                activeIndex_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                tabBarPosition_ = input.readEnum();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringArrayList tabNames_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+      private void ensureTabNamesIsMutable() {
+        if (!tabNames_.isModifiable()) {
+          tabNames_ = new com.google.protobuf.LazyStringArrayList(tabNames_);
+        }
+        bitField0_ |= 0x00000001;
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @return A list containing the tabNames.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getTabNamesList() {
+        tabNames_.makeImmutable();
+        return tabNames_;
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The count of tabNames.
+       */
+      public int getTabNamesCount() {
+        return tabNames_.size();
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @param index The index of the element to return.
+       * @return The tabNames at the given index.
+       */
+      public java.lang.String getTabNames(int index) {
+        return tabNames_.get(index);
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the tabNames at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getTabNamesBytes(int index) {
+        return tabNames_.getByteString(index);
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @param index The index to set the value at.
+       * @param value The tabNames to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTabNames(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureTabNamesIsMutable();
+        tabNames_.set(index, value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The tabNames to add.
+       * @return This builder for chaining.
+       */
+      public Builder addTabNames(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureTabNamesIsMutable();
+        tabNames_.add(value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @param values The tabNames to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllTabNames(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureTabNamesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, tabNames_);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTabNames() {
+        tabNames_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab names, one per content child of the tabview node — child i of the
+       * node's regular children list becomes tab i's page content (children
+       * flagged in_tab_bar are excluded from the zip; they go to the tab bar).
+       * </pre>
+       *
+       * <code>repeated string tab_names = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The bytes of the tabNames to add.
+       * @return This builder for chaining.
+       */
+      public Builder addTabNamesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureTabNamesIsMutable();
+        tabNames_.add(value);
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private int tabBarSize_ ;
+      /**
+       * <pre>
+       * Tab bar size in px (height for top/bottom bars, width for left/right);
+       * 0 = keep the LVGL default (DPI-derived).
+       * </pre>
+       *
+       * <code>int32 tab_bar_size = 2;</code>
+       * @return The tabBarSize.
+       */
+      @java.lang.Override
+      public int getTabBarSize() {
+        return tabBarSize_;
+      }
+      /**
+       * <pre>
+       * Tab bar size in px (height for top/bottom bars, width for left/right);
+       * 0 = keep the LVGL default (DPI-derived).
+       * </pre>
+       *
+       * <code>int32 tab_bar_size = 2;</code>
+       * @param value The tabBarSize to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTabBarSize(int value) {
+
+        tabBarSize_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab bar size in px (height for top/bottom bars, width for left/right);
+       * 0 = keep the LVGL default (DPI-derived).
+       * </pre>
+       *
+       * <code>int32 tab_bar_size = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTabBarSize() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        tabBarSize_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int activeIndex_ ;
+      /**
+       * <pre>
+       * Initially active tab index (applied LAST, with LV_ANIM_OFF).
+       * </pre>
+       *
+       * <code>uint32 active_index = 3;</code>
+       * @return The activeIndex.
+       */
+      @java.lang.Override
+      public int getActiveIndex() {
+        return activeIndex_;
+      }
+      /**
+       * <pre>
+       * Initially active tab index (applied LAST, with LV_ANIM_OFF).
+       * </pre>
+       *
+       * <code>uint32 active_index = 3;</code>
+       * @param value The activeIndex to set.
+       * @return This builder for chaining.
+       */
+      public Builder setActiveIndex(int value) {
+
+        activeIndex_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Initially active tab index (applied LAST, with LV_ANIM_OFF).
+       * </pre>
+       *
+       * <code>uint32 active_index = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearActiveIndex() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        activeIndex_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int tabBarPosition_ = 0;
+      /**
+       * <pre>
+       * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+       * the LVGL default (top).
+       * </pre>
+       *
+       * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+       * @return The enum numeric value on the wire for tabBarPosition.
+       */
+      @java.lang.Override public int getTabBarPositionValue() {
+        return tabBarPosition_;
+      }
+      /**
+       * <pre>
+       * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+       * the LVGL default (top).
+       * </pre>
+       *
+       * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+       * @param value The enum numeric value on the wire for tabBarPosition to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTabBarPositionValue(int value) {
+        tabBarPosition_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+       * the LVGL default (top).
+       * </pre>
+       *
+       * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+       * @return The tabBarPosition.
+       */
+      @java.lang.Override
+      public ui.UiAst.Dir getTabBarPosition() {
+        ui.UiAst.Dir result = ui.UiAst.Dir.forNumber(tabBarPosition_);
+        return result == null ? ui.UiAst.Dir.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+       * the LVGL default (top).
+       * </pre>
+       *
+       * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+       * @param value The tabBarPosition to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTabBarPosition(ui.UiAst.Dir value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000008;
+        tabBarPosition_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Tab bar placement — lv_dir_t direct-cast (parity-gated); DIR_NONE = keep
+       * the LVGL default (top).
+       * </pre>
+       *
+       * <code>.ui.Dir tab_bar_position = 4 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTabBarPosition() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        tabBarPosition_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ui.TabviewProps)
+    }
+
+    // @@protoc_insertion_point(class_scope:ui.TabviewProps)
+    private static final ui.UiAst.TabviewProps DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ui.UiAst.TabviewProps();
+    }
+
+    public static ui.UiAst.TabviewProps getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TabviewProps>
+        PARSER = new com.google.protobuf.AbstractParser<TabviewProps>() {
+      @java.lang.Override
+      public TabviewProps parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<TabviewProps> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TabviewProps> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ui.UiAst.TabviewProps getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface PointOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ui.Point)
       com.google.protobuf.MessageOrBuilder {
@@ -38960,6 +40312,11 @@ java.lang.String defaultValue) {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ui_TableProps_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ui_TabviewProps_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ui_TabviewProps_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ui_Point_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -39024,7 +40381,7 @@ java.lang.String defaultValue) {
       "\022 \n\014string_value\030\003 \001(\tB\010\272H\005r\003\030\377\001H\000B\007\n\005va" +
       "lue\"^\n\006Screen\022!\n\004root\030\001 \001(\0132\016.ui.WidgetN" +
       "odeH\000\210\001\001\022(\n\010subjects\030\002 \003(\0132\026.ui.SubjectD" +
-      "eclarationB\007\n\005_root\"\373\n\n\nWidgetNode\022&\n\004ty" +
+      "eclarationB\007\n\005_root\"\272\013\n\nWidgetNode\022&\n\004ty" +
       "pe\030\001 \001(\0162\016.ui.WidgetTypeB\010\272H\005\202\001\002\020\001\022\t\n\001x\030" +
       "\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\026\n\004text\030\004 \001(\tB\010\272H\005r\003\030\377\001" +
       "\022.\n\010bindings\030\005 \003(\0132\034.ui.WidgetNode.Bindi" +
@@ -39050,232 +40407,238 @@ java.lang.String defaultValue) {
       " \001(\0132\r.ui.LinePropsH\000\022%\n\013scale_props\030\032 \001" +
       "(\0132\016.ui.ScalePropsH\000\0223\n\022buttonmatrix_pro" +
       "ps\030\033 \001(\0132\025.ui.ButtonMatrixPropsH\000\022%\n\013tab" +
-      "le_props\030\034 \001(\0132\016.ui.TablePropsH\000\022)\n\nvisi" +
-      "bility\030\035 \001(\0132\025.ui.VisibilityBinding\0225\n\014b" +
-      "ind_formats\030\036 \003(\0132\037.ui.WidgetNode.BindFo" +
-      "rmatsEntry\022\021\n\tobj_flags\030\037 \001(\r\022\027\n\017obj_fla" +
-      "gs_clear\030  \001(\r\022\016\n\006states\030! \001(\r\022\022\n\nscroll" +
-      "_dir\030\" \001(\r\022\024\n\014grid_col_dsc\030# \003(\005\022\024\n\014grid" +
-      "_row_dsc\030$ \003(\005\022\014\n\004bare\030% \001(\010\032/\n\rBindings" +
-      "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n" +
-      "\020BindFormatsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
-      "\002 \001(\t:\0028\001B\016\n\014widget_props\"\n\n\010ObjProps\"\r\n" +
-      "\013ButtonProps\"<\n\nLabelProps\022.\n\tlong_mode\030" +
-      "\001 \001(\0162\021.ui.LabelLongModeB\010\272H\005\202\001\002\020\001\"g\n\013Sl" +
-      "iderProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_valu" +
-      "e\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022#\n\004mode\030\004 \001(\0162\013.u" +
-      "i.BarModeB\010\272H\005\202\001\002\020\001\"j\n\nImageProps\022\025\n\003src" +
-      "\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\021\n\thas_pivot\030\002 \001(\010\022\017\n\007p" +
-      "ivot_x\030\003 \001(\005\022\017\n\007pivot_y\030\004 \001(\005\022\020\n\010rotatio" +
-      "n\030\005 \001(\005\"\364\001\n\010ArcProps\022\035\n\013start_angle\030\001 \001(" +
-      "\rB\010\272H\005*\003\030\350\002\022\033\n\tend_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002" +
-      "\022 \n\016bg_start_angle\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg" +
-      "_end_angle\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010rotation\030\005" +
-      " \001(\005\022#\n\004mode\030\006 \001(\0162\013.ui.ArcModeB\010\272H\005\202\001\002\020" +
-      "\001\022\021\n\tmin_value\030\007 \001(\005\022\021\n\tmax_value\030\010 \001(\005\022" +
-      "\r\n\005value\030\t \001(\005\"y\n\010BarProps\022\021\n\tmin_value\030" +
-      "\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022" +
-      "\023\n\013start_value\030\004 \001(\005\022#\n\004mode\030\005 \001(\0162\013.ui." +
-      "BarModeB\010\272H\005\202\001\002\020\001\"\036\n\013SwitchProps\022\017\n\007chec" +
-      "ked\030\001 \001(\010\" \n\rCheckboxProps\022\017\n\007checked\030\001 " +
-      "\001(\010\"b\n\rDropdownProps\022\031\n\007options\030\001 \001(\tB\010\272" +
-      "H\005r\003\030\377\007\022\020\n\010selected\030\002 \001(\r\022$\n\tdirection\030\003" +
-      " \001(\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\"}\n\013RollerProps\022\031" +
-      "\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010selected\030\002 " +
-      "\001(\r\022\031\n\021visible_row_count\030\003 \001(\r\022&\n\004mode\030\004" +
-      " \001(\0162\016.ui.RollerModeB\010\272H\005\202\001\002\020\001\"k\n\rTextar" +
-      "eaProps\022\035\n\013placeholder\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022" +
-      "\n\nmax_length\030\002 \001(\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\r" +
-      "password_mode\030\004 \001(\010\"\202\001\n\014SpinboxProps\022\021\n\t" +
-      "min_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005va" +
-      "lue\030\003 \001(\005\022\014\n\004step\030\004 \001(\005\022\023\n\013digit_count\030\005" +
-      " \001(\r\022\032\n\022separator_position\030\006 \001(\r\"5\n\014Spin" +
-      "nerProps\022\021\n\tspin_time\030\001 \001(\r\022\022\n\narc_lengt" +
-      "h\030\002 \001(\r\"B\n\010LedProps\022\030\n\005color\030\001 \001(\0132\t.ui." +
-      "Color\022\034\n\nbrightness\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tL" +
-      "ineProps\022\031\n\006points\030\001 \003(\0132\t.ui.Point\022\020\n\010y" +
-      "_invert\030\002 \001(\010\"\257\002\n\nScaleProps\022%\n\004mode\030\001 \001" +
-      "(\0162\r.ui.ScaleModeB\010\272H\005\202\001\002\020\001\022\030\n\020total_tic" +
-      "k_count\030\002 \001(\r\022\030\n\020major_tick_every\030\003 \001(\r\022" +
-      "\022\n\nlabel_show\030\004 \001(\010\022\021\n\tmin_value\030\005 \001(\005\022\021" +
-      "\n\tmax_value\030\006 \001(\005\022\020\n\010rotation\030\007 \001(\005\022\035\n\013a" +
-      "ngle_range\030\010 \001(\rB\010\272H\005*\003\030\350\002\022\032\n\010text_src\030\t" +
-      " \001(\tB\010\272H\005r\003\030\377\001\022\021\n\tpost_draw\030\n \001(\010\022,\n\010sec" +
-      "tions\030\013 \003(\0132\020.ui.ScaleSectionB\010\272H\005\222\001\002\020\004\"" +
-      "]\n\014ScaleSection\022\021\n\trange_min\030\001 \001(\005\022\021\n\tra" +
-      "nge_max\030\002 \001(\005\022\030\n\005color\030\003 \001(\0132\t.ui.Color\022" +
-      "\r\n\005width\030\004 \001(\r\"A\n\021ButtonMatrixProps\022\031\n\007m" +
-      "ap_str\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\021\n\tone_check\030\002 \001(" +
-      "\010\"5\n\nTableProps\022\021\n\trow_count\030\001 \001(\r\022\024\n\014co" +
-      "lumn_count\030\002 \001(\r\"\035\n\005Point\022\t\n\001x\030\001 \001(\005\022\t\n\001" +
-      "y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030\001 \001(\tB\t" +
-      "\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.EventTri" +
-      "ggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005\022\034\n\024inc" +
-      "lude_widget_value\030\004 \001(\010\022\034\n\013set_subject\030\005" +
-      " \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022\016\n\006togg" +
-      "le\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021Visibil" +
-      "ityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022\021" +
-      "\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(\0162\r.ui." +
-      "CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n\004flow\030\001" +
-      " \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nmain_pla" +
-      "ce\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022,\n\013cro" +
-      "ss_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022" +
-      ",\n\013track_place\030\004 \001(\0162\r.ui.FlexAlignB\010\272H\005" +
-      "\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_selector\030\001 " +
-      "\001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.ResolvedStyle" +
-      "B\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\npropert" +
-      "ies\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\rStylePr" +
-      "operty\022-\n\004type\030\001 \001(\0162\025.ui.StylePropertyT" +
-      "ypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022\023\n\ti" +
-      "nt_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(\0132\t." +
-      "ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H\004r\002\030" +
-      "?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.ShadowBun" +
-      "dleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010\272H\005*" +
-      "\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB\010\272H" +
-      "\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(\r\022\020\n" +
-      "\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n\006spr" +
-      "ead\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013Subj" +
-      "ectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_STRI" +
-      "NG\020\001*\361\002\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rW" +
-      "IDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rWIDG" +
-      "ET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDGET_" +
-      "ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWITCH\020\007" +
-      "\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROPDOWN" +
-      "\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXTAREA" +
-      "\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPINNER" +
-      "\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022\020\n\014W" +
-      "IDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX\020\021\022\020" +
-      "\n\014WIDGET_TABLE\020\022*X\n\014EventTrigger\022\023\n\017TRIG" +
-      "GER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CHANGED\020\001" +
-      "\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCompareOp\022" +
-      "\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ\020\001\022\016\n\nC" +
-      "OMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nCOMPARE_" +
-      "LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlow\022\022\n\016FL" +
-      "EX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001\022\024\n\020FLE" +
-      "X_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_WRAP\020\003\022" +
-      "\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLEX_FLOW_" +
-      "ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_COLUMN_W" +
-      "RAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE\020\007\022!\n\035F" +
-      "LEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001\n\tFlexA" +
-      "lign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLEX_ALIGN" +
-      "_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027FLEX_AL" +
-      "IGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_SPACE_A" +
-      "ROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWEEN\020\005*\274\001" +
-      "\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000\022\025\n\021GRI" +
-      "D_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_END\020\002\022\026\n\022" +
-      "GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIGN_SPACE" +
-      "_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_AROUND\020\005\022\034" +
-      "\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tTextAlig" +
-      "n\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_ALIGN_LEF" +
-      "T\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEXT_ALIGN" +
-      "_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DECOR_NONE" +
-      "\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030TEXT_DEC" +
-      "OR_STRIKETHROUGH\020\002*\213\001\n\tBlendMode\022\025\n\021BLEN" +
-      "D_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADDITIVE\020\001" +
-      "\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023BLEND_MO" +
-      "DE_MULTIPLY\020\003\022\031\n\025BLEND_MODE_DIFFERENCE\020\004" +
-      "*i\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000\022\020\n\014BASE_DI" +
-      "R_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002\022\024\n\020BASE_DIR_N" +
-      "EUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020!*\200\001\n\007GradDir\022" +
-      "\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR_VER\020\001\022\020\n\014" +
-      "GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LINEAR\020\003\022\023\n\017G" +
-      "RAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_CONICAL\020\005*t" +
-      "\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEFT\020\001\022\r\n\tDIR" +
-      "_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n" +
-      "\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n\007DIR_ALL\020\017*\210\004\n" +
-      "\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016ALIGN_TOP_L" +
-      "EFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017ALIGN_TOP_RI" +
-      "GHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024\n\020ALIGN_BO" +
-      "TTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIGHT\020\006\022\022\n\016AL" +
-      "IGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_MID\020\010\022\020\n\014A" +
-      "LIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP_LEFT\020\n\022\025\n" +
-      "\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_OUT_TOP_RI" +
-      "GHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT\020\r\022\030\n\024ALIG" +
-      "N_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OUT_BOTTOM_R" +
-      "IGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020\022\026\n\022ALIGN_" +
-      "OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LEFT_BOTTOM\020" +
-      "\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023ALIGN_OUT_" +
-      "RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT_BOTTOM\020\025*" +
-      "\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_NONE\020\000\022\026\n\022" +
-      "BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER_SIDE_TOP\020" +
-      "\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BORDER_SIDE_R" +
-      "IGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030\n\024BORDER_S" +
-      "IDE_INTERNAL\020\020*\236\001\n\rLabelLongMode\022\030\n\024LABE" +
-      "L_LONG_MODE_WRAP\020\000\022\030\n\024LABEL_LONG_MODE_DO" +
-      "TS\020\001\022\032\n\026LABEL_LONG_MODE_SCROLL\020\002\022#\n\037LABE" +
-      "L_LONG_MODE_SCROLL_CIRCULAR\020\003\022\030\n\024LABEL_L" +
-      "ONG_MODE_CLIP\020\004*L\n\007BarMode\022\023\n\017BAR_MODE_N" +
-      "ORMAL\020\000\022\030\n\024BAR_MODE_SYMMETRICAL\020\001\022\022\n\016BAR" +
-      "_MODE_RANGE\020\002*N\n\007ArcMode\022\023\n\017ARC_MODE_NOR" +
-      "MAL\020\000\022\030\n\024ARC_MODE_SYMMETRICAL\020\001\022\024\n\020ARC_M" +
-      "ODE_REVERSE\020\002*>\n\nRollerMode\022\026\n\022ROLLER_MO" +
-      "DE_NORMAL\020\000\022\030\n\024ROLLER_MODE_INFINITE\020\001*\301\001" +
-      "\n\tScaleMode\022\035\n\031SCALE_MODE_HORIZONTAL_TOP" +
-      "\020\000\022 \n\034SCALE_MODE_HORIZONTAL_BOTTOM\020\001\022\034\n\030" +
-      "SCALE_MODE_VERTICAL_LEFT\020\002\022\035\n\031SCALE_MODE" +
-      "_VERTICAL_RIGHT\020\004\022\032\n\026SCALE_MODE_ROUND_IN" +
-      "NER\020\010\022\032\n\026SCALE_MODE_ROUND_OUTER\020\020*\273\022\n\021St" +
-      "ylePropertyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PR" +
-      "OP_BG_OPA\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PROP" +
-      "_TEXT_FONT\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021P" +
-      "ROP_BORDER_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014P" +
-      "ROP_PAD_ALL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP_" +
-      "WIDTH\020\t\022\017\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW\020" +
-      "\013\022\020\n\014PROP_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n" +
-      "\017PROP_MARGIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022" +
-      "\022\n\016PROP_MIN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022" +
-      "\023\n\017PROP_MIN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT\020" +
-      "\023\022\017\n\013PROP_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y" +
-      "\020\026\022\016\n\nPROP_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_WID" +
-      "TH\020\030\022\031\n\025PROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP_" +
-      "TRANSLATE_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014P" +
-      "ROP_SCALE_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP_" +
-      "ROTATION\020\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PIV" +
-      "OT_Y\020 \022\017\n\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"" +
-      "\022\020\n\014PROP_PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022" +
-      "\021\n\rPROP_PAD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020" +
-      "\n\014PROP_PAD_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n" +
-      "\017PROP_MARGIN_TOP\020)\022\026\n\022PROP_MARGIN_BOTTOM" +
-      "\020*\022\024\n\020PROP_MARGIN_LEFT\020+\022\025\n\021PROP_MARGIN_" +
-      "RIGHT\020,\022\026\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PROP_" +
-      "BG_GRAD_DIR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n\021" +
-      "PROP_BG_GRAD_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA\020" +
-      "1\022\024\n\020PROP_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAGE" +
-      "_SRC\0203\022\025\n\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP_BG" +
-      "_IMAGE_RECOLOR\0205\022\035\n\031PROP_BG_IMAGE_RECOLO" +
-      "R_OPA\0206\022\027\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020PROP" +
-      "_BORDER_SIDE\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n\022" +
-      "PROP_OUTLINE_WIDTH\020:\022\026\n\022PROP_OUTLINE_COL" +
-      "OR\020;\022\024\n\020PROP_OUTLINE_OPA\020<\022\024\n\020PROP_OUTLI" +
-      "NE_PAD\020=\022\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PROP_" +
-      "SHADOW_OFFSET_X\020?\022\030\n\024PROP_SHADOW_OFFSET_" +
-      "Y\020@\022\026\n\022PROP_SHADOW_SPREAD\020A\022\025\n\021PROP_SHAD" +
-      "OW_COLOR\020B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP_" +
-      "IMAGE_OPA\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026P" +
-      "ROP_IMAGE_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_WID" +
-      "TH\020G\022\030\n\024PROP_LINE_DASH_WIDTH\020H\022\026\n\022PROP_L" +
-      "INE_DASH_GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023\n" +
-      "\017PROP_LINE_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n" +
-      "\016PROP_ARC_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N\022" +
-      "\022\n\016PROP_ARC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n" +
-      "\rPROP_TEXT_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_SPA" +
-      "CE\020R\022\030\n\024PROP_TEXT_LINE_SPACE\020S\022\023\n\017PROP_T" +
-      "EXT_DECOR\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PROP" +
-      "_CLIP_CORNER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OPA" +
-      "_LAYERED\020X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y\022\026\n" +
-      "\022PROP_ANIM_DURATION\020Z\022\023\n\017PROP_BLEND_MODE" +
-      "\020[\022\021\n\rPROP_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_SEN" +
-      "SITIVITY\020]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_F" +
-      "LEX_MAIN_PLACE\020_\022\031\n\025PROP_FLEX_CROSS_PLAC" +
-      "E\020`\022\031\n\025PROP_FLEX_TRACK_PLACE\020a\022\022\n\016PROP_F" +
-      "LEX_GROW\020b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020c\022\027" +
-      "\n\023PROP_GRID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_CEL" +
-      "L_COLUMN_POS\020e\022\032\n\026PROP_GRID_CELL_X_ALIGN" +
-      "\020f\022\036\n\032PROP_GRID_CELL_COLUMN_SPAN\020g\022\032\n\026PR" +
-      "OP_GRID_CELL_ROW_POS\020h\022\032\n\026PROP_GRID_CELL" +
-      "_Y_ALIGN\020i\022\033\n\027PROP_GRID_CELL_ROW_SPAN\020jB" +
-      "EZCgit-codecommit.eu-central-1.amazonaws" +
-      ".com/v1/repos/jettison/jonp/uib\006proto3"
+      "le_props\030\034 \001(\0132\016.ui.TablePropsH\000\022)\n\rtabv" +
+      "iew_props\030& \001(\0132\020.ui.TabviewPropsH\000\022)\n\nv" +
+      "isibility\030\035 \001(\0132\025.ui.VisibilityBinding\0225" +
+      "\n\014bind_formats\030\036 \003(\0132\037.ui.WidgetNode.Bin" +
+      "dFormatsEntry\022\021\n\tobj_flags\030\037 \001(\r\022\027\n\017obj_" +
+      "flags_clear\030  \001(\r\022\016\n\006states\030! \001(\r\022\022\n\nscr" +
+      "oll_dir\030\" \001(\r\022\024\n\014grid_col_dsc\030# \003(\005\022\024\n\014g" +
+      "rid_row_dsc\030$ \003(\005\022\014\n\004bare\030% \001(\010\022\022\n\nin_ta" +
+      "b_bar\030\' \001(\010\032/\n\rBindingsEntry\022\013\n\003key\030\001 \001(" +
+      "\t\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n\020BindFormatsEntry" +
+      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\016\n\014widg" +
+      "et_props\"\n\n\010ObjProps\"\r\n\013ButtonProps\"<\n\nL" +
+      "abelProps\022.\n\tlong_mode\030\001 \001(\0162\021.ui.LabelL" +
+      "ongModeB\010\272H\005\202\001\002\020\001\"g\n\013SliderProps\022\021\n\tmin_" +
+      "value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030" +
+      "\003 \001(\005\022#\n\004mode\030\004 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002" +
+      "\020\001\"j\n\nImageProps\022\025\n\003src\030\001 \001(\tB\010\272H\005r\003\030\377\001\022" +
+      "\021\n\thas_pivot\030\002 \001(\010\022\017\n\007pivot_x\030\003 \001(\005\022\017\n\007p" +
+      "ivot_y\030\004 \001(\005\022\020\n\010rotation\030\005 \001(\005\"\364\001\n\010ArcPr" +
+      "ops\022\035\n\013start_angle\030\001 \001(\rB\010\272H\005*\003\030\350\002\022\033\n\ten" +
+      "d_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002\022 \n\016bg_start_angl" +
+      "e\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg_end_angle\030\004 \001(\rB" +
+      "\010\272H\005*\003\030\350\002\022\020\n\010rotation\030\005 \001(\005\022#\n\004mode\030\006 \001(" +
+      "\0162\013.ui.ArcModeB\010\272H\005\202\001\002\020\001\022\021\n\tmin_value\030\007 " +
+      "\001(\005\022\021\n\tmax_value\030\010 \001(\005\022\r\n\005value\030\t \001(\005\"y\n" +
+      "\010BarProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_valu" +
+      "e\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\023\n\013start_value\030\004 " +
+      "\001(\005\022#\n\004mode\030\005 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020\001" +
+      "\"\036\n\013SwitchProps\022\017\n\007checked\030\001 \001(\010\" \n\rChec" +
+      "kboxProps\022\017\n\007checked\030\001 \001(\010\"b\n\rDropdownPr" +
+      "ops\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020\n\010select" +
+      "ed\030\002 \001(\r\022$\n\tdirection\030\003 \001(\0162\007.ui.DirB\010\272H" +
+      "\005\202\001\002\020\001\"}\n\013RollerProps\022\031\n\007options\030\001 \001(\tB\010" +
+      "\272H\005r\003\030\377\003\022\020\n\010selected\030\002 \001(\r\022\031\n\021visible_ro" +
+      "w_count\030\003 \001(\r\022&\n\004mode\030\004 \001(\0162\016.ui.RollerM" +
+      "odeB\010\272H\005\202\001\002\020\001\"k\n\rTextareaProps\022\035\n\013placeh" +
+      "older\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022\n\nmax_length\030\002 \001(" +
+      "\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\rpassword_mode\030\004 \001" +
+      "(\010\"\202\001\n\014SpinboxProps\022\021\n\tmin_value\030\001 \001(\005\022\021" +
+      "\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\014\n\004step" +
+      "\030\004 \001(\005\022\023\n\013digit_count\030\005 \001(\r\022\032\n\022separator" +
+      "_position\030\006 \001(\r\"5\n\014SpinnerProps\022\021\n\tspin_" +
+      "time\030\001 \001(\r\022\022\n\narc_length\030\002 \001(\r\"B\n\010LedPro" +
+      "ps\022\030\n\005color\030\001 \001(\0132\t.ui.Color\022\034\n\nbrightne" +
+      "ss\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tLineProps\022\031\n\006point" +
+      "s\030\001 \003(\0132\t.ui.Point\022\020\n\010y_invert\030\002 \001(\010\"\257\002\n" +
+      "\nScaleProps\022%\n\004mode\030\001 \001(\0162\r.ui.ScaleMode" +
+      "B\010\272H\005\202\001\002\020\001\022\030\n\020total_tick_count\030\002 \001(\r\022\030\n\020" +
+      "major_tick_every\030\003 \001(\r\022\022\n\nlabel_show\030\004 \001" +
+      "(\010\022\021\n\tmin_value\030\005 \001(\005\022\021\n\tmax_value\030\006 \001(\005" +
+      "\022\020\n\010rotation\030\007 \001(\005\022\035\n\013angle_range\030\010 \001(\rB" +
+      "\010\272H\005*\003\030\350\002\022\032\n\010text_src\030\t \001(\tB\010\272H\005r\003\030\377\001\022\021\n" +
+      "\tpost_draw\030\n \001(\010\022,\n\010sections\030\013 \003(\0132\020.ui." +
+      "ScaleSectionB\010\272H\005\222\001\002\020\004\"]\n\014ScaleSection\022\021" +
+      "\n\trange_min\030\001 \001(\005\022\021\n\trange_max\030\002 \001(\005\022\030\n\005" +
+      "color\030\003 \001(\0132\t.ui.Color\022\r\n\005width\030\004 \001(\r\"A\n" +
+      "\021ButtonMatrixProps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005" +
+      "r\003\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nTableProps\022\021" +
+      "\n\trow_count\030\001 \001(\r\022\024\n\014column_count\030\002 \001(\r\"" +
+      "\212\001\n\014TabviewProps\022!\n\ttab_names\030\001 \003(\tB\016\272H\013" +
+      "\222\001\010\020\010\"\004r\002\030\037\022\024\n\014tab_bar_size\030\002 \001(\005\022\024\n\014act" +
+      "ive_index\030\003 \001(\r\022+\n\020tab_bar_position\030\004 \001(" +
+      "\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\"\035\n\005Point\022\t\n\001x\030\001 \001(\005" +
+      "\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030\001 \001" +
+      "(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.Even" +
+      "tTriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005\022\034\n" +
+      "\024include_widget_value\030\004 \001(\010\022\034\n\013set_subje" +
+      "ct\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022\016\n\006" +
+      "toggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021Vis" +
+      "ibilityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r\004\020\001" +
+      "\030?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(\0162\r" +
+      ".ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n\004fl" +
+      "ow\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nmain" +
+      "_place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022,\n" +
+      "\013cross_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001" +
+      "\002\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.FlexAlignB" +
+      "\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_selecto" +
+      "r\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.ResolvedS" +
+      "tyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\npro" +
+      "perties\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\rSty" +
+      "leProperty\022-\n\004type\030\001 \001(\0162\025.ui.StylePrope" +
+      "rtyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022" +
+      "\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(" +
+      "\0132\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H" +
+      "\004r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.Shado" +
+      "wBundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010" +
+      "\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\r" +
+      "B\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(" +
+      "\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n" +
+      "\006spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013" +
+      "SubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_" +
+      "STRING\020\001*\205\003\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022" +
+      "\021\n\rWIDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\r" +
+      "WIDGET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWID" +
+      "GET_ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWIT" +
+      "CH\020\007\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROP" +
+      "DOWN\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXT" +
+      "AREA\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPI" +
+      "NNER\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022" +
+      "\020\n\014WIDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX" +
+      "\020\021\022\020\n\014WIDGET_TABLE\020\022\022\022\n\016WIDGET_TABVIEW\020\023" +
+      "*X\n\014EventTrigger\022\023\n\017TRIGGER_CLICKED\020\000\022\031\n" +
+      "\025TRIGGER_VALUE_CHANGED\020\001\022\030\n\024TRIGGER_LONG" +
+      "_PRESSED\020\002*q\n\tCompareOp\022\016\n\nCOMPARE_EQ\020\000\022" +
+      "\022\n\016COMPARE_NOT_EQ\020\001\022\016\n\nCOMPARE_GT\020\002\022\017\n\013C" +
+      "OMPARE_GTE\020\003\022\016\n\nCOMPARE_LT\020\004\022\017\n\013COMPARE_" +
+      "LTE\020\005*\366\001\n\010FlexFlow\022\022\n\016FLEX_FLOW_NONE\020\000\022\021" +
+      "\n\rFLEX_FLOW_ROW\020\001\022\024\n\020FLEX_FLOW_COLUMN\020\002\022" +
+      "\026\n\022FLEX_FLOW_ROW_WRAP\020\003\022\031\n\025FLEX_FLOW_ROW" +
+      "_REVERSE\020\004\022\036\n\032FLEX_FLOW_ROW_WRAP_REVERSE" +
+      "\020\005\022\031\n\025FLEX_FLOW_COLUMN_WRAP\020\006\022\034\n\030FLEX_FL" +
+      "OW_COLUMN_REVERSE\020\007\022!\n\035FLEX_FLOW_COLUMN_" +
+      "WRAP_REVERSE\020\010*\244\001\n\tFlexAlign\022\024\n\020FLEX_ALI" +
+      "GN_START\020\000\022\022\n\016FLEX_ALIGN_END\020\001\022\025\n\021FLEX_A" +
+      "LIGN_CENTER\020\002\022\033\n\027FLEX_ALIGN_SPACE_EVENLY" +
+      "\020\003\022\033\n\027FLEX_ALIGN_SPACE_AROUND\020\004\022\034\n\030FLEX_" +
+      "ALIGN_SPACE_BETWEEN\020\005*\274\001\n\tGridAlign\022\024\n\020G" +
+      "RID_ALIGN_START\020\000\022\025\n\021GRID_ALIGN_CENTER\020\001" +
+      "\022\022\n\016GRID_ALIGN_END\020\002\022\026\n\022GRID_ALIGN_STRET" +
+      "CH\020\003\022\033\n\027GRID_ALIGN_SPACE_EVENLY\020\004\022\033\n\027GRI" +
+      "D_ALIGN_SPACE_AROUND\020\005\022\034\n\030GRID_ALIGN_SPA" +
+      "CE_BETWEEN\020\006*b\n\tTextAlign\022\023\n\017TEXT_ALIGN_" +
+      "AUTO\020\000\022\023\n\017TEXT_ALIGN_LEFT\020\001\022\025\n\021TEXT_ALIG" +
+      "N_CENTER\020\002\022\024\n\020TEXT_ALIGN_RIGHT\020\003*X\n\tText" +
+      "Decor\022\023\n\017TEXT_DECOR_NONE\020\000\022\030\n\024TEXT_DECOR" +
+      "_UNDERLINE\020\001\022\034\n\030TEXT_DECOR_STRIKETHROUGH" +
+      "\020\002*\213\001\n\tBlendMode\022\025\n\021BLEND_MODE_NORMAL\020\000\022" +
+      "\027\n\023BLEND_MODE_ADDITIVE\020\001\022\032\n\026BLEND_MODE_S" +
+      "UBTRACTIVE\020\002\022\027\n\023BLEND_MODE_MULTIPLY\020\003\022\031\n" +
+      "\025BLEND_MODE_DIFFERENCE\020\004*i\n\007BaseDir\022\020\n\014B" +
+      "ASE_DIR_LTR\020\000\022\020\n\014BASE_DIR_RTL\020\001\022\021\n\rBASE_" +
+      "DIR_AUTO\020\002\022\024\n\020BASE_DIR_NEUTRAL\020 \022\021\n\rBASE" +
+      "_DIR_WEAK\020!*\200\001\n\007GradDir\022\021\n\rGRAD_DIR_NONE" +
+      "\020\000\022\020\n\014GRAD_DIR_VER\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023" +
+      "\n\017GRAD_DIR_LINEAR\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004" +
+      "\022\024\n\020GRAD_DIR_CONICAL\020\005*t\n\003Dir\022\014\n\010DIR_NON" +
+      "E\020\000\022\014\n\010DIR_LEFT\020\001\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_" +
+      "TOP\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DI" +
+      "R_VER\020\014\022\013\n\007DIR_ALL\020\017*\210\004\n\005Align\022\021\n\rALIGN_" +
+      "DEFAULT\020\000\022\022\n\016ALIGN_TOP_LEFT\020\001\022\021\n\rALIGN_T" +
+      "OP_MID\020\002\022\023\n\017ALIGN_TOP_RIGHT\020\003\022\025\n\021ALIGN_B" +
+      "OTTOM_LEFT\020\004\022\024\n\020ALIGN_BOTTOM_MID\020\005\022\026\n\022AL" +
+      "IGN_BOTTOM_RIGHT\020\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023" +
+      "\n\017ALIGN_RIGHT_MID\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n" +
+      "\022ALIGN_OUT_TOP_LEFT\020\n\022\025\n\021ALIGN_OUT_TOP_M" +
+      "ID\020\013\022\027\n\023ALIGN_OUT_TOP_RIGHT\020\014\022\031\n\025ALIGN_O" +
+      "UT_BOTTOM_LEFT\020\r\022\030\n\024ALIGN_OUT_BOTTOM_MID" +
+      "\020\016\022\032\n\026ALIGN_OUT_BOTTOM_RIGHT\020\017\022\026\n\022ALIGN_" +
+      "OUT_LEFT_TOP\020\020\022\026\n\022ALIGN_OUT_LEFT_MID\020\021\022\031" +
+      "\n\025ALIGN_OUT_LEFT_BOTTOM\020\022\022\027\n\023ALIGN_OUT_R" +
+      "IGHT_TOP\020\023\022\027\n\023ALIGN_OUT_RIGHT_MID\020\024\022\032\n\026A" +
+      "LIGN_OUT_RIGHT_BOTTOM\020\025*\254\001\n\nBorderSide\022\024" +
+      "\n\020BORDER_SIDE_NONE\020\000\022\026\n\022BORDER_SIDE_BOTT" +
+      "OM\020\001\022\023\n\017BORDER_SIDE_TOP\020\002\022\024\n\020BORDER_SIDE" +
+      "_LEFT\020\004\022\025\n\021BORDER_SIDE_RIGHT\020\010\022\024\n\020BORDER" +
+      "_SIDE_FULL\020\017\022\030\n\024BORDER_SIDE_INTERNAL\020\020*\236" +
+      "\001\n\rLabelLongMode\022\030\n\024LABEL_LONG_MODE_WRAP" +
+      "\020\000\022\030\n\024LABEL_LONG_MODE_DOTS\020\001\022\032\n\026LABEL_LO" +
+      "NG_MODE_SCROLL\020\002\022#\n\037LABEL_LONG_MODE_SCRO" +
+      "LL_CIRCULAR\020\003\022\030\n\024LABEL_LONG_MODE_CLIP\020\004*" +
+      "L\n\007BarMode\022\023\n\017BAR_MODE_NORMAL\020\000\022\030\n\024BAR_M" +
+      "ODE_SYMMETRICAL\020\001\022\022\n\016BAR_MODE_RANGE\020\002*N\n" +
+      "\007ArcMode\022\023\n\017ARC_MODE_NORMAL\020\000\022\030\n\024ARC_MOD" +
+      "E_SYMMETRICAL\020\001\022\024\n\020ARC_MODE_REVERSE\020\002*>\n" +
+      "\nRollerMode\022\026\n\022ROLLER_MODE_NORMAL\020\000\022\030\n\024R" +
+      "OLLER_MODE_INFINITE\020\001*\301\001\n\tScaleMode\022\035\n\031S" +
+      "CALE_MODE_HORIZONTAL_TOP\020\000\022 \n\034SCALE_MODE" +
+      "_HORIZONTAL_BOTTOM\020\001\022\034\n\030SCALE_MODE_VERTI" +
+      "CAL_LEFT\020\002\022\035\n\031SCALE_MODE_VERTICAL_RIGHT\020" +
+      "\004\022\032\n\026SCALE_MODE_ROUND_INNER\020\010\022\032\n\026SCALE_M" +
+      "ODE_ROUND_OUTER\020\020*\273\022\n\021StylePropertyType\022" +
+      "\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OPA\020\001\022\023\n\017P" +
+      "ROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FONT\020\003\022\025\n\021" +
+      "PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BORDER_WIDTH" +
+      "\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_ALL\020\007\022\020\n" +
+      "\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022\017\n\013PROP_" +
+      "HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PROP_PAD_HO" +
+      "R\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MARGIN_ALL" +
+      "\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_MIN_WIDT" +
+      "H\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_MIN_HEIG" +
+      "HT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PROP_LENGTH" +
+      "\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPROP_ALIGN" +
+      "\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025PROP_TRA" +
+      "NSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLATE_X\020\032\022\024\n" +
+      "\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCALE_X\020\034\022\020\n" +
+      "\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION\020\036\022\020\n\014PR" +
+      "OP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017\n\013PROP_S" +
+      "KEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP_PAD_TOP" +
+      "\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_PAD_LEFT" +
+      "\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_PAD_ROW\020\'" +
+      "\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MARGIN_TOP" +
+      "\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PROP_MARGI" +
+      "N_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022\026\n\022PROP_" +
+      "BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_DIR\020.\022\025\n" +
+      "\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_GRAD_STO" +
+      "P\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PROP_BG_GRA" +
+      "D_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025\n\021PROP_B" +
+      "G_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_RECOLOR\0205" +
+      "\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022\027\n\023PROP_" +
+      "BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDER_SIDE\0208\022\024" +
+      "\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_OUTLINE_WID" +
+      "TH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020PROP_OUT" +
+      "LINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=\022\025\n\021PROP" +
+      "_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_OFFSET_X\020" +
+      "?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022PROP_SHAD" +
+      "OW_SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR\020B\022\023\n\017PR" +
+      "OP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OPA\020D\022\026\n\022P" +
+      "ROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAGE_RECOLO" +
+      "R_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024PROP_LIN" +
+      "E_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH_GAP\020I\022\025" +
+      "\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_LINE_COLOR" +
+      "\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_ARC_WIDTH\020" +
+      "M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_ARC_COLO" +
+      "R\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TEXT_OPA\020Q" +
+      "\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024PROP_TEX" +
+      "T_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DECOR\020T\022\023\n\017P" +
+      "ROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_CORNER\020V\022\014" +
+      "\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED\020X\022\031\n\025PR" +
+      "OP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_ANIM_DURAT" +
+      "ION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPROP_BASE_" +
+      "DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY\020]\022\022\n\016PR" +
+      "OP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN_PLACE\020_" +
+      "\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025PROP_FLEX" +
+      "_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW\020b\022\032\n\026PR" +
+      "OP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_GRID_ROW_" +
+      "ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLUMN_POS\020e\022\032" +
+      "\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PROP_GRID_" +
+      "CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_CELL_ROW" +
+      "_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN\020i\022\033\n\027PR" +
+      "OP_GRID_CELL_ROW_SPAN\020jBEZCgit-codecommi" +
+      "t.eu-central-1.amazonaws.com/v1/repos/je" +
+      "ttison/jonp/uib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -39311,7 +40674,7 @@ java.lang.String defaultValue) {
     internal_static_ui_WidgetNode_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_WidgetNode_descriptor,
-        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "Visibility", "BindFormats", "ObjFlags", "ObjFlagsClear", "States", "ScrollDir", "GridColDsc", "GridRowDsc", "Bare", "WidgetProps", });
+        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "TabviewProps", "Visibility", "BindFormats", "ObjFlags", "ObjFlagsClear", "States", "ScrollDir", "GridColDsc", "GridRowDsc", "Bare", "InTabBar", "WidgetProps", });
     internal_static_ui_WidgetNode_BindingsEntry_descriptor =
       internal_static_ui_WidgetNode_descriptor.getNestedTypes().get(0);
     internal_static_ui_WidgetNode_BindingsEntry_fieldAccessorTable = new
@@ -39444,56 +40807,62 @@ java.lang.String defaultValue) {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_TableProps_descriptor,
         new java.lang.String[] { "RowCount", "ColumnCount", });
-    internal_static_ui_Point_descriptor =
+    internal_static_ui_TabviewProps_descriptor =
       getDescriptor().getMessageTypes().get(25);
+    internal_static_ui_TabviewProps_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ui_TabviewProps_descriptor,
+        new java.lang.String[] { "TabNames", "TabBarSize", "ActiveIndex", "TabBarPosition", });
+    internal_static_ui_Point_descriptor =
+      getDescriptor().getMessageTypes().get(26);
     internal_static_ui_Point_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Point_descriptor,
         new java.lang.String[] { "X", "Y", });
     internal_static_ui_EventBinding_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_ui_EventBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_EventBinding_descriptor,
         new java.lang.String[] { "Name", "Trigger", "IntValue", "IncludeWidgetValue", "SetSubject", "SetValue", "Toggle", "NotifyHost", });
     internal_static_ui_VisibilityBinding_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_ui_VisibilityBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_VisibilityBinding_descriptor,
         new java.lang.String[] { "Subject", "RefValue", "Compare", });
     internal_static_ui_Layout_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_ui_Layout_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Layout_descriptor,
         new java.lang.String[] { "Flow", "MainPlace", "CrossPlace", "TrackPlace", });
     internal_static_ui_StyleGroup_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_ui_StyleGroup_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleGroup_descriptor,
         new java.lang.String[] { "StateSelector", "Variants", });
     internal_static_ui_ResolvedStyle_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_ui_ResolvedStyle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ResolvedStyle_descriptor,
         new java.lang.String[] { "Properties", });
     internal_static_ui_StyleProperty_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_ui_StyleProperty_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleProperty_descriptor,
         new java.lang.String[] { "Type", "UintValue", "IntValue", "ColorValue", "StringValue", "ShadowValue", "Value", });
     internal_static_ui_Color_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_ui_Color_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Color_descriptor,
         new java.lang.String[] { "R", "G", "B", });
     internal_static_ui_ShadowBundle_descriptor =
-      getDescriptor().getMessageTypes().get(33);
+      getDescriptor().getMessageTypes().get(34);
     internal_static_ui_ShadowBundle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ShadowBundle_descriptor,
