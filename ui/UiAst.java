@@ -232,6 +232,10 @@ public final class UiAst {
      * <code>WIDGET_TABVIEW = 19;</code>
      */
     WIDGET_TABVIEW(19),
+    /**
+     * <code>WIDGET_CHART = 20;</code>
+     */
+    WIDGET_CHART(20),
     UNRECOGNIZED(-1),
     ;
 
@@ -324,6 +328,10 @@ public final class UiAst {
      * <code>WIDGET_TABVIEW = 19;</code>
      */
     public static final int WIDGET_TABVIEW_VALUE = 19;
+    /**
+     * <code>WIDGET_CHART = 20;</code>
+     */
+    public static final int WIDGET_CHART_VALUE = 20;
 
 
     public final int getNumber() {
@@ -370,6 +378,7 @@ public final class UiAst {
         case 17: return WIDGET_BUTTONMATRIX;
         case 18: return WIDGET_TABLE;
         case 19: return WIDGET_TABVIEW;
+        case 20: return WIDGET_CHART;
         default: return null;
       }
     }
@@ -3279,6 +3288,294 @@ public final class UiAst {
   }
 
   /**
+   * Protobuf enum {@code ui.ChartType}
+   */
+  public enum ChartType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>CHART_TYPE_NONE = 0;</code>
+     */
+    CHART_TYPE_NONE(0),
+    /**
+     * <code>CHART_TYPE_LINE = 1;</code>
+     */
+    CHART_TYPE_LINE(1),
+    /**
+     * <code>CHART_TYPE_CURVE = 2;</code>
+     */
+    CHART_TYPE_CURVE(2),
+    /**
+     * <code>CHART_TYPE_BAR = 3;</code>
+     */
+    CHART_TYPE_BAR(3),
+    /**
+     * <code>CHART_TYPE_STACKED = 4;</code>
+     */
+    CHART_TYPE_STACKED(4),
+    /**
+     * <code>CHART_TYPE_SCATTER = 5;</code>
+     */
+    CHART_TYPE_SCATTER(5),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        ChartType.class.getName());
+    }
+    /**
+     * <code>CHART_TYPE_NONE = 0;</code>
+     */
+    public static final int CHART_TYPE_NONE_VALUE = 0;
+    /**
+     * <code>CHART_TYPE_LINE = 1;</code>
+     */
+    public static final int CHART_TYPE_LINE_VALUE = 1;
+    /**
+     * <code>CHART_TYPE_CURVE = 2;</code>
+     */
+    public static final int CHART_TYPE_CURVE_VALUE = 2;
+    /**
+     * <code>CHART_TYPE_BAR = 3;</code>
+     */
+    public static final int CHART_TYPE_BAR_VALUE = 3;
+    /**
+     * <code>CHART_TYPE_STACKED = 4;</code>
+     */
+    public static final int CHART_TYPE_STACKED_VALUE = 4;
+    /**
+     * <code>CHART_TYPE_SCATTER = 5;</code>
+     */
+    public static final int CHART_TYPE_SCATTER_VALUE = 5;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ChartType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static ChartType forNumber(int value) {
+      switch (value) {
+        case 0: return CHART_TYPE_NONE;
+        case 1: return CHART_TYPE_LINE;
+        case 2: return CHART_TYPE_CURVE;
+        case 3: return CHART_TYPE_BAR;
+        case 4: return CHART_TYPE_STACKED;
+        case 5: return CHART_TYPE_SCATTER;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ChartType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ChartType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ChartType>() {
+            public ChartType findValueByNumber(int number) {
+              return ChartType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ui.UiAst.getDescriptor().getEnumTypes().get(20);
+    }
+
+    private static final ChartType[] VALUES = values();
+
+    public static ChartType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ChartType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ui.ChartType)
+  }
+
+  /**
+   * Protobuf enum {@code ui.ChartAxis}
+   */
+  public enum ChartAxis
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>CHART_AXIS_PRIMARY_Y = 0;</code>
+     */
+    CHART_AXIS_PRIMARY_Y(0),
+    /**
+     * <code>CHART_AXIS_SECONDARY_Y = 1;</code>
+     */
+    CHART_AXIS_SECONDARY_Y(1),
+    /**
+     * <code>CHART_AXIS_PRIMARY_X = 2;</code>
+     */
+    CHART_AXIS_PRIMARY_X(2),
+    /**
+     * <code>CHART_AXIS_SECONDARY_X = 4;</code>
+     */
+    CHART_AXIS_SECONDARY_X(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        ChartAxis.class.getName());
+    }
+    /**
+     * <code>CHART_AXIS_PRIMARY_Y = 0;</code>
+     */
+    public static final int CHART_AXIS_PRIMARY_Y_VALUE = 0;
+    /**
+     * <code>CHART_AXIS_SECONDARY_Y = 1;</code>
+     */
+    public static final int CHART_AXIS_SECONDARY_Y_VALUE = 1;
+    /**
+     * <code>CHART_AXIS_PRIMARY_X = 2;</code>
+     */
+    public static final int CHART_AXIS_PRIMARY_X_VALUE = 2;
+    /**
+     * <code>CHART_AXIS_SECONDARY_X = 4;</code>
+     */
+    public static final int CHART_AXIS_SECONDARY_X_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ChartAxis valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static ChartAxis forNumber(int value) {
+      switch (value) {
+        case 0: return CHART_AXIS_PRIMARY_Y;
+        case 1: return CHART_AXIS_SECONDARY_Y;
+        case 2: return CHART_AXIS_PRIMARY_X;
+        case 4: return CHART_AXIS_SECONDARY_X;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<ChartAxis>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ChartAxis> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ChartAxis>() {
+            public ChartAxis findValueByNumber(int number) {
+              return ChartAxis.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ui.UiAst.getDescriptor().getEnumTypes().get(21);
+    }
+
+    private static final ChartAxis[] VALUES = values();
+
+    public static ChartAxis valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private ChartAxis(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ui.ChartAxis)
+  }
+
+  /**
    * Protobuf enum {@code ui.StylePropertyType}
    */
   public enum StylePropertyType
@@ -4450,7 +4747,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(20);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(22);
     }
 
     private static final StylePropertyType[] VALUES = values();
@@ -8916,6 +9213,21 @@ java.lang.String defaultValue);
     ui.UiAst.TabviewPropsOrBuilder getTabviewPropsOrBuilder();
 
     /**
+     * <code>.ui.ChartProps chart_props = 40;</code>
+     * @return Whether the chartProps field is set.
+     */
+    boolean hasChartProps();
+    /**
+     * <code>.ui.ChartProps chart_props = 40;</code>
+     * @return The chartProps.
+     */
+    ui.UiAst.ChartProps getChartProps();
+    /**
+     * <code>.ui.ChartProps chart_props = 40;</code>
+     */
+    ui.UiAst.ChartPropsOrBuilder getChartPropsOrBuilder();
+
+    /**
      * <pre>
      * Conditional visibility binding (show/hide based on subject value)
      * </pre>
@@ -9202,6 +9514,7 @@ java.lang.String defaultValue);
       BUTTONMATRIX_PROPS(27),
       TABLE_PROPS(28),
       TABVIEW_PROPS(38),
+      CHART_PROPS(40),
       WIDGETPROPS_NOT_SET(0);
       private final int value;
       private WidgetPropsCase(int value) {
@@ -9239,6 +9552,7 @@ java.lang.String defaultValue);
           case 27: return BUTTONMATRIX_PROPS;
           case 28: return TABLE_PROPS;
           case 38: return TABVIEW_PROPS;
+          case 40: return CHART_PROPS;
           case 0: return WIDGETPROPS_NOT_SET;
           default: return null;
         }
@@ -10263,6 +10577,37 @@ java.lang.String defaultValue) {
       return ui.UiAst.TabviewProps.getDefaultInstance();
     }
 
+    public static final int CHART_PROPS_FIELD_NUMBER = 40;
+    /**
+     * <code>.ui.ChartProps chart_props = 40;</code>
+     * @return Whether the chartProps field is set.
+     */
+    @java.lang.Override
+    public boolean hasChartProps() {
+      return widgetPropsCase_ == 40;
+    }
+    /**
+     * <code>.ui.ChartProps chart_props = 40;</code>
+     * @return The chartProps.
+     */
+    @java.lang.Override
+    public ui.UiAst.ChartProps getChartProps() {
+      if (widgetPropsCase_ == 40) {
+         return (ui.UiAst.ChartProps) widgetProps_;
+      }
+      return ui.UiAst.ChartProps.getDefaultInstance();
+    }
+    /**
+     * <code>.ui.ChartProps chart_props = 40;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ChartPropsOrBuilder getChartPropsOrBuilder() {
+      if (widgetPropsCase_ == 40) {
+         return (ui.UiAst.ChartProps) widgetProps_;
+      }
+      return ui.UiAst.ChartProps.getDefaultInstance();
+    }
+
     public static final int VISIBILITY_FIELD_NUMBER = 29;
     private ui.UiAst.VisibilityBinding visibility_;
     /**
@@ -10714,6 +11059,9 @@ java.lang.String defaultValue) {
       if (inTabBar_ != false) {
         output.writeBool(39, inTabBar_);
       }
+      if (widgetPropsCase_ == 40) {
+        output.writeMessage(40, (ui.UiAst.ChartProps) widgetProps_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -10910,6 +11258,10 @@ java.lang.String defaultValue) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(39, inTabBar_);
       }
+      if (widgetPropsCase_ == 40) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(40, (ui.UiAst.ChartProps) widgetProps_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -11052,6 +11404,10 @@ java.lang.String defaultValue) {
         case 38:
           if (!getTabviewProps()
               .equals(other.getTabviewProps())) return false;
+          break;
+        case 40:
+          if (!getChartProps()
+              .equals(other.getChartProps())) return false;
           break;
         case 0:
         default:
@@ -11205,6 +11561,10 @@ java.lang.String defaultValue) {
         case 38:
           hash = (37 * hash) + TABVIEW_PROPS_FIELD_NUMBER;
           hash = (53 * hash) + getTabviewProps().hashCode();
+          break;
+        case 40:
+          hash = (37 * hash) + CHART_PROPS_FIELD_NUMBER;
+          hash = (53 * hash) + getChartProps().hashCode();
           break;
         case 0:
         default:
@@ -11470,6 +11830,9 @@ java.lang.String defaultValue) {
         if (tabviewPropsBuilder_ != null) {
           tabviewPropsBuilder_.clear();
         }
+        if (chartPropsBuilder_ != null) {
+          chartPropsBuilder_.clear();
+        }
         visibility_ = null;
         if (visibilityBuilder_ != null) {
           visibilityBuilder_.dispose();
@@ -11572,18 +11935,15 @@ java.lang.String defaultValue) {
               : layoutBuilder_.build();
           to_bitField0_ |= 0x00000002;
         }
-        if (((from_bitField0_ & 0x20000000) != 0)) {
+        if (((from_bitField0_ & 0x40000000) != 0)) {
           result.visibility_ = visibilityBuilder_ == null
               ? visibility_
               : visibilityBuilder_.build();
           to_bitField0_ |= 0x00000004;
         }
-        if (((from_bitField0_ & 0x40000000) != 0)) {
+        if (((from_bitField0_ & 0x80000000) != 0)) {
           result.bindFormats_ = internalGetBindFormats();
           result.bindFormats_.makeImmutable();
-        }
-        if (((from_bitField0_ & 0x80000000) != 0)) {
-          result.objFlags_ = objFlags_;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -11591,26 +11951,29 @@ java.lang.String defaultValue) {
       private void buildPartial1(ui.UiAst.WidgetNode result) {
         int from_bitField1_ = bitField1_;
         if (((from_bitField1_ & 0x00000001) != 0)) {
-          result.objFlagsClear_ = objFlagsClear_;
+          result.objFlags_ = objFlags_;
         }
         if (((from_bitField1_ & 0x00000002) != 0)) {
-          result.states_ = states_;
+          result.objFlagsClear_ = objFlagsClear_;
         }
         if (((from_bitField1_ & 0x00000004) != 0)) {
-          result.scrollDir_ = scrollDir_;
+          result.states_ = states_;
         }
         if (((from_bitField1_ & 0x00000008) != 0)) {
+          result.scrollDir_ = scrollDir_;
+        }
+        if (((from_bitField1_ & 0x00000010) != 0)) {
           gridColDsc_.makeImmutable();
           result.gridColDsc_ = gridColDsc_;
         }
-        if (((from_bitField1_ & 0x00000010) != 0)) {
+        if (((from_bitField1_ & 0x00000020) != 0)) {
           gridRowDsc_.makeImmutable();
           result.gridRowDsc_ = gridRowDsc_;
         }
-        if (((from_bitField1_ & 0x00000020) != 0)) {
+        if (((from_bitField1_ & 0x00000040) != 0)) {
           result.bare_ = bare_;
         }
-        if (((from_bitField1_ & 0x00000040) != 0)) {
+        if (((from_bitField1_ & 0x00000080) != 0)) {
           result.inTabBar_ = inTabBar_;
         }
       }
@@ -11697,6 +12060,10 @@ java.lang.String defaultValue) {
         if (widgetPropsCase_ == 38 &&
             tabviewPropsBuilder_ != null) {
           result.widgetProps_ = tabviewPropsBuilder_.build();
+        }
+        if (widgetPropsCase_ == 40 &&
+            chartPropsBuilder_ != null) {
+          result.widgetProps_ = chartPropsBuilder_.build();
         }
       }
 
@@ -11792,7 +12159,7 @@ java.lang.String defaultValue) {
         }
         internalGetMutableBindFormats().mergeFrom(
             other.internalGetBindFormats());
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x80000000;
         if (other.getObjFlags() != 0) {
           setObjFlags(other.getObjFlags());
         }
@@ -11809,7 +12176,7 @@ java.lang.String defaultValue) {
           if (gridColDsc_.isEmpty()) {
             gridColDsc_ = other.gridColDsc_;
             gridColDsc_.makeImmutable();
-            bitField1_ |= 0x00000008;
+            bitField1_ |= 0x00000010;
           } else {
             ensureGridColDscIsMutable();
             gridColDsc_.addAll(other.gridColDsc_);
@@ -11820,7 +12187,7 @@ java.lang.String defaultValue) {
           if (gridRowDsc_.isEmpty()) {
             gridRowDsc_ = other.gridRowDsc_;
             gridRowDsc_.makeImmutable();
-            bitField1_ |= 0x00000010;
+            bitField1_ |= 0x00000020;
           } else {
             ensureGridRowDscIsMutable();
             gridRowDsc_.addAll(other.gridRowDsc_);
@@ -11912,6 +12279,10 @@ java.lang.String defaultValue) {
           }
           case TABVIEW_PROPS: {
             mergeTabviewProps(other.getTabviewProps());
+            break;
+          }
+          case CHART_PROPS: {
+            mergeChartProps(other.getChartProps());
             break;
           }
           case WIDGETPROPS_NOT_SET: {
@@ -12150,7 +12521,7 @@ java.lang.String defaultValue) {
                 input.readMessage(
                     getVisibilityFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x20000000;
+                bitField0_ |= 0x40000000;
                 break;
               } // case 234
               case 242: {
@@ -12159,27 +12530,27 @@ java.lang.String defaultValue) {
                     BindFormatsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
                 internalGetMutableBindFormats().getMutableMap().put(
                     bindFormats__.getKey(), bindFormats__.getValue());
-                bitField0_ |= 0x40000000;
+                bitField0_ |= 0x80000000;
                 break;
               } // case 242
               case 248: {
                 objFlags_ = input.readUInt32();
-                bitField0_ |= 0x80000000;
+                bitField1_ |= 0x00000001;
                 break;
               } // case 248
               case 256: {
                 objFlagsClear_ = input.readUInt32();
-                bitField1_ |= 0x00000001;
+                bitField1_ |= 0x00000002;
                 break;
               } // case 256
               case 264: {
                 states_ = input.readUInt32();
-                bitField1_ |= 0x00000002;
+                bitField1_ |= 0x00000004;
                 break;
               } // case 264
               case 272: {
                 scrollDir_ = input.readUInt32();
-                bitField1_ |= 0x00000004;
+                bitField1_ |= 0x00000008;
                 break;
               } // case 272
               case 280: {
@@ -12216,7 +12587,7 @@ java.lang.String defaultValue) {
               } // case 290
               case 296: {
                 bare_ = input.readBool();
-                bitField1_ |= 0x00000020;
+                bitField1_ |= 0x00000040;
                 break;
               } // case 296
               case 306: {
@@ -12228,9 +12599,16 @@ java.lang.String defaultValue) {
               } // case 306
               case 312: {
                 inTabBar_ = input.readBool();
-                bitField1_ |= 0x00000040;
+                bitField1_ |= 0x00000080;
                 break;
               } // case 312
+              case 322: {
+                input.readMessage(
+                    getChartPropsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                widgetPropsCase_ = 40;
+                break;
+              } // case 322
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -16436,6 +16814,148 @@ java.lang.String defaultValue) {
         return tabviewPropsBuilder_;
       }
 
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.ChartProps, ui.UiAst.ChartProps.Builder, ui.UiAst.ChartPropsOrBuilder> chartPropsBuilder_;
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       * @return Whether the chartProps field is set.
+       */
+      @java.lang.Override
+      public boolean hasChartProps() {
+        return widgetPropsCase_ == 40;
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       * @return The chartProps.
+       */
+      @java.lang.Override
+      public ui.UiAst.ChartProps getChartProps() {
+        if (chartPropsBuilder_ == null) {
+          if (widgetPropsCase_ == 40) {
+            return (ui.UiAst.ChartProps) widgetProps_;
+          }
+          return ui.UiAst.ChartProps.getDefaultInstance();
+        } else {
+          if (widgetPropsCase_ == 40) {
+            return chartPropsBuilder_.getMessage();
+          }
+          return ui.UiAst.ChartProps.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       */
+      public Builder setChartProps(ui.UiAst.ChartProps value) {
+        if (chartPropsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          widgetProps_ = value;
+          onChanged();
+        } else {
+          chartPropsBuilder_.setMessage(value);
+        }
+        widgetPropsCase_ = 40;
+        return this;
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       */
+      public Builder setChartProps(
+          ui.UiAst.ChartProps.Builder builderForValue) {
+        if (chartPropsBuilder_ == null) {
+          widgetProps_ = builderForValue.build();
+          onChanged();
+        } else {
+          chartPropsBuilder_.setMessage(builderForValue.build());
+        }
+        widgetPropsCase_ = 40;
+        return this;
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       */
+      public Builder mergeChartProps(ui.UiAst.ChartProps value) {
+        if (chartPropsBuilder_ == null) {
+          if (widgetPropsCase_ == 40 &&
+              widgetProps_ != ui.UiAst.ChartProps.getDefaultInstance()) {
+            widgetProps_ = ui.UiAst.ChartProps.newBuilder((ui.UiAst.ChartProps) widgetProps_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            widgetProps_ = value;
+          }
+          onChanged();
+        } else {
+          if (widgetPropsCase_ == 40) {
+            chartPropsBuilder_.mergeFrom(value);
+          } else {
+            chartPropsBuilder_.setMessage(value);
+          }
+        }
+        widgetPropsCase_ = 40;
+        return this;
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       */
+      public Builder clearChartProps() {
+        if (chartPropsBuilder_ == null) {
+          if (widgetPropsCase_ == 40) {
+            widgetPropsCase_ = 0;
+            widgetProps_ = null;
+            onChanged();
+          }
+        } else {
+          if (widgetPropsCase_ == 40) {
+            widgetPropsCase_ = 0;
+            widgetProps_ = null;
+          }
+          chartPropsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       */
+      public ui.UiAst.ChartProps.Builder getChartPropsBuilder() {
+        return getChartPropsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       */
+      @java.lang.Override
+      public ui.UiAst.ChartPropsOrBuilder getChartPropsOrBuilder() {
+        if ((widgetPropsCase_ == 40) && (chartPropsBuilder_ != null)) {
+          return chartPropsBuilder_.getMessageOrBuilder();
+        } else {
+          if (widgetPropsCase_ == 40) {
+            return (ui.UiAst.ChartProps) widgetProps_;
+          }
+          return ui.UiAst.ChartProps.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.ui.ChartProps chart_props = 40;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.ChartProps, ui.UiAst.ChartProps.Builder, ui.UiAst.ChartPropsOrBuilder> 
+          getChartPropsFieldBuilder() {
+        if (chartPropsBuilder_ == null) {
+          if (!(widgetPropsCase_ == 40)) {
+            widgetProps_ = ui.UiAst.ChartProps.getDefaultInstance();
+          }
+          chartPropsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ui.UiAst.ChartProps, ui.UiAst.ChartProps.Builder, ui.UiAst.ChartPropsOrBuilder>(
+                  (ui.UiAst.ChartProps) widgetProps_,
+                  getParentForChildren(),
+                  isClean());
+          widgetProps_ = null;
+        }
+        widgetPropsCase_ = 40;
+        onChanged();
+        return chartPropsBuilder_;
+      }
+
       private ui.UiAst.VisibilityBinding visibility_;
       private com.google.protobuf.SingleFieldBuilder<
           ui.UiAst.VisibilityBinding, ui.UiAst.VisibilityBinding.Builder, ui.UiAst.VisibilityBindingOrBuilder> visibilityBuilder_;
@@ -16448,7 +16968,7 @@ java.lang.String defaultValue) {
        * @return Whether the visibility field is set.
        */
       public boolean hasVisibility() {
-        return ((bitField0_ & 0x20000000) != 0);
+        return ((bitField0_ & 0x40000000) != 0);
       }
       /**
        * <pre>
@@ -16481,7 +17001,7 @@ java.lang.String defaultValue) {
         } else {
           visibilityBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         onChanged();
         return this;
       }
@@ -16499,7 +17019,7 @@ java.lang.String defaultValue) {
         } else {
           visibilityBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         onChanged();
         return this;
       }
@@ -16512,7 +17032,7 @@ java.lang.String defaultValue) {
        */
       public Builder mergeVisibility(ui.UiAst.VisibilityBinding value) {
         if (visibilityBuilder_ == null) {
-          if (((bitField0_ & 0x20000000) != 0) &&
+          if (((bitField0_ & 0x40000000) != 0) &&
             visibility_ != null &&
             visibility_ != ui.UiAst.VisibilityBinding.getDefaultInstance()) {
             getVisibilityBuilder().mergeFrom(value);
@@ -16523,7 +17043,7 @@ java.lang.String defaultValue) {
           visibilityBuilder_.mergeFrom(value);
         }
         if (visibility_ != null) {
-          bitField0_ |= 0x20000000;
+          bitField0_ |= 0x40000000;
           onChanged();
         }
         return this;
@@ -16536,7 +17056,7 @@ java.lang.String defaultValue) {
        * <code>.ui.VisibilityBinding visibility = 29;</code>
        */
       public Builder clearVisibility() {
-        bitField0_ = (bitField0_ & ~0x20000000);
+        bitField0_ = (bitField0_ & ~0x40000000);
         visibility_ = null;
         if (visibilityBuilder_ != null) {
           visibilityBuilder_.dispose();
@@ -16553,7 +17073,7 @@ java.lang.String defaultValue) {
        * <code>.ui.VisibilityBinding visibility = 29;</code>
        */
       public ui.UiAst.VisibilityBinding.Builder getVisibilityBuilder() {
-        bitField0_ |= 0x20000000;
+        bitField0_ |= 0x40000000;
         onChanged();
         return getVisibilityFieldBuilder().getBuilder();
       }
@@ -16612,7 +17132,7 @@ java.lang.String defaultValue) {
         if (!bindFormats_.isMutable()) {
           bindFormats_ = bindFormats_.copy();
         }
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x80000000;
         onChanged();
         return bindFormats_;
       }
@@ -16688,7 +17208,7 @@ java.lang.String defaultValue) {
         return map.get(key);
       }
       public Builder clearBindFormats() {
-        bitField0_ = (bitField0_ & ~0x40000000);
+        bitField0_ = (bitField0_ & ~0x80000000);
         internalGetMutableBindFormats().getMutableMap()
             .clear();
         return this;
@@ -16713,7 +17233,7 @@ java.lang.String defaultValue) {
       @java.lang.Deprecated
       public java.util.Map<java.lang.String, java.lang.String>
           getMutableBindFormats() {
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x80000000;
         return internalGetMutableBindFormats().getMutableMap();
       }
       /**
@@ -16730,7 +17250,7 @@ java.lang.String defaultValue) {
         if (value == null) { throw new NullPointerException("map value"); }
         internalGetMutableBindFormats().getMutableMap()
             .put(key, value);
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x80000000;
         return this;
       }
       /**
@@ -16744,7 +17264,7 @@ java.lang.String defaultValue) {
           java.util.Map<java.lang.String, java.lang.String> values) {
         internalGetMutableBindFormats().getMutableMap()
             .putAll(values);
-        bitField0_ |= 0x40000000;
+        bitField0_ |= 0x80000000;
         return this;
       }
 
@@ -16775,7 +17295,7 @@ java.lang.String defaultValue) {
       public Builder setObjFlags(int value) {
 
         objFlags_ = value;
-        bitField0_ |= 0x80000000;
+        bitField1_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -16789,7 +17309,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearObjFlags() {
-        bitField0_ = (bitField0_ & ~0x80000000);
+        bitField1_ = (bitField1_ & ~0x00000001);
         objFlags_ = 0;
         onChanged();
         return this;
@@ -16820,7 +17340,7 @@ java.lang.String defaultValue) {
       public Builder setObjFlagsClear(int value) {
 
         objFlagsClear_ = value;
-        bitField1_ |= 0x00000001;
+        bitField1_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -16833,7 +17353,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearObjFlagsClear() {
-        bitField1_ = (bitField1_ & ~0x00000001);
+        bitField1_ = (bitField1_ & ~0x00000002);
         objFlagsClear_ = 0;
         onChanged();
         return this;
@@ -16864,7 +17384,7 @@ java.lang.String defaultValue) {
       public Builder setStates(int value) {
 
         states_ = value;
-        bitField1_ |= 0x00000002;
+        bitField1_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -16877,7 +17397,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearStates() {
-        bitField1_ = (bitField1_ & ~0x00000002);
+        bitField1_ = (bitField1_ & ~0x00000004);
         states_ = 0;
         onChanged();
         return this;
@@ -16908,7 +17428,7 @@ java.lang.String defaultValue) {
       public Builder setScrollDir(int value) {
 
         scrollDir_ = value;
-        bitField1_ |= 0x00000004;
+        bitField1_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -16921,7 +17441,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearScrollDir() {
-        bitField1_ = (bitField1_ & ~0x00000004);
+        bitField1_ = (bitField1_ & ~0x00000008);
         scrollDir_ = 0;
         onChanged();
         return this;
@@ -16932,7 +17452,7 @@ java.lang.String defaultValue) {
         if (!gridColDsc_.isModifiable()) {
           gridColDsc_ = makeMutableCopy(gridColDsc_);
         }
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
       }
       /**
        * <pre>
@@ -16993,7 +17513,7 @@ java.lang.String defaultValue) {
 
         ensureGridColDscIsMutable();
         gridColDsc_.setInt(index, value);
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -17012,7 +17532,7 @@ java.lang.String defaultValue) {
 
         ensureGridColDscIsMutable();
         gridColDsc_.addInt(value);
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -17032,7 +17552,7 @@ java.lang.String defaultValue) {
         ensureGridColDscIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, gridColDsc_);
-        bitField1_ |= 0x00000008;
+        bitField1_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -17048,7 +17568,7 @@ java.lang.String defaultValue) {
        */
       public Builder clearGridColDsc() {
         gridColDsc_ = emptyIntList();
-        bitField1_ = (bitField1_ & ~0x00000008);
+        bitField1_ = (bitField1_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -17058,7 +17578,7 @@ java.lang.String defaultValue) {
         if (!gridRowDsc_.isModifiable()) {
           gridRowDsc_ = makeMutableCopy(gridRowDsc_);
         }
-        bitField1_ |= 0x00000010;
+        bitField1_ |= 0x00000020;
       }
       /**
        * <code>repeated int32 grid_row_dsc = 36;</code>
@@ -17095,7 +17615,7 @@ java.lang.String defaultValue) {
 
         ensureGridRowDscIsMutable();
         gridRowDsc_.setInt(index, value);
-        bitField1_ |= 0x00000010;
+        bitField1_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -17108,7 +17628,7 @@ java.lang.String defaultValue) {
 
         ensureGridRowDscIsMutable();
         gridRowDsc_.addInt(value);
-        bitField1_ |= 0x00000010;
+        bitField1_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -17122,7 +17642,7 @@ java.lang.String defaultValue) {
         ensureGridRowDscIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, gridRowDsc_);
-        bitField1_ |= 0x00000010;
+        bitField1_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -17132,7 +17652,7 @@ java.lang.String defaultValue) {
        */
       public Builder clearGridRowDsc() {
         gridRowDsc_ = emptyIntList();
-        bitField1_ = (bitField1_ & ~0x00000010);
+        bitField1_ = (bitField1_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -17164,7 +17684,7 @@ java.lang.String defaultValue) {
       public Builder setBare(boolean value) {
 
         bare_ = value;
-        bitField1_ |= 0x00000020;
+        bitField1_ |= 0x00000040;
         onChanged();
         return this;
       }
@@ -17178,7 +17698,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearBare() {
-        bitField1_ = (bitField1_ & ~0x00000020);
+        bitField1_ = (bitField1_ & ~0x00000040);
         bare_ = false;
         onChanged();
         return this;
@@ -17213,7 +17733,7 @@ java.lang.String defaultValue) {
       public Builder setInTabBar(boolean value) {
 
         inTabBar_ = value;
-        bitField1_ |= 0x00000040;
+        bitField1_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -17228,7 +17748,7 @@ java.lang.String defaultValue) {
        * @return This builder for chaining.
        */
       public Builder clearInTabBar() {
-        bitField1_ = (bitField1_ & ~0x00000040);
+        bitField1_ = (bitField1_ & ~0x00000080);
         inTabBar_ = false;
         onChanged();
         return this;
@@ -32221,6 +32741,2406 @@ java.lang.String defaultValue) {
 
   }
 
+  public interface ChartSeriesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ui.ChartSeries)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * Series color; absent = the theme primary color (the demo's default
+     * for its unstyled series).
+     * </pre>
+     *
+     * <code>.ui.Color color = 1;</code>
+     * @return Whether the color field is set.
+     */
+    boolean hasColor();
+    /**
+     * <pre>
+     * Series color; absent = the theme primary color (the demo's default
+     * for its unstyled series).
+     * </pre>
+     *
+     * <code>.ui.Color color = 1;</code>
+     * @return The color.
+     */
+    ui.UiAst.Color getColor();
+    /**
+     * <pre>
+     * Series color; absent = the theme primary color (the demo's default
+     * for its unstyled series).
+     * </pre>
+     *
+     * <code>.ui.Color color = 1;</code>
+     */
+    ui.UiAst.ColorOrBuilder getColorOrBuilder();
+
+    /**
+     * <pre>
+     * Y axis the series attaches to — lv_chart_axis_t direct-cast
+     * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+     * </pre>
+     *
+     * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for axis.
+     */
+    int getAxisValue();
+    /**
+     * <pre>
+     * Y axis the series attaches to — lv_chart_axis_t direct-cast
+     * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+     * </pre>
+     *
+     * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+     * @return The axis.
+     */
+    ui.UiAst.ChartAxis getAxis();
+
+    /**
+     * <pre>
+     * Frozen-frame data points, written BY INDEX (point i = values[i] via
+     * lv_chart_set_series_value_by_id); points past the list keep
+     * LV_CHART_POINT_NONE.
+     * </pre>
+     *
+     * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+     * @return A list containing the values.
+     */
+    java.util.List<java.lang.Integer> getValuesList();
+    /**
+     * <pre>
+     * Frozen-frame data points, written BY INDEX (point i = values[i] via
+     * lv_chart_set_series_value_by_id); points past the list keep
+     * LV_CHART_POINT_NONE.
+     * </pre>
+     *
+     * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+     * @return The count of values.
+     */
+    int getValuesCount();
+    /**
+     * <pre>
+     * Frozen-frame data points, written BY INDEX (point i = values[i] via
+     * lv_chart_set_series_value_by_id); points past the list keep
+     * LV_CHART_POINT_NONE.
+     * </pre>
+     *
+     * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+     * @param index The index of the element to return.
+     * @return The values at the given index.
+     */
+    int getValues(int index);
+  }
+  /**
+   * <pre>
+   * One chart data series (lv_chart_add_series + per-index value writes).
+   * </pre>
+   *
+   * Protobuf type {@code ui.ChartSeries}
+   */
+  public static final class ChartSeries extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ui.ChartSeries)
+      ChartSeriesOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        ChartSeries.class.getName());
+    }
+    // Use ChartSeries.newBuilder() to construct.
+    private ChartSeries(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private ChartSeries() {
+      axis_ = 0;
+      values_ = emptyIntList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ui.UiAst.internal_static_ui_ChartSeries_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ui.UiAst.internal_static_ui_ChartSeries_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ui.UiAst.ChartSeries.class, ui.UiAst.ChartSeries.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int COLOR_FIELD_NUMBER = 1;
+    private ui.UiAst.Color color_;
+    /**
+     * <pre>
+     * Series color; absent = the theme primary color (the demo's default
+     * for its unstyled series).
+     * </pre>
+     *
+     * <code>.ui.Color color = 1;</code>
+     * @return Whether the color field is set.
+     */
+    @java.lang.Override
+    public boolean hasColor() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <pre>
+     * Series color; absent = the theme primary color (the demo's default
+     * for its unstyled series).
+     * </pre>
+     *
+     * <code>.ui.Color color = 1;</code>
+     * @return The color.
+     */
+    @java.lang.Override
+    public ui.UiAst.Color getColor() {
+      return color_ == null ? ui.UiAst.Color.getDefaultInstance() : color_;
+    }
+    /**
+     * <pre>
+     * Series color; absent = the theme primary color (the demo's default
+     * for its unstyled series).
+     * </pre>
+     *
+     * <code>.ui.Color color = 1;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ColorOrBuilder getColorOrBuilder() {
+      return color_ == null ? ui.UiAst.Color.getDefaultInstance() : color_;
+    }
+
+    public static final int AXIS_FIELD_NUMBER = 2;
+    private int axis_ = 0;
+    /**
+     * <pre>
+     * Y axis the series attaches to — lv_chart_axis_t direct-cast
+     * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+     * </pre>
+     *
+     * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for axis.
+     */
+    @java.lang.Override public int getAxisValue() {
+      return axis_;
+    }
+    /**
+     * <pre>
+     * Y axis the series attaches to — lv_chart_axis_t direct-cast
+     * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+     * </pre>
+     *
+     * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+     * @return The axis.
+     */
+    @java.lang.Override public ui.UiAst.ChartAxis getAxis() {
+      ui.UiAst.ChartAxis result = ui.UiAst.ChartAxis.forNumber(axis_);
+      return result == null ? ui.UiAst.ChartAxis.UNRECOGNIZED : result;
+    }
+
+    public static final int VALUES_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.Internal.IntList values_ =
+        emptyIntList();
+    /**
+     * <pre>
+     * Frozen-frame data points, written BY INDEX (point i = values[i] via
+     * lv_chart_set_series_value_by_id); points past the list keep
+     * LV_CHART_POINT_NONE.
+     * </pre>
+     *
+     * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+     * @return A list containing the values.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Integer>
+        getValuesList() {
+      return values_;
+    }
+    /**
+     * <pre>
+     * Frozen-frame data points, written BY INDEX (point i = values[i] via
+     * lv_chart_set_series_value_by_id); points past the list keep
+     * LV_CHART_POINT_NONE.
+     * </pre>
+     *
+     * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+     * @return The count of values.
+     */
+    public int getValuesCount() {
+      return values_.size();
+    }
+    /**
+     * <pre>
+     * Frozen-frame data points, written BY INDEX (point i = values[i] via
+     * lv_chart_set_series_value_by_id); points past the list keep
+     * LV_CHART_POINT_NONE.
+     * </pre>
+     *
+     * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+     * @param index The index of the element to return.
+     * @return The values at the given index.
+     */
+    public int getValues(int index) {
+      return values_.getInt(index);
+    }
+    private int valuesMemoizedSerializedSize = -1;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(1, getColor());
+      }
+      if (axis_ != ui.UiAst.ChartAxis.CHART_AXIS_PRIMARY_Y.getNumber()) {
+        output.writeEnum(2, axis_);
+      }
+      if (getValuesList().size() > 0) {
+        output.writeUInt32NoTag(26);
+        output.writeUInt32NoTag(valuesMemoizedSerializedSize);
+      }
+      for (int i = 0; i < values_.size(); i++) {
+        output.writeInt32NoTag(values_.getInt(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getColor());
+      }
+      if (axis_ != ui.UiAst.ChartAxis.CHART_AXIS_PRIMARY_Y.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, axis_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < values_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(values_.getInt(i));
+        }
+        size += dataSize;
+        if (!getValuesList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        valuesMemoizedSerializedSize = dataSize;
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ui.UiAst.ChartSeries)) {
+        return super.equals(obj);
+      }
+      ui.UiAst.ChartSeries other = (ui.UiAst.ChartSeries) obj;
+
+      if (hasColor() != other.hasColor()) return false;
+      if (hasColor()) {
+        if (!getColor()
+            .equals(other.getColor())) return false;
+      }
+      if (axis_ != other.axis_) return false;
+      if (!getValuesList()
+          .equals(other.getValuesList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasColor()) {
+        hash = (37 * hash) + COLOR_FIELD_NUMBER;
+        hash = (53 * hash) + getColor().hashCode();
+      }
+      hash = (37 * hash) + AXIS_FIELD_NUMBER;
+      hash = (53 * hash) + axis_;
+      if (getValuesCount() > 0) {
+        hash = (37 * hash) + VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getValuesList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ui.UiAst.ChartSeries parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ui.UiAst.ChartSeries parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ui.UiAst.ChartSeries parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ChartSeries parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ui.UiAst.ChartSeries prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * One chart data series (lv_chart_add_series + per-index value writes).
+     * </pre>
+     *
+     * Protobuf type {@code ui.ChartSeries}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ui.ChartSeries)
+        ui.UiAst.ChartSeriesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ui.UiAst.internal_static_ui_ChartSeries_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ui.UiAst.internal_static_ui_ChartSeries_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ui.UiAst.ChartSeries.class, ui.UiAst.ChartSeries.Builder.class);
+      }
+
+      // Construct using ui.UiAst.ChartSeries.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getColorFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        color_ = null;
+        if (colorBuilder_ != null) {
+          colorBuilder_.dispose();
+          colorBuilder_ = null;
+        }
+        axis_ = 0;
+        values_ = emptyIntList();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ui.UiAst.internal_static_ui_ChartSeries_descriptor;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ChartSeries getDefaultInstanceForType() {
+        return ui.UiAst.ChartSeries.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ChartSeries build() {
+        ui.UiAst.ChartSeries result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ChartSeries buildPartial() {
+        ui.UiAst.ChartSeries result = new ui.UiAst.ChartSeries(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ui.UiAst.ChartSeries result) {
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.color_ = colorBuilder_ == null
+              ? color_
+              : colorBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.axis_ = axis_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          values_.makeImmutable();
+          result.values_ = values_;
+        }
+        result.bitField0_ |= to_bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ui.UiAst.ChartSeries) {
+          return mergeFrom((ui.UiAst.ChartSeries)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ui.UiAst.ChartSeries other) {
+        if (other == ui.UiAst.ChartSeries.getDefaultInstance()) return this;
+        if (other.hasColor()) {
+          mergeColor(other.getColor());
+        }
+        if (other.axis_ != 0) {
+          setAxisValue(other.getAxisValue());
+        }
+        if (!other.values_.isEmpty()) {
+          if (values_.isEmpty()) {
+            values_ = other.values_;
+            values_.makeImmutable();
+            bitField0_ |= 0x00000004;
+          } else {
+            ensureValuesIsMutable();
+            values_.addAll(other.values_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getColorFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                axis_ = input.readEnum();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                int v = input.readInt32();
+                ensureValuesIsMutable();
+                values_.addInt(v);
+                break;
+              } // case 24
+              case 26: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureValuesIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  values_.addInt(input.readInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private ui.UiAst.Color color_;
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder> colorBuilder_;
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       * @return Whether the color field is set.
+       */
+      public boolean hasColor() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       * @return The color.
+       */
+      public ui.UiAst.Color getColor() {
+        if (colorBuilder_ == null) {
+          return color_ == null ? ui.UiAst.Color.getDefaultInstance() : color_;
+        } else {
+          return colorBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       */
+      public Builder setColor(ui.UiAst.Color value) {
+        if (colorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          color_ = value;
+        } else {
+          colorBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       */
+      public Builder setColor(
+          ui.UiAst.Color.Builder builderForValue) {
+        if (colorBuilder_ == null) {
+          color_ = builderForValue.build();
+        } else {
+          colorBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       */
+      public Builder mergeColor(ui.UiAst.Color value) {
+        if (colorBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            color_ != null &&
+            color_ != ui.UiAst.Color.getDefaultInstance()) {
+            getColorBuilder().mergeFrom(value);
+          } else {
+            color_ = value;
+          }
+        } else {
+          colorBuilder_.mergeFrom(value);
+        }
+        if (color_ != null) {
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       */
+      public Builder clearColor() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        color_ = null;
+        if (colorBuilder_ != null) {
+          colorBuilder_.dispose();
+          colorBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       */
+      public ui.UiAst.Color.Builder getColorBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getColorFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       */
+      public ui.UiAst.ColorOrBuilder getColorOrBuilder() {
+        if (colorBuilder_ != null) {
+          return colorBuilder_.getMessageOrBuilder();
+        } else {
+          return color_ == null ?
+              ui.UiAst.Color.getDefaultInstance() : color_;
+        }
+      }
+      /**
+       * <pre>
+       * Series color; absent = the theme primary color (the demo's default
+       * for its unstyled series).
+       * </pre>
+       *
+       * <code>.ui.Color color = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder> 
+          getColorFieldBuilder() {
+        if (colorBuilder_ == null) {
+          colorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder>(
+                  getColor(),
+                  getParentForChildren(),
+                  isClean());
+          color_ = null;
+        }
+        return colorBuilder_;
+      }
+
+      private int axis_ = 0;
+      /**
+       * <pre>
+       * Y axis the series attaches to — lv_chart_axis_t direct-cast
+       * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+       * </pre>
+       *
+       * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+       * @return The enum numeric value on the wire for axis.
+       */
+      @java.lang.Override public int getAxisValue() {
+        return axis_;
+      }
+      /**
+       * <pre>
+       * Y axis the series attaches to — lv_chart_axis_t direct-cast
+       * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+       * </pre>
+       *
+       * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+       * @param value The enum numeric value on the wire for axis to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAxisValue(int value) {
+        axis_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Y axis the series attaches to — lv_chart_axis_t direct-cast
+       * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+       * </pre>
+       *
+       * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+       * @return The axis.
+       */
+      @java.lang.Override
+      public ui.UiAst.ChartAxis getAxis() {
+        ui.UiAst.ChartAxis result = ui.UiAst.ChartAxis.forNumber(axis_);
+        return result == null ? ui.UiAst.ChartAxis.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * Y axis the series attaches to — lv_chart_axis_t direct-cast
+       * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+       * </pre>
+       *
+       * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+       * @param value The axis to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAxis(ui.UiAst.ChartAxis value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
+        axis_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Y axis the series attaches to — lv_chart_axis_t direct-cast
+       * (parity-gated, sparse bitmask values); PRIMARY_Y (0) is the default.
+       * </pre>
+       *
+       * <code>.ui.ChartAxis axis = 2 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAxis() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        axis_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Internal.IntList values_ = emptyIntList();
+      private void ensureValuesIsMutable() {
+        if (!values_.isModifiable()) {
+          values_ = makeMutableCopy(values_);
+        }
+        bitField0_ |= 0x00000004;
+      }
+      /**
+       * <pre>
+       * Frozen-frame data points, written BY INDEX (point i = values[i] via
+       * lv_chart_set_series_value_by_id); points past the list keep
+       * LV_CHART_POINT_NONE.
+       * </pre>
+       *
+       * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+       * @return A list containing the values.
+       */
+      public java.util.List<java.lang.Integer>
+          getValuesList() {
+        values_.makeImmutable();
+        return values_;
+      }
+      /**
+       * <pre>
+       * Frozen-frame data points, written BY INDEX (point i = values[i] via
+       * lv_chart_set_series_value_by_id); points past the list keep
+       * LV_CHART_POINT_NONE.
+       * </pre>
+       *
+       * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+       * @return The count of values.
+       */
+      public int getValuesCount() {
+        return values_.size();
+      }
+      /**
+       * <pre>
+       * Frozen-frame data points, written BY INDEX (point i = values[i] via
+       * lv_chart_set_series_value_by_id); points past the list keep
+       * LV_CHART_POINT_NONE.
+       * </pre>
+       *
+       * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+       * @param index The index of the element to return.
+       * @return The values at the given index.
+       */
+      public int getValues(int index) {
+        return values_.getInt(index);
+      }
+      /**
+       * <pre>
+       * Frozen-frame data points, written BY INDEX (point i = values[i] via
+       * lv_chart_set_series_value_by_id); points past the list keep
+       * LV_CHART_POINT_NONE.
+       * </pre>
+       *
+       * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+       * @param index The index to set the value at.
+       * @param value The values to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValues(
+          int index, int value) {
+
+        ensureValuesIsMutable();
+        values_.setInt(index, value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frozen-frame data points, written BY INDEX (point i = values[i] via
+       * lv_chart_set_series_value_by_id); points past the list keep
+       * LV_CHART_POINT_NONE.
+       * </pre>
+       *
+       * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+       * @param value The values to add.
+       * @return This builder for chaining.
+       */
+      public Builder addValues(int value) {
+
+        ensureValuesIsMutable();
+        values_.addInt(value);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frozen-frame data points, written BY INDEX (point i = values[i] via
+       * lv_chart_set_series_value_by_id); points past the list keep
+       * LV_CHART_POINT_NONE.
+       * </pre>
+       *
+       * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+       * @param values The values to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllValues(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureValuesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, values_);
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Frozen-frame data points, written BY INDEX (point i = values[i] via
+       * lv_chart_set_series_value_by_id); points past the list keep
+       * LV_CHART_POINT_NONE.
+       * </pre>
+       *
+       * <code>repeated int32 values = 3 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValues() {
+        values_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ui.ChartSeries)
+    }
+
+    // @@protoc_insertion_point(class_scope:ui.ChartSeries)
+    private static final ui.UiAst.ChartSeries DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ui.UiAst.ChartSeries();
+    }
+
+    public static ui.UiAst.ChartSeries getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ChartSeries>
+        PARSER = new com.google.protobuf.AbstractParser<ChartSeries>() {
+      @java.lang.Override
+      public ChartSeries parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ChartSeries> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChartSeries> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ui.UiAst.ChartSeries getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ChartPropsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ui.ChartProps)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+     * default (LINE).
+     * </pre>
+     *
+     * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    int getTypeValue();
+    /**
+     * <pre>
+     * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+     * default (LINE).
+     * </pre>
+     *
+     * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The type.
+     */
+    ui.UiAst.ChartType getType();
+
+    /**
+     * <pre>
+     * 0 = keep the LVGL default point count.
+     * </pre>
+     *
+     * <code>uint32 point_count = 2;</code>
+     * @return The pointCount.
+     */
+    int getPointCount();
+
+    /**
+     * <pre>
+     * Division lines: 0 is a VALID explicit count (the demo sets 0,12), so
+     * presence rides has_div_lines (the ImageProps.has_pivot pattern);
+     * false = keep the LVGL defaults (HDIV_DEF/VDIV_DEF).
+     * </pre>
+     *
+     * <code>bool has_div_lines = 3;</code>
+     * @return The hasDivLines.
+     */
+    boolean getHasDivLines();
+
+    /**
+     * <code>uint32 hdiv_count = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The hdivCount.
+     */
+    int getHdivCount();
+
+    /**
+     * <code>uint32 vdiv_count = 5 [(.buf.validate.field) = { ... }</code>
+     * @return The vdivCount.
+     */
+    int getVdivCount();
+
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    java.util.List<ui.UiAst.ChartSeries> 
+        getSeriesList();
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    ui.UiAst.ChartSeries getSeries(int index);
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    int getSeriesCount();
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    java.util.List<? extends ui.UiAst.ChartSeriesOrBuilder> 
+        getSeriesOrBuilderList();
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    ui.UiAst.ChartSeriesOrBuilder getSeriesOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     * Replicate the demo's chart fader draw-event: a vertical-gradient area
+     * under every LINE-series segment (LV_EVENT_DRAW_TASK_ADDED).
+     * </pre>
+     *
+     * <code>bool fade_area = 7;</code>
+     * @return The fadeArea.
+     */
+    boolean getFadeArea();
+  }
+  /**
+   * Protobuf type {@code ui.ChartProps}
+   */
+  public static final class ChartProps extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ui.ChartProps)
+      ChartPropsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        ChartProps.class.getName());
+    }
+    // Use ChartProps.newBuilder() to construct.
+    private ChartProps(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private ChartProps() {
+      type_ = 0;
+      series_ = java.util.Collections.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ui.UiAst.internal_static_ui_ChartProps_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ui.UiAst.internal_static_ui_ChartProps_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ui.UiAst.ChartProps.class, ui.UiAst.ChartProps.Builder.class);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_ = 0;
+    /**
+     * <pre>
+     * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+     * default (LINE).
+     * </pre>
+     *
+     * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    @java.lang.Override public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <pre>
+     * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+     * default (LINE).
+     * </pre>
+     *
+     * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The type.
+     */
+    @java.lang.Override public ui.UiAst.ChartType getType() {
+      ui.UiAst.ChartType result = ui.UiAst.ChartType.forNumber(type_);
+      return result == null ? ui.UiAst.ChartType.UNRECOGNIZED : result;
+    }
+
+    public static final int POINT_COUNT_FIELD_NUMBER = 2;
+    private int pointCount_ = 0;
+    /**
+     * <pre>
+     * 0 = keep the LVGL default point count.
+     * </pre>
+     *
+     * <code>uint32 point_count = 2;</code>
+     * @return The pointCount.
+     */
+    @java.lang.Override
+    public int getPointCount() {
+      return pointCount_;
+    }
+
+    public static final int HAS_DIV_LINES_FIELD_NUMBER = 3;
+    private boolean hasDivLines_ = false;
+    /**
+     * <pre>
+     * Division lines: 0 is a VALID explicit count (the demo sets 0,12), so
+     * presence rides has_div_lines (the ImageProps.has_pivot pattern);
+     * false = keep the LVGL defaults (HDIV_DEF/VDIV_DEF).
+     * </pre>
+     *
+     * <code>bool has_div_lines = 3;</code>
+     * @return The hasDivLines.
+     */
+    @java.lang.Override
+    public boolean getHasDivLines() {
+      return hasDivLines_;
+    }
+
+    public static final int HDIV_COUNT_FIELD_NUMBER = 4;
+    private int hdivCount_ = 0;
+    /**
+     * <code>uint32 hdiv_count = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The hdivCount.
+     */
+    @java.lang.Override
+    public int getHdivCount() {
+      return hdivCount_;
+    }
+
+    public static final int VDIV_COUNT_FIELD_NUMBER = 5;
+    private int vdivCount_ = 0;
+    /**
+     * <code>uint32 vdiv_count = 5 [(.buf.validate.field) = { ... }</code>
+     * @return The vdivCount.
+     */
+    @java.lang.Override
+    public int getVdivCount() {
+      return vdivCount_;
+    }
+
+    public static final int SERIES_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private java.util.List<ui.UiAst.ChartSeries> series_;
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public java.util.List<ui.UiAst.ChartSeries> getSeriesList() {
+      return series_;
+    }
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends ui.UiAst.ChartSeriesOrBuilder> 
+        getSeriesOrBuilderList() {
+      return series_;
+    }
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public int getSeriesCount() {
+      return series_.size();
+    }
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ChartSeries getSeries(int index) {
+      return series_.get(index);
+    }
+    /**
+     * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ChartSeriesOrBuilder getSeriesOrBuilder(
+        int index) {
+      return series_.get(index);
+    }
+
+    public static final int FADE_AREA_FIELD_NUMBER = 7;
+    private boolean fadeArea_ = false;
+    /**
+     * <pre>
+     * Replicate the demo's chart fader draw-event: a vertical-gradient area
+     * under every LINE-series segment (LV_EVENT_DRAW_TASK_ADDED).
+     * </pre>
+     *
+     * <code>bool fade_area = 7;</code>
+     * @return The fadeArea.
+     */
+    @java.lang.Override
+    public boolean getFadeArea() {
+      return fadeArea_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != ui.UiAst.ChartType.CHART_TYPE_NONE.getNumber()) {
+        output.writeEnum(1, type_);
+      }
+      if (pointCount_ != 0) {
+        output.writeUInt32(2, pointCount_);
+      }
+      if (hasDivLines_ != false) {
+        output.writeBool(3, hasDivLines_);
+      }
+      if (hdivCount_ != 0) {
+        output.writeUInt32(4, hdivCount_);
+      }
+      if (vdivCount_ != 0) {
+        output.writeUInt32(5, vdivCount_);
+      }
+      for (int i = 0; i < series_.size(); i++) {
+        output.writeMessage(6, series_.get(i));
+      }
+      if (fadeArea_ != false) {
+        output.writeBool(7, fadeArea_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != ui.UiAst.ChartType.CHART_TYPE_NONE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, type_);
+      }
+      if (pointCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, pointCount_);
+      }
+      if (hasDivLines_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, hasDivLines_);
+      }
+      if (hdivCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, hdivCount_);
+      }
+      if (vdivCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(5, vdivCount_);
+      }
+      for (int i = 0; i < series_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, series_.get(i));
+      }
+      if (fadeArea_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, fadeArea_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ui.UiAst.ChartProps)) {
+        return super.equals(obj);
+      }
+      ui.UiAst.ChartProps other = (ui.UiAst.ChartProps) obj;
+
+      if (type_ != other.type_) return false;
+      if (getPointCount()
+          != other.getPointCount()) return false;
+      if (getHasDivLines()
+          != other.getHasDivLines()) return false;
+      if (getHdivCount()
+          != other.getHdivCount()) return false;
+      if (getVdivCount()
+          != other.getVdivCount()) return false;
+      if (!getSeriesList()
+          .equals(other.getSeriesList())) return false;
+      if (getFadeArea()
+          != other.getFadeArea()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      hash = (37 * hash) + POINT_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getPointCount();
+      hash = (37 * hash) + HAS_DIV_LINES_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getHasDivLines());
+      hash = (37 * hash) + HDIV_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getHdivCount();
+      hash = (37 * hash) + VDIV_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getVdivCount();
+      if (getSeriesCount() > 0) {
+        hash = (37 * hash) + SERIES_FIELD_NUMBER;
+        hash = (53 * hash) + getSeriesList().hashCode();
+      }
+      hash = (37 * hash) + FADE_AREA_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getFadeArea());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ui.UiAst.ChartProps parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ChartProps parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ChartProps parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ChartProps parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ChartProps parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ChartProps parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ChartProps parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ChartProps parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ui.UiAst.ChartProps parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ui.UiAst.ChartProps parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ui.UiAst.ChartProps parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ChartProps parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ui.UiAst.ChartProps prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ui.ChartProps}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ui.ChartProps)
+        ui.UiAst.ChartPropsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ui.UiAst.internal_static_ui_ChartProps_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ui.UiAst.internal_static_ui_ChartProps_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ui.UiAst.ChartProps.class, ui.UiAst.ChartProps.Builder.class);
+      }
+
+      // Construct using ui.UiAst.ChartProps.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        type_ = 0;
+        pointCount_ = 0;
+        hasDivLines_ = false;
+        hdivCount_ = 0;
+        vdivCount_ = 0;
+        if (seriesBuilder_ == null) {
+          series_ = java.util.Collections.emptyList();
+        } else {
+          series_ = null;
+          seriesBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fadeArea_ = false;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ui.UiAst.internal_static_ui_ChartProps_descriptor;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ChartProps getDefaultInstanceForType() {
+        return ui.UiAst.ChartProps.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ChartProps build() {
+        ui.UiAst.ChartProps result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ChartProps buildPartial() {
+        ui.UiAst.ChartProps result = new ui.UiAst.ChartProps(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(ui.UiAst.ChartProps result) {
+        if (seriesBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) != 0)) {
+            series_ = java.util.Collections.unmodifiableList(series_);
+            bitField0_ = (bitField0_ & ~0x00000020);
+          }
+          result.series_ = series_;
+        } else {
+          result.series_ = seriesBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(ui.UiAst.ChartProps result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pointCount_ = pointCount_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.hasDivLines_ = hasDivLines_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.hdivCount_ = hdivCount_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.vdivCount_ = vdivCount_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.fadeArea_ = fadeArea_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ui.UiAst.ChartProps) {
+          return mergeFrom((ui.UiAst.ChartProps)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ui.UiAst.ChartProps other) {
+        if (other == ui.UiAst.ChartProps.getDefaultInstance()) return this;
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
+        }
+        if (other.getPointCount() != 0) {
+          setPointCount(other.getPointCount());
+        }
+        if (other.getHasDivLines() != false) {
+          setHasDivLines(other.getHasDivLines());
+        }
+        if (other.getHdivCount() != 0) {
+          setHdivCount(other.getHdivCount());
+        }
+        if (other.getVdivCount() != 0) {
+          setVdivCount(other.getVdivCount());
+        }
+        if (seriesBuilder_ == null) {
+          if (!other.series_.isEmpty()) {
+            if (series_.isEmpty()) {
+              series_ = other.series_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+              ensureSeriesIsMutable();
+              series_.addAll(other.series_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.series_.isEmpty()) {
+            if (seriesBuilder_.isEmpty()) {
+              seriesBuilder_.dispose();
+              seriesBuilder_ = null;
+              series_ = other.series_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+              seriesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getSeriesFieldBuilder() : null;
+            } else {
+              seriesBuilder_.addAllMessages(other.series_);
+            }
+          }
+        }
+        if (other.getFadeArea() != false) {
+          setFadeArea(other.getFadeArea());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                type_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                pointCount_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                hasDivLines_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                hdivCount_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                vdivCount_ = input.readUInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 50: {
+                ui.UiAst.ChartSeries m =
+                    input.readMessage(
+                        ui.UiAst.ChartSeries.parser(),
+                        extensionRegistry);
+                if (seriesBuilder_ == null) {
+                  ensureSeriesIsMutable();
+                  series_.add(m);
+                } else {
+                  seriesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 50
+              case 56: {
+                fadeArea_ = input.readBool();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int type_ = 0;
+      /**
+       * <pre>
+       * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+       * default (LINE).
+       * </pre>
+       *
+       * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The enum numeric value on the wire for type.
+       */
+      @java.lang.Override public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <pre>
+       * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+       * default (LINE).
+       * </pre>
+       *
+       * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The enum numeric value on the wire for type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeValue(int value) {
+        type_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+       * default (LINE).
+       * </pre>
+       *
+       * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public ui.UiAst.ChartType getType() {
+        ui.UiAst.ChartType result = ui.UiAst.ChartType.forNumber(type_);
+        return result == null ? ui.UiAst.ChartType.UNRECOGNIZED : result;
+      }
+      /**
+       * <pre>
+       * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+       * default (LINE).
+       * </pre>
+       *
+       * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(ui.UiAst.ChartType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * lv_chart_type_t direct-cast (parity-gated); NONE (0) = keep the LVGL
+       * default (LINE).
+       * </pre>
+       *
+       * <code>.ui.ChartType type = 1 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int pointCount_ ;
+      /**
+       * <pre>
+       * 0 = keep the LVGL default point count.
+       * </pre>
+       *
+       * <code>uint32 point_count = 2;</code>
+       * @return The pointCount.
+       */
+      @java.lang.Override
+      public int getPointCount() {
+        return pointCount_;
+      }
+      /**
+       * <pre>
+       * 0 = keep the LVGL default point count.
+       * </pre>
+       *
+       * <code>uint32 point_count = 2;</code>
+       * @param value The pointCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPointCount(int value) {
+
+        pointCount_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 0 = keep the LVGL default point count.
+       * </pre>
+       *
+       * <code>uint32 point_count = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPointCount() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pointCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean hasDivLines_ ;
+      /**
+       * <pre>
+       * Division lines: 0 is a VALID explicit count (the demo sets 0,12), so
+       * presence rides has_div_lines (the ImageProps.has_pivot pattern);
+       * false = keep the LVGL defaults (HDIV_DEF/VDIV_DEF).
+       * </pre>
+       *
+       * <code>bool has_div_lines = 3;</code>
+       * @return The hasDivLines.
+       */
+      @java.lang.Override
+      public boolean getHasDivLines() {
+        return hasDivLines_;
+      }
+      /**
+       * <pre>
+       * Division lines: 0 is a VALID explicit count (the demo sets 0,12), so
+       * presence rides has_div_lines (the ImageProps.has_pivot pattern);
+       * false = keep the LVGL defaults (HDIV_DEF/VDIV_DEF).
+       * </pre>
+       *
+       * <code>bool has_div_lines = 3;</code>
+       * @param value The hasDivLines to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHasDivLines(boolean value) {
+
+        hasDivLines_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Division lines: 0 is a VALID explicit count (the demo sets 0,12), so
+       * presence rides has_div_lines (the ImageProps.has_pivot pattern);
+       * false = keep the LVGL defaults (HDIV_DEF/VDIV_DEF).
+       * </pre>
+       *
+       * <code>bool has_div_lines = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHasDivLines() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        hasDivLines_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int hdivCount_ ;
+      /**
+       * <code>uint32 hdiv_count = 4 [(.buf.validate.field) = { ... }</code>
+       * @return The hdivCount.
+       */
+      @java.lang.Override
+      public int getHdivCount() {
+        return hdivCount_;
+      }
+      /**
+       * <code>uint32 hdiv_count = 4 [(.buf.validate.field) = { ... }</code>
+       * @param value The hdivCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHdivCount(int value) {
+
+        hdivCount_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 hdiv_count = 4 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHdivCount() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        hdivCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int vdivCount_ ;
+      /**
+       * <code>uint32 vdiv_count = 5 [(.buf.validate.field) = { ... }</code>
+       * @return The vdivCount.
+       */
+      @java.lang.Override
+      public int getVdivCount() {
+        return vdivCount_;
+      }
+      /**
+       * <code>uint32 vdiv_count = 5 [(.buf.validate.field) = { ... }</code>
+       * @param value The vdivCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVdivCount(int value) {
+
+        vdivCount_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 vdiv_count = 5 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVdivCount() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        vdivCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<ui.UiAst.ChartSeries> series_ =
+        java.util.Collections.emptyList();
+      private void ensureSeriesIsMutable() {
+        if (!((bitField0_ & 0x00000020) != 0)) {
+          series_ = new java.util.ArrayList<ui.UiAst.ChartSeries>(series_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ui.UiAst.ChartSeries, ui.UiAst.ChartSeries.Builder, ui.UiAst.ChartSeriesOrBuilder> seriesBuilder_;
+
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public java.util.List<ui.UiAst.ChartSeries> getSeriesList() {
+        if (seriesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(series_);
+        } else {
+          return seriesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public int getSeriesCount() {
+        if (seriesBuilder_ == null) {
+          return series_.size();
+        } else {
+          return seriesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ChartSeries getSeries(int index) {
+        if (seriesBuilder_ == null) {
+          return series_.get(index);
+        } else {
+          return seriesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder setSeries(
+          int index, ui.UiAst.ChartSeries value) {
+        if (seriesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSeriesIsMutable();
+          series_.set(index, value);
+          onChanged();
+        } else {
+          seriesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder setSeries(
+          int index, ui.UiAst.ChartSeries.Builder builderForValue) {
+        if (seriesBuilder_ == null) {
+          ensureSeriesIsMutable();
+          series_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          seriesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSeries(ui.UiAst.ChartSeries value) {
+        if (seriesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSeriesIsMutable();
+          series_.add(value);
+          onChanged();
+        } else {
+          seriesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSeries(
+          int index, ui.UiAst.ChartSeries value) {
+        if (seriesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSeriesIsMutable();
+          series_.add(index, value);
+          onChanged();
+        } else {
+          seriesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSeries(
+          ui.UiAst.ChartSeries.Builder builderForValue) {
+        if (seriesBuilder_ == null) {
+          ensureSeriesIsMutable();
+          series_.add(builderForValue.build());
+          onChanged();
+        } else {
+          seriesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSeries(
+          int index, ui.UiAst.ChartSeries.Builder builderForValue) {
+        if (seriesBuilder_ == null) {
+          ensureSeriesIsMutable();
+          series_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          seriesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addAllSeries(
+          java.lang.Iterable<? extends ui.UiAst.ChartSeries> values) {
+        if (seriesBuilder_ == null) {
+          ensureSeriesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, series_);
+          onChanged();
+        } else {
+          seriesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder clearSeries() {
+        if (seriesBuilder_ == null) {
+          series_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+          onChanged();
+        } else {
+          seriesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder removeSeries(int index) {
+        if (seriesBuilder_ == null) {
+          ensureSeriesIsMutable();
+          series_.remove(index);
+          onChanged();
+        } else {
+          seriesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ChartSeries.Builder getSeriesBuilder(
+          int index) {
+        return getSeriesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ChartSeriesOrBuilder getSeriesOrBuilder(
+          int index) {
+        if (seriesBuilder_ == null) {
+          return series_.get(index);  } else {
+          return seriesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public java.util.List<? extends ui.UiAst.ChartSeriesOrBuilder> 
+           getSeriesOrBuilderList() {
+        if (seriesBuilder_ != null) {
+          return seriesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(series_);
+        }
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ChartSeries.Builder addSeriesBuilder() {
+        return getSeriesFieldBuilder().addBuilder(
+            ui.UiAst.ChartSeries.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ChartSeries.Builder addSeriesBuilder(
+          int index) {
+        return getSeriesFieldBuilder().addBuilder(
+            index, ui.UiAst.ChartSeries.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ui.ChartSeries series = 6 [(.buf.validate.field) = { ... }</code>
+       */
+      public java.util.List<ui.UiAst.ChartSeries.Builder> 
+           getSeriesBuilderList() {
+        return getSeriesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ui.UiAst.ChartSeries, ui.UiAst.ChartSeries.Builder, ui.UiAst.ChartSeriesOrBuilder> 
+          getSeriesFieldBuilder() {
+        if (seriesBuilder_ == null) {
+          seriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              ui.UiAst.ChartSeries, ui.UiAst.ChartSeries.Builder, ui.UiAst.ChartSeriesOrBuilder>(
+                  series_,
+                  ((bitField0_ & 0x00000020) != 0),
+                  getParentForChildren(),
+                  isClean());
+          series_ = null;
+        }
+        return seriesBuilder_;
+      }
+
+      private boolean fadeArea_ ;
+      /**
+       * <pre>
+       * Replicate the demo's chart fader draw-event: a vertical-gradient area
+       * under every LINE-series segment (LV_EVENT_DRAW_TASK_ADDED).
+       * </pre>
+       *
+       * <code>bool fade_area = 7;</code>
+       * @return The fadeArea.
+       */
+      @java.lang.Override
+      public boolean getFadeArea() {
+        return fadeArea_;
+      }
+      /**
+       * <pre>
+       * Replicate the demo's chart fader draw-event: a vertical-gradient area
+       * under every LINE-series segment (LV_EVENT_DRAW_TASK_ADDED).
+       * </pre>
+       *
+       * <code>bool fade_area = 7;</code>
+       * @param value The fadeArea to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFadeArea(boolean value) {
+
+        fadeArea_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Replicate the demo's chart fader draw-event: a vertical-gradient area
+       * under every LINE-series segment (LV_EVENT_DRAW_TASK_ADDED).
+       * </pre>
+       *
+       * <code>bool fade_area = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFadeArea() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fadeArea_ = false;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ui.ChartProps)
+    }
+
+    // @@protoc_insertion_point(class_scope:ui.ChartProps)
+    private static final ui.UiAst.ChartProps DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ui.UiAst.ChartProps();
+    }
+
+    public static ui.UiAst.ChartProps getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ChartProps>
+        PARSER = new com.google.protobuf.AbstractParser<ChartProps>() {
+      @java.lang.Override
+      public ChartProps parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ChartProps> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChartProps> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ui.UiAst.ChartProps getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface PointOrBuilder extends
       // @@protoc_insertion_point(interface_extends:ui.Point)
       com.google.protobuf.MessageOrBuilder {
@@ -40317,6 +43237,16 @@ java.lang.String defaultValue) {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ui_TabviewProps_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ui_ChartSeries_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ui_ChartSeries_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ui_ChartProps_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ui_ChartProps_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ui_Point_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -40381,7 +43311,7 @@ java.lang.String defaultValue) {
       "\022 \n\014string_value\030\003 \001(\tB\010\272H\005r\003\030\377\001H\000B\007\n\005va" +
       "lue\"^\n\006Screen\022!\n\004root\030\001 \001(\0132\016.ui.WidgetN" +
       "odeH\000\210\001\001\022(\n\010subjects\030\002 \003(\0132\026.ui.SubjectD" +
-      "eclarationB\007\n\005_root\"\272\013\n\nWidgetNode\022&\n\004ty" +
+      "eclarationB\007\n\005_root\"\341\013\n\nWidgetNode\022&\n\004ty" +
       "pe\030\001 \001(\0162\016.ui.WidgetTypeB\010\272H\005\202\001\002\020\001\022\t\n\001x\030" +
       "\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\026\n\004text\030\004 \001(\tB\010\272H\005r\003\030\377\001" +
       "\022.\n\010bindings\030\005 \003(\0132\034.ui.WidgetNode.Bindi" +
@@ -40408,237 +43338,253 @@ java.lang.String defaultValue) {
       "(\0132\016.ui.ScalePropsH\000\0223\n\022buttonmatrix_pro" +
       "ps\030\033 \001(\0132\025.ui.ButtonMatrixPropsH\000\022%\n\013tab" +
       "le_props\030\034 \001(\0132\016.ui.TablePropsH\000\022)\n\rtabv" +
-      "iew_props\030& \001(\0132\020.ui.TabviewPropsH\000\022)\n\nv" +
-      "isibility\030\035 \001(\0132\025.ui.VisibilityBinding\0225" +
-      "\n\014bind_formats\030\036 \003(\0132\037.ui.WidgetNode.Bin" +
-      "dFormatsEntry\022\021\n\tobj_flags\030\037 \001(\r\022\027\n\017obj_" +
-      "flags_clear\030  \001(\r\022\016\n\006states\030! \001(\r\022\022\n\nscr" +
-      "oll_dir\030\" \001(\r\022\024\n\014grid_col_dsc\030# \003(\005\022\024\n\014g" +
-      "rid_row_dsc\030$ \003(\005\022\014\n\004bare\030% \001(\010\022\022\n\nin_ta" +
-      "b_bar\030\' \001(\010\032/\n\rBindingsEntry\022\013\n\003key\030\001 \001(" +
-      "\t\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n\020BindFormatsEntry" +
-      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\016\n\014widg" +
-      "et_props\"\n\n\010ObjProps\"\r\n\013ButtonProps\"<\n\nL" +
-      "abelProps\022.\n\tlong_mode\030\001 \001(\0162\021.ui.LabelL" +
-      "ongModeB\010\272H\005\202\001\002\020\001\"g\n\013SliderProps\022\021\n\tmin_" +
-      "value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030" +
-      "\003 \001(\005\022#\n\004mode\030\004 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002" +
-      "\020\001\"j\n\nImageProps\022\025\n\003src\030\001 \001(\tB\010\272H\005r\003\030\377\001\022" +
-      "\021\n\thas_pivot\030\002 \001(\010\022\017\n\007pivot_x\030\003 \001(\005\022\017\n\007p" +
-      "ivot_y\030\004 \001(\005\022\020\n\010rotation\030\005 \001(\005\"\364\001\n\010ArcPr" +
-      "ops\022\035\n\013start_angle\030\001 \001(\rB\010\272H\005*\003\030\350\002\022\033\n\ten" +
-      "d_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002\022 \n\016bg_start_angl" +
-      "e\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg_end_angle\030\004 \001(\rB" +
-      "\010\272H\005*\003\030\350\002\022\020\n\010rotation\030\005 \001(\005\022#\n\004mode\030\006 \001(" +
-      "\0162\013.ui.ArcModeB\010\272H\005\202\001\002\020\001\022\021\n\tmin_value\030\007 " +
-      "\001(\005\022\021\n\tmax_value\030\010 \001(\005\022\r\n\005value\030\t \001(\005\"y\n" +
-      "\010BarProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_valu" +
-      "e\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\023\n\013start_value\030\004 " +
-      "\001(\005\022#\n\004mode\030\005 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020\001" +
-      "\"\036\n\013SwitchProps\022\017\n\007checked\030\001 \001(\010\" \n\rChec" +
-      "kboxProps\022\017\n\007checked\030\001 \001(\010\"b\n\rDropdownPr" +
-      "ops\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020\n\010select" +
-      "ed\030\002 \001(\r\022$\n\tdirection\030\003 \001(\0162\007.ui.DirB\010\272H" +
-      "\005\202\001\002\020\001\"}\n\013RollerProps\022\031\n\007options\030\001 \001(\tB\010" +
-      "\272H\005r\003\030\377\003\022\020\n\010selected\030\002 \001(\r\022\031\n\021visible_ro" +
-      "w_count\030\003 \001(\r\022&\n\004mode\030\004 \001(\0162\016.ui.RollerM" +
-      "odeB\010\272H\005\202\001\002\020\001\"k\n\rTextareaProps\022\035\n\013placeh" +
-      "older\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022\n\nmax_length\030\002 \001(" +
-      "\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\rpassword_mode\030\004 \001" +
-      "(\010\"\202\001\n\014SpinboxProps\022\021\n\tmin_value\030\001 \001(\005\022\021" +
-      "\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\014\n\004step" +
-      "\030\004 \001(\005\022\023\n\013digit_count\030\005 \001(\r\022\032\n\022separator" +
-      "_position\030\006 \001(\r\"5\n\014SpinnerProps\022\021\n\tspin_" +
-      "time\030\001 \001(\r\022\022\n\narc_length\030\002 \001(\r\"B\n\010LedPro" +
-      "ps\022\030\n\005color\030\001 \001(\0132\t.ui.Color\022\034\n\nbrightne" +
-      "ss\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tLineProps\022\031\n\006point" +
-      "s\030\001 \003(\0132\t.ui.Point\022\020\n\010y_invert\030\002 \001(\010\"\257\002\n" +
-      "\nScaleProps\022%\n\004mode\030\001 \001(\0162\r.ui.ScaleMode" +
-      "B\010\272H\005\202\001\002\020\001\022\030\n\020total_tick_count\030\002 \001(\r\022\030\n\020" +
-      "major_tick_every\030\003 \001(\r\022\022\n\nlabel_show\030\004 \001" +
-      "(\010\022\021\n\tmin_value\030\005 \001(\005\022\021\n\tmax_value\030\006 \001(\005" +
-      "\022\020\n\010rotation\030\007 \001(\005\022\035\n\013angle_range\030\010 \001(\rB" +
-      "\010\272H\005*\003\030\350\002\022\032\n\010text_src\030\t \001(\tB\010\272H\005r\003\030\377\001\022\021\n" +
-      "\tpost_draw\030\n \001(\010\022,\n\010sections\030\013 \003(\0132\020.ui." +
-      "ScaleSectionB\010\272H\005\222\001\002\020\004\"]\n\014ScaleSection\022\021" +
-      "\n\trange_min\030\001 \001(\005\022\021\n\trange_max\030\002 \001(\005\022\030\n\005" +
-      "color\030\003 \001(\0132\t.ui.Color\022\r\n\005width\030\004 \001(\r\"A\n" +
-      "\021ButtonMatrixProps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005" +
-      "r\003\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nTableProps\022\021" +
-      "\n\trow_count\030\001 \001(\r\022\024\n\014column_count\030\002 \001(\r\"" +
-      "\212\001\n\014TabviewProps\022!\n\ttab_names\030\001 \003(\tB\016\272H\013" +
-      "\222\001\010\020\010\"\004r\002\030\037\022\024\n\014tab_bar_size\030\002 \001(\005\022\024\n\014act" +
-      "ive_index\030\003 \001(\r\022+\n\020tab_bar_position\030\004 \001(" +
-      "\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\"\035\n\005Point\022\t\n\001x\030\001 \001(\005" +
-      "\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030\001 \001" +
-      "(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.Even" +
-      "tTriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005\022\034\n" +
-      "\024include_widget_value\030\004 \001(\010\022\034\n\013set_subje" +
-      "ct\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022\016\n\006" +
-      "toggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021Vis" +
-      "ibilityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r\004\020\001" +
-      "\030?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(\0162\r" +
-      ".ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n\004fl" +
-      "ow\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nmain" +
-      "_place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022,\n" +
-      "\013cross_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001" +
-      "\002\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.FlexAlignB" +
-      "\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_selecto" +
-      "r\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.ResolvedS" +
-      "tyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\npro" +
-      "perties\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\rSty" +
-      "leProperty\022-\n\004type\030\001 \001(\0162\025.ui.StylePrope" +
-      "rtyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022" +
-      "\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(" +
-      "\0132\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H" +
-      "\004r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.Shado" +
-      "wBundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010" +
-      "\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\r" +
-      "B\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(" +
-      "\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n" +
-      "\006spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013" +
-      "SubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_" +
-      "STRING\020\001*\205\003\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022" +
-      "\021\n\rWIDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\r" +
-      "WIDGET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWID" +
-      "GET_ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWIT" +
-      "CH\020\007\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROP" +
-      "DOWN\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXT" +
-      "AREA\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPI" +
-      "NNER\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022" +
-      "\020\n\014WIDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX" +
-      "\020\021\022\020\n\014WIDGET_TABLE\020\022\022\022\n\016WIDGET_TABVIEW\020\023" +
-      "*X\n\014EventTrigger\022\023\n\017TRIGGER_CLICKED\020\000\022\031\n" +
-      "\025TRIGGER_VALUE_CHANGED\020\001\022\030\n\024TRIGGER_LONG" +
-      "_PRESSED\020\002*q\n\tCompareOp\022\016\n\nCOMPARE_EQ\020\000\022" +
-      "\022\n\016COMPARE_NOT_EQ\020\001\022\016\n\nCOMPARE_GT\020\002\022\017\n\013C" +
-      "OMPARE_GTE\020\003\022\016\n\nCOMPARE_LT\020\004\022\017\n\013COMPARE_" +
-      "LTE\020\005*\366\001\n\010FlexFlow\022\022\n\016FLEX_FLOW_NONE\020\000\022\021" +
-      "\n\rFLEX_FLOW_ROW\020\001\022\024\n\020FLEX_FLOW_COLUMN\020\002\022" +
-      "\026\n\022FLEX_FLOW_ROW_WRAP\020\003\022\031\n\025FLEX_FLOW_ROW" +
-      "_REVERSE\020\004\022\036\n\032FLEX_FLOW_ROW_WRAP_REVERSE" +
-      "\020\005\022\031\n\025FLEX_FLOW_COLUMN_WRAP\020\006\022\034\n\030FLEX_FL" +
-      "OW_COLUMN_REVERSE\020\007\022!\n\035FLEX_FLOW_COLUMN_" +
-      "WRAP_REVERSE\020\010*\244\001\n\tFlexAlign\022\024\n\020FLEX_ALI" +
-      "GN_START\020\000\022\022\n\016FLEX_ALIGN_END\020\001\022\025\n\021FLEX_A" +
-      "LIGN_CENTER\020\002\022\033\n\027FLEX_ALIGN_SPACE_EVENLY" +
-      "\020\003\022\033\n\027FLEX_ALIGN_SPACE_AROUND\020\004\022\034\n\030FLEX_" +
-      "ALIGN_SPACE_BETWEEN\020\005*\274\001\n\tGridAlign\022\024\n\020G" +
-      "RID_ALIGN_START\020\000\022\025\n\021GRID_ALIGN_CENTER\020\001" +
-      "\022\022\n\016GRID_ALIGN_END\020\002\022\026\n\022GRID_ALIGN_STRET" +
-      "CH\020\003\022\033\n\027GRID_ALIGN_SPACE_EVENLY\020\004\022\033\n\027GRI" +
-      "D_ALIGN_SPACE_AROUND\020\005\022\034\n\030GRID_ALIGN_SPA" +
-      "CE_BETWEEN\020\006*b\n\tTextAlign\022\023\n\017TEXT_ALIGN_" +
-      "AUTO\020\000\022\023\n\017TEXT_ALIGN_LEFT\020\001\022\025\n\021TEXT_ALIG" +
-      "N_CENTER\020\002\022\024\n\020TEXT_ALIGN_RIGHT\020\003*X\n\tText" +
-      "Decor\022\023\n\017TEXT_DECOR_NONE\020\000\022\030\n\024TEXT_DECOR" +
-      "_UNDERLINE\020\001\022\034\n\030TEXT_DECOR_STRIKETHROUGH" +
-      "\020\002*\213\001\n\tBlendMode\022\025\n\021BLEND_MODE_NORMAL\020\000\022" +
-      "\027\n\023BLEND_MODE_ADDITIVE\020\001\022\032\n\026BLEND_MODE_S" +
-      "UBTRACTIVE\020\002\022\027\n\023BLEND_MODE_MULTIPLY\020\003\022\031\n" +
-      "\025BLEND_MODE_DIFFERENCE\020\004*i\n\007BaseDir\022\020\n\014B" +
-      "ASE_DIR_LTR\020\000\022\020\n\014BASE_DIR_RTL\020\001\022\021\n\rBASE_" +
-      "DIR_AUTO\020\002\022\024\n\020BASE_DIR_NEUTRAL\020 \022\021\n\rBASE" +
-      "_DIR_WEAK\020!*\200\001\n\007GradDir\022\021\n\rGRAD_DIR_NONE" +
-      "\020\000\022\020\n\014GRAD_DIR_VER\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023" +
-      "\n\017GRAD_DIR_LINEAR\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004" +
-      "\022\024\n\020GRAD_DIR_CONICAL\020\005*t\n\003Dir\022\014\n\010DIR_NON" +
-      "E\020\000\022\014\n\010DIR_LEFT\020\001\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_" +
-      "TOP\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DI" +
-      "R_VER\020\014\022\013\n\007DIR_ALL\020\017*\210\004\n\005Align\022\021\n\rALIGN_" +
-      "DEFAULT\020\000\022\022\n\016ALIGN_TOP_LEFT\020\001\022\021\n\rALIGN_T" +
-      "OP_MID\020\002\022\023\n\017ALIGN_TOP_RIGHT\020\003\022\025\n\021ALIGN_B" +
-      "OTTOM_LEFT\020\004\022\024\n\020ALIGN_BOTTOM_MID\020\005\022\026\n\022AL" +
-      "IGN_BOTTOM_RIGHT\020\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023" +
-      "\n\017ALIGN_RIGHT_MID\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n" +
-      "\022ALIGN_OUT_TOP_LEFT\020\n\022\025\n\021ALIGN_OUT_TOP_M" +
-      "ID\020\013\022\027\n\023ALIGN_OUT_TOP_RIGHT\020\014\022\031\n\025ALIGN_O" +
-      "UT_BOTTOM_LEFT\020\r\022\030\n\024ALIGN_OUT_BOTTOM_MID" +
-      "\020\016\022\032\n\026ALIGN_OUT_BOTTOM_RIGHT\020\017\022\026\n\022ALIGN_" +
-      "OUT_LEFT_TOP\020\020\022\026\n\022ALIGN_OUT_LEFT_MID\020\021\022\031" +
-      "\n\025ALIGN_OUT_LEFT_BOTTOM\020\022\022\027\n\023ALIGN_OUT_R" +
-      "IGHT_TOP\020\023\022\027\n\023ALIGN_OUT_RIGHT_MID\020\024\022\032\n\026A" +
-      "LIGN_OUT_RIGHT_BOTTOM\020\025*\254\001\n\nBorderSide\022\024" +
-      "\n\020BORDER_SIDE_NONE\020\000\022\026\n\022BORDER_SIDE_BOTT" +
-      "OM\020\001\022\023\n\017BORDER_SIDE_TOP\020\002\022\024\n\020BORDER_SIDE" +
-      "_LEFT\020\004\022\025\n\021BORDER_SIDE_RIGHT\020\010\022\024\n\020BORDER" +
-      "_SIDE_FULL\020\017\022\030\n\024BORDER_SIDE_INTERNAL\020\020*\236" +
-      "\001\n\rLabelLongMode\022\030\n\024LABEL_LONG_MODE_WRAP" +
-      "\020\000\022\030\n\024LABEL_LONG_MODE_DOTS\020\001\022\032\n\026LABEL_LO" +
-      "NG_MODE_SCROLL\020\002\022#\n\037LABEL_LONG_MODE_SCRO" +
-      "LL_CIRCULAR\020\003\022\030\n\024LABEL_LONG_MODE_CLIP\020\004*" +
-      "L\n\007BarMode\022\023\n\017BAR_MODE_NORMAL\020\000\022\030\n\024BAR_M" +
-      "ODE_SYMMETRICAL\020\001\022\022\n\016BAR_MODE_RANGE\020\002*N\n" +
-      "\007ArcMode\022\023\n\017ARC_MODE_NORMAL\020\000\022\030\n\024ARC_MOD" +
-      "E_SYMMETRICAL\020\001\022\024\n\020ARC_MODE_REVERSE\020\002*>\n" +
-      "\nRollerMode\022\026\n\022ROLLER_MODE_NORMAL\020\000\022\030\n\024R" +
-      "OLLER_MODE_INFINITE\020\001*\301\001\n\tScaleMode\022\035\n\031S" +
-      "CALE_MODE_HORIZONTAL_TOP\020\000\022 \n\034SCALE_MODE" +
-      "_HORIZONTAL_BOTTOM\020\001\022\034\n\030SCALE_MODE_VERTI" +
-      "CAL_LEFT\020\002\022\035\n\031SCALE_MODE_VERTICAL_RIGHT\020" +
-      "\004\022\032\n\026SCALE_MODE_ROUND_INNER\020\010\022\032\n\026SCALE_M" +
-      "ODE_ROUND_OUTER\020\020*\273\022\n\021StylePropertyType\022" +
-      "\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OPA\020\001\022\023\n\017P" +
-      "ROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FONT\020\003\022\025\n\021" +
-      "PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BORDER_WIDTH" +
-      "\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_ALL\020\007\022\020\n" +
-      "\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022\017\n\013PROP_" +
-      "HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PROP_PAD_HO" +
-      "R\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MARGIN_ALL" +
-      "\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_MIN_WIDT" +
-      "H\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_MIN_HEIG" +
-      "HT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PROP_LENGTH" +
-      "\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPROP_ALIGN" +
-      "\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025PROP_TRA" +
-      "NSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLATE_X\020\032\022\024\n" +
-      "\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCALE_X\020\034\022\020\n" +
-      "\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION\020\036\022\020\n\014PR" +
-      "OP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017\n\013PROP_S" +
-      "KEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP_PAD_TOP" +
-      "\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_PAD_LEFT" +
-      "\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_PAD_ROW\020\'" +
-      "\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MARGIN_TOP" +
-      "\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PROP_MARGI" +
-      "N_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022\026\n\022PROP_" +
-      "BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_DIR\020.\022\025\n" +
-      "\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_GRAD_STO" +
-      "P\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PROP_BG_GRA" +
-      "D_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025\n\021PROP_B" +
-      "G_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_RECOLOR\0205" +
-      "\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022\027\n\023PROP_" +
-      "BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDER_SIDE\0208\022\024" +
-      "\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_OUTLINE_WID" +
-      "TH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020PROP_OUT" +
-      "LINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=\022\025\n\021PROP" +
-      "_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_OFFSET_X\020" +
-      "?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022PROP_SHAD" +
-      "OW_SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR\020B\022\023\n\017PR" +
-      "OP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OPA\020D\022\026\n\022P" +
-      "ROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAGE_RECOLO" +
-      "R_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024PROP_LIN" +
-      "E_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH_GAP\020I\022\025" +
-      "\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_LINE_COLOR" +
-      "\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_ARC_WIDTH\020" +
-      "M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_ARC_COLO" +
-      "R\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TEXT_OPA\020Q" +
-      "\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024PROP_TEX" +
-      "T_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DECOR\020T\022\023\n\017P" +
-      "ROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_CORNER\020V\022\014" +
-      "\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED\020X\022\031\n\025PR" +
-      "OP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_ANIM_DURAT" +
-      "ION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPROP_BASE_" +
-      "DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY\020]\022\022\n\016PR" +
-      "OP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN_PLACE\020_" +
-      "\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025PROP_FLEX" +
-      "_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW\020b\022\032\n\026PR" +
-      "OP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_GRID_ROW_" +
-      "ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLUMN_POS\020e\022\032" +
-      "\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PROP_GRID_" +
-      "CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_CELL_ROW" +
-      "_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN\020i\022\033\n\027PR" +
-      "OP_GRID_CELL_ROW_SPAN\020jBEZCgit-codecommi" +
-      "t.eu-central-1.amazonaws.com/v1/repos/je" +
-      "ttison/jonp/uib\006proto3"
+      "iew_props\030& \001(\0132\020.ui.TabviewPropsH\000\022%\n\013c" +
+      "hart_props\030( \001(\0132\016.ui.ChartPropsH\000\022)\n\nvi" +
+      "sibility\030\035 \001(\0132\025.ui.VisibilityBinding\0225\n" +
+      "\014bind_formats\030\036 \003(\0132\037.ui.WidgetNode.Bind" +
+      "FormatsEntry\022\021\n\tobj_flags\030\037 \001(\r\022\027\n\017obj_f" +
+      "lags_clear\030  \001(\r\022\016\n\006states\030! \001(\r\022\022\n\nscro" +
+      "ll_dir\030\" \001(\r\022\024\n\014grid_col_dsc\030# \003(\005\022\024\n\014gr" +
+      "id_row_dsc\030$ \003(\005\022\014\n\004bare\030% \001(\010\022\022\n\nin_tab" +
+      "_bar\030\' \001(\010\032/\n\rBindingsEntry\022\013\n\003key\030\001 \001(\t" +
+      "\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n\020BindFormatsEntry\022" +
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\016\n\014widge" +
+      "t_props\"\n\n\010ObjProps\"\r\n\013ButtonProps\"<\n\nLa" +
+      "belProps\022.\n\tlong_mode\030\001 \001(\0162\021.ui.LabelLo" +
+      "ngModeB\010\272H\005\202\001\002\020\001\"g\n\013SliderProps\022\021\n\tmin_v" +
+      "alue\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003" +
+      " \001(\005\022#\n\004mode\030\004 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020" +
+      "\001\"j\n\nImageProps\022\025\n\003src\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\021" +
+      "\n\thas_pivot\030\002 \001(\010\022\017\n\007pivot_x\030\003 \001(\005\022\017\n\007pi" +
+      "vot_y\030\004 \001(\005\022\020\n\010rotation\030\005 \001(\005\"\364\001\n\010ArcPro" +
+      "ps\022\035\n\013start_angle\030\001 \001(\rB\010\272H\005*\003\030\350\002\022\033\n\tend" +
+      "_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002\022 \n\016bg_start_angle" +
+      "\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg_end_angle\030\004 \001(\rB\010" +
+      "\272H\005*\003\030\350\002\022\020\n\010rotation\030\005 \001(\005\022#\n\004mode\030\006 \001(\016" +
+      "2\013.ui.ArcModeB\010\272H\005\202\001\002\020\001\022\021\n\tmin_value\030\007 \001" +
+      "(\005\022\021\n\tmax_value\030\010 \001(\005\022\r\n\005value\030\t \001(\005\"y\n\010" +
+      "BarProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_value" +
+      "\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\023\n\013start_value\030\004 \001" +
+      "(\005\022#\n\004mode\030\005 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020\001\"" +
+      "\036\n\013SwitchProps\022\017\n\007checked\030\001 \001(\010\" \n\rCheck" +
+      "boxProps\022\017\n\007checked\030\001 \001(\010\"b\n\rDropdownPro" +
+      "ps\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020\n\010selecte" +
+      "d\030\002 \001(\r\022$\n\tdirection\030\003 \001(\0162\007.ui.DirB\010\272H\005" +
+      "\202\001\002\020\001\"}\n\013RollerProps\022\031\n\007options\030\001 \001(\tB\010\272" +
+      "H\005r\003\030\377\003\022\020\n\010selected\030\002 \001(\r\022\031\n\021visible_row" +
+      "_count\030\003 \001(\r\022&\n\004mode\030\004 \001(\0162\016.ui.RollerMo" +
+      "deB\010\272H\005\202\001\002\020\001\"k\n\rTextareaProps\022\035\n\013placeho" +
+      "lder\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022\n\nmax_length\030\002 \001(\r" +
+      "\022\020\n\010one_line\030\003 \001(\010\022\025\n\rpassword_mode\030\004 \001(" +
+      "\010\"\202\001\n\014SpinboxProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n" +
+      "\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\014\n\004step\030" +
+      "\004 \001(\005\022\023\n\013digit_count\030\005 \001(\r\022\032\n\022separator_" +
+      "position\030\006 \001(\r\"5\n\014SpinnerProps\022\021\n\tspin_t" +
+      "ime\030\001 \001(\r\022\022\n\narc_length\030\002 \001(\r\"B\n\010LedProp" +
+      "s\022\030\n\005color\030\001 \001(\0132\t.ui.Color\022\034\n\nbrightnes" +
+      "s\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tLineProps\022\031\n\006points" +
+      "\030\001 \003(\0132\t.ui.Point\022\020\n\010y_invert\030\002 \001(\010\"\257\002\n\n" +
+      "ScaleProps\022%\n\004mode\030\001 \001(\0162\r.ui.ScaleModeB" +
+      "\010\272H\005\202\001\002\020\001\022\030\n\020total_tick_count\030\002 \001(\r\022\030\n\020m" +
+      "ajor_tick_every\030\003 \001(\r\022\022\n\nlabel_show\030\004 \001(" +
+      "\010\022\021\n\tmin_value\030\005 \001(\005\022\021\n\tmax_value\030\006 \001(\005\022" +
+      "\020\n\010rotation\030\007 \001(\005\022\035\n\013angle_range\030\010 \001(\rB\010" +
+      "\272H\005*\003\030\350\002\022\032\n\010text_src\030\t \001(\tB\010\272H\005r\003\030\377\001\022\021\n\t" +
+      "post_draw\030\n \001(\010\022,\n\010sections\030\013 \003(\0132\020.ui.S" +
+      "caleSectionB\010\272H\005\222\001\002\020\004\"]\n\014ScaleSection\022\021\n" +
+      "\trange_min\030\001 \001(\005\022\021\n\trange_max\030\002 \001(\005\022\030\n\005c" +
+      "olor\030\003 \001(\0132\t.ui.Color\022\r\n\005width\030\004 \001(\r\"A\n\021" +
+      "ButtonMatrixProps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005r" +
+      "\003\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nTableProps\022\021\n" +
+      "\trow_count\030\001 \001(\r\022\024\n\014column_count\030\002 \001(\r\"\212" +
+      "\001\n\014TabviewProps\022!\n\ttab_names\030\001 \003(\tB\016\272H\013\222" +
+      "\001\010\020\010\"\004r\002\030\037\022\024\n\014tab_bar_size\030\002 \001(\005\022\024\n\014acti" +
+      "ve_index\030\003 \001(\r\022+\n\020tab_bar_position\030\004 \001(\016" +
+      "2\007.ui.DirB\010\272H\005\202\001\002\020\001\"h\n\013ChartSeries\022\030\n\005co" +
+      "lor\030\001 \001(\0132\t.ui.Color\022%\n\004axis\030\002 \001(\0162\r.ui." +
+      "ChartAxisB\010\272H\005\202\001\002\020\001\022\030\n\006values\030\003 \003(\005B\010\272H\005" +
+      "\222\001\002\020 \"\331\001\n\nChartProps\022%\n\004type\030\001 \001(\0162\r.ui." +
+      "ChartTypeB\010\272H\005\202\001\002\020\001\022\023\n\013point_count\030\002 \001(\r" +
+      "\022\025\n\rhas_div_lines\030\003 \001(\010\022\034\n\nhdiv_count\030\004 " +
+      "\001(\rB\010\272H\005*\003\030\377\001\022\034\n\nvdiv_count\030\005 \001(\rB\010\272H\005*\003" +
+      "\030\377\001\022)\n\006series\030\006 \003(\0132\017.ui.ChartSeriesB\010\272H" +
+      "\005\222\001\002\020\010\022\021\n\tfade_area\030\007 \001(\010\"\035\n\005Point\022\t\n\001x\030" +
+      "\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004nam" +
+      "e\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui" +
+      ".EventTriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001" +
+      "(\005\022\034\n\024include_widget_value\030\004 \001(\010\022\034\n\013set_" +
+      "subject\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(" +
+      "\005\022\016\n\006toggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l" +
+      "\n\021VisibilityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H" +
+      "\006r\004\020\001\030?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 " +
+      "\001(\0162\r.ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022" +
+      "$\n\004flow\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n" +
+      "\nmain_place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002" +
+      "\020\001\022,\n\013cross_place\030\003 \001(\0162\r.ui.FlexAlignB\010" +
+      "\272H\005\202\001\002\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.FlexA" +
+      "lignB\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_se" +
+      "lector\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.Reso" +
+      "lvedStyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%" +
+      "\n\nproperties\030\001 \003(\0132\021.ui.StyleProperty\"\337\001" +
+      "\n\rStyleProperty\022-\n\004type\030\001 \001(\0162\025.ui.Style" +
+      "PropertyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001" +
+      "(\rH\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value" +
+      "\030\004 \001(\0132\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(" +
+      "\tB\007\272H\004r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui." +
+      "ShadowBundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 " +
+      "\001(\rB\010\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030" +
+      "\003 \001(\rB\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width" +
+      "\030\001 \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001" +
+      "(\005\022\016\n\006spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377" +
+      "\001*2\n\013SubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUB" +
+      "JECT_STRING\020\001*\227\003\n\nWidgetType\022\016\n\nWIDGET_O" +
+      "BJ\020\000\022\021\n\rWIDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020" +
+      "\002\022\021\n\rWIDGET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016" +
+      "\n\nWIDGET_ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET" +
+      "_SWITCH\020\007\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET" +
+      "_DROPDOWN\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET" +
+      "_TEXTAREA\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGE" +
+      "T_SPINNER\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LI" +
+      "NE\020\017\022\020\n\014WIDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONM" +
+      "ATRIX\020\021\022\020\n\014WIDGET_TABLE\020\022\022\022\n\016WIDGET_TABV" +
+      "IEW\020\023\022\020\n\014WIDGET_CHART\020\024*X\n\014EventTrigger\022" +
+      "\023\n\017TRIGGER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CH" +
+      "ANGED\020\001\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCom" +
+      "pareOp\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ" +
+      "\020\001\022\016\n\nCOMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nC" +
+      "OMPARE_LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlo" +
+      "w\022\022\n\016FLEX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001" +
+      "\022\024\n\020FLEX_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_" +
+      "WRAP\020\003\022\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLE" +
+      "X_FLOW_ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_C" +
+      "OLUMN_WRAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE" +
+      "\020\007\022!\n\035FLEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001" +
+      "\n\tFlexAlign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLE" +
+      "X_ALIGN_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027" +
+      "FLEX_ALIGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_" +
+      "SPACE_AROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWE" +
+      "EN\020\005*\274\001\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000" +
+      "\022\025\n\021GRID_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_EN" +
+      "D\020\002\022\026\n\022GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIG" +
+      "N_SPACE_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_ARO" +
+      "UND\020\005\022\034\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tT" +
+      "extAlign\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_AL" +
+      "IGN_LEFT\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEX" +
+      "T_ALIGN_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DEC" +
+      "OR_NONE\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030T" +
+      "EXT_DECOR_STRIKETHROUGH\020\002*\213\001\n\tBlendMode\022" +
+      "\025\n\021BLEND_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADD" +
+      "ITIVE\020\001\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023B" +
+      "LEND_MODE_MULTIPLY\020\003\022\031\n\025BLEND_MODE_DIFFE" +
+      "RENCE\020\004*i\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000\022\020\n\014" +
+      "BASE_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002\022\024\n\020BAS" +
+      "E_DIR_NEUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020!*\200\001\n\007G" +
+      "radDir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR_VE" +
+      "R\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LINEAR" +
+      "\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_CONI" +
+      "CAL\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEFT\020\001" +
+      "\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nDIR_BOTT" +
+      "OM\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n\007DIR_AL" +
+      "L\020\017*\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016ALIG" +
+      "N_TOP_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017ALIGN" +
+      "_TOP_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024\n\020A" +
+      "LIGN_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIGHT\020" +
+      "\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_MID" +
+      "\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP_LE" +
+      "FT\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_OUT" +
+      "_TOP_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT\020\r\022" +
+      "\030\n\024ALIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OUT_B" +
+      "OTTOM_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020\022\026\n" +
+      "\022ALIGN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LEFT_" +
+      "BOTTOM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023ALI" +
+      "GN_OUT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT_BO" +
+      "TTOM\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_NON" +
+      "E\020\000\022\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER_SI" +
+      "DE_TOP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BORDER" +
+      "_SIDE_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030\n\024B" +
+      "ORDER_SIDE_INTERNAL\020\020*\236\001\n\rLabelLongMode\022" +
+      "\030\n\024LABEL_LONG_MODE_WRAP\020\000\022\030\n\024LABEL_LONG_" +
+      "MODE_DOTS\020\001\022\032\n\026LABEL_LONG_MODE_SCROLL\020\002\022" +
+      "#\n\037LABEL_LONG_MODE_SCROLL_CIRCULAR\020\003\022\030\n\024" +
+      "LABEL_LONG_MODE_CLIP\020\004*L\n\007BarMode\022\023\n\017BAR" +
+      "_MODE_NORMAL\020\000\022\030\n\024BAR_MODE_SYMMETRICAL\020\001" +
+      "\022\022\n\016BAR_MODE_RANGE\020\002*N\n\007ArcMode\022\023\n\017ARC_M" +
+      "ODE_NORMAL\020\000\022\030\n\024ARC_MODE_SYMMETRICAL\020\001\022\024" +
+      "\n\020ARC_MODE_REVERSE\020\002*>\n\nRollerMode\022\026\n\022RO" +
+      "LLER_MODE_NORMAL\020\000\022\030\n\024ROLLER_MODE_INFINI" +
+      "TE\020\001*\301\001\n\tScaleMode\022\035\n\031SCALE_MODE_HORIZON" +
+      "TAL_TOP\020\000\022 \n\034SCALE_MODE_HORIZONTAL_BOTTO" +
+      "M\020\001\022\034\n\030SCALE_MODE_VERTICAL_LEFT\020\002\022\035\n\031SCA" +
+      "LE_MODE_VERTICAL_RIGHT\020\004\022\032\n\026SCALE_MODE_R" +
+      "OUND_INNER\020\010\022\032\n\026SCALE_MODE_ROUND_OUTER\020\020" +
+      "*\217\001\n\tChartType\022\023\n\017CHART_TYPE_NONE\020\000\022\023\n\017C" +
+      "HART_TYPE_LINE\020\001\022\024\n\020CHART_TYPE_CURVE\020\002\022\022" +
+      "\n\016CHART_TYPE_BAR\020\003\022\026\n\022CHART_TYPE_STACKED" +
+      "\020\004\022\026\n\022CHART_TYPE_SCATTER\020\005*w\n\tChartAxis\022" +
+      "\030\n\024CHART_AXIS_PRIMARY_Y\020\000\022\032\n\026CHART_AXIS_" +
+      "SECONDARY_Y\020\001\022\030\n\024CHART_AXIS_PRIMARY_X\020\002\022" +
+      "\032\n\026CHART_AXIS_SECONDARY_X\020\004*\273\022\n\021StylePro" +
+      "pertyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_" +
+      "OPA\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_" +
+      "FONT\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BO" +
+      "RDER_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PA" +
+      "D_ALL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020" +
+      "\t\022\017\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014P" +
+      "ROP_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_" +
+      "MARGIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PRO" +
+      "P_MIN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PRO" +
+      "P_MIN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013P" +
+      "ROP_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\n" +
+      "PROP_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031" +
+      "\n\025PROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSL" +
+      "ATE_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SC" +
+      "ALE_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATI" +
+      "ON\020\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 " +
+      "\022\017\n\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PR" +
+      "OP_PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPRO" +
+      "P_PAD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP" +
+      "_PAD_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_" +
+      "MARGIN_TOP\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020" +
+      "PROP_MARGIN_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020" +
+      ",\022\026\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRA" +
+      "D_DIR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_B" +
+      "G_GRAD_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020P" +
+      "ROP_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203" +
+      "\022\025\n\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE" +
+      "_RECOLOR\0205\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\020" +
+      "6\022\027\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDE" +
+      "R_SIDE\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_O" +
+      "UTLINE_WIDTH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024" +
+      "\n\020PROP_OUTLINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD" +
+      "\020=\022\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW" +
+      "_OFFSET_X\020?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n" +
+      "\022PROP_SHADOW_SPREAD\020A\022\025\n\021PROP_SHADOW_COL" +
+      "OR\020B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_" +
+      "OPA\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IM" +
+      "AGE_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030" +
+      "\n\024PROP_LINE_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DA" +
+      "SH_GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_" +
+      "LINE_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_" +
+      "ARC_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PRO" +
+      "P_ARC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_" +
+      "TEXT_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030" +
+      "\n\024PROP_TEXT_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DE" +
+      "COR\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_" +
+      "CORNER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYER" +
+      "ED\020X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_" +
+      "ANIM_DURATION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\r" +
+      "PROP_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVI" +
+      "TY\020]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MA" +
+      "IN_PLACE\020_\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n" +
+      "\025PROP_FLEX_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GR" +
+      "OW\020b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP" +
+      "_GRID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLU" +
+      "MN_POS\020e\022\032\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032" +
+      "PROP_GRID_CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRI" +
+      "D_CELL_ROW_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALI" +
+      "GN\020i\022\033\n\027PROP_GRID_CELL_ROW_SPAN\020jBEZCgit" +
+      "-codecommit.eu-central-1.amazonaws.com/v" +
+      "1/repos/jettison/jonp/uib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -40674,7 +43620,7 @@ java.lang.String defaultValue) {
     internal_static_ui_WidgetNode_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_WidgetNode_descriptor,
-        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "TabviewProps", "Visibility", "BindFormats", "ObjFlags", "ObjFlagsClear", "States", "ScrollDir", "GridColDsc", "GridRowDsc", "Bare", "InTabBar", "WidgetProps", });
+        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "TabviewProps", "ChartProps", "Visibility", "BindFormats", "ObjFlags", "ObjFlagsClear", "States", "ScrollDir", "GridColDsc", "GridRowDsc", "Bare", "InTabBar", "WidgetProps", });
     internal_static_ui_WidgetNode_BindingsEntry_descriptor =
       internal_static_ui_WidgetNode_descriptor.getNestedTypes().get(0);
     internal_static_ui_WidgetNode_BindingsEntry_fieldAccessorTable = new
@@ -40813,56 +43759,68 @@ java.lang.String defaultValue) {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_TabviewProps_descriptor,
         new java.lang.String[] { "TabNames", "TabBarSize", "ActiveIndex", "TabBarPosition", });
-    internal_static_ui_Point_descriptor =
+    internal_static_ui_ChartSeries_descriptor =
       getDescriptor().getMessageTypes().get(26);
+    internal_static_ui_ChartSeries_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ui_ChartSeries_descriptor,
+        new java.lang.String[] { "Color", "Axis", "Values", });
+    internal_static_ui_ChartProps_descriptor =
+      getDescriptor().getMessageTypes().get(27);
+    internal_static_ui_ChartProps_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ui_ChartProps_descriptor,
+        new java.lang.String[] { "Type", "PointCount", "HasDivLines", "HdivCount", "VdivCount", "Series", "FadeArea", });
+    internal_static_ui_Point_descriptor =
+      getDescriptor().getMessageTypes().get(28);
     internal_static_ui_Point_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Point_descriptor,
         new java.lang.String[] { "X", "Y", });
     internal_static_ui_EventBinding_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_ui_EventBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_EventBinding_descriptor,
         new java.lang.String[] { "Name", "Trigger", "IntValue", "IncludeWidgetValue", "SetSubject", "SetValue", "Toggle", "NotifyHost", });
     internal_static_ui_VisibilityBinding_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_ui_VisibilityBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_VisibilityBinding_descriptor,
         new java.lang.String[] { "Subject", "RefValue", "Compare", });
     internal_static_ui_Layout_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_ui_Layout_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Layout_descriptor,
         new java.lang.String[] { "Flow", "MainPlace", "CrossPlace", "TrackPlace", });
     internal_static_ui_StyleGroup_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_ui_StyleGroup_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleGroup_descriptor,
         new java.lang.String[] { "StateSelector", "Variants", });
     internal_static_ui_ResolvedStyle_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_ui_ResolvedStyle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ResolvedStyle_descriptor,
         new java.lang.String[] { "Properties", });
     internal_static_ui_StyleProperty_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(34);
     internal_static_ui_StyleProperty_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleProperty_descriptor,
         new java.lang.String[] { "Type", "UintValue", "IntValue", "ColorValue", "StringValue", "ShadowValue", "Value", });
     internal_static_ui_Color_descriptor =
-      getDescriptor().getMessageTypes().get(33);
+      getDescriptor().getMessageTypes().get(35);
     internal_static_ui_Color_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Color_descriptor,
         new java.lang.String[] { "R", "G", "B", });
     internal_static_ui_ShadowBundle_descriptor =
-      getDescriptor().getMessageTypes().get(34);
+      getDescriptor().getMessageTypes().get(36);
     internal_static_ui_ShadowBundle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ShadowBundle_descriptor,
