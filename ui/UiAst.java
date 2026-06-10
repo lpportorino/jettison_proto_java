@@ -4449,7 +4449,7 @@ public final class UiAst {
      * unique identifier, e.g. "zoom_level"
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The name.
      */
     java.lang.String getName();
@@ -4458,19 +4458,19 @@ public final class UiAst {
      * unique identifier, e.g. "zoom_level"
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
-     * <code>.ui.SubjectType type = 2;</code>
+     * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for type.
      */
     int getTypeValue();
     /**
-     * <code>.ui.SubjectType type = 2;</code>
+     * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
      * @return The type.
      */
     ui.UiAst.SubjectType getType();
@@ -4499,7 +4499,7 @@ public final class UiAst {
      * default value for STRING subjects
      * </pre>
      *
-     * <code>string string_initial = 4;</code>
+     * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
      * @return Whether the stringInitial field is set.
      */
     boolean hasStringInitial();
@@ -4508,7 +4508,7 @@ public final class UiAst {
      * default value for STRING subjects
      * </pre>
      *
-     * <code>string string_initial = 4;</code>
+     * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
      * @return The stringInitial.
      */
     java.lang.String getStringInitial();
@@ -4517,7 +4517,7 @@ public final class UiAst {
      * default value for STRING subjects
      * </pre>
      *
-     * <code>string string_initial = 4;</code>
+     * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for stringInitial.
      */
     com.google.protobuf.ByteString
@@ -4618,7 +4618,7 @@ public final class UiAst {
      * unique identifier, e.g. "zoom_level"
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The name.
      */
     @java.lang.Override
@@ -4639,7 +4639,7 @@ public final class UiAst {
      * unique identifier, e.g. "zoom_level"
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for name.
      */
     @java.lang.Override
@@ -4660,14 +4660,14 @@ public final class UiAst {
     public static final int TYPE_FIELD_NUMBER = 2;
     private int type_ = 0;
     /**
-     * <code>.ui.SubjectType type = 2;</code>
+     * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.ui.SubjectType type = 2;</code>
+     * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
      * @return The type.
      */
     @java.lang.Override public ui.UiAst.SubjectType getType() {
@@ -4710,7 +4710,7 @@ public final class UiAst {
      * default value for STRING subjects
      * </pre>
      *
-     * <code>string string_initial = 4;</code>
+     * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
      * @return Whether the stringInitial field is set.
      */
     public boolean hasStringInitial() {
@@ -4721,7 +4721,7 @@ public final class UiAst {
      * default value for STRING subjects
      * </pre>
      *
-     * <code>string string_initial = 4;</code>
+     * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
      * @return The stringInitial.
      */
     public java.lang.String getStringInitial() {
@@ -4746,7 +4746,7 @@ public final class UiAst {
      * default value for STRING subjects
      * </pre>
      *
-     * <code>string string_initial = 4;</code>
+     * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for stringInitial.
      */
     public com.google.protobuf.ByteString
@@ -5183,7 +5183,7 @@ public final class UiAst {
        * unique identifier, e.g. "zoom_level"
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -5203,7 +5203,7 @@ public final class UiAst {
        * unique identifier, e.g. "zoom_level"
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -5224,7 +5224,7 @@ public final class UiAst {
        * unique identifier, e.g. "zoom_level"
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -5241,7 +5241,7 @@ public final class UiAst {
        * unique identifier, e.g. "zoom_level"
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -5255,7 +5255,7 @@ public final class UiAst {
        * unique identifier, e.g. "zoom_level"
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -5271,14 +5271,14 @@ public final class UiAst {
 
       private int type_ = 0;
       /**
-       * <code>.ui.SubjectType type = 2;</code>
+       * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for type.
        */
       @java.lang.Override public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.ui.SubjectType type = 2;</code>
+       * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for type to set.
        * @return This builder for chaining.
        */
@@ -5289,7 +5289,7 @@ public final class UiAst {
         return this;
       }
       /**
-       * <code>.ui.SubjectType type = 2;</code>
+       * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
        * @return The type.
        */
       @java.lang.Override
@@ -5298,7 +5298,7 @@ public final class UiAst {
         return result == null ? ui.UiAst.SubjectType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.SubjectType type = 2;</code>
+       * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The type to set.
        * @return This builder for chaining.
        */
@@ -5312,7 +5312,7 @@ public final class UiAst {
         return this;
       }
       /**
-       * <code>.ui.SubjectType type = 2;</code>
+       * <code>.ui.SubjectType type = 2 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearType() {
@@ -5385,7 +5385,7 @@ public final class UiAst {
        * default value for STRING subjects
        * </pre>
        *
-       * <code>string string_initial = 4;</code>
+       * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
        * @return Whether the stringInitial field is set.
        */
       @java.lang.Override
@@ -5397,7 +5397,7 @@ public final class UiAst {
        * default value for STRING subjects
        * </pre>
        *
-       * <code>string string_initial = 4;</code>
+       * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
        * @return The stringInitial.
        */
       @java.lang.Override
@@ -5423,7 +5423,7 @@ public final class UiAst {
        * default value for STRING subjects
        * </pre>
        *
-       * <code>string string_initial = 4;</code>
+       * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for stringInitial.
        */
       @java.lang.Override
@@ -5450,7 +5450,7 @@ public final class UiAst {
        * default value for STRING subjects
        * </pre>
        *
-       * <code>string string_initial = 4;</code>
+       * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The stringInitial to set.
        * @return This builder for chaining.
        */
@@ -5467,7 +5467,7 @@ public final class UiAst {
        * default value for STRING subjects
        * </pre>
        *
-       * <code>string string_initial = 4;</code>
+       * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearStringInitial() {
@@ -5483,7 +5483,7 @@ public final class UiAst {
        * default value for STRING subjects
        * </pre>
        *
-       * <code>string string_initial = 4;</code>
+       * <code>string string_initial = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for stringInitial to set.
        * @return This builder for chaining.
        */
@@ -6301,12 +6301,12 @@ public final class UiAst {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The name.
      */
     java.lang.String getName();
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
@@ -6324,17 +6324,17 @@ public final class UiAst {
     int getIntValue();
 
     /**
-     * <code>string string_value = 3;</code>
+     * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
      * @return Whether the stringValue field is set.
      */
     boolean hasStringValue();
     /**
-     * <code>string string_value = 3;</code>
+     * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
      * @return The stringValue.
      */
     java.lang.String getStringValue();
     /**
-     * <code>string string_value = 3;</code>
+     * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for stringValue.
      */
     com.google.protobuf.ByteString
@@ -6430,7 +6430,7 @@ public final class UiAst {
     @SuppressWarnings("serial")
     private volatile java.lang.Object name_ = "";
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The name.
      */
     @java.lang.Override
@@ -6447,7 +6447,7 @@ public final class UiAst {
       }
     }
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for name.
      */
     @java.lang.Override
@@ -6488,14 +6488,14 @@ public final class UiAst {
 
     public static final int STRING_VALUE_FIELD_NUMBER = 3;
     /**
-     * <code>string string_value = 3;</code>
+     * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
      * @return Whether the stringValue field is set.
      */
     public boolean hasStringValue() {
       return valueCase_ == 3;
     }
     /**
-     * <code>string string_value = 3;</code>
+     * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
      * @return The stringValue.
      */
     public java.lang.String getStringValue() {
@@ -6516,7 +6516,7 @@ public final class UiAst {
       }
     }
     /**
-     * <code>string string_value = 3;</code>
+     * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for stringValue.
      */
     public com.google.protobuf.ByteString
@@ -6927,7 +6927,7 @@ public final class UiAst {
 
       private java.lang.Object name_ = "";
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -6943,7 +6943,7 @@ public final class UiAst {
         }
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -6960,7 +6960,7 @@ public final class UiAst {
         }
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -6973,7 +6973,7 @@ public final class UiAst {
         return this;
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -6983,7 +6983,7 @@ public final class UiAst {
         return this;
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -7040,7 +7040,7 @@ public final class UiAst {
       }
 
       /**
-       * <code>string string_value = 3;</code>
+       * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
        * @return Whether the stringValue field is set.
        */
       @java.lang.Override
@@ -7048,7 +7048,7 @@ public final class UiAst {
         return valueCase_ == 3;
       }
       /**
-       * <code>string string_value = 3;</code>
+       * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
        * @return The stringValue.
        */
       @java.lang.Override
@@ -7070,7 +7070,7 @@ public final class UiAst {
         }
       }
       /**
-       * <code>string string_value = 3;</code>
+       * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for stringValue.
        */
       @java.lang.Override
@@ -7093,7 +7093,7 @@ public final class UiAst {
         }
       }
       /**
-       * <code>string string_value = 3;</code>
+       * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The stringValue to set.
        * @return This builder for chaining.
        */
@@ -7106,7 +7106,7 @@ public final class UiAst {
         return this;
       }
       /**
-       * <code>string string_value = 3;</code>
+       * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearStringValue() {
@@ -7118,7 +7118,7 @@ public final class UiAst {
         return this;
       }
       /**
-       * <code>string string_value = 3;</code>
+       * <code>string string_value = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for stringValue to set.
        * @return This builder for chaining.
        */
@@ -8332,12 +8332,12 @@ public final class UiAst {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.ui.WidgetType type = 1;</code>
+     * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for type.
      */
     int getTypeValue();
     /**
-     * <code>.ui.WidgetType type = 1;</code>
+     * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The type.
      */
     ui.UiAst.WidgetType getType();
@@ -8363,7 +8363,7 @@ public final class UiAst {
      * Static text (labels, checkbox, textarea, button)
      * </pre>
      *
-     * <code>string text = 4;</code>
+     * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
      * @return The text.
      */
     java.lang.String getText();
@@ -8372,7 +8372,7 @@ public final class UiAst {
      * Static text (labels, checkbox, textarea, button)
      * </pre>
      *
-     * <code>string text = 4;</code>
+     * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for text.
      */
     com.google.protobuf.ByteString
@@ -8532,8 +8532,8 @@ java.lang.String defaultValue);
 
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -8542,8 +8542,8 @@ java.lang.String defaultValue);
         getStyleGroupsList();
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -8551,8 +8551,8 @@ java.lang.String defaultValue);
     ui.UiAst.StyleGroup getStyleGroups(int index);
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -8560,8 +8560,8 @@ java.lang.String defaultValue);
     int getStyleGroupsCount();
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -8570,8 +8570,8 @@ java.lang.String defaultValue);
         getStyleGroupsOrBuilderList();
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -9086,14 +9086,14 @@ java.lang.String defaultValue);
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_ = 0;
     /**
-     * <code>.ui.WidgetType type = 1;</code>
+     * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.ui.WidgetType type = 1;</code>
+     * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The type.
      */
     @java.lang.Override public ui.UiAst.WidgetType getType() {
@@ -9135,7 +9135,7 @@ java.lang.String defaultValue);
      * Static text (labels, checkbox, textarea, button)
      * </pre>
      *
-     * <code>string text = 4;</code>
+     * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
      * @return The text.
      */
     @java.lang.Override
@@ -9156,7 +9156,7 @@ java.lang.String defaultValue);
      * Static text (labels, checkbox, textarea, button)
      * </pre>
      *
-     * <code>string text = 4;</code>
+     * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for text.
      */
     @java.lang.Override
@@ -9411,8 +9411,8 @@ java.lang.String defaultValue) {
     private java.util.List<ui.UiAst.StyleGroup> styleGroups_;
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -9423,8 +9423,8 @@ java.lang.String defaultValue) {
     }
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -9436,8 +9436,8 @@ java.lang.String defaultValue) {
     }
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -9448,8 +9448,8 @@ java.lang.String defaultValue) {
     }
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -9460,8 +9460,8 @@ java.lang.String defaultValue) {
     }
     /**
      * <pre>
-     * Style groups: default + per-state, each with 8 composite variants.
-     * Ordered: [default, pressed, focused, disabled, ...]
+     * Style groups: default + per-state, each with 8 composite variants,
+     * ordered default, pressed, focused, disabled, ...
      * </pre>
      *
      * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -11593,14 +11593,14 @@ java.lang.String defaultValue) {
 
       private int type_ = 0;
       /**
-       * <code>.ui.WidgetType type = 1;</code>
+       * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for type.
        */
       @java.lang.Override public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.ui.WidgetType type = 1;</code>
+       * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for type to set.
        * @return This builder for chaining.
        */
@@ -11611,7 +11611,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.WidgetType type = 1;</code>
+       * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
        * @return The type.
        */
       @java.lang.Override
@@ -11620,7 +11620,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.WidgetType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.WidgetType type = 1;</code>
+       * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The type to set.
        * @return This builder for chaining.
        */
@@ -11634,7 +11634,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.WidgetType type = 1;</code>
+       * <code>.ui.WidgetType type = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearType() {
@@ -11726,7 +11726,7 @@ java.lang.String defaultValue) {
        * Static text (labels, checkbox, textarea, button)
        * </pre>
        *
-       * <code>string text = 4;</code>
+       * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
        * @return The text.
        */
       public java.lang.String getText() {
@@ -11746,7 +11746,7 @@ java.lang.String defaultValue) {
        * Static text (labels, checkbox, textarea, button)
        * </pre>
        *
-       * <code>string text = 4;</code>
+       * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for text.
        */
       public com.google.protobuf.ByteString
@@ -11767,7 +11767,7 @@ java.lang.String defaultValue) {
        * Static text (labels, checkbox, textarea, button)
        * </pre>
        *
-       * <code>string text = 4;</code>
+       * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The text to set.
        * @return This builder for chaining.
        */
@@ -11784,7 +11784,7 @@ java.lang.String defaultValue) {
        * Static text (labels, checkbox, textarea, button)
        * </pre>
        *
-       * <code>string text = 4;</code>
+       * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearText() {
@@ -11798,7 +11798,7 @@ java.lang.String defaultValue) {
        * Static text (labels, checkbox, textarea, button)
        * </pre>
        *
-       * <code>string text = 4;</code>
+       * <code>string text = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for text to set.
        * @return This builder for chaining.
        */
@@ -12607,8 +12607,8 @@ java.lang.String defaultValue) {
 
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12622,8 +12622,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12637,8 +12637,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12652,8 +12652,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12674,8 +12674,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12693,8 +12693,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12714,8 +12714,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12736,8 +12736,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12755,8 +12755,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12774,8 +12774,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12794,8 +12794,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12812,8 +12812,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12830,8 +12830,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12842,8 +12842,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12857,8 +12857,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12873,8 +12873,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12885,8 +12885,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -12898,8 +12898,8 @@ java.lang.String defaultValue) {
       }
       /**
        * <pre>
-       * Style groups: default + per-state, each with 8 composite variants.
-       * Ordered: [default, pressed, focused, disabled, ...]
+       * Style groups: default + per-state, each with 8 composite variants,
+       * ordered default, pressed, focused, disabled, ...
        * </pre>
        *
        * <code>repeated .ui.StyleGroup style_groups = 9;</code>
@@ -16699,12 +16699,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.ui.LabelLongMode long_mode = 1;</code>
+     * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for longMode.
      */
     int getLongModeValue();
     /**
-     * <code>.ui.LabelLongMode long_mode = 1;</code>
+     * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The longMode.
      */
     ui.UiAst.LabelLongMode getLongMode();
@@ -16750,14 +16750,14 @@ java.lang.String defaultValue) {
     public static final int LONG_MODE_FIELD_NUMBER = 1;
     private int longMode_ = 0;
     /**
-     * <code>.ui.LabelLongMode long_mode = 1;</code>
+     * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for longMode.
      */
     @java.lang.Override public int getLongModeValue() {
       return longMode_;
     }
     /**
-     * <code>.ui.LabelLongMode long_mode = 1;</code>
+     * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The longMode.
      */
     @java.lang.Override public ui.UiAst.LabelLongMode getLongMode() {
@@ -17059,14 +17059,14 @@ java.lang.String defaultValue) {
 
       private int longMode_ = 0;
       /**
-       * <code>.ui.LabelLongMode long_mode = 1;</code>
+       * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for longMode.
        */
       @java.lang.Override public int getLongModeValue() {
         return longMode_;
       }
       /**
-       * <code>.ui.LabelLongMode long_mode = 1;</code>
+       * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for longMode to set.
        * @return This builder for chaining.
        */
@@ -17077,7 +17077,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.LabelLongMode long_mode = 1;</code>
+       * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
        * @return The longMode.
        */
       @java.lang.Override
@@ -17086,7 +17086,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.LabelLongMode.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.LabelLongMode long_mode = 1;</code>
+       * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The longMode to set.
        * @return This builder for chaining.
        */
@@ -17100,7 +17100,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.LabelLongMode long_mode = 1;</code>
+       * <code>.ui.LabelLongMode long_mode = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearLongMode() {
@@ -17184,12 +17184,12 @@ java.lang.String defaultValue) {
     int getValue();
 
     /**
-     * <code>.ui.BarMode mode = 4;</code>
+     * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     int getModeValue();
     /**
-     * <code>.ui.BarMode mode = 4;</code>
+     * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     ui.UiAst.BarMode getMode();
@@ -17268,14 +17268,14 @@ java.lang.String defaultValue) {
     public static final int MODE_FIELD_NUMBER = 4;
     private int mode_ = 0;
     /**
-     * <code>.ui.BarMode mode = 4;</code>
+     * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     @java.lang.Override public int getModeValue() {
       return mode_;
     }
     /**
-     * <code>.ui.BarMode mode = 4;</code>
+     * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     @java.lang.Override public ui.UiAst.BarMode getMode() {
@@ -17742,14 +17742,14 @@ java.lang.String defaultValue) {
 
       private int mode_ = 0;
       /**
-       * <code>.ui.BarMode mode = 4;</code>
+       * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for mode.
        */
       @java.lang.Override public int getModeValue() {
         return mode_;
       }
       /**
-       * <code>.ui.BarMode mode = 4;</code>
+       * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for mode to set.
        * @return This builder for chaining.
        */
@@ -17760,7 +17760,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.BarMode mode = 4;</code>
+       * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @return The mode.
        */
       @java.lang.Override
@@ -17769,7 +17769,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.BarMode.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.BarMode mode = 4;</code>
+       * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The mode to set.
        * @return This builder for chaining.
        */
@@ -17783,7 +17783,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.BarMode mode = 4;</code>
+       * <code>.ui.BarMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearMode() {
@@ -17849,12 +17849,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string src = 1;</code>
+     * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
      * @return The src.
      */
     java.lang.String getSrc();
     /**
-     * <code>string src = 1;</code>
+     * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for src.
      */
     com.google.protobuf.ByteString
@@ -17902,7 +17902,7 @@ java.lang.String defaultValue) {
     @SuppressWarnings("serial")
     private volatile java.lang.Object src_ = "";
     /**
-     * <code>string src = 1;</code>
+     * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
      * @return The src.
      */
     @java.lang.Override
@@ -17919,7 +17919,7 @@ java.lang.String defaultValue) {
       }
     }
     /**
-     * <code>string src = 1;</code>
+     * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for src.
      */
     @java.lang.Override
@@ -18233,7 +18233,7 @@ java.lang.String defaultValue) {
 
       private java.lang.Object src_ = "";
       /**
-       * <code>string src = 1;</code>
+       * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
        * @return The src.
        */
       public java.lang.String getSrc() {
@@ -18249,7 +18249,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string src = 1;</code>
+       * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for src.
        */
       public com.google.protobuf.ByteString
@@ -18266,7 +18266,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string src = 1;</code>
+       * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The src to set.
        * @return This builder for chaining.
        */
@@ -18279,7 +18279,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string src = 1;</code>
+       * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearSrc() {
@@ -18289,7 +18289,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string src = 1;</code>
+       * <code>string src = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for src to set.
        * @return This builder for chaining.
        */
@@ -18359,25 +18359,25 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint32 start_angle = 1;</code>
+     * <code>uint32 start_angle = 1 [(.buf.validate.field) = { ... }</code>
      * @return The startAngle.
      */
     int getStartAngle();
 
     /**
-     * <code>uint32 end_angle = 2;</code>
+     * <code>uint32 end_angle = 2 [(.buf.validate.field) = { ... }</code>
      * @return The endAngle.
      */
     int getEndAngle();
 
     /**
-     * <code>uint32 bg_start_angle = 3;</code>
+     * <code>uint32 bg_start_angle = 3 [(.buf.validate.field) = { ... }</code>
      * @return The bgStartAngle.
      */
     int getBgStartAngle();
 
     /**
-     * <code>uint32 bg_end_angle = 4;</code>
+     * <code>uint32 bg_end_angle = 4 [(.buf.validate.field) = { ... }</code>
      * @return The bgEndAngle.
      */
     int getBgEndAngle();
@@ -18389,12 +18389,12 @@ java.lang.String defaultValue) {
     int getRotation();
 
     /**
-     * <code>.ui.ArcMode mode = 6;</code>
+     * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     int getModeValue();
     /**
-     * <code>.ui.ArcMode mode = 6;</code>
+     * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     ui.UiAst.ArcMode getMode();
@@ -18458,7 +18458,7 @@ java.lang.String defaultValue) {
     public static final int START_ANGLE_FIELD_NUMBER = 1;
     private int startAngle_ = 0;
     /**
-     * <code>uint32 start_angle = 1;</code>
+     * <code>uint32 start_angle = 1 [(.buf.validate.field) = { ... }</code>
      * @return The startAngle.
      */
     @java.lang.Override
@@ -18469,7 +18469,7 @@ java.lang.String defaultValue) {
     public static final int END_ANGLE_FIELD_NUMBER = 2;
     private int endAngle_ = 0;
     /**
-     * <code>uint32 end_angle = 2;</code>
+     * <code>uint32 end_angle = 2 [(.buf.validate.field) = { ... }</code>
      * @return The endAngle.
      */
     @java.lang.Override
@@ -18480,7 +18480,7 @@ java.lang.String defaultValue) {
     public static final int BG_START_ANGLE_FIELD_NUMBER = 3;
     private int bgStartAngle_ = 0;
     /**
-     * <code>uint32 bg_start_angle = 3;</code>
+     * <code>uint32 bg_start_angle = 3 [(.buf.validate.field) = { ... }</code>
      * @return The bgStartAngle.
      */
     @java.lang.Override
@@ -18491,7 +18491,7 @@ java.lang.String defaultValue) {
     public static final int BG_END_ANGLE_FIELD_NUMBER = 4;
     private int bgEndAngle_ = 0;
     /**
-     * <code>uint32 bg_end_angle = 4;</code>
+     * <code>uint32 bg_end_angle = 4 [(.buf.validate.field) = { ... }</code>
      * @return The bgEndAngle.
      */
     @java.lang.Override
@@ -18513,14 +18513,14 @@ java.lang.String defaultValue) {
     public static final int MODE_FIELD_NUMBER = 6;
     private int mode_ = 0;
     /**
-     * <code>.ui.ArcMode mode = 6;</code>
+     * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     @java.lang.Override public int getModeValue() {
       return mode_;
     }
     /**
-     * <code>.ui.ArcMode mode = 6;</code>
+     * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     @java.lang.Override public ui.UiAst.ArcMode getMode() {
@@ -19039,7 +19039,7 @@ java.lang.String defaultValue) {
 
       private int startAngle_ ;
       /**
-       * <code>uint32 start_angle = 1;</code>
+       * <code>uint32 start_angle = 1 [(.buf.validate.field) = { ... }</code>
        * @return The startAngle.
        */
       @java.lang.Override
@@ -19047,7 +19047,7 @@ java.lang.String defaultValue) {
         return startAngle_;
       }
       /**
-       * <code>uint32 start_angle = 1;</code>
+       * <code>uint32 start_angle = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The startAngle to set.
        * @return This builder for chaining.
        */
@@ -19059,7 +19059,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 start_angle = 1;</code>
+       * <code>uint32 start_angle = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearStartAngle() {
@@ -19071,7 +19071,7 @@ java.lang.String defaultValue) {
 
       private int endAngle_ ;
       /**
-       * <code>uint32 end_angle = 2;</code>
+       * <code>uint32 end_angle = 2 [(.buf.validate.field) = { ... }</code>
        * @return The endAngle.
        */
       @java.lang.Override
@@ -19079,7 +19079,7 @@ java.lang.String defaultValue) {
         return endAngle_;
       }
       /**
-       * <code>uint32 end_angle = 2;</code>
+       * <code>uint32 end_angle = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The endAngle to set.
        * @return This builder for chaining.
        */
@@ -19091,7 +19091,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 end_angle = 2;</code>
+       * <code>uint32 end_angle = 2 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearEndAngle() {
@@ -19103,7 +19103,7 @@ java.lang.String defaultValue) {
 
       private int bgStartAngle_ ;
       /**
-       * <code>uint32 bg_start_angle = 3;</code>
+       * <code>uint32 bg_start_angle = 3 [(.buf.validate.field) = { ... }</code>
        * @return The bgStartAngle.
        */
       @java.lang.Override
@@ -19111,7 +19111,7 @@ java.lang.String defaultValue) {
         return bgStartAngle_;
       }
       /**
-       * <code>uint32 bg_start_angle = 3;</code>
+       * <code>uint32 bg_start_angle = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The bgStartAngle to set.
        * @return This builder for chaining.
        */
@@ -19123,7 +19123,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 bg_start_angle = 3;</code>
+       * <code>uint32 bg_start_angle = 3 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearBgStartAngle() {
@@ -19135,7 +19135,7 @@ java.lang.String defaultValue) {
 
       private int bgEndAngle_ ;
       /**
-       * <code>uint32 bg_end_angle = 4;</code>
+       * <code>uint32 bg_end_angle = 4 [(.buf.validate.field) = { ... }</code>
        * @return The bgEndAngle.
        */
       @java.lang.Override
@@ -19143,7 +19143,7 @@ java.lang.String defaultValue) {
         return bgEndAngle_;
       }
       /**
-       * <code>uint32 bg_end_angle = 4;</code>
+       * <code>uint32 bg_end_angle = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The bgEndAngle to set.
        * @return This builder for chaining.
        */
@@ -19155,7 +19155,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 bg_end_angle = 4;</code>
+       * <code>uint32 bg_end_angle = 4 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearBgEndAngle() {
@@ -19199,14 +19199,14 @@ java.lang.String defaultValue) {
 
       private int mode_ = 0;
       /**
-       * <code>.ui.ArcMode mode = 6;</code>
+       * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for mode.
        */
       @java.lang.Override public int getModeValue() {
         return mode_;
       }
       /**
-       * <code>.ui.ArcMode mode = 6;</code>
+       * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for mode to set.
        * @return This builder for chaining.
        */
@@ -19217,7 +19217,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.ArcMode mode = 6;</code>
+       * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
        * @return The mode.
        */
       @java.lang.Override
@@ -19226,7 +19226,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.ArcMode.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.ArcMode mode = 6;</code>
+       * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
        * @param value The mode to set.
        * @return This builder for chaining.
        */
@@ -19240,7 +19240,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.ArcMode mode = 6;</code>
+       * <code>.ui.ArcMode mode = 6 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearMode() {
@@ -19426,12 +19426,12 @@ java.lang.String defaultValue) {
     int getStartValue();
 
     /**
-     * <code>.ui.BarMode mode = 5;</code>
+     * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     int getModeValue();
     /**
-     * <code>.ui.BarMode mode = 5;</code>
+     * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     ui.UiAst.BarMode getMode();
@@ -19521,14 +19521,14 @@ java.lang.String defaultValue) {
     public static final int MODE_FIELD_NUMBER = 5;
     private int mode_ = 0;
     /**
-     * <code>.ui.BarMode mode = 5;</code>
+     * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     @java.lang.Override public int getModeValue() {
       return mode_;
     }
     /**
-     * <code>.ui.BarMode mode = 5;</code>
+     * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     @java.lang.Override public ui.UiAst.BarMode getMode() {
@@ -20050,14 +20050,14 @@ java.lang.String defaultValue) {
 
       private int mode_ = 0;
       /**
-       * <code>.ui.BarMode mode = 5;</code>
+       * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for mode.
        */
       @java.lang.Override public int getModeValue() {
         return mode_;
       }
       /**
-       * <code>.ui.BarMode mode = 5;</code>
+       * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for mode to set.
        * @return This builder for chaining.
        */
@@ -20068,7 +20068,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.BarMode mode = 5;</code>
+       * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
        * @return The mode.
        */
       @java.lang.Override
@@ -20077,7 +20077,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.BarMode.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.BarMode mode = 5;</code>
+       * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
        * @param value The mode to set.
        * @return This builder for chaining.
        */
@@ -20091,7 +20091,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.BarMode mode = 5;</code>
+       * <code>.ui.BarMode mode = 5 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearMode() {
@@ -21027,12 +21027,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The options.
      */
     java.lang.String getOptions();
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for options.
      */
     com.google.protobuf.ByteString
@@ -21045,12 +21045,12 @@ java.lang.String defaultValue) {
     int getSelected();
 
     /**
-     * <code>.ui.Dir direction = 3;</code>
+     * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for direction.
      */
     int getDirectionValue();
     /**
-     * <code>.ui.Dir direction = 3;</code>
+     * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
      * @return The direction.
      */
     ui.UiAst.Dir getDirection();
@@ -21098,7 +21098,7 @@ java.lang.String defaultValue) {
     @SuppressWarnings("serial")
     private volatile java.lang.Object options_ = "";
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The options.
      */
     @java.lang.Override
@@ -21115,7 +21115,7 @@ java.lang.String defaultValue) {
       }
     }
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for options.
      */
     @java.lang.Override
@@ -21147,14 +21147,14 @@ java.lang.String defaultValue) {
     public static final int DIRECTION_FIELD_NUMBER = 3;
     private int direction_ = 0;
     /**
-     * <code>.ui.Dir direction = 3;</code>
+     * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for direction.
      */
     @java.lang.Override public int getDirectionValue() {
       return direction_;
     }
     /**
-     * <code>.ui.Dir direction = 3;</code>
+     * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
      * @return The direction.
      */
     @java.lang.Override public ui.UiAst.Dir getDirection() {
@@ -21503,7 +21503,7 @@ java.lang.String defaultValue) {
 
       private java.lang.Object options_ = "";
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @return The options.
        */
       public java.lang.String getOptions() {
@@ -21519,7 +21519,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for options.
        */
       public com.google.protobuf.ByteString
@@ -21536,7 +21536,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The options to set.
        * @return This builder for chaining.
        */
@@ -21549,7 +21549,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearOptions() {
@@ -21559,7 +21559,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for options to set.
        * @return This builder for chaining.
        */
@@ -21607,14 +21607,14 @@ java.lang.String defaultValue) {
 
       private int direction_ = 0;
       /**
-       * <code>.ui.Dir direction = 3;</code>
+       * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for direction.
        */
       @java.lang.Override public int getDirectionValue() {
         return direction_;
       }
       /**
-       * <code>.ui.Dir direction = 3;</code>
+       * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for direction to set.
        * @return This builder for chaining.
        */
@@ -21625,7 +21625,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.Dir direction = 3;</code>
+       * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
        * @return The direction.
        */
       @java.lang.Override
@@ -21634,7 +21634,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.Dir.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.Dir direction = 3;</code>
+       * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The direction to set.
        * @return This builder for chaining.
        */
@@ -21648,7 +21648,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.Dir direction = 3;</code>
+       * <code>.ui.Dir direction = 3 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearDirection() {
@@ -21714,12 +21714,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The options.
      */
     java.lang.String getOptions();
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for options.
      */
     com.google.protobuf.ByteString
@@ -21738,12 +21738,12 @@ java.lang.String defaultValue) {
     int getVisibleRowCount();
 
     /**
-     * <code>.ui.RollerMode mode = 4;</code>
+     * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     int getModeValue();
     /**
-     * <code>.ui.RollerMode mode = 4;</code>
+     * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     ui.UiAst.RollerMode getMode();
@@ -21791,7 +21791,7 @@ java.lang.String defaultValue) {
     @SuppressWarnings("serial")
     private volatile java.lang.Object options_ = "";
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The options.
      */
     @java.lang.Override
@@ -21808,7 +21808,7 @@ java.lang.String defaultValue) {
       }
     }
     /**
-     * <code>string options = 1;</code>
+     * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for options.
      */
     @java.lang.Override
@@ -21851,14 +21851,14 @@ java.lang.String defaultValue) {
     public static final int MODE_FIELD_NUMBER = 4;
     private int mode_ = 0;
     /**
-     * <code>.ui.RollerMode mode = 4;</code>
+     * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     @java.lang.Override public int getModeValue() {
       return mode_;
     }
     /**
-     * <code>.ui.RollerMode mode = 4;</code>
+     * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     @java.lang.Override public ui.UiAst.RollerMode getMode() {
@@ -22230,7 +22230,7 @@ java.lang.String defaultValue) {
 
       private java.lang.Object options_ = "";
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @return The options.
        */
       public java.lang.String getOptions() {
@@ -22246,7 +22246,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for options.
        */
       public com.google.protobuf.ByteString
@@ -22263,7 +22263,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The options to set.
        * @return This builder for chaining.
        */
@@ -22276,7 +22276,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearOptions() {
@@ -22286,7 +22286,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string options = 1;</code>
+       * <code>string options = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for options to set.
        * @return This builder for chaining.
        */
@@ -22366,14 +22366,14 @@ java.lang.String defaultValue) {
 
       private int mode_ = 0;
       /**
-       * <code>.ui.RollerMode mode = 4;</code>
+       * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for mode.
        */
       @java.lang.Override public int getModeValue() {
         return mode_;
       }
       /**
-       * <code>.ui.RollerMode mode = 4;</code>
+       * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for mode to set.
        * @return This builder for chaining.
        */
@@ -22384,7 +22384,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.RollerMode mode = 4;</code>
+       * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @return The mode.
        */
       @java.lang.Override
@@ -22393,7 +22393,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.RollerMode.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.RollerMode mode = 4;</code>
+       * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The mode to set.
        * @return This builder for chaining.
        */
@@ -22407,7 +22407,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.RollerMode mode = 4;</code>
+       * <code>.ui.RollerMode mode = 4 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearMode() {
@@ -22473,12 +22473,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string placeholder = 1;</code>
+     * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
      * @return The placeholder.
      */
     java.lang.String getPlaceholder();
     /**
-     * <code>string placeholder = 1;</code>
+     * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for placeholder.
      */
     com.google.protobuf.ByteString
@@ -22544,7 +22544,7 @@ java.lang.String defaultValue) {
     @SuppressWarnings("serial")
     private volatile java.lang.Object placeholder_ = "";
     /**
-     * <code>string placeholder = 1;</code>
+     * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
      * @return The placeholder.
      */
     @java.lang.Override
@@ -22561,7 +22561,7 @@ java.lang.String defaultValue) {
       }
     }
     /**
-     * <code>string placeholder = 1;</code>
+     * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for placeholder.
      */
     @java.lang.Override
@@ -22979,7 +22979,7 @@ java.lang.String defaultValue) {
 
       private java.lang.Object placeholder_ = "";
       /**
-       * <code>string placeholder = 1;</code>
+       * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
        * @return The placeholder.
        */
       public java.lang.String getPlaceholder() {
@@ -22995,7 +22995,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string placeholder = 1;</code>
+       * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for placeholder.
        */
       public com.google.protobuf.ByteString
@@ -23012,7 +23012,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string placeholder = 1;</code>
+       * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The placeholder to set.
        * @return This builder for chaining.
        */
@@ -23025,7 +23025,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string placeholder = 1;</code>
+       * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearPlaceholder() {
@@ -23035,7 +23035,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string placeholder = 1;</code>
+       * <code>string placeholder = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for placeholder to set.
        * @return This builder for chaining.
        */
@@ -24516,7 +24516,7 @@ java.lang.String defaultValue) {
     ui.UiAst.ColorOrBuilder getColorOrBuilder();
 
     /**
-     * <code>uint32 brightness = 2;</code>
+     * <code>uint32 brightness = 2 [(.buf.validate.field) = { ... }</code>
      * @return The brightness.
      */
     int getBrightness();
@@ -24588,7 +24588,7 @@ java.lang.String defaultValue) {
     public static final int BRIGHTNESS_FIELD_NUMBER = 2;
     private int brightness_ = 0;
     /**
-     * <code>uint32 brightness = 2;</code>
+     * <code>uint32 brightness = 2 [(.buf.validate.field) = { ... }</code>
      * @return The brightness.
      */
     @java.lang.Override
@@ -25057,7 +25057,7 @@ java.lang.String defaultValue) {
 
       private int brightness_ ;
       /**
-       * <code>uint32 brightness = 2;</code>
+       * <code>uint32 brightness = 2 [(.buf.validate.field) = { ... }</code>
        * @return The brightness.
        */
       @java.lang.Override
@@ -25065,7 +25065,7 @@ java.lang.String defaultValue) {
         return brightness_;
       }
       /**
-       * <code>uint32 brightness = 2;</code>
+       * <code>uint32 brightness = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The brightness to set.
        * @return This builder for chaining.
        */
@@ -25077,7 +25077,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 brightness = 2;</code>
+       * <code>uint32 brightness = 2 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearBrightness() {
@@ -25956,12 +25956,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.ui.ScaleMode mode = 1;</code>
+     * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     int getModeValue();
     /**
-     * <code>.ui.ScaleMode mode = 1;</code>
+     * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     ui.UiAst.ScaleMode getMode();
@@ -26003,7 +26003,7 @@ java.lang.String defaultValue) {
     int getRotation();
 
     /**
-     * <code>uint32 angle_range = 8;</code>
+     * <code>uint32 angle_range = 8 [(.buf.validate.field) = { ... }</code>
      * @return The angleRange.
      */
     int getAngleRange();
@@ -26049,14 +26049,14 @@ java.lang.String defaultValue) {
     public static final int MODE_FIELD_NUMBER = 1;
     private int mode_ = 0;
     /**
-     * <code>.ui.ScaleMode mode = 1;</code>
+     * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mode.
      */
     @java.lang.Override public int getModeValue() {
       return mode_;
     }
     /**
-     * <code>.ui.ScaleMode mode = 1;</code>
+     * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
      * @return The mode.
      */
     @java.lang.Override public ui.UiAst.ScaleMode getMode() {
@@ -26133,7 +26133,7 @@ java.lang.String defaultValue) {
     public static final int ANGLE_RANGE_FIELD_NUMBER = 8;
     private int angleRange_ = 0;
     /**
-     * <code>uint32 angle_range = 8;</code>
+     * <code>uint32 angle_range = 8 [(.buf.validate.field) = { ... }</code>
      * @return The angleRange.
      */
     @java.lang.Override
@@ -26597,14 +26597,14 @@ java.lang.String defaultValue) {
 
       private int mode_ = 0;
       /**
-       * <code>.ui.ScaleMode mode = 1;</code>
+       * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for mode.
        */
       @java.lang.Override public int getModeValue() {
         return mode_;
       }
       /**
-       * <code>.ui.ScaleMode mode = 1;</code>
+       * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for mode to set.
        * @return This builder for chaining.
        */
@@ -26615,7 +26615,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.ScaleMode mode = 1;</code>
+       * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
        * @return The mode.
        */
       @java.lang.Override
@@ -26624,7 +26624,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.ScaleMode.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.ScaleMode mode = 1;</code>
+       * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The mode to set.
        * @return This builder for chaining.
        */
@@ -26638,7 +26638,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.ScaleMode mode = 1;</code>
+       * <code>.ui.ScaleMode mode = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearMode() {
@@ -26842,7 +26842,7 @@ java.lang.String defaultValue) {
 
       private int angleRange_ ;
       /**
-       * <code>uint32 angle_range = 8;</code>
+       * <code>uint32 angle_range = 8 [(.buf.validate.field) = { ... }</code>
        * @return The angleRange.
        */
       @java.lang.Override
@@ -26850,7 +26850,7 @@ java.lang.String defaultValue) {
         return angleRange_;
       }
       /**
-       * <code>uint32 angle_range = 8;</code>
+       * <code>uint32 angle_range = 8 [(.buf.validate.field) = { ... }</code>
        * @param value The angleRange to set.
        * @return This builder for chaining.
        */
@@ -26862,7 +26862,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 angle_range = 8;</code>
+       * <code>uint32 angle_range = 8 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearAngleRange() {
@@ -26928,12 +26928,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string map_str = 1;</code>
+     * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
      * @return The mapStr.
      */
     java.lang.String getMapStr();
     /**
-     * <code>string map_str = 1;</code>
+     * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for mapStr.
      */
     com.google.protobuf.ByteString
@@ -26987,7 +26987,7 @@ java.lang.String defaultValue) {
     @SuppressWarnings("serial")
     private volatile java.lang.Object mapStr_ = "";
     /**
-     * <code>string map_str = 1;</code>
+     * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
      * @return The mapStr.
      */
     @java.lang.Override
@@ -27004,7 +27004,7 @@ java.lang.String defaultValue) {
       }
     }
     /**
-     * <code>string map_str = 1;</code>
+     * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for mapStr.
      */
     @java.lang.Override
@@ -27353,7 +27353,7 @@ java.lang.String defaultValue) {
 
       private java.lang.Object mapStr_ = "";
       /**
-       * <code>string map_str = 1;</code>
+       * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
        * @return The mapStr.
        */
       public java.lang.String getMapStr() {
@@ -27369,7 +27369,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string map_str = 1;</code>
+       * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for mapStr.
        */
       public com.google.protobuf.ByteString
@@ -27386,7 +27386,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>string map_str = 1;</code>
+       * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The mapStr to set.
        * @return This builder for chaining.
        */
@@ -27399,7 +27399,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string map_str = 1;</code>
+       * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearMapStr() {
@@ -27409,7 +27409,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>string map_str = 1;</code>
+       * <code>string map_str = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for mapStr to set.
        * @return This builder for chaining.
        */
@@ -28527,7 +28527,7 @@ java.lang.String defaultValue) {
      * event keyword — IS the command identifier
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The name.
      */
     java.lang.String getName();
@@ -28536,7 +28536,7 @@ java.lang.String defaultValue) {
      * event keyword — IS the command identifier
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
@@ -28547,7 +28547,7 @@ java.lang.String defaultValue) {
      * which LVGL event fires this (default: CLICKED)
      * </pre>
      *
-     * <code>.ui.EventTrigger trigger = 2;</code>
+     * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for trigger.
      */
     int getTriggerValue();
@@ -28556,7 +28556,7 @@ java.lang.String defaultValue) {
      * which LVGL event fires this (default: CLICKED)
      * </pre>
      *
-     * <code>.ui.EventTrigger trigger = 2;</code>
+     * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
      * @return The trigger.
      */
     ui.UiAst.EventTrigger getTrigger();
@@ -28586,7 +28586,7 @@ java.lang.String defaultValue) {
      * local subject to mutate (empty = host event)
      * </pre>
      *
-     * <code>string set_subject = 5;</code>
+     * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
      * @return The setSubject.
      */
     java.lang.String getSetSubject();
@@ -28595,7 +28595,7 @@ java.lang.String defaultValue) {
      * local subject to mutate (empty = host event)
      * </pre>
      *
-     * <code>string set_subject = 5;</code>
+     * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for setSubject.
      */
     com.google.protobuf.ByteString
@@ -28679,7 +28679,7 @@ java.lang.String defaultValue) {
      * event keyword — IS the command identifier
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The name.
      */
     @java.lang.Override
@@ -28700,7 +28700,7 @@ java.lang.String defaultValue) {
      * event keyword — IS the command identifier
      * </pre>
      *
-     * <code>string name = 1;</code>
+     * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for name.
      */
     @java.lang.Override
@@ -28725,7 +28725,7 @@ java.lang.String defaultValue) {
      * which LVGL event fires this (default: CLICKED)
      * </pre>
      *
-     * <code>.ui.EventTrigger trigger = 2;</code>
+     * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for trigger.
      */
     @java.lang.Override public int getTriggerValue() {
@@ -28736,7 +28736,7 @@ java.lang.String defaultValue) {
      * which LVGL event fires this (default: CLICKED)
      * </pre>
      *
-     * <code>.ui.EventTrigger trigger = 2;</code>
+     * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
      * @return The trigger.
      */
     @java.lang.Override public ui.UiAst.EventTrigger getTrigger() {
@@ -28782,7 +28782,7 @@ java.lang.String defaultValue) {
      * local subject to mutate (empty = host event)
      * </pre>
      *
-     * <code>string set_subject = 5;</code>
+     * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
      * @return The setSubject.
      */
     @java.lang.Override
@@ -28803,7 +28803,7 @@ java.lang.String defaultValue) {
      * local subject to mutate (empty = host event)
      * </pre>
      *
-     * <code>string set_subject = 5;</code>
+     * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for setSubject.
      */
     @java.lang.Override
@@ -29330,7 +29330,7 @@ java.lang.String defaultValue) {
        * event keyword — IS the command identifier
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -29350,7 +29350,7 @@ java.lang.String defaultValue) {
        * event keyword — IS the command identifier
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -29371,7 +29371,7 @@ java.lang.String defaultValue) {
        * event keyword — IS the command identifier
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -29388,7 +29388,7 @@ java.lang.String defaultValue) {
        * event keyword — IS the command identifier
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -29402,7 +29402,7 @@ java.lang.String defaultValue) {
        * event keyword — IS the command identifier
        * </pre>
        *
-       * <code>string name = 1;</code>
+       * <code>string name = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -29422,7 +29422,7 @@ java.lang.String defaultValue) {
        * which LVGL event fires this (default: CLICKED)
        * </pre>
        *
-       * <code>.ui.EventTrigger trigger = 2;</code>
+       * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for trigger.
        */
       @java.lang.Override public int getTriggerValue() {
@@ -29433,7 +29433,7 @@ java.lang.String defaultValue) {
        * which LVGL event fires this (default: CLICKED)
        * </pre>
        *
-       * <code>.ui.EventTrigger trigger = 2;</code>
+       * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for trigger to set.
        * @return This builder for chaining.
        */
@@ -29448,7 +29448,7 @@ java.lang.String defaultValue) {
        * which LVGL event fires this (default: CLICKED)
        * </pre>
        *
-       * <code>.ui.EventTrigger trigger = 2;</code>
+       * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
        * @return The trigger.
        */
       @java.lang.Override
@@ -29461,7 +29461,7 @@ java.lang.String defaultValue) {
        * which LVGL event fires this (default: CLICKED)
        * </pre>
        *
-       * <code>.ui.EventTrigger trigger = 2;</code>
+       * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The trigger to set.
        * @return This builder for chaining.
        */
@@ -29479,7 +29479,7 @@ java.lang.String defaultValue) {
        * which LVGL event fires this (default: CLICKED)
        * </pre>
        *
-       * <code>.ui.EventTrigger trigger = 2;</code>
+       * <code>.ui.EventTrigger trigger = 2 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearTrigger() {
@@ -29583,7 +29583,7 @@ java.lang.String defaultValue) {
        * local subject to mutate (empty = host event)
        * </pre>
        *
-       * <code>string set_subject = 5;</code>
+       * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
        * @return The setSubject.
        */
       public java.lang.String getSetSubject() {
@@ -29603,7 +29603,7 @@ java.lang.String defaultValue) {
        * local subject to mutate (empty = host event)
        * </pre>
        *
-       * <code>string set_subject = 5;</code>
+       * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for setSubject.
        */
       public com.google.protobuf.ByteString
@@ -29624,7 +29624,7 @@ java.lang.String defaultValue) {
        * local subject to mutate (empty = host event)
        * </pre>
        *
-       * <code>string set_subject = 5;</code>
+       * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
        * @param value The setSubject to set.
        * @return This builder for chaining.
        */
@@ -29641,7 +29641,7 @@ java.lang.String defaultValue) {
        * local subject to mutate (empty = host event)
        * </pre>
        *
-       * <code>string set_subject = 5;</code>
+       * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearSetSubject() {
@@ -29655,7 +29655,7 @@ java.lang.String defaultValue) {
        * local subject to mutate (empty = host event)
        * </pre>
        *
-       * <code>string set_subject = 5;</code>
+       * <code>string set_subject = 5 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for setSubject to set.
        * @return This builder for chaining.
        */
@@ -29861,7 +29861,7 @@ java.lang.String defaultValue) {
      * subject name to observe
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
      * @return The subject.
      */
     java.lang.String getSubject();
@@ -29870,7 +29870,7 @@ java.lang.String defaultValue) {
      * subject name to observe
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for subject.
      */
     com.google.protobuf.ByteString
@@ -29891,7 +29891,7 @@ java.lang.String defaultValue) {
      * comparison operator (default: EQ)
      * </pre>
      *
-     * <code>.ui.CompareOp compare = 3;</code>
+     * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for compare.
      */
     int getCompareValue();
@@ -29900,7 +29900,7 @@ java.lang.String defaultValue) {
      * comparison operator (default: EQ)
      * </pre>
      *
-     * <code>.ui.CompareOp compare = 3;</code>
+     * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
      * @return The compare.
      */
     ui.UiAst.CompareOp getCompare();
@@ -29956,7 +29956,7 @@ java.lang.String defaultValue) {
      * subject name to observe
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
      * @return The subject.
      */
     @java.lang.Override
@@ -29977,7 +29977,7 @@ java.lang.String defaultValue) {
      * subject name to observe
      * </pre>
      *
-     * <code>string subject = 1;</code>
+     * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for subject.
      */
     @java.lang.Override
@@ -30017,7 +30017,7 @@ java.lang.String defaultValue) {
      * comparison operator (default: EQ)
      * </pre>
      *
-     * <code>.ui.CompareOp compare = 3;</code>
+     * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for compare.
      */
     @java.lang.Override public int getCompareValue() {
@@ -30028,7 +30028,7 @@ java.lang.String defaultValue) {
      * comparison operator (default: EQ)
      * </pre>
      *
-     * <code>.ui.CompareOp compare = 3;</code>
+     * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
      * @return The compare.
      */
     @java.lang.Override public ui.UiAst.CompareOp getCompare() {
@@ -30385,7 +30385,7 @@ java.lang.String defaultValue) {
        * subject name to observe
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
        * @return The subject.
        */
       public java.lang.String getSubject() {
@@ -30405,7 +30405,7 @@ java.lang.String defaultValue) {
        * subject name to observe
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for subject.
        */
       public com.google.protobuf.ByteString
@@ -30426,7 +30426,7 @@ java.lang.String defaultValue) {
        * subject name to observe
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The subject to set.
        * @return This builder for chaining.
        */
@@ -30443,7 +30443,7 @@ java.lang.String defaultValue) {
        * subject name to observe
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearSubject() {
@@ -30457,7 +30457,7 @@ java.lang.String defaultValue) {
        * subject name to observe
        * </pre>
        *
-       * <code>string subject = 1;</code>
+       * <code>string subject = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for subject to set.
        * @return This builder for chaining.
        */
@@ -30521,7 +30521,7 @@ java.lang.String defaultValue) {
        * comparison operator (default: EQ)
        * </pre>
        *
-       * <code>.ui.CompareOp compare = 3;</code>
+       * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for compare.
        */
       @java.lang.Override public int getCompareValue() {
@@ -30532,7 +30532,7 @@ java.lang.String defaultValue) {
        * comparison operator (default: EQ)
        * </pre>
        *
-       * <code>.ui.CompareOp compare = 3;</code>
+       * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for compare to set.
        * @return This builder for chaining.
        */
@@ -30547,7 +30547,7 @@ java.lang.String defaultValue) {
        * comparison operator (default: EQ)
        * </pre>
        *
-       * <code>.ui.CompareOp compare = 3;</code>
+       * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
        * @return The compare.
        */
       @java.lang.Override
@@ -30560,7 +30560,7 @@ java.lang.String defaultValue) {
        * comparison operator (default: EQ)
        * </pre>
        *
-       * <code>.ui.CompareOp compare = 3;</code>
+       * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The compare to set.
        * @return This builder for chaining.
        */
@@ -30578,7 +30578,7 @@ java.lang.String defaultValue) {
        * comparison operator (default: EQ)
        * </pre>
        *
-       * <code>.ui.CompareOp compare = 3;</code>
+       * <code>.ui.CompareOp compare = 3 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearCompare() {
@@ -30644,45 +30644,45 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.ui.FlexFlow flow = 1;</code>
+     * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for flow.
      */
     int getFlowValue();
     /**
-     * <code>.ui.FlexFlow flow = 1;</code>
+     * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
      * @return The flow.
      */
     ui.UiAst.FlexFlow getFlow();
 
     /**
-     * <code>.ui.FlexAlign main_place = 2;</code>
+     * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mainPlace.
      */
     int getMainPlaceValue();
     /**
-     * <code>.ui.FlexAlign main_place = 2;</code>
+     * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
      * @return The mainPlace.
      */
     ui.UiAst.FlexAlign getMainPlace();
 
     /**
-     * <code>.ui.FlexAlign cross_place = 3;</code>
+     * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for crossPlace.
      */
     int getCrossPlaceValue();
     /**
-     * <code>.ui.FlexAlign cross_place = 3;</code>
+     * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
      * @return The crossPlace.
      */
     ui.UiAst.FlexAlign getCrossPlace();
 
     /**
-     * <code>.ui.FlexAlign track_place = 4;</code>
+     * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for trackPlace.
      */
     int getTrackPlaceValue();
     /**
-     * <code>.ui.FlexAlign track_place = 4;</code>
+     * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
      * @return The trackPlace.
      */
     ui.UiAst.FlexAlign getTrackPlace();
@@ -30731,14 +30731,14 @@ java.lang.String defaultValue) {
     public static final int FLOW_FIELD_NUMBER = 1;
     private int flow_ = 0;
     /**
-     * <code>.ui.FlexFlow flow = 1;</code>
+     * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for flow.
      */
     @java.lang.Override public int getFlowValue() {
       return flow_;
     }
     /**
-     * <code>.ui.FlexFlow flow = 1;</code>
+     * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
      * @return The flow.
      */
     @java.lang.Override public ui.UiAst.FlexFlow getFlow() {
@@ -30749,14 +30749,14 @@ java.lang.String defaultValue) {
     public static final int MAIN_PLACE_FIELD_NUMBER = 2;
     private int mainPlace_ = 0;
     /**
-     * <code>.ui.FlexAlign main_place = 2;</code>
+     * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for mainPlace.
      */
     @java.lang.Override public int getMainPlaceValue() {
       return mainPlace_;
     }
     /**
-     * <code>.ui.FlexAlign main_place = 2;</code>
+     * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
      * @return The mainPlace.
      */
     @java.lang.Override public ui.UiAst.FlexAlign getMainPlace() {
@@ -30767,14 +30767,14 @@ java.lang.String defaultValue) {
     public static final int CROSS_PLACE_FIELD_NUMBER = 3;
     private int crossPlace_ = 0;
     /**
-     * <code>.ui.FlexAlign cross_place = 3;</code>
+     * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for crossPlace.
      */
     @java.lang.Override public int getCrossPlaceValue() {
       return crossPlace_;
     }
     /**
-     * <code>.ui.FlexAlign cross_place = 3;</code>
+     * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
      * @return The crossPlace.
      */
     @java.lang.Override public ui.UiAst.FlexAlign getCrossPlace() {
@@ -30785,14 +30785,14 @@ java.lang.String defaultValue) {
     public static final int TRACK_PLACE_FIELD_NUMBER = 4;
     private int trackPlace_ = 0;
     /**
-     * <code>.ui.FlexAlign track_place = 4;</code>
+     * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for trackPlace.
      */
     @java.lang.Override public int getTrackPlaceValue() {
       return trackPlace_;
     }
     /**
-     * <code>.ui.FlexAlign track_place = 4;</code>
+     * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
      * @return The trackPlace.
      */
     @java.lang.Override public ui.UiAst.FlexAlign getTrackPlace() {
@@ -31160,14 +31160,14 @@ java.lang.String defaultValue) {
 
       private int flow_ = 0;
       /**
-       * <code>.ui.FlexFlow flow = 1;</code>
+       * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for flow.
        */
       @java.lang.Override public int getFlowValue() {
         return flow_;
       }
       /**
-       * <code>.ui.FlexFlow flow = 1;</code>
+       * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for flow to set.
        * @return This builder for chaining.
        */
@@ -31178,7 +31178,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexFlow flow = 1;</code>
+       * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
        * @return The flow.
        */
       @java.lang.Override
@@ -31187,7 +31187,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.FlexFlow.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.FlexFlow flow = 1;</code>
+       * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The flow to set.
        * @return This builder for chaining.
        */
@@ -31201,7 +31201,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexFlow flow = 1;</code>
+       * <code>.ui.FlexFlow flow = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearFlow() {
@@ -31213,14 +31213,14 @@ java.lang.String defaultValue) {
 
       private int mainPlace_ = 0;
       /**
-       * <code>.ui.FlexAlign main_place = 2;</code>
+       * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for mainPlace.
        */
       @java.lang.Override public int getMainPlaceValue() {
         return mainPlace_;
       }
       /**
-       * <code>.ui.FlexAlign main_place = 2;</code>
+       * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for mainPlace to set.
        * @return This builder for chaining.
        */
@@ -31231,7 +31231,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexAlign main_place = 2;</code>
+       * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
        * @return The mainPlace.
        */
       @java.lang.Override
@@ -31240,7 +31240,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.FlexAlign.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.FlexAlign main_place = 2;</code>
+       * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The mainPlace to set.
        * @return This builder for chaining.
        */
@@ -31254,7 +31254,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexAlign main_place = 2;</code>
+       * <code>.ui.FlexAlign main_place = 2 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearMainPlace() {
@@ -31266,14 +31266,14 @@ java.lang.String defaultValue) {
 
       private int crossPlace_ = 0;
       /**
-       * <code>.ui.FlexAlign cross_place = 3;</code>
+       * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for crossPlace.
        */
       @java.lang.Override public int getCrossPlaceValue() {
         return crossPlace_;
       }
       /**
-       * <code>.ui.FlexAlign cross_place = 3;</code>
+       * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for crossPlace to set.
        * @return This builder for chaining.
        */
@@ -31284,7 +31284,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexAlign cross_place = 3;</code>
+       * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
        * @return The crossPlace.
        */
       @java.lang.Override
@@ -31293,7 +31293,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.FlexAlign.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.FlexAlign cross_place = 3;</code>
+       * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The crossPlace to set.
        * @return This builder for chaining.
        */
@@ -31307,7 +31307,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexAlign cross_place = 3;</code>
+       * <code>.ui.FlexAlign cross_place = 3 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearCrossPlace() {
@@ -31319,14 +31319,14 @@ java.lang.String defaultValue) {
 
       private int trackPlace_ = 0;
       /**
-       * <code>.ui.FlexAlign track_place = 4;</code>
+       * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for trackPlace.
        */
       @java.lang.Override public int getTrackPlaceValue() {
         return trackPlace_;
       }
       /**
-       * <code>.ui.FlexAlign track_place = 4;</code>
+       * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for trackPlace to set.
        * @return This builder for chaining.
        */
@@ -31337,7 +31337,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexAlign track_place = 4;</code>
+       * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
        * @return The trackPlace.
        */
       @java.lang.Override
@@ -31346,7 +31346,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.FlexAlign.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.FlexAlign track_place = 4;</code>
+       * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
        * @param value The trackPlace to set.
        * @return This builder for chaining.
        */
@@ -31360,7 +31360,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.FlexAlign track_place = 4;</code>
+       * <code>.ui.FlexAlign track_place = 4 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearTrackPlace() {
@@ -31436,7 +31436,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     java.util.List<ui.UiAst.ResolvedStyle> 
         getVariantsList();
@@ -31445,7 +31445,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     ui.UiAst.ResolvedStyle getVariants(int index);
     /**
@@ -31453,7 +31453,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     int getVariantsCount();
     /**
@@ -31461,7 +31461,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     java.util.List<? extends ui.UiAst.ResolvedStyleOrBuilder> 
         getVariantsOrBuilderList();
@@ -31470,7 +31470,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     ui.UiAst.ResolvedStyleOrBuilder getVariantsOrBuilder(
         int index);
@@ -31537,7 +31537,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
     public java.util.List<ui.UiAst.ResolvedStyle> getVariantsList() {
@@ -31548,7 +31548,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
     public java.util.List<? extends ui.UiAst.ResolvedStyleOrBuilder> 
@@ -31560,7 +31560,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
     public int getVariantsCount() {
@@ -31571,7 +31571,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
     public ui.UiAst.ResolvedStyle getVariants(int index) {
@@ -31582,7 +31582,7 @@ java.lang.String defaultValue) {
      * exactly 8 entries (composite indices 0-7)
      * </pre>
      *
-     * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
     public ui.UiAst.ResolvedStyleOrBuilder getVariantsOrBuilder(
@@ -32009,7 +32009,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public java.util.List<ui.UiAst.ResolvedStyle> getVariantsList() {
         if (variantsBuilder_ == null) {
@@ -32023,7 +32023,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public int getVariantsCount() {
         if (variantsBuilder_ == null) {
@@ -32037,7 +32037,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public ui.UiAst.ResolvedStyle getVariants(int index) {
         if (variantsBuilder_ == null) {
@@ -32051,7 +32051,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder setVariants(
           int index, ui.UiAst.ResolvedStyle value) {
@@ -32072,7 +32072,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder setVariants(
           int index, ui.UiAst.ResolvedStyle.Builder builderForValue) {
@@ -32090,7 +32090,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addVariants(ui.UiAst.ResolvedStyle value) {
         if (variantsBuilder_ == null) {
@@ -32110,7 +32110,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addVariants(
           int index, ui.UiAst.ResolvedStyle value) {
@@ -32131,7 +32131,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addVariants(
           ui.UiAst.ResolvedStyle.Builder builderForValue) {
@@ -32149,7 +32149,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addVariants(
           int index, ui.UiAst.ResolvedStyle.Builder builderForValue) {
@@ -32167,7 +32167,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addAllVariants(
           java.lang.Iterable<? extends ui.UiAst.ResolvedStyle> values) {
@@ -32186,7 +32186,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder clearVariants() {
         if (variantsBuilder_ == null) {
@@ -32203,7 +32203,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder removeVariants(int index) {
         if (variantsBuilder_ == null) {
@@ -32220,7 +32220,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public ui.UiAst.ResolvedStyle.Builder getVariantsBuilder(
           int index) {
@@ -32231,7 +32231,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public ui.UiAst.ResolvedStyleOrBuilder getVariantsOrBuilder(
           int index) {
@@ -32245,7 +32245,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public java.util.List<? extends ui.UiAst.ResolvedStyleOrBuilder> 
            getVariantsOrBuilderList() {
@@ -32260,7 +32260,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public ui.UiAst.ResolvedStyle.Builder addVariantsBuilder() {
         return getVariantsFieldBuilder().addBuilder(
@@ -32271,7 +32271,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public ui.UiAst.ResolvedStyle.Builder addVariantsBuilder(
           int index) {
@@ -32283,7 +32283,7 @@ java.lang.String defaultValue) {
        * exactly 8 entries (composite indices 0-7)
        * </pre>
        *
-       * <code>repeated .ui.ResolvedStyle variants = 2;</code>
+       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public java.util.List<ui.UiAst.ResolvedStyle.Builder> 
            getVariantsBuilderList() {
@@ -33108,12 +33108,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.ui.StylePropertyType type = 1;</code>
+     * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for type.
      */
     int getTypeValue();
     /**
-     * <code>.ui.StylePropertyType type = 1;</code>
+     * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The type.
      */
     ui.UiAst.StylePropertyType getType();
@@ -33188,7 +33188,7 @@ java.lang.String defaultValue) {
      * font C symbol name, image source path
      * </pre>
      *
-     * <code>string string_value = 5;</code>
+     * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
      * @return Whether the stringValue field is set.
      */
     boolean hasStringValue();
@@ -33197,7 +33197,7 @@ java.lang.String defaultValue) {
      * font C symbol name, image source path
      * </pre>
      *
-     * <code>string string_value = 5;</code>
+     * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
      * @return The stringValue.
      */
     java.lang.String getStringValue();
@@ -33206,7 +33206,7 @@ java.lang.String defaultValue) {
      * font C symbol name, image source path
      * </pre>
      *
-     * <code>string string_value = 5;</code>
+     * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for stringValue.
      */
     com.google.protobuf.ByteString
@@ -33322,14 +33322,14 @@ java.lang.String defaultValue) {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_ = 0;
     /**
-     * <code>.ui.StylePropertyType type = 1;</code>
+     * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The enum numeric value on the wire for type.
      */
     @java.lang.Override public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.ui.StylePropertyType type = 1;</code>
+     * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
      * @return The type.
      */
     @java.lang.Override public ui.UiAst.StylePropertyType getType() {
@@ -33444,7 +33444,7 @@ java.lang.String defaultValue) {
      * font C symbol name, image source path
      * </pre>
      *
-     * <code>string string_value = 5;</code>
+     * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
      * @return Whether the stringValue field is set.
      */
     public boolean hasStringValue() {
@@ -33455,7 +33455,7 @@ java.lang.String defaultValue) {
      * font C symbol name, image source path
      * </pre>
      *
-     * <code>string string_value = 5;</code>
+     * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
      * @return The stringValue.
      */
     public java.lang.String getStringValue() {
@@ -33480,7 +33480,7 @@ java.lang.String defaultValue) {
      * font C symbol name, image source path
      * </pre>
      *
-     * <code>string string_value = 5;</code>
+     * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
      * @return The bytes for stringValue.
      */
     public com.google.protobuf.ByteString
@@ -34012,14 +34012,14 @@ java.lang.String defaultValue) {
 
       private int type_ = 0;
       /**
-       * <code>.ui.StylePropertyType type = 1;</code>
+       * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
        * @return The enum numeric value on the wire for type.
        */
       @java.lang.Override public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.ui.StylePropertyType type = 1;</code>
+       * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The enum numeric value on the wire for type to set.
        * @return This builder for chaining.
        */
@@ -34030,7 +34030,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.StylePropertyType type = 1;</code>
+       * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
        * @return The type.
        */
       @java.lang.Override
@@ -34039,7 +34039,7 @@ java.lang.String defaultValue) {
         return result == null ? ui.UiAst.StylePropertyType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.ui.StylePropertyType type = 1;</code>
+       * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The type to set.
        * @return This builder for chaining.
        */
@@ -34053,7 +34053,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>.ui.StylePropertyType type = 1;</code>
+       * <code>.ui.StylePropertyType type = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearType() {
@@ -34362,7 +34362,7 @@ java.lang.String defaultValue) {
        * font C symbol name, image source path
        * </pre>
        *
-       * <code>string string_value = 5;</code>
+       * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
        * @return Whether the stringValue field is set.
        */
       @java.lang.Override
@@ -34374,7 +34374,7 @@ java.lang.String defaultValue) {
        * font C symbol name, image source path
        * </pre>
        *
-       * <code>string string_value = 5;</code>
+       * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
        * @return The stringValue.
        */
       @java.lang.Override
@@ -34400,7 +34400,7 @@ java.lang.String defaultValue) {
        * font C symbol name, image source path
        * </pre>
        *
-       * <code>string string_value = 5;</code>
+       * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
        * @return The bytes for stringValue.
        */
       @java.lang.Override
@@ -34427,7 +34427,7 @@ java.lang.String defaultValue) {
        * font C symbol name, image source path
        * </pre>
        *
-       * <code>string string_value = 5;</code>
+       * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
        * @param value The stringValue to set.
        * @return This builder for chaining.
        */
@@ -34444,7 +34444,7 @@ java.lang.String defaultValue) {
        * font C symbol name, image source path
        * </pre>
        *
-       * <code>string string_value = 5;</code>
+       * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearStringValue() {
@@ -34460,7 +34460,7 @@ java.lang.String defaultValue) {
        * font C symbol name, image source path
        * </pre>
        *
-       * <code>string string_value = 5;</code>
+       * <code>string string_value = 5 [(.buf.validate.field) = { ... }</code>
        * @param value The bytes for stringValue to set.
        * @return This builder for chaining.
        */
@@ -34672,23 +34672,19 @@ java.lang.String defaultValue) {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * 0-255
-     * </pre>
-     *
-     * <code>uint32 r = 1;</code>
+     * <code>uint32 r = 1 [(.buf.validate.field) = { ... }</code>
      * @return The r.
      */
     int getR();
 
     /**
-     * <code>uint32 g = 2;</code>
+     * <code>uint32 g = 2 [(.buf.validate.field) = { ... }</code>
      * @return The g.
      */
     int getG();
 
     /**
-     * <code>uint32 b = 3;</code>
+     * <code>uint32 b = 3 [(.buf.validate.field) = { ... }</code>
      * @return The b.
      */
     int getB();
@@ -34733,11 +34729,7 @@ java.lang.String defaultValue) {
     public static final int R_FIELD_NUMBER = 1;
     private int r_ = 0;
     /**
-     * <pre>
-     * 0-255
-     * </pre>
-     *
-     * <code>uint32 r = 1;</code>
+     * <code>uint32 r = 1 [(.buf.validate.field) = { ... }</code>
      * @return The r.
      */
     @java.lang.Override
@@ -34748,7 +34740,7 @@ java.lang.String defaultValue) {
     public static final int G_FIELD_NUMBER = 2;
     private int g_ = 0;
     /**
-     * <code>uint32 g = 2;</code>
+     * <code>uint32 g = 2 [(.buf.validate.field) = { ... }</code>
      * @return The g.
      */
     @java.lang.Override
@@ -34759,7 +34751,7 @@ java.lang.String defaultValue) {
     public static final int B_FIELD_NUMBER = 3;
     private int b_ = 0;
     /**
-     * <code>uint32 b = 3;</code>
+     * <code>uint32 b = 3 [(.buf.validate.field) = { ... }</code>
      * @return The b.
      */
     @java.lang.Override
@@ -35108,11 +35100,7 @@ java.lang.String defaultValue) {
 
       private int r_ ;
       /**
-       * <pre>
-       * 0-255
-       * </pre>
-       *
-       * <code>uint32 r = 1;</code>
+       * <code>uint32 r = 1 [(.buf.validate.field) = { ... }</code>
        * @return The r.
        */
       @java.lang.Override
@@ -35120,11 +35108,7 @@ java.lang.String defaultValue) {
         return r_;
       }
       /**
-       * <pre>
-       * 0-255
-       * </pre>
-       *
-       * <code>uint32 r = 1;</code>
+       * <code>uint32 r = 1 [(.buf.validate.field) = { ... }</code>
        * @param value The r to set.
        * @return This builder for chaining.
        */
@@ -35136,11 +35120,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * 0-255
-       * </pre>
-       *
-       * <code>uint32 r = 1;</code>
+       * <code>uint32 r = 1 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearR() {
@@ -35152,7 +35132,7 @@ java.lang.String defaultValue) {
 
       private int g_ ;
       /**
-       * <code>uint32 g = 2;</code>
+       * <code>uint32 g = 2 [(.buf.validate.field) = { ... }</code>
        * @return The g.
        */
       @java.lang.Override
@@ -35160,7 +35140,7 @@ java.lang.String defaultValue) {
         return g_;
       }
       /**
-       * <code>uint32 g = 2;</code>
+       * <code>uint32 g = 2 [(.buf.validate.field) = { ... }</code>
        * @param value The g to set.
        * @return This builder for chaining.
        */
@@ -35172,7 +35152,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 g = 2;</code>
+       * <code>uint32 g = 2 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearG() {
@@ -35184,7 +35164,7 @@ java.lang.String defaultValue) {
 
       private int b_ ;
       /**
-       * <code>uint32 b = 3;</code>
+       * <code>uint32 b = 3 [(.buf.validate.field) = { ... }</code>
        * @return The b.
        */
       @java.lang.Override
@@ -35192,7 +35172,7 @@ java.lang.String defaultValue) {
         return b_;
       }
       /**
-       * <code>uint32 b = 3;</code>
+       * <code>uint32 b = 3 [(.buf.validate.field) = { ... }</code>
        * @param value The b to set.
        * @return This builder for chaining.
        */
@@ -35204,7 +35184,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 b = 3;</code>
+       * <code>uint32 b = 3 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearB() {
@@ -35294,7 +35274,7 @@ java.lang.String defaultValue) {
     int getSpread();
 
     /**
-     * <code>uint32 opa = 5;</code>
+     * <code>uint32 opa = 5 [(.buf.validate.field) = { ... }</code>
      * @return The opa.
      */
     int getOpa();
@@ -35383,7 +35363,7 @@ java.lang.String defaultValue) {
     public static final int OPA_FIELD_NUMBER = 5;
     private int opa_ = 0;
     /**
-     * <code>uint32 opa = 5;</code>
+     * <code>uint32 opa = 5 [(.buf.validate.field) = { ... }</code>
      * @return The opa.
      */
     @java.lang.Override
@@ -35906,7 +35886,7 @@ java.lang.String defaultValue) {
 
       private int opa_ ;
       /**
-       * <code>uint32 opa = 5;</code>
+       * <code>uint32 opa = 5 [(.buf.validate.field) = { ... }</code>
        * @return The opa.
        */
       @java.lang.Override
@@ -35914,7 +35894,7 @@ java.lang.String defaultValue) {
         return opa_;
       }
       /**
-       * <code>uint32 opa = 5;</code>
+       * <code>uint32 opa = 5 [(.buf.validate.field) = { ... }</code>
        * @param value The opa to set.
        * @return This builder for chaining.
        */
@@ -35926,7 +35906,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>uint32 opa = 5;</code>
+       * <code>uint32 opa = 5 [(.buf.validate.field) = { ... }</code>
        * @return This builder for chaining.
        */
       public Builder clearOpa() {
@@ -36171,250 +36151,262 @@ java.lang.String defaultValue) {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017ui/ui_ast.proto\022\002ui\"}\n\022SubjectDeclarat" +
-      "ion\022\014\n\004name\030\001 \001(\t\022\035\n\004type\030\002 \001(\0162\017.ui.Sub" +
-      "jectType\022\025\n\013int_initial\030\003 \001(\005H\000\022\030\n\016strin" +
-      "g_initial\030\004 \001(\tH\000B\t\n\007initial\"/\n\013StateUpd" +
-      "ate\022 \n\006values\030\001 \003(\0132\020.ui.SubjectValue\"R\n" +
-      "\014SubjectValue\022\014\n\004name\030\001 \001(\t\022\023\n\tint_value" +
-      "\030\002 \001(\005H\000\022\026\n\014string_value\030\003 \001(\tH\000B\007\n\005valu" +
-      "e\"^\n\006Screen\022!\n\004root\030\001 \001(\0132\016.ui.WidgetNod" +
-      "eH\000\210\001\001\022(\n\010subjects\030\002 \003(\0132\026.ui.SubjectDec" +
-      "larationB\007\n\005_root\"\335\t\n\nWidgetNode\022\034\n\004type" +
-      "\030\001 \001(\0162\016.ui.WidgetType\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003" +
-      " \001(\005\022\014\n\004text\030\004 \001(\t\022.\n\010bindings\030\005 \003(\0132\034.u" +
-      "i.WidgetNode.BindingsEntry\022\037\n\005event\030\006 \001(" +
-      "\0132\020.ui.EventBinding\022\032\n\006layout\030\007 \001(\0132\n.ui" +
-      ".Layout\022 \n\010children\030\010 \003(\0132\016.ui.WidgetNod" +
-      "e\022$\n\014style_groups\030\t \003(\0132\016.ui.StyleGroup\022" +
-      "!\n\tobj_props\030\n \001(\0132\014.ui.ObjPropsH\000\022\'\n\014bu" +
-      "tton_props\030\013 \001(\0132\017.ui.ButtonPropsH\000\022%\n\013l" +
-      "abel_props\030\014 \001(\0132\016.ui.LabelPropsH\000\022\'\n\014sl" +
-      "ider_props\030\r \001(\0132\017.ui.SliderPropsH\000\022%\n\013i" +
-      "mage_props\030\016 \001(\0132\016.ui.ImagePropsH\000\022!\n\tar" +
-      "c_props\030\017 \001(\0132\014.ui.ArcPropsH\000\022!\n\tbar_pro" +
-      "ps\030\020 \001(\0132\014.ui.BarPropsH\000\022\'\n\014switch_props" +
-      "\030\021 \001(\0132\017.ui.SwitchPropsH\000\022+\n\016checkbox_pr" +
-      "ops\030\022 \001(\0132\021.ui.CheckboxPropsH\000\022+\n\016dropdo" +
-      "wn_props\030\023 \001(\0132\021.ui.DropdownPropsH\000\022\'\n\014r" +
-      "oller_props\030\024 \001(\0132\017.ui.RollerPropsH\000\022+\n\016" +
-      "textarea_props\030\025 \001(\0132\021.ui.TextareaPropsH" +
-      "\000\022)\n\rspinbox_props\030\026 \001(\0132\020.ui.SpinboxPro" +
-      "psH\000\022)\n\rspinner_props\030\027 \001(\0132\020.ui.Spinner" +
-      "PropsH\000\022!\n\tled_props\030\030 \001(\0132\014.ui.LedProps" +
-      "H\000\022#\n\nline_props\030\031 \001(\0132\r.ui.LinePropsH\000\022" +
-      "%\n\013scale_props\030\032 \001(\0132\016.ui.ScalePropsH\000\0223" +
-      "\n\022buttonmatrix_props\030\033 \001(\0132\025.ui.ButtonMa" +
-      "trixPropsH\000\022%\n\013table_props\030\034 \001(\0132\016.ui.Ta" +
-      "blePropsH\000\022)\n\nvisibility\030\035 \001(\0132\025.ui.Visi" +
-      "bilityBinding\0225\n\014bind_formats\030\036 \003(\0132\037.ui" +
-      ".WidgetNode.BindFormatsEntry\032/\n\rBindings" +
-      "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n" +
-      "\020BindFormatsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
-      "\002 \001(\t:\0028\001B\016\n\014widget_props\"\n\n\010ObjProps\"\r\n" +
-      "\013ButtonProps\"2\n\nLabelProps\022$\n\tlong_mode\030" +
-      "\001 \001(\0162\021.ui.LabelLongMode\"]\n\013SliderProps\022" +
-      "\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n" +
-      "\005value\030\003 \001(\005\022\031\n\004mode\030\004 \001(\0162\013.ui.BarMode\"" +
-      "\031\n\nImageProps\022\013\n\003src\030\001 \001(\t\"\302\001\n\010ArcProps\022" +
-      "\023\n\013start_angle\030\001 \001(\r\022\021\n\tend_angle\030\002 \001(\r\022" +
-      "\026\n\016bg_start_angle\030\003 \001(\r\022\024\n\014bg_end_angle\030" +
-      "\004 \001(\r\022\020\n\010rotation\030\005 \001(\005\022\031\n\004mode\030\006 \001(\0162\013." +
-      "ui.ArcMode\022\021\n\tmin_value\030\007 \001(\005\022\021\n\tmax_val" +
-      "ue\030\010 \001(\005\022\r\n\005value\030\t \001(\005\"o\n\010BarProps\022\021\n\tm" +
-      "in_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005val" +
-      "ue\030\003 \001(\005\022\023\n\013start_value\030\004 \001(\005\022\031\n\004mode\030\005 " +
-      "\001(\0162\013.ui.BarMode\"\036\n\013SwitchProps\022\017\n\007check" +
-      "ed\030\001 \001(\010\" \n\rCheckboxProps\022\017\n\007checked\030\001 \001" +
-      "(\010\"N\n\rDropdownProps\022\017\n\007options\030\001 \001(\t\022\020\n\010" +
-      "selected\030\002 \001(\r\022\032\n\tdirection\030\003 \001(\0162\007.ui.D" +
-      "ir\"i\n\013RollerProps\022\017\n\007options\030\001 \001(\t\022\020\n\010se" +
-      "lected\030\002 \001(\r\022\031\n\021visible_row_count\030\003 \001(\r\022" +
-      "\034\n\004mode\030\004 \001(\0162\016.ui.RollerMode\"a\n\rTextare" +
-      "aProps\022\023\n\013placeholder\030\001 \001(\t\022\022\n\nmax_lengt" +
-      "h\030\002 \001(\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\rpassword_mo" +
-      "de\030\004 \001(\010\"\202\001\n\014SpinboxProps\022\021\n\tmin_value\030\001" +
-      " \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\014" +
-      "\n\004step\030\004 \001(\005\022\023\n\013digit_count\030\005 \001(\r\022\032\n\022sep" +
-      "arator_position\030\006 \001(\r\"5\n\014SpinnerProps\022\021\n" +
-      "\tspin_time\030\001 \001(\r\022\022\n\narc_length\030\002 \001(\r\"8\n\010" +
-      "LedProps\022\030\n\005color\030\001 \001(\0132\t.ui.Color\022\022\n\nbr" +
-      "ightness\030\002 \001(\r\"8\n\tLineProps\022\031\n\006points\030\001 " +
-      "\003(\0132\t.ui.Point\022\020\n\010y_invert\030\002 \001(\010\"\276\001\n\nSca" +
-      "leProps\022\033\n\004mode\030\001 \001(\0162\r.ui.ScaleMode\022\030\n\020" +
-      "total_tick_count\030\002 \001(\r\022\030\n\020major_tick_eve" +
-      "ry\030\003 \001(\r\022\022\n\nlabel_show\030\004 \001(\010\022\021\n\tmin_valu" +
-      "e\030\005 \001(\005\022\021\n\tmax_value\030\006 \001(\005\022\020\n\010rotation\030\007" +
-      " \001(\005\022\023\n\013angle_range\030\010 \001(\r\"7\n\021ButtonMatri" +
-      "xProps\022\017\n\007map_str\030\001 \001(\t\022\021\n\tone_check\030\002 \001" +
-      "(\010\"5\n\nTableProps\022\021\n\trow_count\030\001 \001(\r\022\024\n\014c" +
-      "olumn_count\030\002 \001(\r\"\035\n\005Point\022\t\n\001x\030\001 \001(\005\022\t\n" +
-      "\001y\030\002 \001(\005\"\275\001\n\014EventBinding\022\014\n\004name\030\001 \001(\t\022" +
-      "!\n\007trigger\030\002 \001(\0162\020.ui.EventTrigger\022\021\n\tin" +
-      "t_value\030\003 \001(\005\022\034\n\024include_widget_value\030\004 " +
-      "\001(\010\022\023\n\013set_subject\030\005 \001(\t\022\021\n\tset_value\030\006 " +
-      "\001(\005\022\016\n\006toggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010" +
-      "\"W\n\021VisibilityBinding\022\017\n\007subject\030\001 \001(\t\022\021" +
-      "\n\tref_value\030\002 \001(\005\022\036\n\007compare\030\003 \001(\0162\r.ui." +
-      "CompareOp\"\217\001\n\006Layout\022\032\n\004flow\030\001 \001(\0162\014.ui." +
-      "FlexFlow\022!\n\nmain_place\030\002 \001(\0162\r.ui.FlexAl" +
-      "ign\022\"\n\013cross_place\030\003 \001(\0162\r.ui.FlexAlign\022" +
-      "\"\n\013track_place\030\004 \001(\0162\r.ui.FlexAlign\"I\n\nS" +
-      "tyleGroup\022\026\n\016state_selector\030\001 \001(\r\022#\n\010var" +
-      "iants\030\002 \003(\0132\021.ui.ResolvedStyle\"6\n\rResolv" +
-      "edStyle\022%\n\nproperties\030\001 \003(\0132\021.ui.StylePr" +
-      "operty\"\314\001\n\rStyleProperty\022#\n\004type\030\001 \001(\0162\025" +
-      ".ui.StylePropertyType\022\024\n\nuint_value\030\002 \001(" +
-      "\rH\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value\030" +
-      "\004 \001(\0132\t.ui.ColorH\000\022\026\n\014string_value\030\005 \001(\t" +
-      "H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.ShadowBund" +
-      "leH\000B\007\n\005value\"(\n\005Color\022\t\n\001r\030\001 \001(\r\022\t\n\001g\030\002" +
-      " \001(\r\022\t\n\001b\030\003 \001(\r\"^\n\014ShadowBundle\022\r\n\005width" +
-      "\030\001 \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001" +
-      "(\005\022\016\n\006spread\030\004 \001(\r\022\013\n\003opa\030\005 \001(\r*2\n\013Subje" +
-      "ctType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_STRIN" +
-      "G\020\001*\361\002\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rWI" +
-      "DGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rWIDGE" +
-      "T_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDGET_A" +
-      "RC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWITCH\020\007\022" +
-      "\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROPDOWN\020" +
-      "\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXTAREA\020" +
-      "\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPINNER\020" +
-      "\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022\020\n\014WI" +
-      "DGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX\020\021\022\020\n" +
-      "\014WIDGET_TABLE\020\022*X\n\014EventTrigger\022\023\n\017TRIGG" +
-      "ER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CHANGED\020\001\022" +
-      "\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCompareOp\022\016" +
-      "\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ\020\001\022\016\n\nCO" +
-      "MPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nCOMPARE_L" +
-      "T\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlow\022\022\n\016FLE" +
-      "X_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001\022\024\n\020FLEX" +
-      "_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_WRAP\020\003\022\031" +
-      "\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLEX_FLOW_R" +
-      "OW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_COLUMN_WR" +
-      "AP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE\020\007\022!\n\035FL" +
-      "EX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001\n\tFlexAl" +
-      "ign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLEX_ALIGN_" +
-      "END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027FLEX_ALI" +
-      "GN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_SPACE_AR" +
-      "OUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWEEN\020\005*\274\001\n" +
-      "\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000\022\025\n\021GRID" +
-      "_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_END\020\002\022\026\n\022G" +
-      "RID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIGN_SPACE_" +
-      "EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_AROUND\020\005\022\034\n" +
-      "\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tTextAlign" +
-      "\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_ALIGN_LEFT" +
-      "\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEXT_ALIGN_" +
-      "RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DECOR_NONE\020" +
-      "\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030TEXT_DECO" +
-      "R_STRIKETHROUGH\020\002*p\n\tBlendMode\022\025\n\021BLEND_" +
-      "MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADDITIVE\020\001\022\032" +
-      "\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023BLEND_MODE" +
-      "_MULTIPLY\020\003*@\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000" +
-      "\022\020\n\014BASE_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002*\200\001" +
-      "\n\007GradDir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR" +
-      "_VER\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LIN" +
-      "EAR\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_C" +
-      "ONICAL\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEF" +
-      "T\020\001\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_T" +
-      "OP\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n\007DIR_VER\020\014\022\013\n\007DIR" +
-      "_ALL\020\017*\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016A" +
-      "LIGN_TOP_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017AL" +
-      "IGN_TOP_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024" +
-      "\n\020ALIGN_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIG" +
-      "HT\020\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_" +
-      "MID\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP" +
-      "_LEFT\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_" +
-      "OUT_TOP_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT" +
-      "\020\r\022\030\n\024ALIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OU" +
-      "T_BOTTOM_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020" +
-      "\022\026\n\022ALIGN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LE" +
-      "FT_BOTTOM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023" +
-      "ALIGN_OUT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT" +
-      "_BOTTOM\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_" +
-      "NONE\020\000\022\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER" +
-      "_SIDE_TOP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BOR" +
-      "DER_SIDE_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030" +
-      "\n\024BORDER_SIDE_INTERNAL\020\020*\204\001\n\rLabelLongMo" +
-      "de\022\023\n\017LABEL_LONG_WRAP\020\000\022\022\n\016LABEL_LONG_DO" +
-      "T\020\001\022\025\n\021LABEL_LONG_SCROLL\020\002\022\036\n\032LABEL_LONG" +
-      "_SCROLL_CIRCULAR\020\003\022\023\n\017LABEL_LONG_CLIP\020\004*" +
-      "L\n\007BarMode\022\023\n\017BAR_MODE_NORMAL\020\000\022\030\n\024BAR_M" +
-      "ODE_SYMMETRICAL\020\001\022\022\n\016BAR_MODE_RANGE\020\002*N\n" +
-      "\007ArcMode\022\023\n\017ARC_MODE_NORMAL\020\000\022\030\n\024ARC_MOD" +
-      "E_SYMMETRICAL\020\001\022\024\n\020ARC_MODE_REVERSE\020\002*>\n" +
-      "\nRollerMode\022\026\n\022ROLLER_MODE_NORMAL\020\000\022\030\n\024R" +
-      "OLLER_MODE_INFINITE\020\001*\301\001\n\tScaleMode\022\035\n\031S" +
-      "CALE_MODE_HORIZONTAL_TOP\020\000\022 \n\034SCALE_MODE" +
-      "_HORIZONTAL_BOTTOM\020\001\022\034\n\030SCALE_MODE_VERTI" +
-      "CAL_LEFT\020\002\022\035\n\031SCALE_MODE_VERTICAL_RIGHT\020" +
-      "\004\022\032\n\026SCALE_MODE_ROUND_INNER\020\010\022\032\n\026SCALE_M" +
-      "ODE_ROUND_OUTER\020\020*\273\022\n\021StylePropertyType\022" +
-      "\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OPA\020\001\022\023\n\017P" +
-      "ROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FONT\020\003\022\025\n\021" +
-      "PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BORDER_WIDTH" +
-      "\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_ALL\020\007\022\020\n" +
-      "\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022\017\n\013PROP_" +
-      "HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PROP_PAD_HO" +
-      "R\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MARGIN_ALL" +
-      "\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_MIN_WIDT" +
-      "H\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_MIN_HEIG" +
-      "HT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PROP_LENGTH" +
-      "\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPROP_ALIGN" +
-      "\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025PROP_TRA" +
-      "NSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLATE_X\020\032\022\024\n" +
-      "\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCALE_X\020\034\022\020\n" +
-      "\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION\020\036\022\020\n\014PR" +
-      "OP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017\n\013PROP_S" +
-      "KEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP_PAD_TOP" +
-      "\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_PAD_LEFT" +
-      "\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_PAD_ROW\020\'" +
-      "\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MARGIN_TOP" +
-      "\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PROP_MARGI" +
-      "N_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022\026\n\022PROP_" +
-      "BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_DIR\020.\022\025\n" +
-      "\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_GRAD_STO" +
-      "P\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PROP_BG_GRA" +
-      "D_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025\n\021PROP_B" +
-      "G_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_RECOLOR\0205" +
-      "\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022\027\n\023PROP_" +
-      "BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDER_SIDE\0208\022\024" +
-      "\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_OUTLINE_WID" +
-      "TH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020PROP_OUT" +
-      "LINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=\022\025\n\021PROP" +
-      "_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_OFFSET_X\020" +
-      "?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022PROP_SHAD" +
-      "OW_SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR\020B\022\023\n\017PR" +
-      "OP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OPA\020D\022\026\n\022P" +
-      "ROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAGE_RECOLO" +
-      "R_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024PROP_LIN" +
-      "E_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH_GAP\020I\022\025" +
-      "\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_LINE_COLOR" +
-      "\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_ARC_WIDTH\020" +
-      "M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_ARC_COLO" +
-      "R\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TEXT_OPA\020Q" +
-      "\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024PROP_TEX" +
-      "T_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DECOR\020T\022\023\n\017P" +
-      "ROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_CORNER\020V\022\014" +
-      "\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED\020X\022\031\n\025PR" +
-      "OP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_ANIM_DURAT" +
-      "ION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPROP_BASE_" +
-      "DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY\020]\022\022\n\016PR" +
-      "OP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN_PLACE\020_" +
-      "\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025PROP_FLEX" +
-      "_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW\020b\022\032\n\026PR" +
-      "OP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_GRID_ROW_" +
-      "ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLUMN_POS\020e\022\032" +
-      "\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PROP_GRID_" +
-      "CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_CELL_ROW" +
-      "_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN\020i\022\033\n\027PR" +
-      "OP_GRID_CELL_ROW_SPAN\020jBEZCgit-codecommi" +
-      "t.eu-central-1.amazonaws.com/v1/repos/je" +
-      "ttison/jonp/uib\006proto3"
+      "\n\017ui/ui_ast.proto\022\002ui\032\033buf/validate/vali" +
+      "date.proto\"\234\001\n\022SubjectDeclaration\022\027\n\004nam" +
+      "e\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022\'\n\004type\030\002 \001(\0162\017.ui.Su" +
+      "bjectTypeB\010\272H\005\202\001\002\020\001\022\025\n\013int_initial\030\003 \001(\005" +
+      "H\000\022\"\n\016string_initial\030\004 \001(\tB\010\272H\005r\003\030\377\001H\000B\t" +
+      "\n\007initial\"/\n\013StateUpdate\022 \n\006values\030\001 \003(\013" +
+      "2\020.ui.SubjectValue\"g\n\014SubjectValue\022\027\n\004na" +
+      "me\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022\023\n\tint_value\030\002 \001(\005H\000" +
+      "\022 \n\014string_value\030\003 \001(\tB\010\272H\005r\003\030\377\001H\000B\007\n\005va" +
+      "lue\"^\n\006Screen\022!\n\004root\030\001 \001(\0132\016.ui.WidgetN" +
+      "odeH\000\210\001\001\022(\n\010subjects\030\002 \003(\0132\026.ui.SubjectD" +
+      "eclarationB\007\n\005_root\"\361\t\n\nWidgetNode\022&\n\004ty" +
+      "pe\030\001 \001(\0162\016.ui.WidgetTypeB\010\272H\005\202\001\002\020\001\022\t\n\001x\030" +
+      "\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\026\n\004text\030\004 \001(\tB\010\272H\005r\003\030\377\001" +
+      "\022.\n\010bindings\030\005 \003(\0132\034.ui.WidgetNode.Bindi" +
+      "ngsEntry\022\037\n\005event\030\006 \001(\0132\020.ui.EventBindin" +
+      "g\022\032\n\006layout\030\007 \001(\0132\n.ui.Layout\022 \n\010childre" +
+      "n\030\010 \003(\0132\016.ui.WidgetNode\022$\n\014style_groups\030" +
+      "\t \003(\0132\016.ui.StyleGroup\022!\n\tobj_props\030\n \001(\013" +
+      "2\014.ui.ObjPropsH\000\022\'\n\014button_props\030\013 \001(\0132\017" +
+      ".ui.ButtonPropsH\000\022%\n\013label_props\030\014 \001(\0132\016" +
+      ".ui.LabelPropsH\000\022\'\n\014slider_props\030\r \001(\0132\017" +
+      ".ui.SliderPropsH\000\022%\n\013image_props\030\016 \001(\0132\016" +
+      ".ui.ImagePropsH\000\022!\n\tarc_props\030\017 \001(\0132\014.ui" +
+      ".ArcPropsH\000\022!\n\tbar_props\030\020 \001(\0132\014.ui.BarP" +
+      "ropsH\000\022\'\n\014switch_props\030\021 \001(\0132\017.ui.Switch" +
+      "PropsH\000\022+\n\016checkbox_props\030\022 \001(\0132\021.ui.Che" +
+      "ckboxPropsH\000\022+\n\016dropdown_props\030\023 \001(\0132\021.u" +
+      "i.DropdownPropsH\000\022\'\n\014roller_props\030\024 \001(\0132" +
+      "\017.ui.RollerPropsH\000\022+\n\016textarea_props\030\025 \001" +
+      "(\0132\021.ui.TextareaPropsH\000\022)\n\rspinbox_props" +
+      "\030\026 \001(\0132\020.ui.SpinboxPropsH\000\022)\n\rspinner_pr" +
+      "ops\030\027 \001(\0132\020.ui.SpinnerPropsH\000\022!\n\tled_pro" +
+      "ps\030\030 \001(\0132\014.ui.LedPropsH\000\022#\n\nline_props\030\031" +
+      " \001(\0132\r.ui.LinePropsH\000\022%\n\013scale_props\030\032 \001" +
+      "(\0132\016.ui.ScalePropsH\000\0223\n\022buttonmatrix_pro" +
+      "ps\030\033 \001(\0132\025.ui.ButtonMatrixPropsH\000\022%\n\013tab" +
+      "le_props\030\034 \001(\0132\016.ui.TablePropsH\000\022)\n\nvisi" +
+      "bility\030\035 \001(\0132\025.ui.VisibilityBinding\0225\n\014b" +
+      "ind_formats\030\036 \003(\0132\037.ui.WidgetNode.BindFo" +
+      "rmatsEntry\032/\n\rBindingsEntry\022\013\n\003key\030\001 \001(\t" +
+      "\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n\020BindFormatsEntry\022" +
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\016\n\014widge" +
+      "t_props\"\n\n\010ObjProps\"\r\n\013ButtonProps\"<\n\nLa" +
+      "belProps\022.\n\tlong_mode\030\001 \001(\0162\021.ui.LabelLo" +
+      "ngModeB\010\272H\005\202\001\002\020\001\"g\n\013SliderProps\022\021\n\tmin_v" +
+      "alue\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003" +
+      " \001(\005\022#\n\004mode\030\004 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020" +
+      "\001\"#\n\nImageProps\022\025\n\003src\030\001 \001(\tB\010\272H\005r\003\030\377\001\"\364" +
+      "\001\n\010ArcProps\022\035\n\013start_angle\030\001 \001(\rB\010\272H\005*\003\030" +
+      "\350\002\022\033\n\tend_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002\022 \n\016bg_st" +
+      "art_angle\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg_end_angl" +
+      "e\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010rotation\030\005 \001(\005\022#\n\004m" +
+      "ode\030\006 \001(\0162\013.ui.ArcModeB\010\272H\005\202\001\002\020\001\022\021\n\tmin_" +
+      "value\030\007 \001(\005\022\021\n\tmax_value\030\010 \001(\005\022\r\n\005value\030" +
+      "\t \001(\005\"y\n\010BarProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\t" +
+      "max_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\023\n\013start_" +
+      "value\030\004 \001(\005\022#\n\004mode\030\005 \001(\0162\013.ui.BarModeB\010" +
+      "\272H\005\202\001\002\020\001\"\036\n\013SwitchProps\022\017\n\007checked\030\001 \001(\010" +
+      "\" \n\rCheckboxProps\022\017\n\007checked\030\001 \001(\010\"b\n\rDr" +
+      "opdownProps\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020" +
+      "\n\010selected\030\002 \001(\r\022$\n\tdirection\030\003 \001(\0162\007.ui" +
+      ".DirB\010\272H\005\202\001\002\020\001\"}\n\013RollerProps\022\031\n\007options" +
+      "\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010selected\030\002 \001(\r\022\031\n\021vi" +
+      "sible_row_count\030\003 \001(\r\022&\n\004mode\030\004 \001(\0162\016.ui" +
+      ".RollerModeB\010\272H\005\202\001\002\020\001\"k\n\rTextareaProps\022\035" +
+      "\n\013placeholder\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022\n\nmax_len" +
+      "gth\030\002 \001(\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\rpassword_" +
+      "mode\030\004 \001(\010\"\202\001\n\014SpinboxProps\022\021\n\tmin_value" +
+      "\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005" +
+      "\022\014\n\004step\030\004 \001(\005\022\023\n\013digit_count\030\005 \001(\r\022\032\n\022s" +
+      "eparator_position\030\006 \001(\r\"5\n\014SpinnerProps\022" +
+      "\021\n\tspin_time\030\001 \001(\r\022\022\n\narc_length\030\002 \001(\r\"B" +
+      "\n\010LedProps\022\030\n\005color\030\001 \001(\0132\t.ui.Color\022\034\n\n" +
+      "brightness\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tLineProps\022" +
+      "\031\n\006points\030\001 \003(\0132\t.ui.Point\022\020\n\010y_invert\030\002" +
+      " \001(\010\"\322\001\n\nScaleProps\022%\n\004mode\030\001 \001(\0162\r.ui.S" +
+      "caleModeB\010\272H\005\202\001\002\020\001\022\030\n\020total_tick_count\030\002" +
+      " \001(\r\022\030\n\020major_tick_every\030\003 \001(\r\022\022\n\nlabel_" +
+      "show\030\004 \001(\010\022\021\n\tmin_value\030\005 \001(\005\022\021\n\tmax_val" +
+      "ue\030\006 \001(\005\022\020\n\010rotation\030\007 \001(\005\022\035\n\013angle_rang" +
+      "e\030\010 \001(\rB\010\272H\005*\003\030\350\002\"A\n\021ButtonMatrixProps\022\031" +
+      "\n\007map_str\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\021\n\tone_check\030\002" +
+      " \001(\010\"5\n\nTableProps\022\021\n\trow_count\030\001 \001(\r\022\024\n" +
+      "\014column_count\030\002 \001(\r\"\035\n\005Point\022\t\n\001x\030\001 \001(\005\022" +
+      "\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030\001 \001(" +
+      "\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.Event" +
+      "TriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005\022\034\n\024" +
+      "include_widget_value\030\004 \001(\010\022\034\n\013set_subjec" +
+      "t\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022\016\n\006t" +
+      "oggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021Visi" +
+      "bilityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r\004\020\001\030" +
+      "?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(\0162\r." +
+      "ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n\004flo" +
+      "w\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nmain_" +
+      "place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022,\n\013" +
+      "cross_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002" +
+      "\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.FlexAlignB\010" +
+      "\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_selector" +
+      "\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.ResolvedSt" +
+      "yleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\nprop" +
+      "erties\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\rStyl" +
+      "eProperty\022-\n\004type\030\001 \001(\0162\025.ui.StyleProper" +
+      "tyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022\023" +
+      "\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(\013" +
+      "2\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H\004" +
+      "r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.Shadow" +
+      "BundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010\272" +
+      "H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB" +
+      "\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(\r" +
+      "\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n\006" +
+      "spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013S" +
+      "ubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_S" +
+      "TRING\020\001*\361\002\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021" +
+      "\n\rWIDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rW" +
+      "IDGET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDG" +
+      "ET_ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWITC" +
+      "H\020\007\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROPD" +
+      "OWN\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXTA" +
+      "REA\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPIN" +
+      "NER\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022\020" +
+      "\n\014WIDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX\020" +
+      "\021\022\020\n\014WIDGET_TABLE\020\022*X\n\014EventTrigger\022\023\n\017T" +
+      "RIGGER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CHANGE" +
+      "D\020\001\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCompare" +
+      "Op\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ\020\001\022\016" +
+      "\n\nCOMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nCOMPA" +
+      "RE_LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlow\022\022\n" +
+      "\016FLEX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001\022\024\n\020" +
+      "FLEX_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_WRAP" +
+      "\020\003\022\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLEX_FL" +
+      "OW_ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_COLUM" +
+      "N_WRAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE\020\007\022!" +
+      "\n\035FLEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001\n\tFl" +
+      "exAlign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLEX_AL" +
+      "IGN_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027FLEX" +
+      "_ALIGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_SPAC" +
+      "E_AROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWEEN\020\005" +
+      "*\274\001\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000\022\025\n\021" +
+      "GRID_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_END\020\002\022" +
+      "\026\n\022GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIGN_SP" +
+      "ACE_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_AROUND\020" +
+      "\005\022\034\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tTextA" +
+      "lign\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_ALIGN_" +
+      "LEFT\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEXT_AL" +
+      "IGN_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DECOR_N" +
+      "ONE\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030TEXT_" +
+      "DECOR_STRIKETHROUGH\020\002*p\n\tBlendMode\022\025\n\021BL" +
+      "END_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADDITIVE" +
+      "\020\001\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023BLEND_" +
+      "MODE_MULTIPLY\020\003*@\n\007BaseDir\022\020\n\014BASE_DIR_L" +
+      "TR\020\000\022\020\n\014BASE_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020" +
+      "\002*\200\001\n\007GradDir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD" +
+      "_DIR_VER\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR" +
+      "_LINEAR\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_D" +
+      "IR_CONICAL\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR" +
+      "_LEFT\020\001\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_HOR\020\003\022\013\n\007D" +
+      "IR_TOP\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n\007DIR_VER\020\014\022\013\n" +
+      "\007DIR_ALL\020\017*\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022" +
+      "\022\n\016ALIGN_TOP_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023" +
+      "\n\017ALIGN_TOP_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT" +
+      "\020\004\022\024\n\020ALIGN_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM" +
+      "_RIGHT\020\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RI" +
+      "GHT_MID\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT" +
+      "_TOP_LEFT\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023AL" +
+      "IGN_OUT_TOP_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_" +
+      "LEFT\020\r\022\030\n\024ALIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIG" +
+      "N_OUT_BOTTOM_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_T" +
+      "OP\020\020\022\026\n\022ALIGN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OU" +
+      "T_LEFT_BOTTOM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023" +
+      "\022\027\n\023ALIGN_OUT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_R" +
+      "IGHT_BOTTOM\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_S" +
+      "IDE_NONE\020\000\022\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BO" +
+      "RDER_SIDE_TOP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n" +
+      "\021BORDER_SIDE_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL" +
+      "\020\017\022\030\n\024BORDER_SIDE_INTERNAL\020\020*\204\001\n\rLabelLo" +
+      "ngMode\022\023\n\017LABEL_LONG_WRAP\020\000\022\022\n\016LABEL_LON" +
+      "G_DOT\020\001\022\025\n\021LABEL_LONG_SCROLL\020\002\022\036\n\032LABEL_" +
+      "LONG_SCROLL_CIRCULAR\020\003\022\023\n\017LABEL_LONG_CLI" +
+      "P\020\004*L\n\007BarMode\022\023\n\017BAR_MODE_NORMAL\020\000\022\030\n\024B" +
+      "AR_MODE_SYMMETRICAL\020\001\022\022\n\016BAR_MODE_RANGE\020" +
+      "\002*N\n\007ArcMode\022\023\n\017ARC_MODE_NORMAL\020\000\022\030\n\024ARC" +
+      "_MODE_SYMMETRICAL\020\001\022\024\n\020ARC_MODE_REVERSE\020" +
+      "\002*>\n\nRollerMode\022\026\n\022ROLLER_MODE_NORMAL\020\000\022" +
+      "\030\n\024ROLLER_MODE_INFINITE\020\001*\301\001\n\tScaleMode\022" +
+      "\035\n\031SCALE_MODE_HORIZONTAL_TOP\020\000\022 \n\034SCALE_" +
+      "MODE_HORIZONTAL_BOTTOM\020\001\022\034\n\030SCALE_MODE_V" +
+      "ERTICAL_LEFT\020\002\022\035\n\031SCALE_MODE_VERTICAL_RI" +
+      "GHT\020\004\022\032\n\026SCALE_MODE_ROUND_INNER\020\010\022\032\n\026SCA" +
+      "LE_MODE_ROUND_OUTER\020\020*\273\022\n\021StylePropertyT" +
+      "ype\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OPA\020\001\022" +
+      "\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FONT\020\003" +
+      "\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BORDER_W" +
+      "IDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_ALL\020" +
+      "\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022\017\n\013P" +
+      "ROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PROP_PA" +
+      "D_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MARGIN" +
+      "_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_MIN_" +
+      "WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_MIN_" +
+      "HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PROP_LE" +
+      "NGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPROP_A" +
+      "LIGN\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025PROP" +
+      "_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLATE_X\020" +
+      "\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCALE_X\020" +
+      "\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION\020\036\022\020" +
+      "\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017\n\013PR" +
+      "OP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP_PAD" +
+      "_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_PAD_" +
+      "LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_PAD_R" +
+      "OW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MARGIN" +
+      "_TOP\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PROP_M" +
+      "ARGIN_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022\026\n\022P" +
+      "ROP_BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_DIR\020" +
+      ".\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_GRAD" +
+      "_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PROP_BG" +
+      "_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025\n\021PR" +
+      "OP_BG_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_RECOL" +
+      "OR\0205\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022\027\n\023P" +
+      "ROP_BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDER_SIDE" +
+      "\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_OUTLINE" +
+      "_WIDTH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020PROP" +
+      "_OUTLINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=\022\025\n\021" +
+      "PROP_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_OFFSE" +
+      "T_X\020?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022PROP_" +
+      "SHADOW_SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR\020B\022\023" +
+      "\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OPA\020D\022" +
+      "\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAGE_RE" +
+      "COLOR_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024PROP" +
+      "_LINE_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH_GAP" +
+      "\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_LINE_C" +
+      "OLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_ARC_WI" +
+      "DTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_ARC_" +
+      "COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TEXT_O" +
+      "PA\020Q\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024PROP" +
+      "_TEXT_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DECOR\020T\022" +
+      "\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_CORNER" +
+      "\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED\020X\022\031" +
+      "\n\025PROP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_ANIM_D" +
+      "URATION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPROP_B" +
+      "ASE_DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY\020]\022\022" +
+      "\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN_PLA" +
+      "CE\020_\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025PROP_" +
+      "FLEX_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW\020b\022\032" +
+      "\n\026PROP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_GRID_" +
+      "ROW_ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLUMN_POS" +
+      "\020e\022\032\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PROP_G" +
+      "RID_CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_CELL" +
+      "_ROW_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN\020i\022\033" +
+      "\n\027PROP_GRID_CELL_ROW_SPAN\020jBEZCgit-codec" +
+      "ommit.eu-central-1.amazonaws.com/v1/repo" +
+      "s/jettison/jonp/uib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          build.buf.validate.ValidateProto.getDescriptor(),
         });
     internal_static_ui_SubjectDeclaration_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -36627,6 +36619,12 @@ java.lang.String defaultValue) {
         internal_static_ui_ShadowBundle_descriptor,
         new java.lang.String[] { "Width", "OffsetX", "OffsetY", "Spread", "Opa", });
     descriptor.resolveAllFeaturesImmutable();
+    build.buf.validate.ValidateProto.getDescriptor();
+    com.google.protobuf.ExtensionRegistry registry =
+        com.google.protobuf.ExtensionRegistry.newInstance();
+    registry.add(build.buf.validate.ValidateProto.field);
+    com.google.protobuf.Descriptors.FileDescriptor
+        .internalUpdateFileDescriptor(descriptor, registry);
   }
 
   // @@protoc_insertion_point(outer_class_scope)
