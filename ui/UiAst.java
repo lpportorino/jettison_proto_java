@@ -8972,6 +8972,110 @@ java.lang.String defaultValue);
     java.lang.String getBindFormatsOrThrow(
         java.lang.String key);
 
+    /**
+     * <pre>
+     * LV_OBJ_FLAG_* bitmask to ADD on the widget (direct-cast to LVGL —
+     * parity-gated). 0 = no extra flags.
+     * </pre>
+     *
+     * <code>uint32 obj_flags = 31;</code>
+     * @return The objFlags.
+     */
+    int getObjFlags();
+
+    /**
+     * <pre>
+     * LV_OBJ_FLAG_* bitmask to REMOVE (e.g. clear SCROLLABLE on panels).
+     * </pre>
+     *
+     * <code>uint32 obj_flags_clear = 32;</code>
+     * @return The objFlagsClear.
+     */
+    int getObjFlagsClear();
+
+    /**
+     * <pre>
+     * lv_state_t bitmask applied at create (e.g. DISABLED). Direct-cast.
+     * </pre>
+     *
+     * <code>uint32 states = 33;</code>
+     * @return The states.
+     */
+    int getStates();
+
+    /**
+     * <pre>
+     * lv_dir_t scroll direction constraint; 0 = leave the LVGL default.
+     * </pre>
+     *
+     * <code>uint32 scroll_dir = 34;</code>
+     * @return The scrollDir.
+     */
+    int getScrollDir();
+
+    /**
+     * <pre>
+     * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+     * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+     * no grid layout.
+     * </pre>
+     *
+     * <code>repeated int32 grid_col_dsc = 35;</code>
+     * @return A list containing the gridColDsc.
+     */
+    java.util.List<java.lang.Integer> getGridColDscList();
+    /**
+     * <pre>
+     * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+     * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+     * no grid layout.
+     * </pre>
+     *
+     * <code>repeated int32 grid_col_dsc = 35;</code>
+     * @return The count of gridColDsc.
+     */
+    int getGridColDscCount();
+    /**
+     * <pre>
+     * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+     * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+     * no grid layout.
+     * </pre>
+     *
+     * <code>repeated int32 grid_col_dsc = 35;</code>
+     * @param index The index of the element to return.
+     * @return The gridColDsc at the given index.
+     */
+    int getGridColDsc(int index);
+
+    /**
+     * <code>repeated int32 grid_row_dsc = 36;</code>
+     * @return A list containing the gridRowDsc.
+     */
+    java.util.List<java.lang.Integer> getGridRowDscList();
+    /**
+     * <code>repeated int32 grid_row_dsc = 36;</code>
+     * @return The count of gridRowDsc.
+     */
+    int getGridRowDscCount();
+    /**
+     * <code>repeated int32 grid_row_dsc = 36;</code>
+     * @param index The index of the element to return.
+     * @return The gridRowDsc at the given index.
+     */
+    int getGridRowDsc(int index);
+
+    /**
+     * <pre>
+     * Strip ALL theme/base styles before applying style_groups
+     * (lv_obj_remove_style_all) — layout-only or fully hand-styled nodes.
+     * </pre>
+     *
+     * <code>bool bare = 37;</code>
+     * @return The bare.
+     */
+    boolean getBare();
+
     ui.UiAst.WidgetNode.WidgetPropsCase getWidgetPropsCase();
   }
   /**
@@ -9004,6 +9108,8 @@ java.lang.String defaultValue);
       text_ = "";
       children_ = java.util.Collections.emptyList();
       styleGroups_ = java.util.Collections.emptyList();
+      gridColDsc_ = emptyIntList();
+      gridRowDsc_ = emptyIntList();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -10221,6 +10327,161 @@ java.lang.String defaultValue) {
       return map.get(key);
     }
 
+    public static final int OBJ_FLAGS_FIELD_NUMBER = 31;
+    private int objFlags_ = 0;
+    /**
+     * <pre>
+     * LV_OBJ_FLAG_* bitmask to ADD on the widget (direct-cast to LVGL —
+     * parity-gated). 0 = no extra flags.
+     * </pre>
+     *
+     * <code>uint32 obj_flags = 31;</code>
+     * @return The objFlags.
+     */
+    @java.lang.Override
+    public int getObjFlags() {
+      return objFlags_;
+    }
+
+    public static final int OBJ_FLAGS_CLEAR_FIELD_NUMBER = 32;
+    private int objFlagsClear_ = 0;
+    /**
+     * <pre>
+     * LV_OBJ_FLAG_* bitmask to REMOVE (e.g. clear SCROLLABLE on panels).
+     * </pre>
+     *
+     * <code>uint32 obj_flags_clear = 32;</code>
+     * @return The objFlagsClear.
+     */
+    @java.lang.Override
+    public int getObjFlagsClear() {
+      return objFlagsClear_;
+    }
+
+    public static final int STATES_FIELD_NUMBER = 33;
+    private int states_ = 0;
+    /**
+     * <pre>
+     * lv_state_t bitmask applied at create (e.g. DISABLED). Direct-cast.
+     * </pre>
+     *
+     * <code>uint32 states = 33;</code>
+     * @return The states.
+     */
+    @java.lang.Override
+    public int getStates() {
+      return states_;
+    }
+
+    public static final int SCROLL_DIR_FIELD_NUMBER = 34;
+    private int scrollDir_ = 0;
+    /**
+     * <pre>
+     * lv_dir_t scroll direction constraint; 0 = leave the LVGL default.
+     * </pre>
+     *
+     * <code>uint32 scroll_dir = 34;</code>
+     * @return The scrollDir.
+     */
+    @java.lang.Override
+    public int getScrollDir() {
+      return scrollDir_;
+    }
+
+    public static final int GRID_COL_DSC_FIELD_NUMBER = 35;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.Internal.IntList gridColDsc_ =
+        emptyIntList();
+    /**
+     * <pre>
+     * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+     * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+     * no grid layout.
+     * </pre>
+     *
+     * <code>repeated int32 grid_col_dsc = 35;</code>
+     * @return A list containing the gridColDsc.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Integer>
+        getGridColDscList() {
+      return gridColDsc_;
+    }
+    /**
+     * <pre>
+     * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+     * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+     * no grid layout.
+     * </pre>
+     *
+     * <code>repeated int32 grid_col_dsc = 35;</code>
+     * @return The count of gridColDsc.
+     */
+    public int getGridColDscCount() {
+      return gridColDsc_.size();
+    }
+    /**
+     * <pre>
+     * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+     * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+     * no grid layout.
+     * </pre>
+     *
+     * <code>repeated int32 grid_col_dsc = 35;</code>
+     * @param index The index of the element to return.
+     * @return The gridColDsc at the given index.
+     */
+    public int getGridColDsc(int index) {
+      return gridColDsc_.getInt(index);
+    }
+    private int gridColDscMemoizedSerializedSize = -1;
+
+    public static final int GRID_ROW_DSC_FIELD_NUMBER = 36;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.Internal.IntList gridRowDsc_ =
+        emptyIntList();
+    /**
+     * <code>repeated int32 grid_row_dsc = 36;</code>
+     * @return A list containing the gridRowDsc.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Integer>
+        getGridRowDscList() {
+      return gridRowDsc_;
+    }
+    /**
+     * <code>repeated int32 grid_row_dsc = 36;</code>
+     * @return The count of gridRowDsc.
+     */
+    public int getGridRowDscCount() {
+      return gridRowDsc_.size();
+    }
+    /**
+     * <code>repeated int32 grid_row_dsc = 36;</code>
+     * @param index The index of the element to return.
+     * @return The gridRowDsc at the given index.
+     */
+    public int getGridRowDsc(int index) {
+      return gridRowDsc_.getInt(index);
+    }
+    private int gridRowDscMemoizedSerializedSize = -1;
+
+    public static final int BARE_FIELD_NUMBER = 37;
+    private boolean bare_ = false;
+    /**
+     * <pre>
+     * Strip ALL theme/base styles before applying style_groups
+     * (lv_obj_remove_style_all) — layout-only or fully hand-styled nodes.
+     * </pre>
+     *
+     * <code>bool bare = 37;</code>
+     * @return The bare.
+     */
+    @java.lang.Override
+    public boolean getBare() {
+      return bare_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -10235,6 +10496,7 @@ java.lang.String defaultValue) {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      getSerializedSize();
       if (type_ != ui.UiAst.WidgetType.WIDGET_OBJ.getNumber()) {
         output.writeEnum(1, type_);
       }
@@ -10331,6 +10593,35 @@ java.lang.String defaultValue) {
           internalGetBindFormats(),
           BindFormatsDefaultEntryHolder.defaultEntry,
           30);
+      if (objFlags_ != 0) {
+        output.writeUInt32(31, objFlags_);
+      }
+      if (objFlagsClear_ != 0) {
+        output.writeUInt32(32, objFlagsClear_);
+      }
+      if (states_ != 0) {
+        output.writeUInt32(33, states_);
+      }
+      if (scrollDir_ != 0) {
+        output.writeUInt32(34, scrollDir_);
+      }
+      if (getGridColDscList().size() > 0) {
+        output.writeUInt32NoTag(282);
+        output.writeUInt32NoTag(gridColDscMemoizedSerializedSize);
+      }
+      for (int i = 0; i < gridColDsc_.size(); i++) {
+        output.writeInt32NoTag(gridColDsc_.getInt(i));
+      }
+      if (getGridRowDscList().size() > 0) {
+        output.writeUInt32NoTag(290);
+        output.writeUInt32NoTag(gridRowDscMemoizedSerializedSize);
+      }
+      for (int i = 0; i < gridRowDsc_.size(); i++) {
+        output.writeInt32NoTag(gridRowDsc_.getInt(i));
+      }
+      if (bare_ != false) {
+        output.writeBool(37, bare_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -10471,6 +10762,54 @@ java.lang.String defaultValue) {
         size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(30, bindFormats__);
       }
+      if (objFlags_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(31, objFlags_);
+      }
+      if (objFlagsClear_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(32, objFlagsClear_);
+      }
+      if (states_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(33, states_);
+      }
+      if (scrollDir_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(34, scrollDir_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < gridColDsc_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(gridColDsc_.getInt(i));
+        }
+        size += dataSize;
+        if (!getGridColDscList().isEmpty()) {
+          size += 2;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        gridColDscMemoizedSerializedSize = dataSize;
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < gridRowDsc_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(gridRowDsc_.getInt(i));
+        }
+        size += dataSize;
+        if (!getGridRowDscList().isEmpty()) {
+          size += 2;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        gridRowDscMemoizedSerializedSize = dataSize;
+      }
+      if (bare_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(37, bare_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -10516,6 +10855,20 @@ java.lang.String defaultValue) {
       }
       if (!internalGetBindFormats().equals(
           other.internalGetBindFormats())) return false;
+      if (getObjFlags()
+          != other.getObjFlags()) return false;
+      if (getObjFlagsClear()
+          != other.getObjFlagsClear()) return false;
+      if (getStates()
+          != other.getStates()) return false;
+      if (getScrollDir()
+          != other.getScrollDir()) return false;
+      if (!getGridColDscList()
+          .equals(other.getGridColDscList())) return false;
+      if (!getGridRowDscList()
+          .equals(other.getGridRowDscList())) return false;
+      if (getBare()
+          != other.getBare()) return false;
       if (!getWidgetPropsCase().equals(other.getWidgetPropsCase())) return false;
       switch (widgetPropsCase_) {
         case 10:
@@ -10644,6 +10997,25 @@ java.lang.String defaultValue) {
         hash = (37 * hash) + BIND_FORMATS_FIELD_NUMBER;
         hash = (53 * hash) + internalGetBindFormats().hashCode();
       }
+      hash = (37 * hash) + OBJ_FLAGS_FIELD_NUMBER;
+      hash = (53 * hash) + getObjFlags();
+      hash = (37 * hash) + OBJ_FLAGS_CLEAR_FIELD_NUMBER;
+      hash = (53 * hash) + getObjFlagsClear();
+      hash = (37 * hash) + STATES_FIELD_NUMBER;
+      hash = (53 * hash) + getStates();
+      hash = (37 * hash) + SCROLL_DIR_FIELD_NUMBER;
+      hash = (53 * hash) + getScrollDir();
+      if (getGridColDscCount() > 0) {
+        hash = (37 * hash) + GRID_COL_DSC_FIELD_NUMBER;
+        hash = (53 * hash) + getGridColDscList().hashCode();
+      }
+      if (getGridRowDscCount() > 0) {
+        hash = (37 * hash) + GRID_ROW_DSC_FIELD_NUMBER;
+        hash = (53 * hash) + getGridRowDscList().hashCode();
+      }
+      hash = (37 * hash) + BARE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getBare());
       switch (widgetPropsCase_) {
         case 10:
           hash = (37 * hash) + OBJ_PROPS_FIELD_NUMBER;
@@ -10895,6 +11267,7 @@ java.lang.String defaultValue) {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
+        bitField1_ = 0;
         type_ = 0;
         x_ = 0;
         y_ = 0;
@@ -10987,6 +11360,13 @@ java.lang.String defaultValue) {
           visibilityBuilder_ = null;
         }
         internalGetMutableBindFormats().clear();
+        objFlags_ = 0;
+        objFlagsClear_ = 0;
+        states_ = 0;
+        scrollDir_ = 0;
+        gridColDsc_ = emptyIntList();
+        gridRowDsc_ = emptyIntList();
+        bare_ = false;
         widgetPropsCase_ = 0;
         widgetProps_ = null;
         return this;
@@ -11017,6 +11397,7 @@ java.lang.String defaultValue) {
         ui.UiAst.WidgetNode result = new ui.UiAst.WidgetNode(this);
         buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
+        if (bitField1_ != 0) { buildPartial1(result); }
         buildPartialOneofs(result);
         onBuilt();
         return result;
@@ -11084,7 +11465,34 @@ java.lang.String defaultValue) {
           result.bindFormats_ = internalGetBindFormats();
           result.bindFormats_.makeImmutable();
         }
+        if (((from_bitField0_ & 0x40000000) != 0)) {
+          result.objFlags_ = objFlags_;
+        }
+        if (((from_bitField0_ & 0x80000000) != 0)) {
+          result.objFlagsClear_ = objFlagsClear_;
+        }
         result.bitField0_ |= to_bitField0_;
+      }
+
+      private void buildPartial1(ui.UiAst.WidgetNode result) {
+        int from_bitField1_ = bitField1_;
+        if (((from_bitField1_ & 0x00000001) != 0)) {
+          result.states_ = states_;
+        }
+        if (((from_bitField1_ & 0x00000002) != 0)) {
+          result.scrollDir_ = scrollDir_;
+        }
+        if (((from_bitField1_ & 0x00000004) != 0)) {
+          gridColDsc_.makeImmutable();
+          result.gridColDsc_ = gridColDsc_;
+        }
+        if (((from_bitField1_ & 0x00000008) != 0)) {
+          gridRowDsc_.makeImmutable();
+          result.gridRowDsc_ = gridRowDsc_;
+        }
+        if (((from_bitField1_ & 0x00000010) != 0)) {
+          result.bare_ = bare_;
+        }
       }
 
       private void buildPartialOneofs(ui.UiAst.WidgetNode result) {
@@ -11261,6 +11669,43 @@ java.lang.String defaultValue) {
         internalGetMutableBindFormats().mergeFrom(
             other.internalGetBindFormats());
         bitField0_ |= 0x20000000;
+        if (other.getObjFlags() != 0) {
+          setObjFlags(other.getObjFlags());
+        }
+        if (other.getObjFlagsClear() != 0) {
+          setObjFlagsClear(other.getObjFlagsClear());
+        }
+        if (other.getStates() != 0) {
+          setStates(other.getStates());
+        }
+        if (other.getScrollDir() != 0) {
+          setScrollDir(other.getScrollDir());
+        }
+        if (!other.gridColDsc_.isEmpty()) {
+          if (gridColDsc_.isEmpty()) {
+            gridColDsc_ = other.gridColDsc_;
+            gridColDsc_.makeImmutable();
+            bitField1_ |= 0x00000004;
+          } else {
+            ensureGridColDscIsMutable();
+            gridColDsc_.addAll(other.gridColDsc_);
+          }
+          onChanged();
+        }
+        if (!other.gridRowDsc_.isEmpty()) {
+          if (gridRowDsc_.isEmpty()) {
+            gridRowDsc_ = other.gridRowDsc_;
+            gridRowDsc_.makeImmutable();
+            bitField1_ |= 0x00000008;
+          } else {
+            ensureGridRowDscIsMutable();
+            gridRowDsc_.addAll(other.gridRowDsc_);
+          }
+          onChanged();
+        }
+        if (other.getBare() != false) {
+          setBare(other.getBare());
+        }
         switch (other.getWidgetPropsCase()) {
           case OBJ_PROPS: {
             mergeObjProps(other.getObjProps());
@@ -11586,6 +12031,63 @@ java.lang.String defaultValue) {
                 bitField0_ |= 0x20000000;
                 break;
               } // case 242
+              case 248: {
+                objFlags_ = input.readUInt32();
+                bitField0_ |= 0x40000000;
+                break;
+              } // case 248
+              case 256: {
+                objFlagsClear_ = input.readUInt32();
+                bitField0_ |= 0x80000000;
+                break;
+              } // case 256
+              case 264: {
+                states_ = input.readUInt32();
+                bitField1_ |= 0x00000001;
+                break;
+              } // case 264
+              case 272: {
+                scrollDir_ = input.readUInt32();
+                bitField1_ |= 0x00000002;
+                break;
+              } // case 272
+              case 280: {
+                int v = input.readInt32();
+                ensureGridColDscIsMutable();
+                gridColDsc_.addInt(v);
+                break;
+              } // case 280
+              case 282: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureGridColDscIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  gridColDsc_.addInt(input.readInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 282
+              case 288: {
+                int v = input.readInt32();
+                ensureGridRowDscIsMutable();
+                gridRowDsc_.addInt(v);
+                break;
+              } // case 288
+              case 290: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureGridRowDscIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  gridRowDsc_.addInt(input.readInt32());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 290
+              case 296: {
+                bare_ = input.readBool();
+                bitField1_ |= 0x00000010;
+                break;
+              } // case 296
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -11617,6 +12119,7 @@ java.lang.String defaultValue) {
       }
 
       private int bitField0_;
+      private int bitField1_;
 
       private int type_ = 0;
       /**
@@ -15957,6 +16460,442 @@ java.lang.String defaultValue) {
         internalGetMutableBindFormats().getMutableMap()
             .putAll(values);
         bitField0_ |= 0x20000000;
+        return this;
+      }
+
+      private int objFlags_ ;
+      /**
+       * <pre>
+       * LV_OBJ_FLAG_* bitmask to ADD on the widget (direct-cast to LVGL —
+       * parity-gated). 0 = no extra flags.
+       * </pre>
+       *
+       * <code>uint32 obj_flags = 31;</code>
+       * @return The objFlags.
+       */
+      @java.lang.Override
+      public int getObjFlags() {
+        return objFlags_;
+      }
+      /**
+       * <pre>
+       * LV_OBJ_FLAG_* bitmask to ADD on the widget (direct-cast to LVGL —
+       * parity-gated). 0 = no extra flags.
+       * </pre>
+       *
+       * <code>uint32 obj_flags = 31;</code>
+       * @param value The objFlags to set.
+       * @return This builder for chaining.
+       */
+      public Builder setObjFlags(int value) {
+
+        objFlags_ = value;
+        bitField0_ |= 0x40000000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * LV_OBJ_FLAG_* bitmask to ADD on the widget (direct-cast to LVGL —
+       * parity-gated). 0 = no extra flags.
+       * </pre>
+       *
+       * <code>uint32 obj_flags = 31;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearObjFlags() {
+        bitField0_ = (bitField0_ & ~0x40000000);
+        objFlags_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int objFlagsClear_ ;
+      /**
+       * <pre>
+       * LV_OBJ_FLAG_* bitmask to REMOVE (e.g. clear SCROLLABLE on panels).
+       * </pre>
+       *
+       * <code>uint32 obj_flags_clear = 32;</code>
+       * @return The objFlagsClear.
+       */
+      @java.lang.Override
+      public int getObjFlagsClear() {
+        return objFlagsClear_;
+      }
+      /**
+       * <pre>
+       * LV_OBJ_FLAG_* bitmask to REMOVE (e.g. clear SCROLLABLE on panels).
+       * </pre>
+       *
+       * <code>uint32 obj_flags_clear = 32;</code>
+       * @param value The objFlagsClear to set.
+       * @return This builder for chaining.
+       */
+      public Builder setObjFlagsClear(int value) {
+
+        objFlagsClear_ = value;
+        bitField0_ |= 0x80000000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * LV_OBJ_FLAG_* bitmask to REMOVE (e.g. clear SCROLLABLE on panels).
+       * </pre>
+       *
+       * <code>uint32 obj_flags_clear = 32;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearObjFlagsClear() {
+        bitField0_ = (bitField0_ & ~0x80000000);
+        objFlagsClear_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int states_ ;
+      /**
+       * <pre>
+       * lv_state_t bitmask applied at create (e.g. DISABLED). Direct-cast.
+       * </pre>
+       *
+       * <code>uint32 states = 33;</code>
+       * @return The states.
+       */
+      @java.lang.Override
+      public int getStates() {
+        return states_;
+      }
+      /**
+       * <pre>
+       * lv_state_t bitmask applied at create (e.g. DISABLED). Direct-cast.
+       * </pre>
+       *
+       * <code>uint32 states = 33;</code>
+       * @param value The states to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStates(int value) {
+
+        states_ = value;
+        bitField1_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * lv_state_t bitmask applied at create (e.g. DISABLED). Direct-cast.
+       * </pre>
+       *
+       * <code>uint32 states = 33;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStates() {
+        bitField1_ = (bitField1_ & ~0x00000001);
+        states_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int scrollDir_ ;
+      /**
+       * <pre>
+       * lv_dir_t scroll direction constraint; 0 = leave the LVGL default.
+       * </pre>
+       *
+       * <code>uint32 scroll_dir = 34;</code>
+       * @return The scrollDir.
+       */
+      @java.lang.Override
+      public int getScrollDir() {
+        return scrollDir_;
+      }
+      /**
+       * <pre>
+       * lv_dir_t scroll direction constraint; 0 = leave the LVGL default.
+       * </pre>
+       *
+       * <code>uint32 scroll_dir = 34;</code>
+       * @param value The scrollDir to set.
+       * @return This builder for chaining.
+       */
+      public Builder setScrollDir(int value) {
+
+        scrollDir_ = value;
+        bitField1_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * lv_dir_t scroll direction constraint; 0 = leave the LVGL default.
+       * </pre>
+       *
+       * <code>uint32 scroll_dir = 34;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearScrollDir() {
+        bitField1_ = (bitField1_ & ~0x00000002);
+        scrollDir_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Internal.IntList gridColDsc_ = emptyIntList();
+      private void ensureGridColDscIsMutable() {
+        if (!gridColDsc_.isModifiable()) {
+          gridColDsc_ = makeMutableCopy(gridColDsc_);
+        }
+        bitField1_ |= 0x00000004;
+      }
+      /**
+       * <pre>
+       * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+       * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+       * no grid layout.
+       * </pre>
+       *
+       * <code>repeated int32 grid_col_dsc = 35;</code>
+       * @return A list containing the gridColDsc.
+       */
+      public java.util.List<java.lang.Integer>
+          getGridColDscList() {
+        gridColDsc_.makeImmutable();
+        return gridColDsc_;
+      }
+      /**
+       * <pre>
+       * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+       * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+       * no grid layout.
+       * </pre>
+       *
+       * <code>repeated int32 grid_col_dsc = 35;</code>
+       * @return The count of gridColDsc.
+       */
+      public int getGridColDscCount() {
+        return gridColDsc_.size();
+      }
+      /**
+       * <pre>
+       * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+       * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+       * no grid layout.
+       * </pre>
+       *
+       * <code>repeated int32 grid_col_dsc = 35;</code>
+       * @param index The index of the element to return.
+       * @return The gridColDsc at the given index.
+       */
+      public int getGridColDsc(int index) {
+        return gridColDsc_.getInt(index);
+      }
+      /**
+       * <pre>
+       * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+       * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+       * no grid layout.
+       * </pre>
+       *
+       * <code>repeated int32 grid_col_dsc = 35;</code>
+       * @param index The index to set the value at.
+       * @param value The gridColDsc to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGridColDsc(
+          int index, int value) {
+
+        ensureGridColDscIsMutable();
+        gridColDsc_.setInt(index, value);
+        bitField1_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+       * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+       * no grid layout.
+       * </pre>
+       *
+       * <code>repeated int32 grid_col_dsc = 35;</code>
+       * @param value The gridColDsc to add.
+       * @return This builder for chaining.
+       */
+      public Builder addGridColDsc(int value) {
+
+        ensureGridColDscIsMutable();
+        gridColDsc_.addInt(value);
+        bitField1_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+       * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+       * no grid layout.
+       * </pre>
+       *
+       * <code>repeated int32 grid_col_dsc = 35;</code>
+       * @param values The gridColDsc to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllGridColDsc(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureGridColDscIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, gridColDsc_);
+        bitField1_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Grid track templates (lv_coord_t values incl. LV_GRID_FR/CONTENT
+       * encodings; the renderer appends LV_GRID_TEMPLATE_LAST). Both empty =
+       * no grid layout.
+       * </pre>
+       *
+       * <code>repeated int32 grid_col_dsc = 35;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGridColDsc() {
+        gridColDsc_ = emptyIntList();
+        bitField1_ = (bitField1_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Internal.IntList gridRowDsc_ = emptyIntList();
+      private void ensureGridRowDscIsMutable() {
+        if (!gridRowDsc_.isModifiable()) {
+          gridRowDsc_ = makeMutableCopy(gridRowDsc_);
+        }
+        bitField1_ |= 0x00000008;
+      }
+      /**
+       * <code>repeated int32 grid_row_dsc = 36;</code>
+       * @return A list containing the gridRowDsc.
+       */
+      public java.util.List<java.lang.Integer>
+          getGridRowDscList() {
+        gridRowDsc_.makeImmutable();
+        return gridRowDsc_;
+      }
+      /**
+       * <code>repeated int32 grid_row_dsc = 36;</code>
+       * @return The count of gridRowDsc.
+       */
+      public int getGridRowDscCount() {
+        return gridRowDsc_.size();
+      }
+      /**
+       * <code>repeated int32 grid_row_dsc = 36;</code>
+       * @param index The index of the element to return.
+       * @return The gridRowDsc at the given index.
+       */
+      public int getGridRowDsc(int index) {
+        return gridRowDsc_.getInt(index);
+      }
+      /**
+       * <code>repeated int32 grid_row_dsc = 36;</code>
+       * @param index The index to set the value at.
+       * @param value The gridRowDsc to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGridRowDsc(
+          int index, int value) {
+
+        ensureGridRowDscIsMutable();
+        gridRowDsc_.setInt(index, value);
+        bitField1_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 grid_row_dsc = 36;</code>
+       * @param value The gridRowDsc to add.
+       * @return This builder for chaining.
+       */
+      public Builder addGridRowDsc(int value) {
+
+        ensureGridRowDscIsMutable();
+        gridRowDsc_.addInt(value);
+        bitField1_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 grid_row_dsc = 36;</code>
+       * @param values The gridRowDsc to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllGridRowDsc(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureGridRowDscIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, gridRowDsc_);
+        bitField1_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated int32 grid_row_dsc = 36;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGridRowDsc() {
+        gridRowDsc_ = emptyIntList();
+        bitField1_ = (bitField1_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+
+      private boolean bare_ ;
+      /**
+       * <pre>
+       * Strip ALL theme/base styles before applying style_groups
+       * (lv_obj_remove_style_all) — layout-only or fully hand-styled nodes.
+       * </pre>
+       *
+       * <code>bool bare = 37;</code>
+       * @return The bare.
+       */
+      @java.lang.Override
+      public boolean getBare() {
+        return bare_;
+      }
+      /**
+       * <pre>
+       * Strip ALL theme/base styles before applying style_groups
+       * (lv_obj_remove_style_all) — layout-only or fully hand-styled nodes.
+       * </pre>
+       *
+       * <code>bool bare = 37;</code>
+       * @param value The bare to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBare(boolean value) {
+
+        bare_ = value;
+        bitField1_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Strip ALL theme/base styles before applying style_groups
+       * (lv_obj_remove_style_all) — layout-only or fully hand-styled nodes.
+       * </pre>
+       *
+       * <code>bool bare = 37;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBare() {
+        bitField1_ = (bitField1_ & ~0x00000010);
+        bare_ = false;
+        onChanged();
         return this;
       }
 
@@ -36189,7 +37128,7 @@ java.lang.String defaultValue) {
       "\022 \n\014string_value\030\003 \001(\tB\010\272H\005r\003\030\377\001H\000B\007\n\005va" +
       "lue\"^\n\006Screen\022!\n\004root\030\001 \001(\0132\016.ui.WidgetN" +
       "odeH\000\210\001\001\022(\n\010subjects\030\002 \003(\0132\026.ui.SubjectD" +
-      "eclarationB\007\n\005_root\"\361\t\n\nWidgetNode\022&\n\004ty" +
+      "eclarationB\007\n\005_root\"\373\n\n\nWidgetNode\022&\n\004ty" +
       "pe\030\001 \001(\0162\016.ui.WidgetTypeB\010\272H\005\202\001\002\020\001\022\t\n\001x\030" +
       "\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\026\n\004text\030\004 \001(\tB\010\272H\005r\003\030\377\001" +
       "\022.\n\010bindings\030\005 \003(\0132\034.ui.WidgetNode.Bindi" +
@@ -36218,220 +37157,223 @@ java.lang.String defaultValue) {
       "le_props\030\034 \001(\0132\016.ui.TablePropsH\000\022)\n\nvisi" +
       "bility\030\035 \001(\0132\025.ui.VisibilityBinding\0225\n\014b" +
       "ind_formats\030\036 \003(\0132\037.ui.WidgetNode.BindFo" +
-      "rmatsEntry\032/\n\rBindingsEntry\022\013\n\003key\030\001 \001(\t" +
-      "\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n\020BindFormatsEntry\022" +
-      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\016\n\014widge" +
-      "t_props\"\n\n\010ObjProps\"\r\n\013ButtonProps\"<\n\nLa" +
-      "belProps\022.\n\tlong_mode\030\001 \001(\0162\021.ui.LabelLo" +
-      "ngModeB\010\272H\005\202\001\002\020\001\"g\n\013SliderProps\022\021\n\tmin_v" +
-      "alue\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003" +
-      " \001(\005\022#\n\004mode\030\004 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020" +
-      "\001\"#\n\nImageProps\022\025\n\003src\030\001 \001(\tB\010\272H\005r\003\030\377\001\"\364" +
-      "\001\n\010ArcProps\022\035\n\013start_angle\030\001 \001(\rB\010\272H\005*\003\030" +
-      "\350\002\022\033\n\tend_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002\022 \n\016bg_st" +
-      "art_angle\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg_end_angl" +
-      "e\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010rotation\030\005 \001(\005\022#\n\004m" +
-      "ode\030\006 \001(\0162\013.ui.ArcModeB\010\272H\005\202\001\002\020\001\022\021\n\tmin_" +
-      "value\030\007 \001(\005\022\021\n\tmax_value\030\010 \001(\005\022\r\n\005value\030" +
-      "\t \001(\005\"y\n\010BarProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\t" +
-      "max_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\023\n\013start_" +
-      "value\030\004 \001(\005\022#\n\004mode\030\005 \001(\0162\013.ui.BarModeB\010" +
-      "\272H\005\202\001\002\020\001\"\036\n\013SwitchProps\022\017\n\007checked\030\001 \001(\010" +
-      "\" \n\rCheckboxProps\022\017\n\007checked\030\001 \001(\010\"b\n\rDr" +
-      "opdownProps\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020" +
-      "\n\010selected\030\002 \001(\r\022$\n\tdirection\030\003 \001(\0162\007.ui" +
-      ".DirB\010\272H\005\202\001\002\020\001\"}\n\013RollerProps\022\031\n\007options" +
-      "\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010selected\030\002 \001(\r\022\031\n\021vi" +
-      "sible_row_count\030\003 \001(\r\022&\n\004mode\030\004 \001(\0162\016.ui" +
-      ".RollerModeB\010\272H\005\202\001\002\020\001\"k\n\rTextareaProps\022\035" +
-      "\n\013placeholder\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022\n\nmax_len" +
-      "gth\030\002 \001(\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\rpassword_" +
-      "mode\030\004 \001(\010\"\202\001\n\014SpinboxProps\022\021\n\tmin_value" +
-      "\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005" +
-      "\022\014\n\004step\030\004 \001(\005\022\023\n\013digit_count\030\005 \001(\r\022\032\n\022s" +
-      "eparator_position\030\006 \001(\r\"5\n\014SpinnerProps\022" +
-      "\021\n\tspin_time\030\001 \001(\r\022\022\n\narc_length\030\002 \001(\r\"B" +
-      "\n\010LedProps\022\030\n\005color\030\001 \001(\0132\t.ui.Color\022\034\n\n" +
-      "brightness\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tLineProps\022" +
-      "\031\n\006points\030\001 \003(\0132\t.ui.Point\022\020\n\010y_invert\030\002" +
-      " \001(\010\"\322\001\n\nScaleProps\022%\n\004mode\030\001 \001(\0162\r.ui.S" +
-      "caleModeB\010\272H\005\202\001\002\020\001\022\030\n\020total_tick_count\030\002" +
-      " \001(\r\022\030\n\020major_tick_every\030\003 \001(\r\022\022\n\nlabel_" +
-      "show\030\004 \001(\010\022\021\n\tmin_value\030\005 \001(\005\022\021\n\tmax_val" +
-      "ue\030\006 \001(\005\022\020\n\010rotation\030\007 \001(\005\022\035\n\013angle_rang" +
-      "e\030\010 \001(\rB\010\272H\005*\003\030\350\002\"A\n\021ButtonMatrixProps\022\031" +
-      "\n\007map_str\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\021\n\tone_check\030\002" +
-      " \001(\010\"5\n\nTableProps\022\021\n\trow_count\030\001 \001(\r\022\024\n" +
-      "\014column_count\030\002 \001(\r\"\035\n\005Point\022\t\n\001x\030\001 \001(\005\022" +
-      "\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030\001 \001(" +
-      "\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.Event" +
-      "TriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005\022\034\n\024" +
-      "include_widget_value\030\004 \001(\010\022\034\n\013set_subjec" +
-      "t\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022\016\n\006t" +
-      "oggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021Visi" +
-      "bilityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r\004\020\001\030" +
-      "?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(\0162\r." +
-      "ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n\004flo" +
-      "w\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nmain_" +
-      "place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022,\n\013" +
-      "cross_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002" +
-      "\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.FlexAlignB\010" +
-      "\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_selector" +
-      "\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.ResolvedSt" +
-      "yleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\nprop" +
-      "erties\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\rStyl" +
-      "eProperty\022-\n\004type\030\001 \001(\0162\025.ui.StyleProper" +
-      "tyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022\023" +
-      "\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(\013" +
-      "2\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H\004" +
-      "r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.Shadow" +
-      "BundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010\272" +
-      "H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB" +
-      "\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(\r" +
-      "\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n\006" +
-      "spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013S" +
-      "ubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_S" +
-      "TRING\020\001*\361\002\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021" +
-      "\n\rWIDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rW" +
-      "IDGET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDG" +
-      "ET_ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWITC" +
-      "H\020\007\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROPD" +
-      "OWN\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXTA" +
-      "REA\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPIN" +
-      "NER\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022\020" +
-      "\n\014WIDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX\020" +
-      "\021\022\020\n\014WIDGET_TABLE\020\022*X\n\014EventTrigger\022\023\n\017T" +
-      "RIGGER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CHANGE" +
-      "D\020\001\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCompare" +
-      "Op\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ\020\001\022\016" +
-      "\n\nCOMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nCOMPA" +
-      "RE_LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlow\022\022\n" +
-      "\016FLEX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001\022\024\n\020" +
-      "FLEX_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_WRAP" +
-      "\020\003\022\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLEX_FL" +
-      "OW_ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_COLUM" +
-      "N_WRAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE\020\007\022!" +
-      "\n\035FLEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001\n\tFl" +
-      "exAlign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLEX_AL" +
-      "IGN_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027FLEX" +
-      "_ALIGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_SPAC" +
-      "E_AROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWEEN\020\005" +
-      "*\274\001\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000\022\025\n\021" +
-      "GRID_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_END\020\002\022" +
-      "\026\n\022GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIGN_SP" +
-      "ACE_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_AROUND\020" +
-      "\005\022\034\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tTextA" +
-      "lign\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_ALIGN_" +
-      "LEFT\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEXT_AL" +
-      "IGN_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DECOR_N" +
-      "ONE\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030TEXT_" +
-      "DECOR_STRIKETHROUGH\020\002*\213\001\n\tBlendMode\022\025\n\021B" +
-      "LEND_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADDITIV" +
-      "E\020\001\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023BLEND" +
-      "_MODE_MULTIPLY\020\003\022\031\n\025BLEND_MODE_DIFFERENC" +
-      "E\020\004*i\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000\022\020\n\014BASE" +
-      "_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002\022\024\n\020BASE_DI" +
-      "R_NEUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020!*\200\001\n\007GradD" +
-      "ir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR_VER\020\001\022" +
-      "\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LINEAR\020\003\022\023" +
-      "\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_CONICAL\020" +
-      "\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEFT\020\001\022\r\n\t" +
-      "DIR_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nDIR_BOTTOM\020\010" +
-      "\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n\007DIR_ALL\020\017*" +
-      "\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016ALIGN_TO" +
-      "P_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017ALIGN_TOP" +
-      "_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024\n\020ALIGN" +
-      "_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIGHT\020\006\022\022\n" +
-      "\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_MID\020\010\022\020" +
-      "\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP_LEFT\020\n" +
-      "\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_OUT_TOP" +
-      "_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT\020\r\022\030\n\024A" +
-      "LIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OUT_BOTTO" +
-      "M_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020\022\026\n\022ALI" +
-      "GN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LEFT_BOTT" +
-      "OM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023ALIGN_O" +
-      "UT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT_BOTTOM" +
-      "\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_NONE\020\000\022" +
-      "\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER_SIDE_T" +
-      "OP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BORDER_SID" +
-      "E_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030\n\024BORDE" +
-      "R_SIDE_INTERNAL\020\020*\236\001\n\rLabelLongMode\022\030\n\024L" +
-      "ABEL_LONG_MODE_WRAP\020\000\022\030\n\024LABEL_LONG_MODE" +
-      "_DOTS\020\001\022\032\n\026LABEL_LONG_MODE_SCROLL\020\002\022#\n\037L" +
-      "ABEL_LONG_MODE_SCROLL_CIRCULAR\020\003\022\030\n\024LABE" +
-      "L_LONG_MODE_CLIP\020\004*L\n\007BarMode\022\023\n\017BAR_MOD" +
-      "E_NORMAL\020\000\022\030\n\024BAR_MODE_SYMMETRICAL\020\001\022\022\n\016" +
-      "BAR_MODE_RANGE\020\002*N\n\007ArcMode\022\023\n\017ARC_MODE_" +
-      "NORMAL\020\000\022\030\n\024ARC_MODE_SYMMETRICAL\020\001\022\024\n\020AR" +
-      "C_MODE_REVERSE\020\002*>\n\nRollerMode\022\026\n\022ROLLER" +
-      "_MODE_NORMAL\020\000\022\030\n\024ROLLER_MODE_INFINITE\020\001" +
-      "*\301\001\n\tScaleMode\022\035\n\031SCALE_MODE_HORIZONTAL_" +
-      "TOP\020\000\022 \n\034SCALE_MODE_HORIZONTAL_BOTTOM\020\001\022" +
-      "\034\n\030SCALE_MODE_VERTICAL_LEFT\020\002\022\035\n\031SCALE_M" +
-      "ODE_VERTICAL_RIGHT\020\004\022\032\n\026SCALE_MODE_ROUND" +
-      "_INNER\020\010\022\032\n\026SCALE_MODE_ROUND_OUTER\020\020*\273\022\n" +
-      "\021StylePropertyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n" +
-      "\013PROP_BG_OPA\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016P" +
-      "ROP_TEXT_FONT\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025" +
-      "\n\021PROP_BORDER_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020" +
-      "\n\014PROP_PAD_ALL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPR" +
-      "OP_WIDTH\020\t\022\017\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHAD" +
-      "OW\020\013\022\020\n\014PROP_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r" +
-      "\022\023\n\017PROP_MARGIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA" +
-      "\020\017\022\022\n\016PROP_MIN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH" +
-      "\020\021\022\023\n\017PROP_MIN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIG" +
-      "HT\020\023\022\017\n\013PROP_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PRO" +
-      "P_Y\020\026\022\016\n\nPROP_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_" +
-      "WIDTH\020\030\022\031\n\025PROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PR" +
-      "OP_TRANSLATE_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020" +
-      "\n\014PROP_SCALE_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPR" +
-      "OP_ROTATION\020\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_" +
-      "PIVOT_Y\020 \022\017\n\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_" +
-      "Y\020\"\022\020\n\014PROP_PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM" +
-      "\020$\022\021\n\rPROP_PAD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020" +
-      "&\022\020\n\014PROP_PAD_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(" +
-      "\022\023\n\017PROP_MARGIN_TOP\020)\022\026\n\022PROP_MARGIN_BOT" +
-      "TOM\020*\022\024\n\020PROP_MARGIN_LEFT\020+\022\025\n\021PROP_MARG" +
-      "IN_RIGHT\020,\022\026\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PR" +
-      "OP_BG_GRAD_DIR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022" +
-      "\025\n\021PROP_BG_GRAD_STOP\0200\022\024\n\020PROP_BG_MAIN_O" +
-      "PA\0201\022\024\n\020PROP_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IM" +
-      "AGE_SRC\0203\022\025\n\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP" +
-      "_BG_IMAGE_RECOLOR\0205\022\035\n\031PROP_BG_IMAGE_REC" +
-      "OLOR_OPA\0206\022\027\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020P" +
-      "ROP_BORDER_SIDE\0208\022\024\n\020PROP_BORDER_POST\0209\022" +
-      "\026\n\022PROP_OUTLINE_WIDTH\020:\022\026\n\022PROP_OUTLINE_" +
-      "COLOR\020;\022\024\n\020PROP_OUTLINE_OPA\020<\022\024\n\020PROP_OU" +
-      "TLINE_PAD\020=\022\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PR" +
-      "OP_SHADOW_OFFSET_X\020?\022\030\n\024PROP_SHADOW_OFFS" +
-      "ET_Y\020@\022\026\n\022PROP_SHADOW_SPREAD\020A\022\025\n\021PROP_S" +
-      "HADOW_COLOR\020B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PR" +
-      "OP_IMAGE_OPA\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032" +
-      "\n\026PROP_IMAGE_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_" +
-      "WIDTH\020G\022\030\n\024PROP_LINE_DASH_WIDTH\020H\022\026\n\022PRO" +
-      "P_LINE_DASH_GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J" +
-      "\022\023\n\017PROP_LINE_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L" +
-      "\022\022\n\016PROP_ARC_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED" +
-      "\020N\022\022\n\016PROP_ARC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P" +
-      "\022\021\n\rPROP_TEXT_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_" +
-      "SPACE\020R\022\030\n\024PROP_TEXT_LINE_SPACE\020S\022\023\n\017PRO" +
-      "P_TEXT_DECOR\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020P" +
-      "ROP_CLIP_CORNER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_" +
-      "OPA_LAYERED\020X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y" +
-      "\022\026\n\022PROP_ANIM_DURATION\020Z\022\023\n\017PROP_BLEND_M" +
-      "ODE\020[\022\021\n\rPROP_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_" +
-      "SENSITIVITY\020]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PRO" +
-      "P_FLEX_MAIN_PLACE\020_\022\031\n\025PROP_FLEX_CROSS_P" +
-      "LACE\020`\022\031\n\025PROP_FLEX_TRACK_PLACE\020a\022\022\n\016PRO" +
-      "P_FLEX_GROW\020b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020" +
-      "c\022\027\n\023PROP_GRID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_" +
-      "CELL_COLUMN_POS\020e\022\032\n\026PROP_GRID_CELL_X_AL" +
-      "IGN\020f\022\036\n\032PROP_GRID_CELL_COLUMN_SPAN\020g\022\032\n" +
-      "\026PROP_GRID_CELL_ROW_POS\020h\022\032\n\026PROP_GRID_C" +
-      "ELL_Y_ALIGN\020i\022\033\n\027PROP_GRID_CELL_ROW_SPAN" +
-      "\020jBEZCgit-codecommit.eu-central-1.amazon" +
-      "aws.com/v1/repos/jettison/jonp/uib\006proto" +
-      "3"
+      "rmatsEntry\022\021\n\tobj_flags\030\037 \001(\r\022\027\n\017obj_fla" +
+      "gs_clear\030  \001(\r\022\016\n\006states\030! \001(\r\022\022\n\nscroll" +
+      "_dir\030\" \001(\r\022\024\n\014grid_col_dsc\030# \003(\005\022\024\n\014grid" +
+      "_row_dsc\030$ \003(\005\022\014\n\004bare\030% \001(\010\032/\n\rBindings" +
+      "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n" +
+      "\020BindFormatsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030" +
+      "\002 \001(\t:\0028\001B\016\n\014widget_props\"\n\n\010ObjProps\"\r\n" +
+      "\013ButtonProps\"<\n\nLabelProps\022.\n\tlong_mode\030" +
+      "\001 \001(\0162\021.ui.LabelLongModeB\010\272H\005\202\001\002\020\001\"g\n\013Sl" +
+      "iderProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_valu" +
+      "e\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022#\n\004mode\030\004 \001(\0162\013.u" +
+      "i.BarModeB\010\272H\005\202\001\002\020\001\"#\n\nImageProps\022\025\n\003src" +
+      "\030\001 \001(\tB\010\272H\005r\003\030\377\001\"\364\001\n\010ArcProps\022\035\n\013start_a" +
+      "ngle\030\001 \001(\rB\010\272H\005*\003\030\350\002\022\033\n\tend_angle\030\002 \001(\rB" +
+      "\010\272H\005*\003\030\350\002\022 \n\016bg_start_angle\030\003 \001(\rB\010\272H\005*\003" +
+      "\030\350\002\022\036\n\014bg_end_angle\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010r" +
+      "otation\030\005 \001(\005\022#\n\004mode\030\006 \001(\0162\013.ui.ArcMode" +
+      "B\010\272H\005\202\001\002\020\001\022\021\n\tmin_value\030\007 \001(\005\022\021\n\tmax_val" +
+      "ue\030\010 \001(\005\022\r\n\005value\030\t \001(\005\"y\n\010BarProps\022\021\n\tm" +
+      "in_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005val" +
+      "ue\030\003 \001(\005\022\023\n\013start_value\030\004 \001(\005\022#\n\004mode\030\005 " +
+      "\001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020\001\"\036\n\013SwitchProp" +
+      "s\022\017\n\007checked\030\001 \001(\010\" \n\rCheckboxProps\022\017\n\007c" +
+      "hecked\030\001 \001(\010\"b\n\rDropdownProps\022\031\n\007options" +
+      "\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020\n\010selected\030\002 \001(\r\022$\n\tdi" +
+      "rection\030\003 \001(\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\"}\n\013Roll" +
+      "erProps\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010se" +
+      "lected\030\002 \001(\r\022\031\n\021visible_row_count\030\003 \001(\r\022" +
+      "&\n\004mode\030\004 \001(\0162\016.ui.RollerModeB\010\272H\005\202\001\002\020\001\"" +
+      "k\n\rTextareaProps\022\035\n\013placeholder\030\001 \001(\tB\010\272" +
+      "H\005r\003\030\377\001\022\022\n\nmax_length\030\002 \001(\r\022\020\n\010one_line\030" +
+      "\003 \001(\010\022\025\n\rpassword_mode\030\004 \001(\010\"\202\001\n\014Spinbox" +
+      "Props\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_value\030\002 " +
+      "\001(\005\022\r\n\005value\030\003 \001(\005\022\014\n\004step\030\004 \001(\005\022\023\n\013digi" +
+      "t_count\030\005 \001(\r\022\032\n\022separator_position\030\006 \001(" +
+      "\r\"5\n\014SpinnerProps\022\021\n\tspin_time\030\001 \001(\r\022\022\n\n" +
+      "arc_length\030\002 \001(\r\"B\n\010LedProps\022\030\n\005color\030\001 " +
+      "\001(\0132\t.ui.Color\022\034\n\nbrightness\030\002 \001(\rB\010\272H\005*" +
+      "\003\030\377\001\"8\n\tLineProps\022\031\n\006points\030\001 \003(\0132\t.ui.P" +
+      "oint\022\020\n\010y_invert\030\002 \001(\010\"\322\001\n\nScaleProps\022%\n" +
+      "\004mode\030\001 \001(\0162\r.ui.ScaleModeB\010\272H\005\202\001\002\020\001\022\030\n\020" +
+      "total_tick_count\030\002 \001(\r\022\030\n\020major_tick_eve" +
+      "ry\030\003 \001(\r\022\022\n\nlabel_show\030\004 \001(\010\022\021\n\tmin_valu" +
+      "e\030\005 \001(\005\022\021\n\tmax_value\030\006 \001(\005\022\020\n\010rotation\030\007" +
+      " \001(\005\022\035\n\013angle_range\030\010 \001(\rB\010\272H\005*\003\030\350\002\"A\n\021B" +
+      "uttonMatrixProps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005r\003" +
+      "\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nTableProps\022\021\n\t" +
+      "row_count\030\001 \001(\r\022\024\n\014column_count\030\002 \001(\r\"\035\n" +
+      "\005Point\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBi" +
+      "nding\022\027\n\004name\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigge" +
+      "r\030\002 \001(\0162\020.ui.EventTriggerB\010\272H\005\202\001\002\020\001\022\021\n\ti" +
+      "nt_value\030\003 \001(\005\022\034\n\024include_widget_value\030\004" +
+      " \001(\010\022\034\n\013set_subject\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tse" +
+      "t_value\030\006 \001(\005\022\016\n\006toggle\030\007 \001(\010\022\023\n\013notify_" +
+      "host\030\010 \001(\010\"l\n\021VisibilityBinding\022\032\n\007subje" +
+      "ct\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022\021\n\tref_value\030\002 \001(\005\022(" +
+      "\n\007compare\030\003 \001(\0162\r.ui.CompareOpB\010\272H\005\202\001\002\020\001" +
+      "\"\267\001\n\006Layout\022$\n\004flow\030\001 \001(\0162\014.ui.FlexFlowB" +
+      "\010\272H\005\202\001\002\020\001\022+\n\nmain_place\030\002 \001(\0162\r.ui.FlexA" +
+      "lignB\010\272H\005\202\001\002\020\001\022,\n\013cross_place\030\003 \001(\0162\r.ui" +
+      ".FlexAlignB\010\272H\005\202\001\002\020\001\022,\n\013track_place\030\004 \001(" +
+      "\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup" +
+      "\022\026\n\016state_selector\030\001 \001(\r\022/\n\010variants\030\002 \003" +
+      "(\0132\021.ui.ResolvedStyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rRes" +
+      "olvedStyle\022%\n\nproperties\030\001 \003(\0132\021.ui.Styl" +
+      "eProperty\"\337\001\n\rStyleProperty\022-\n\004type\030\001 \001(" +
+      "\0162\025.ui.StylePropertyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nui" +
+      "nt_value\030\002 \001(\rH\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n" +
+      "\013color_value\030\004 \001(\0132\t.ui.ColorH\000\022\037\n\014strin" +
+      "g_value\030\005 \001(\tB\007\272H\004r\002\030?H\000\022(\n\014shadow_value" +
+      "\030\006 \001(\0132\020.ui.ShadowBundleH\000B\007\n\005value\"F\n\005C" +
+      "olor\022\023\n\001r\030\001 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H" +
+      "\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB\010\272H\005*\003\030\377\001\"h\n\014ShadowBun" +
+      "dle\022\r\n\005width\030\001 \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010" +
+      "offset_y\030\003 \001(\005\022\016\n\006spread\030\004 \001(\r\022\025\n\003opa\030\005 " +
+      "\001(\rB\010\272H\005*\003\030\377\001*2\n\013SubjectType\022\017\n\013SUBJECT_" +
+      "INT\020\000\022\022\n\016SUBJECT_STRING\020\001*\361\002\n\nWidgetType" +
+      "\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rWIDGET_BUTTON\020\001\022\020\n\014W" +
+      "IDGET_LABEL\020\002\022\021\n\rWIDGET_SLIDER\020\003\022\020\n\014WIDG" +
+      "ET_IMAGE\020\004\022\016\n\nWIDGET_ARC\020\005\022\016\n\nWIDGET_BAR" +
+      "\020\006\022\021\n\rWIDGET_SWITCH\020\007\022\023\n\017WIDGET_CHECKBOX" +
+      "\020\010\022\023\n\017WIDGET_DROPDOWN\020\t\022\021\n\rWIDGET_ROLLER" +
+      "\020\n\022\023\n\017WIDGET_TEXTAREA\020\013\022\022\n\016WIDGET_SPINBO" +
+      "X\020\014\022\022\n\016WIDGET_SPINNER\020\r\022\016\n\nWIDGET_LED\020\016\022" +
+      "\017\n\013WIDGET_LINE\020\017\022\020\n\014WIDGET_SCALE\020\020\022\027\n\023WI" +
+      "DGET_BUTTONMATRIX\020\021\022\020\n\014WIDGET_TABLE\020\022*X\n" +
+      "\014EventTrigger\022\023\n\017TRIGGER_CLICKED\020\000\022\031\n\025TR" +
+      "IGGER_VALUE_CHANGED\020\001\022\030\n\024TRIGGER_LONG_PR" +
+      "ESSED\020\002*q\n\tCompareOp\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016" +
+      "COMPARE_NOT_EQ\020\001\022\016\n\nCOMPARE_GT\020\002\022\017\n\013COMP" +
+      "ARE_GTE\020\003\022\016\n\nCOMPARE_LT\020\004\022\017\n\013COMPARE_LTE" +
+      "\020\005*\366\001\n\010FlexFlow\022\022\n\016FLEX_FLOW_NONE\020\000\022\021\n\rF" +
+      "LEX_FLOW_ROW\020\001\022\024\n\020FLEX_FLOW_COLUMN\020\002\022\026\n\022" +
+      "FLEX_FLOW_ROW_WRAP\020\003\022\031\n\025FLEX_FLOW_ROW_RE" +
+      "VERSE\020\004\022\036\n\032FLEX_FLOW_ROW_WRAP_REVERSE\020\005\022" +
+      "\031\n\025FLEX_FLOW_COLUMN_WRAP\020\006\022\034\n\030FLEX_FLOW_" +
+      "COLUMN_REVERSE\020\007\022!\n\035FLEX_FLOW_COLUMN_WRA" +
+      "P_REVERSE\020\010*\244\001\n\tFlexAlign\022\024\n\020FLEX_ALIGN_" +
+      "START\020\000\022\022\n\016FLEX_ALIGN_END\020\001\022\025\n\021FLEX_ALIG" +
+      "N_CENTER\020\002\022\033\n\027FLEX_ALIGN_SPACE_EVENLY\020\003\022" +
+      "\033\n\027FLEX_ALIGN_SPACE_AROUND\020\004\022\034\n\030FLEX_ALI" +
+      "GN_SPACE_BETWEEN\020\005*\274\001\n\tGridAlign\022\024\n\020GRID" +
+      "_ALIGN_START\020\000\022\025\n\021GRID_ALIGN_CENTER\020\001\022\022\n" +
+      "\016GRID_ALIGN_END\020\002\022\026\n\022GRID_ALIGN_STRETCH\020" +
+      "\003\022\033\n\027GRID_ALIGN_SPACE_EVENLY\020\004\022\033\n\027GRID_A" +
+      "LIGN_SPACE_AROUND\020\005\022\034\n\030GRID_ALIGN_SPACE_" +
+      "BETWEEN\020\006*b\n\tTextAlign\022\023\n\017TEXT_ALIGN_AUT" +
+      "O\020\000\022\023\n\017TEXT_ALIGN_LEFT\020\001\022\025\n\021TEXT_ALIGN_C" +
+      "ENTER\020\002\022\024\n\020TEXT_ALIGN_RIGHT\020\003*X\n\tTextDec" +
+      "or\022\023\n\017TEXT_DECOR_NONE\020\000\022\030\n\024TEXT_DECOR_UN" +
+      "DERLINE\020\001\022\034\n\030TEXT_DECOR_STRIKETHROUGH\020\002*" +
+      "\213\001\n\tBlendMode\022\025\n\021BLEND_MODE_NORMAL\020\000\022\027\n\023" +
+      "BLEND_MODE_ADDITIVE\020\001\022\032\n\026BLEND_MODE_SUBT" +
+      "RACTIVE\020\002\022\027\n\023BLEND_MODE_MULTIPLY\020\003\022\031\n\025BL" +
+      "END_MODE_DIFFERENCE\020\004*i\n\007BaseDir\022\020\n\014BASE" +
+      "_DIR_LTR\020\000\022\020\n\014BASE_DIR_RTL\020\001\022\021\n\rBASE_DIR" +
+      "_AUTO\020\002\022\024\n\020BASE_DIR_NEUTRAL\020 \022\021\n\rBASE_DI" +
+      "R_WEAK\020!*\200\001\n\007GradDir\022\021\n\rGRAD_DIR_NONE\020\000\022" +
+      "\020\n\014GRAD_DIR_VER\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017G" +
+      "RAD_DIR_LINEAR\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n" +
+      "\020GRAD_DIR_CONICAL\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000" +
+      "\022\014\n\010DIR_LEFT\020\001\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_TOP" +
+      "\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_V" +
+      "ER\020\014\022\013\n\007DIR_ALL\020\017*\210\004\n\005Align\022\021\n\rALIGN_DEF" +
+      "AULT\020\000\022\022\n\016ALIGN_TOP_LEFT\020\001\022\021\n\rALIGN_TOP_" +
+      "MID\020\002\022\023\n\017ALIGN_TOP_RIGHT\020\003\022\025\n\021ALIGN_BOTT" +
+      "OM_LEFT\020\004\022\024\n\020ALIGN_BOTTOM_MID\020\005\022\026\n\022ALIGN" +
+      "_BOTTOM_RIGHT\020\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017A" +
+      "LIGN_RIGHT_MID\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022AL" +
+      "IGN_OUT_TOP_LEFT\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020" +
+      "\013\022\027\n\023ALIGN_OUT_TOP_RIGHT\020\014\022\031\n\025ALIGN_OUT_" +
+      "BOTTOM_LEFT\020\r\022\030\n\024ALIGN_OUT_BOTTOM_MID\020\016\022" +
+      "\032\n\026ALIGN_OUT_BOTTOM_RIGHT\020\017\022\026\n\022ALIGN_OUT" +
+      "_LEFT_TOP\020\020\022\026\n\022ALIGN_OUT_LEFT_MID\020\021\022\031\n\025A" +
+      "LIGN_OUT_LEFT_BOTTOM\020\022\022\027\n\023ALIGN_OUT_RIGH" +
+      "T_TOP\020\023\022\027\n\023ALIGN_OUT_RIGHT_MID\020\024\022\032\n\026ALIG" +
+      "N_OUT_RIGHT_BOTTOM\020\025*\254\001\n\nBorderSide\022\024\n\020B" +
+      "ORDER_SIDE_NONE\020\000\022\026\n\022BORDER_SIDE_BOTTOM\020" +
+      "\001\022\023\n\017BORDER_SIDE_TOP\020\002\022\024\n\020BORDER_SIDE_LE" +
+      "FT\020\004\022\025\n\021BORDER_SIDE_RIGHT\020\010\022\024\n\020BORDER_SI" +
+      "DE_FULL\020\017\022\030\n\024BORDER_SIDE_INTERNAL\020\020*\236\001\n\r" +
+      "LabelLongMode\022\030\n\024LABEL_LONG_MODE_WRAP\020\000\022" +
+      "\030\n\024LABEL_LONG_MODE_DOTS\020\001\022\032\n\026LABEL_LONG_" +
+      "MODE_SCROLL\020\002\022#\n\037LABEL_LONG_MODE_SCROLL_" +
+      "CIRCULAR\020\003\022\030\n\024LABEL_LONG_MODE_CLIP\020\004*L\n\007" +
+      "BarMode\022\023\n\017BAR_MODE_NORMAL\020\000\022\030\n\024BAR_MODE" +
+      "_SYMMETRICAL\020\001\022\022\n\016BAR_MODE_RANGE\020\002*N\n\007Ar" +
+      "cMode\022\023\n\017ARC_MODE_NORMAL\020\000\022\030\n\024ARC_MODE_S" +
+      "YMMETRICAL\020\001\022\024\n\020ARC_MODE_REVERSE\020\002*>\n\nRo" +
+      "llerMode\022\026\n\022ROLLER_MODE_NORMAL\020\000\022\030\n\024ROLL" +
+      "ER_MODE_INFINITE\020\001*\301\001\n\tScaleMode\022\035\n\031SCAL" +
+      "E_MODE_HORIZONTAL_TOP\020\000\022 \n\034SCALE_MODE_HO" +
+      "RIZONTAL_BOTTOM\020\001\022\034\n\030SCALE_MODE_VERTICAL" +
+      "_LEFT\020\002\022\035\n\031SCALE_MODE_VERTICAL_RIGHT\020\004\022\032" +
+      "\n\026SCALE_MODE_ROUND_INNER\020\010\022\032\n\026SCALE_MODE" +
+      "_ROUND_OUTER\020\020*\273\022\n\021StylePropertyType\022\021\n\r" +
+      "PROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OPA\020\001\022\023\n\017PROP" +
+      "_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FONT\020\003\022\025\n\021PRO" +
+      "P_BORDER_COLOR\020\004\022\025\n\021PROP_BORDER_WIDTH\020\005\022" +
+      "\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_ALL\020\007\022\020\n\014PR" +
+      "OP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022\017\n\013PROP_HEI" +
+      "GHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PROP_PAD_HOR\020\014" +
+      "\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MARGIN_ALL\020\016\022" +
+      "\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_MIN_WIDTH\020\020" +
+      "\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_MIN_HEIGHT\020" +
+      "\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PROP_LENGTH\020\024\022" +
+      "\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPROP_ALIGN\020\027\022" +
+      "\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025PROP_TRANSF" +
+      "ORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLATE_X\020\032\022\024\n\020PR" +
+      "OP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCALE_X\020\034\022\020\n\014PR" +
+      "OP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION\020\036\022\020\n\014PROP_" +
+      "PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017\n\013PROP_SKEW" +
+      "_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP_PAD_TOP\020#\022" +
+      "\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_PAD_LEFT\020%\022" +
+      "\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_PAD_ROW\020\'\022\023\n" +
+      "\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MARGIN_TOP\020)\022" +
+      "\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PROP_MARGIN_L" +
+      "EFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022\026\n\022PROP_BG_" +
+      "GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_DIR\020.\022\025\n\021PR" +
+      "OP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_GRAD_STOP\0200" +
+      "\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PROP_BG_GRAD_O" +
+      "PA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025\n\021PROP_BG_I" +
+      "MAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_RECOLOR\0205\022\035\n" +
+      "\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022\027\n\023PROP_BG_" +
+      "IMAGE_TILED\0207\022\024\n\020PROP_BORDER_SIDE\0208\022\024\n\020P" +
+      "ROP_BORDER_POST\0209\022\026\n\022PROP_OUTLINE_WIDTH\020" +
+      ":\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020PROP_OUTLIN" +
+      "E_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=\022\025\n\021PROP_SH" +
+      "ADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_OFFSET_X\020?\022\030" +
+      "\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022PROP_SHADOW_" +
+      "SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR\020B\022\023\n\017PROP_" +
+      "SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OPA\020D\022\026\n\022PROP" +
+      "_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAGE_RECOLOR_O" +
+      "PA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024PROP_LINE_D" +
+      "ASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH_GAP\020I\022\025\n\021P" +
+      "ROP_LINE_ROUNDED\020J\022\023\n\017PROP_LINE_COLOR\020K\022" +
+      "\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_ARC_WIDTH\020M\022\024" +
+      "\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_ARC_COLOR\020O" +
+      "\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TEXT_OPA\020Q\022\032\n" +
+      "\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024PROP_TEXT_L" +
+      "INE_SPACE\020S\022\023\n\017PROP_TEXT_DECOR\020T\022\023\n\017PROP" +
+      "_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_CORNER\020V\022\014\n\010P" +
+      "ROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED\020X\022\031\n\025PROP_" +
+      "COLOR_FILTER_OPA\020Y\022\026\n\022PROP_ANIM_DURATION" +
+      "\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPROP_BASE_DIR" +
+      "\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY\020]\022\022\n\016PROP_" +
+      "FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN_PLACE\020_\022\031\n" +
+      "\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025PROP_FLEX_TR" +
+      "ACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW\020b\022\032\n\026PROP_" +
+      "GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_GRID_ROW_ALI" +
+      "GN\020d\022\035\n\031PROP_GRID_CELL_COLUMN_POS\020e\022\032\n\026P" +
+      "ROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PROP_GRID_CEL" +
+      "L_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_CELL_ROW_PO" +
+      "S\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN\020i\022\033\n\027PROP_" +
+      "GRID_CELL_ROW_SPAN\020jBEZCgit-codecommit.e" +
+      "u-central-1.amazonaws.com/v1/repos/jetti" +
+      "son/jonp/uib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -36467,7 +37409,7 @@ java.lang.String defaultValue) {
     internal_static_ui_WidgetNode_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_WidgetNode_descriptor,
-        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "Visibility", "BindFormats", "WidgetProps", });
+        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "Visibility", "BindFormats", "ObjFlags", "ObjFlagsClear", "States", "ScrollDir", "GridColDsc", "GridRowDsc", "Bare", "WidgetProps", });
     internal_static_ui_WidgetNode_BindingsEntry_descriptor =
       internal_static_ui_WidgetNode_descriptor.getNestedTypes().get(0);
     internal_static_ui_WidgetNode_BindingsEntry_fieldAccessorTable = new
