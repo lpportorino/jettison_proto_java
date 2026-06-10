@@ -18825,6 +18825,38 @@ java.lang.String defaultValue) {
      */
     com.google.protobuf.ByteString
         getSrcBytes();
+
+    /**
+     * <pre>
+     * Transform pivot (lv_image_set_pivot) — meaningful with rotation.
+     * </pre>
+     *
+     * <code>bool has_pivot = 2;</code>
+     * @return The hasPivot.
+     */
+    boolean getHasPivot();
+
+    /**
+     * <code>int32 pivot_x = 3;</code>
+     * @return The pivotX.
+     */
+    int getPivotX();
+
+    /**
+     * <code>int32 pivot_y = 4;</code>
+     * @return The pivotY.
+     */
+    int getPivotY();
+
+    /**
+     * <pre>
+     * Rotation in 0.1-degree units (lv_image_set_rotation).
+     * </pre>
+     *
+     * <code>int32 rotation = 5;</code>
+     * @return The rotation.
+     */
+    int getRotation();
   }
   /**
    * Protobuf type {@code ui.ImageProps}
@@ -18903,6 +18935,58 @@ java.lang.String defaultValue) {
       }
     }
 
+    public static final int HAS_PIVOT_FIELD_NUMBER = 2;
+    private boolean hasPivot_ = false;
+    /**
+     * <pre>
+     * Transform pivot (lv_image_set_pivot) — meaningful with rotation.
+     * </pre>
+     *
+     * <code>bool has_pivot = 2;</code>
+     * @return The hasPivot.
+     */
+    @java.lang.Override
+    public boolean getHasPivot() {
+      return hasPivot_;
+    }
+
+    public static final int PIVOT_X_FIELD_NUMBER = 3;
+    private int pivotX_ = 0;
+    /**
+     * <code>int32 pivot_x = 3;</code>
+     * @return The pivotX.
+     */
+    @java.lang.Override
+    public int getPivotX() {
+      return pivotX_;
+    }
+
+    public static final int PIVOT_Y_FIELD_NUMBER = 4;
+    private int pivotY_ = 0;
+    /**
+     * <code>int32 pivot_y = 4;</code>
+     * @return The pivotY.
+     */
+    @java.lang.Override
+    public int getPivotY() {
+      return pivotY_;
+    }
+
+    public static final int ROTATION_FIELD_NUMBER = 5;
+    private int rotation_ = 0;
+    /**
+     * <pre>
+     * Rotation in 0.1-degree units (lv_image_set_rotation).
+     * </pre>
+     *
+     * <code>int32 rotation = 5;</code>
+     * @return The rotation.
+     */
+    @java.lang.Override
+    public int getRotation() {
+      return rotation_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -18920,6 +19004,18 @@ java.lang.String defaultValue) {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(src_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, src_);
       }
+      if (hasPivot_ != false) {
+        output.writeBool(2, hasPivot_);
+      }
+      if (pivotX_ != 0) {
+        output.writeInt32(3, pivotX_);
+      }
+      if (pivotY_ != 0) {
+        output.writeInt32(4, pivotY_);
+      }
+      if (rotation_ != 0) {
+        output.writeInt32(5, rotation_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -18931,6 +19027,22 @@ java.lang.String defaultValue) {
       size = 0;
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(src_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1, src_);
+      }
+      if (hasPivot_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, hasPivot_);
+      }
+      if (pivotX_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, pivotX_);
+      }
+      if (pivotY_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, pivotY_);
+      }
+      if (rotation_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, rotation_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -18949,6 +19061,14 @@ java.lang.String defaultValue) {
 
       if (!getSrc()
           .equals(other.getSrc())) return false;
+      if (getHasPivot()
+          != other.getHasPivot()) return false;
+      if (getPivotX()
+          != other.getPivotX()) return false;
+      if (getPivotY()
+          != other.getPivotY()) return false;
+      if (getRotation()
+          != other.getRotation()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -18962,6 +19082,15 @@ java.lang.String defaultValue) {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + SRC_FIELD_NUMBER;
       hash = (53 * hash) + getSrc().hashCode();
+      hash = (37 * hash) + HAS_PIVOT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getHasPivot());
+      hash = (37 * hash) + PIVOT_X_FIELD_NUMBER;
+      hash = (53 * hash) + getPivotX();
+      hash = (37 * hash) + PIVOT_Y_FIELD_NUMBER;
+      hash = (53 * hash) + getPivotY();
+      hash = (37 * hash) + ROTATION_FIELD_NUMBER;
+      hash = (53 * hash) + getRotation();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -19094,6 +19223,10 @@ java.lang.String defaultValue) {
         super.clear();
         bitField0_ = 0;
         src_ = "";
+        hasPivot_ = false;
+        pivotX_ = 0;
+        pivotY_ = 0;
+        rotation_ = 0;
         return this;
       }
 
@@ -19130,6 +19263,18 @@ java.lang.String defaultValue) {
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.src_ = src_;
         }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.hasPivot_ = hasPivot_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.pivotX_ = pivotX_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.pivotY_ = pivotY_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.rotation_ = rotation_;
+        }
       }
 
       @java.lang.Override
@@ -19148,6 +19293,18 @@ java.lang.String defaultValue) {
           src_ = other.src_;
           bitField0_ |= 0x00000001;
           onChanged();
+        }
+        if (other.getHasPivot() != false) {
+          setHasPivot(other.getHasPivot());
+        }
+        if (other.getPivotX() != 0) {
+          setPivotX(other.getPivotX());
+        }
+        if (other.getPivotY() != 0) {
+          setPivotY(other.getPivotY());
+        }
+        if (other.getRotation() != 0) {
+          setRotation(other.getRotation());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -19180,6 +19337,26 @@ java.lang.String defaultValue) {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
+              case 16: {
+                hasPivot_ = input.readBool();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                pivotX_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                pivotY_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                rotation_ = input.readInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -19265,6 +19442,158 @@ java.lang.String defaultValue) {
         checkByteStringIsUtf8(value);
         src_ = value;
         bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private boolean hasPivot_ ;
+      /**
+       * <pre>
+       * Transform pivot (lv_image_set_pivot) — meaningful with rotation.
+       * </pre>
+       *
+       * <code>bool has_pivot = 2;</code>
+       * @return The hasPivot.
+       */
+      @java.lang.Override
+      public boolean getHasPivot() {
+        return hasPivot_;
+      }
+      /**
+       * <pre>
+       * Transform pivot (lv_image_set_pivot) — meaningful with rotation.
+       * </pre>
+       *
+       * <code>bool has_pivot = 2;</code>
+       * @param value The hasPivot to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHasPivot(boolean value) {
+
+        hasPivot_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Transform pivot (lv_image_set_pivot) — meaningful with rotation.
+       * </pre>
+       *
+       * <code>bool has_pivot = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHasPivot() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        hasPivot_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int pivotX_ ;
+      /**
+       * <code>int32 pivot_x = 3;</code>
+       * @return The pivotX.
+       */
+      @java.lang.Override
+      public int getPivotX() {
+        return pivotX_;
+      }
+      /**
+       * <code>int32 pivot_x = 3;</code>
+       * @param value The pivotX to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPivotX(int value) {
+
+        pivotX_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 pivot_x = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPivotX() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        pivotX_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int pivotY_ ;
+      /**
+       * <code>int32 pivot_y = 4;</code>
+       * @return The pivotY.
+       */
+      @java.lang.Override
+      public int getPivotY() {
+        return pivotY_;
+      }
+      /**
+       * <code>int32 pivot_y = 4;</code>
+       * @param value The pivotY to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPivotY(int value) {
+
+        pivotY_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 pivot_y = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPivotY() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        pivotY_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int rotation_ ;
+      /**
+       * <pre>
+       * Rotation in 0.1-degree units (lv_image_set_rotation).
+       * </pre>
+       *
+       * <code>int32 rotation = 5;</code>
+       * @return The rotation.
+       */
+      @java.lang.Override
+      public int getRotation() {
+        return rotation_;
+      }
+      /**
+       * <pre>
+       * Rotation in 0.1-degree units (lv_image_set_rotation).
+       * </pre>
+       *
+       * <code>int32 rotation = 5;</code>
+       * @param value The rotation to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRotation(int value) {
+
+        rotation_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Rotation in 0.1-degree units (lv_image_set_rotation).
+       * </pre>
+       *
+       * <code>int32 rotation = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRotation() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        rotation_ = 0;
         onChanged();
         return this;
       }
@@ -26973,6 +27302,82 @@ java.lang.String defaultValue) {
      * @return The angleRange.
      */
     int getAngleRange();
+
+    /**
+     * <pre>
+     * Demo-parity extensions (lv_demo_widgets analytics scales):
+     * major-tick label sources ("&#92;n"-joined custom texts).
+     * </pre>
+     *
+     * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+     * @return The textSrc.
+     */
+    java.lang.String getTextSrc();
+    /**
+     * <pre>
+     * Demo-parity extensions (lv_demo_widgets analytics scales):
+     * major-tick label sources ("&#92;n"-joined custom texts).
+     * </pre>
+     *
+     * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for textSrc.
+     */
+    com.google.protobuf.ByteString
+        getTextSrcBytes();
+
+    /**
+     * <pre>
+     * Draw tick labels after the needle/indicator (lv_scale_set_post_draw).
+     * </pre>
+     *
+     * <code>bool post_draw = 10;</code>
+     * @return The postDraw.
+     */
+    boolean getPostDraw();
+
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    java.util.List<ui.UiAst.ScaleSection> 
+        getSectionsList();
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    ui.UiAst.ScaleSection getSections(int index);
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    int getSectionsCount();
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    java.util.List<? extends ui.UiAst.ScaleSectionOrBuilder> 
+        getSectionsOrBuilderList();
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    ui.UiAst.ScaleSectionOrBuilder getSectionsOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code ui.ScaleProps}
@@ -26997,6 +27402,8 @@ java.lang.String defaultValue) {
     }
     private ScaleProps() {
       mode_ = 0;
+      textSrc_ = "";
+      sections_ = java.util.Collections.emptyList();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -27107,6 +27514,131 @@ java.lang.String defaultValue) {
       return angleRange_;
     }
 
+    public static final int TEXT_SRC_FIELD_NUMBER = 9;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object textSrc_ = "";
+    /**
+     * <pre>
+     * Demo-parity extensions (lv_demo_widgets analytics scales):
+     * major-tick label sources ("&#92;n"-joined custom texts).
+     * </pre>
+     *
+     * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+     * @return The textSrc.
+     */
+    @java.lang.Override
+    public java.lang.String getTextSrc() {
+      java.lang.Object ref = textSrc_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        textSrc_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Demo-parity extensions (lv_demo_widgets analytics scales):
+     * major-tick label sources ("&#92;n"-joined custom texts).
+     * </pre>
+     *
+     * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for textSrc.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTextSrcBytes() {
+      java.lang.Object ref = textSrc_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        textSrc_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int POST_DRAW_FIELD_NUMBER = 10;
+    private boolean postDraw_ = false;
+    /**
+     * <pre>
+     * Draw tick labels after the needle/indicator (lv_scale_set_post_draw).
+     * </pre>
+     *
+     * <code>bool post_draw = 10;</code>
+     * @return The postDraw.
+     */
+    @java.lang.Override
+    public boolean getPostDraw() {
+      return postDraw_;
+    }
+
+    public static final int SECTIONS_FIELD_NUMBER = 11;
+    @SuppressWarnings("serial")
+    private java.util.List<ui.UiAst.ScaleSection> sections_;
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public java.util.List<ui.UiAst.ScaleSection> getSectionsList() {
+      return sections_;
+    }
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends ui.UiAst.ScaleSectionOrBuilder> 
+        getSectionsOrBuilderList() {
+      return sections_;
+    }
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public int getSectionsCount() {
+      return sections_.size();
+    }
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ScaleSection getSections(int index) {
+      return sections_.get(index);
+    }
+    /**
+     * <pre>
+     * Colored value sections (lv_scale_section_*).
+     * </pre>
+     *
+     * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ScaleSectionOrBuilder getSectionsOrBuilder(
+        int index) {
+      return sections_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -27144,6 +27676,15 @@ java.lang.String defaultValue) {
       }
       if (angleRange_ != 0) {
         output.writeUInt32(8, angleRange_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(textSrc_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 9, textSrc_);
+      }
+      if (postDraw_ != false) {
+        output.writeBool(10, postDraw_);
+      }
+      for (int i = 0; i < sections_.size(); i++) {
+        output.writeMessage(11, sections_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -27186,6 +27727,17 @@ java.lang.String defaultValue) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(8, angleRange_);
       }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(textSrc_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(9, textSrc_);
+      }
+      if (postDraw_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, postDraw_);
+      }
+      for (int i = 0; i < sections_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(11, sections_.get(i));
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -27216,6 +27768,12 @@ java.lang.String defaultValue) {
           != other.getRotation()) return false;
       if (getAngleRange()
           != other.getAngleRange()) return false;
+      if (!getTextSrc()
+          .equals(other.getTextSrc())) return false;
+      if (getPostDraw()
+          != other.getPostDraw()) return false;
+      if (!getSectionsList()
+          .equals(other.getSectionsList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -27244,6 +27802,15 @@ java.lang.String defaultValue) {
       hash = (53 * hash) + getRotation();
       hash = (37 * hash) + ANGLE_RANGE_FIELD_NUMBER;
       hash = (53 * hash) + getAngleRange();
+      hash = (37 * hash) + TEXT_SRC_FIELD_NUMBER;
+      hash = (53 * hash) + getTextSrc().hashCode();
+      hash = (37 * hash) + POST_DRAW_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getPostDraw());
+      if (getSectionsCount() > 0) {
+        hash = (37 * hash) + SECTIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getSectionsList().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -27383,6 +27950,15 @@ java.lang.String defaultValue) {
         maxValue_ = 0;
         rotation_ = 0;
         angleRange_ = 0;
+        textSrc_ = "";
+        postDraw_ = false;
+        if (sectionsBuilder_ == null) {
+          sections_ = java.util.Collections.emptyList();
+        } else {
+          sections_ = null;
+          sectionsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000400);
         return this;
       }
 
@@ -27409,9 +27985,22 @@ java.lang.String defaultValue) {
       @java.lang.Override
       public ui.UiAst.ScaleProps buildPartial() {
         ui.UiAst.ScaleProps result = new ui.UiAst.ScaleProps(this);
+        buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(ui.UiAst.ScaleProps result) {
+        if (sectionsBuilder_ == null) {
+          if (((bitField0_ & 0x00000400) != 0)) {
+            sections_ = java.util.Collections.unmodifiableList(sections_);
+            bitField0_ = (bitField0_ & ~0x00000400);
+          }
+          result.sections_ = sections_;
+        } else {
+          result.sections_ = sectionsBuilder_.build();
+        }
       }
 
       private void buildPartial0(ui.UiAst.ScaleProps result) {
@@ -27439,6 +28028,12 @@ java.lang.String defaultValue) {
         }
         if (((from_bitField0_ & 0x00000080) != 0)) {
           result.angleRange_ = angleRange_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.textSrc_ = textSrc_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.postDraw_ = postDraw_;
         }
       }
 
@@ -27477,6 +28072,40 @@ java.lang.String defaultValue) {
         }
         if (other.getAngleRange() != 0) {
           setAngleRange(other.getAngleRange());
+        }
+        if (!other.getTextSrc().isEmpty()) {
+          textSrc_ = other.textSrc_;
+          bitField0_ |= 0x00000100;
+          onChanged();
+        }
+        if (other.getPostDraw() != false) {
+          setPostDraw(other.getPostDraw());
+        }
+        if (sectionsBuilder_ == null) {
+          if (!other.sections_.isEmpty()) {
+            if (sections_.isEmpty()) {
+              sections_ = other.sections_;
+              bitField0_ = (bitField0_ & ~0x00000400);
+            } else {
+              ensureSectionsIsMutable();
+              sections_.addAll(other.sections_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.sections_.isEmpty()) {
+            if (sectionsBuilder_.isEmpty()) {
+              sectionsBuilder_.dispose();
+              sectionsBuilder_ = null;
+              sections_ = other.sections_;
+              bitField0_ = (bitField0_ & ~0x00000400);
+              sectionsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getSectionsFieldBuilder() : null;
+            } else {
+              sectionsBuilder_.addAllMessages(other.sections_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -27544,6 +28173,29 @@ java.lang.String defaultValue) {
                 bitField0_ |= 0x00000080;
                 break;
               } // case 64
+              case 74: {
+                textSrc_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 74
+              case 80: {
+                postDraw_ = input.readBool();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 80
+              case 90: {
+                ui.UiAst.ScaleSection m =
+                    input.readMessage(
+                        ui.UiAst.ScaleSection.parser(),
+                        extensionRegistry);
+                if (sectionsBuilder_ == null) {
+                  ensureSectionsIsMutable();
+                  sections_.add(m);
+                } else {
+                  sectionsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 90
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -27838,6 +28490,459 @@ java.lang.String defaultValue) {
         return this;
       }
 
+      private java.lang.Object textSrc_ = "";
+      /**
+       * <pre>
+       * Demo-parity extensions (lv_demo_widgets analytics scales):
+       * major-tick label sources ("&#92;n"-joined custom texts).
+       * </pre>
+       *
+       * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+       * @return The textSrc.
+       */
+      public java.lang.String getTextSrc() {
+        java.lang.Object ref = textSrc_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          textSrc_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Demo-parity extensions (lv_demo_widgets analytics scales):
+       * major-tick label sources ("&#92;n"-joined custom texts).
+       * </pre>
+       *
+       * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+       * @return The bytes for textSrc.
+       */
+      public com.google.protobuf.ByteString
+          getTextSrcBytes() {
+        java.lang.Object ref = textSrc_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          textSrc_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Demo-parity extensions (lv_demo_widgets analytics scales):
+       * major-tick label sources ("&#92;n"-joined custom texts).
+       * </pre>
+       *
+       * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+       * @param value The textSrc to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTextSrc(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        textSrc_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Demo-parity extensions (lv_demo_widgets analytics scales):
+       * major-tick label sources ("&#92;n"-joined custom texts).
+       * </pre>
+       *
+       * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTextSrc() {
+        textSrc_ = getDefaultInstance().getTextSrc();
+        bitField0_ = (bitField0_ & ~0x00000100);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Demo-parity extensions (lv_demo_widgets analytics scales):
+       * major-tick label sources ("&#92;n"-joined custom texts).
+       * </pre>
+       *
+       * <code>string text_src = 9 [(.buf.validate.field) = { ... }</code>
+       * @param value The bytes for textSrc to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTextSrcBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        textSrc_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+
+      private boolean postDraw_ ;
+      /**
+       * <pre>
+       * Draw tick labels after the needle/indicator (lv_scale_set_post_draw).
+       * </pre>
+       *
+       * <code>bool post_draw = 10;</code>
+       * @return The postDraw.
+       */
+      @java.lang.Override
+      public boolean getPostDraw() {
+        return postDraw_;
+      }
+      /**
+       * <pre>
+       * Draw tick labels after the needle/indicator (lv_scale_set_post_draw).
+       * </pre>
+       *
+       * <code>bool post_draw = 10;</code>
+       * @param value The postDraw to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPostDraw(boolean value) {
+
+        postDraw_ = value;
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Draw tick labels after the needle/indicator (lv_scale_set_post_draw).
+       * </pre>
+       *
+       * <code>bool post_draw = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPostDraw() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        postDraw_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<ui.UiAst.ScaleSection> sections_ =
+        java.util.Collections.emptyList();
+      private void ensureSectionsIsMutable() {
+        if (!((bitField0_ & 0x00000400) != 0)) {
+          sections_ = new java.util.ArrayList<ui.UiAst.ScaleSection>(sections_);
+          bitField0_ |= 0x00000400;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ui.UiAst.ScaleSection, ui.UiAst.ScaleSection.Builder, ui.UiAst.ScaleSectionOrBuilder> sectionsBuilder_;
+
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public java.util.List<ui.UiAst.ScaleSection> getSectionsList() {
+        if (sectionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(sections_);
+        } else {
+          return sectionsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public int getSectionsCount() {
+        if (sectionsBuilder_ == null) {
+          return sections_.size();
+        } else {
+          return sectionsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ScaleSection getSections(int index) {
+        if (sectionsBuilder_ == null) {
+          return sections_.get(index);
+        } else {
+          return sectionsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder setSections(
+          int index, ui.UiAst.ScaleSection value) {
+        if (sectionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSectionsIsMutable();
+          sections_.set(index, value);
+          onChanged();
+        } else {
+          sectionsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder setSections(
+          int index, ui.UiAst.ScaleSection.Builder builderForValue) {
+        if (sectionsBuilder_ == null) {
+          ensureSectionsIsMutable();
+          sections_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          sectionsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSections(ui.UiAst.ScaleSection value) {
+        if (sectionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSectionsIsMutable();
+          sections_.add(value);
+          onChanged();
+        } else {
+          sectionsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSections(
+          int index, ui.UiAst.ScaleSection value) {
+        if (sectionsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSectionsIsMutable();
+          sections_.add(index, value);
+          onChanged();
+        } else {
+          sectionsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSections(
+          ui.UiAst.ScaleSection.Builder builderForValue) {
+        if (sectionsBuilder_ == null) {
+          ensureSectionsIsMutable();
+          sections_.add(builderForValue.build());
+          onChanged();
+        } else {
+          sectionsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addSections(
+          int index, ui.UiAst.ScaleSection.Builder builderForValue) {
+        if (sectionsBuilder_ == null) {
+          ensureSectionsIsMutable();
+          sections_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          sectionsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder addAllSections(
+          java.lang.Iterable<? extends ui.UiAst.ScaleSection> values) {
+        if (sectionsBuilder_ == null) {
+          ensureSectionsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, sections_);
+          onChanged();
+        } else {
+          sectionsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder clearSections() {
+        if (sectionsBuilder_ == null) {
+          sections_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000400);
+          onChanged();
+        } else {
+          sectionsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public Builder removeSections(int index) {
+        if (sectionsBuilder_ == null) {
+          ensureSectionsIsMutable();
+          sections_.remove(index);
+          onChanged();
+        } else {
+          sectionsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ScaleSection.Builder getSectionsBuilder(
+          int index) {
+        return getSectionsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ScaleSectionOrBuilder getSectionsOrBuilder(
+          int index) {
+        if (sectionsBuilder_ == null) {
+          return sections_.get(index);  } else {
+          return sectionsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public java.util.List<? extends ui.UiAst.ScaleSectionOrBuilder> 
+           getSectionsOrBuilderList() {
+        if (sectionsBuilder_ != null) {
+          return sectionsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(sections_);
+        }
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ScaleSection.Builder addSectionsBuilder() {
+        return getSectionsFieldBuilder().addBuilder(
+            ui.UiAst.ScaleSection.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public ui.UiAst.ScaleSection.Builder addSectionsBuilder(
+          int index) {
+        return getSectionsFieldBuilder().addBuilder(
+            index, ui.UiAst.ScaleSection.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * Colored value sections (lv_scale_section_*).
+       * </pre>
+       *
+       * <code>repeated .ui.ScaleSection sections = 11 [(.buf.validate.field) = { ... }</code>
+       */
+      public java.util.List<ui.UiAst.ScaleSection.Builder> 
+           getSectionsBuilderList() {
+        return getSectionsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ui.UiAst.ScaleSection, ui.UiAst.ScaleSection.Builder, ui.UiAst.ScaleSectionOrBuilder> 
+          getSectionsFieldBuilder() {
+        if (sectionsBuilder_ == null) {
+          sectionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              ui.UiAst.ScaleSection, ui.UiAst.ScaleSection.Builder, ui.UiAst.ScaleSectionOrBuilder>(
+                  sections_,
+                  ((bitField0_ & 0x00000400) != 0),
+                  getParentForChildren(),
+                  isClean());
+          sections_ = null;
+        }
+        return sectionsBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:ui.ScaleProps)
     }
 
@@ -27884,6 +28989,792 @@ java.lang.String defaultValue) {
 
     @java.lang.Override
     public ui.UiAst.ScaleProps getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ScaleSectionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ui.ScaleSection)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 range_min = 1;</code>
+     * @return The rangeMin.
+     */
+    int getRangeMin();
+
+    /**
+     * <code>int32 range_max = 2;</code>
+     * @return The rangeMax.
+     */
+    int getRangeMax();
+
+    /**
+     * <code>.ui.Color color = 3;</code>
+     * @return Whether the color field is set.
+     */
+    boolean hasColor();
+    /**
+     * <code>.ui.Color color = 3;</code>
+     * @return The color.
+     */
+    ui.UiAst.Color getColor();
+    /**
+     * <code>.ui.Color color = 3;</code>
+     */
+    ui.UiAst.ColorOrBuilder getColorOrBuilder();
+
+    /**
+     * <code>uint32 width = 4;</code>
+     * @return The width.
+     */
+    int getWidth();
+  }
+  /**
+   * Protobuf type {@code ui.ScaleSection}
+   */
+  public static final class ScaleSection extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ui.ScaleSection)
+      ScaleSectionOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        ScaleSection.class.getName());
+    }
+    // Use ScaleSection.newBuilder() to construct.
+    private ScaleSection(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private ScaleSection() {
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ui.UiAst.internal_static_ui_ScaleSection_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ui.UiAst.internal_static_ui_ScaleSection_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ui.UiAst.ScaleSection.class, ui.UiAst.ScaleSection.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int RANGE_MIN_FIELD_NUMBER = 1;
+    private int rangeMin_ = 0;
+    /**
+     * <code>int32 range_min = 1;</code>
+     * @return The rangeMin.
+     */
+    @java.lang.Override
+    public int getRangeMin() {
+      return rangeMin_;
+    }
+
+    public static final int RANGE_MAX_FIELD_NUMBER = 2;
+    private int rangeMax_ = 0;
+    /**
+     * <code>int32 range_max = 2;</code>
+     * @return The rangeMax.
+     */
+    @java.lang.Override
+    public int getRangeMax() {
+      return rangeMax_;
+    }
+
+    public static final int COLOR_FIELD_NUMBER = 3;
+    private ui.UiAst.Color color_;
+    /**
+     * <code>.ui.Color color = 3;</code>
+     * @return Whether the color field is set.
+     */
+    @java.lang.Override
+    public boolean hasColor() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <code>.ui.Color color = 3;</code>
+     * @return The color.
+     */
+    @java.lang.Override
+    public ui.UiAst.Color getColor() {
+      return color_ == null ? ui.UiAst.Color.getDefaultInstance() : color_;
+    }
+    /**
+     * <code>.ui.Color color = 3;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ColorOrBuilder getColorOrBuilder() {
+      return color_ == null ? ui.UiAst.Color.getDefaultInstance() : color_;
+    }
+
+    public static final int WIDTH_FIELD_NUMBER = 4;
+    private int width_ = 0;
+    /**
+     * <code>uint32 width = 4;</code>
+     * @return The width.
+     */
+    @java.lang.Override
+    public int getWidth() {
+      return width_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (rangeMin_ != 0) {
+        output.writeInt32(1, rangeMin_);
+      }
+      if (rangeMax_ != 0) {
+        output.writeInt32(2, rangeMax_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(3, getColor());
+      }
+      if (width_ != 0) {
+        output.writeUInt32(4, width_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (rangeMin_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, rangeMin_);
+      }
+      if (rangeMax_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, rangeMax_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getColor());
+      }
+      if (width_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, width_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ui.UiAst.ScaleSection)) {
+        return super.equals(obj);
+      }
+      ui.UiAst.ScaleSection other = (ui.UiAst.ScaleSection) obj;
+
+      if (getRangeMin()
+          != other.getRangeMin()) return false;
+      if (getRangeMax()
+          != other.getRangeMax()) return false;
+      if (hasColor() != other.hasColor()) return false;
+      if (hasColor()) {
+        if (!getColor()
+            .equals(other.getColor())) return false;
+      }
+      if (getWidth()
+          != other.getWidth()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RANGE_MIN_FIELD_NUMBER;
+      hash = (53 * hash) + getRangeMin();
+      hash = (37 * hash) + RANGE_MAX_FIELD_NUMBER;
+      hash = (53 * hash) + getRangeMax();
+      if (hasColor()) {
+        hash = (37 * hash) + COLOR_FIELD_NUMBER;
+        hash = (53 * hash) + getColor().hashCode();
+      }
+      hash = (37 * hash) + WIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getWidth();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ui.UiAst.ScaleSection parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ui.UiAst.ScaleSection parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ui.UiAst.ScaleSection parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ScaleSection parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ui.UiAst.ScaleSection prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ui.ScaleSection}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ui.ScaleSection)
+        ui.UiAst.ScaleSectionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ui.UiAst.internal_static_ui_ScaleSection_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ui.UiAst.internal_static_ui_ScaleSection_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ui.UiAst.ScaleSection.class, ui.UiAst.ScaleSection.Builder.class);
+      }
+
+      // Construct using ui.UiAst.ScaleSection.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getColorFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        rangeMin_ = 0;
+        rangeMax_ = 0;
+        color_ = null;
+        if (colorBuilder_ != null) {
+          colorBuilder_.dispose();
+          colorBuilder_ = null;
+        }
+        width_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ui.UiAst.internal_static_ui_ScaleSection_descriptor;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ScaleSection getDefaultInstanceForType() {
+        return ui.UiAst.ScaleSection.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ScaleSection build() {
+        ui.UiAst.ScaleSection result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ScaleSection buildPartial() {
+        ui.UiAst.ScaleSection result = new ui.UiAst.ScaleSection(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ui.UiAst.ScaleSection result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.rangeMin_ = rangeMin_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.rangeMax_ = rangeMax_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.color_ = colorBuilder_ == null
+              ? color_
+              : colorBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.width_ = width_;
+        }
+        result.bitField0_ |= to_bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ui.UiAst.ScaleSection) {
+          return mergeFrom((ui.UiAst.ScaleSection)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ui.UiAst.ScaleSection other) {
+        if (other == ui.UiAst.ScaleSection.getDefaultInstance()) return this;
+        if (other.getRangeMin() != 0) {
+          setRangeMin(other.getRangeMin());
+        }
+        if (other.getRangeMax() != 0) {
+          setRangeMax(other.getRangeMax());
+        }
+        if (other.hasColor()) {
+          mergeColor(other.getColor());
+        }
+        if (other.getWidth() != 0) {
+          setWidth(other.getWidth());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                rangeMin_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                rangeMax_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                input.readMessage(
+                    getColorFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 32: {
+                width_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int rangeMin_ ;
+      /**
+       * <code>int32 range_min = 1;</code>
+       * @return The rangeMin.
+       */
+      @java.lang.Override
+      public int getRangeMin() {
+        return rangeMin_;
+      }
+      /**
+       * <code>int32 range_min = 1;</code>
+       * @param value The rangeMin to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRangeMin(int value) {
+
+        rangeMin_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 range_min = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRangeMin() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        rangeMin_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int rangeMax_ ;
+      /**
+       * <code>int32 range_max = 2;</code>
+       * @return The rangeMax.
+       */
+      @java.lang.Override
+      public int getRangeMax() {
+        return rangeMax_;
+      }
+      /**
+       * <code>int32 range_max = 2;</code>
+       * @param value The rangeMax to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRangeMax(int value) {
+
+        rangeMax_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 range_max = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRangeMax() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        rangeMax_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private ui.UiAst.Color color_;
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder> colorBuilder_;
+      /**
+       * <code>.ui.Color color = 3;</code>
+       * @return Whether the color field is set.
+       */
+      public boolean hasColor() {
+        return ((bitField0_ & 0x00000004) != 0);
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       * @return The color.
+       */
+      public ui.UiAst.Color getColor() {
+        if (colorBuilder_ == null) {
+          return color_ == null ? ui.UiAst.Color.getDefaultInstance() : color_;
+        } else {
+          return colorBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       */
+      public Builder setColor(ui.UiAst.Color value) {
+        if (colorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          color_ = value;
+        } else {
+          colorBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       */
+      public Builder setColor(
+          ui.UiAst.Color.Builder builderForValue) {
+        if (colorBuilder_ == null) {
+          color_ = builderForValue.build();
+        } else {
+          colorBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       */
+      public Builder mergeColor(ui.UiAst.Color value) {
+        if (colorBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0) &&
+            color_ != null &&
+            color_ != ui.UiAst.Color.getDefaultInstance()) {
+            getColorBuilder().mergeFrom(value);
+          } else {
+            color_ = value;
+          }
+        } else {
+          colorBuilder_.mergeFrom(value);
+        }
+        if (color_ != null) {
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       */
+      public Builder clearColor() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        color_ = null;
+        if (colorBuilder_ != null) {
+          colorBuilder_.dispose();
+          colorBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       */
+      public ui.UiAst.Color.Builder getColorBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getColorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       */
+      public ui.UiAst.ColorOrBuilder getColorOrBuilder() {
+        if (colorBuilder_ != null) {
+          return colorBuilder_.getMessageOrBuilder();
+        } else {
+          return color_ == null ?
+              ui.UiAst.Color.getDefaultInstance() : color_;
+        }
+      }
+      /**
+       * <code>.ui.Color color = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder> 
+          getColorFieldBuilder() {
+        if (colorBuilder_ == null) {
+          colorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder>(
+                  getColor(),
+                  getParentForChildren(),
+                  isClean());
+          color_ = null;
+        }
+        return colorBuilder_;
+      }
+
+      private int width_ ;
+      /**
+       * <code>uint32 width = 4;</code>
+       * @return The width.
+       */
+      @java.lang.Override
+      public int getWidth() {
+        return width_;
+      }
+      /**
+       * <code>uint32 width = 4;</code>
+       * @param value The width to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWidth(int value) {
+
+        width_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 width = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWidth() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        width_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ui.ScaleSection)
+    }
+
+    // @@protoc_insertion_point(class_scope:ui.ScaleSection)
+    private static final ui.UiAst.ScaleSection DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ui.UiAst.ScaleSection();
+    }
+
+    public static ui.UiAst.ScaleSection getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ScaleSection>
+        PARSER = new com.google.protobuf.AbstractParser<ScaleSection>() {
+      @java.lang.Override
+      public ScaleSection parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ScaleSection> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ScaleSection> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ui.UiAst.ScaleSection getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -37054,6 +38945,11 @@ java.lang.String defaultValue) {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ui_ScaleProps_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ui_ScaleSection_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ui_ScaleSection_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ui_ButtonMatrixProps_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -37168,212 +39064,218 @@ java.lang.String defaultValue) {
       "\001 \001(\0162\021.ui.LabelLongModeB\010\272H\005\202\001\002\020\001\"g\n\013Sl" +
       "iderProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_valu" +
       "e\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022#\n\004mode\030\004 \001(\0162\013.u" +
-      "i.BarModeB\010\272H\005\202\001\002\020\001\"#\n\nImageProps\022\025\n\003src" +
-      "\030\001 \001(\tB\010\272H\005r\003\030\377\001\"\364\001\n\010ArcProps\022\035\n\013start_a" +
-      "ngle\030\001 \001(\rB\010\272H\005*\003\030\350\002\022\033\n\tend_angle\030\002 \001(\rB" +
-      "\010\272H\005*\003\030\350\002\022 \n\016bg_start_angle\030\003 \001(\rB\010\272H\005*\003" +
-      "\030\350\002\022\036\n\014bg_end_angle\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010r" +
-      "otation\030\005 \001(\005\022#\n\004mode\030\006 \001(\0162\013.ui.ArcMode" +
-      "B\010\272H\005\202\001\002\020\001\022\021\n\tmin_value\030\007 \001(\005\022\021\n\tmax_val" +
-      "ue\030\010 \001(\005\022\r\n\005value\030\t \001(\005\"y\n\010BarProps\022\021\n\tm" +
-      "in_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005val" +
-      "ue\030\003 \001(\005\022\023\n\013start_value\030\004 \001(\005\022#\n\004mode\030\005 " +
-      "\001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020\001\"\036\n\013SwitchProp" +
-      "s\022\017\n\007checked\030\001 \001(\010\" \n\rCheckboxProps\022\017\n\007c" +
-      "hecked\030\001 \001(\010\"b\n\rDropdownProps\022\031\n\007options" +
-      "\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020\n\010selected\030\002 \001(\r\022$\n\tdi" +
-      "rection\030\003 \001(\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\"}\n\013Roll" +
-      "erProps\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010se" +
-      "lected\030\002 \001(\r\022\031\n\021visible_row_count\030\003 \001(\r\022" +
-      "&\n\004mode\030\004 \001(\0162\016.ui.RollerModeB\010\272H\005\202\001\002\020\001\"" +
-      "k\n\rTextareaProps\022\035\n\013placeholder\030\001 \001(\tB\010\272" +
-      "H\005r\003\030\377\001\022\022\n\nmax_length\030\002 \001(\r\022\020\n\010one_line\030" +
-      "\003 \001(\010\022\025\n\rpassword_mode\030\004 \001(\010\"\202\001\n\014Spinbox" +
-      "Props\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_value\030\002 " +
-      "\001(\005\022\r\n\005value\030\003 \001(\005\022\014\n\004step\030\004 \001(\005\022\023\n\013digi" +
-      "t_count\030\005 \001(\r\022\032\n\022separator_position\030\006 \001(" +
-      "\r\"5\n\014SpinnerProps\022\021\n\tspin_time\030\001 \001(\r\022\022\n\n" +
-      "arc_length\030\002 \001(\r\"B\n\010LedProps\022\030\n\005color\030\001 " +
-      "\001(\0132\t.ui.Color\022\034\n\nbrightness\030\002 \001(\rB\010\272H\005*" +
-      "\003\030\377\001\"8\n\tLineProps\022\031\n\006points\030\001 \003(\0132\t.ui.P" +
-      "oint\022\020\n\010y_invert\030\002 \001(\010\"\322\001\n\nScaleProps\022%\n" +
-      "\004mode\030\001 \001(\0162\r.ui.ScaleModeB\010\272H\005\202\001\002\020\001\022\030\n\020" +
-      "total_tick_count\030\002 \001(\r\022\030\n\020major_tick_eve" +
-      "ry\030\003 \001(\r\022\022\n\nlabel_show\030\004 \001(\010\022\021\n\tmin_valu" +
-      "e\030\005 \001(\005\022\021\n\tmax_value\030\006 \001(\005\022\020\n\010rotation\030\007" +
-      " \001(\005\022\035\n\013angle_range\030\010 \001(\rB\010\272H\005*\003\030\350\002\"A\n\021B" +
-      "uttonMatrixProps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005r\003" +
-      "\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nTableProps\022\021\n\t" +
-      "row_count\030\001 \001(\r\022\024\n\014column_count\030\002 \001(\r\"\035\n" +
-      "\005Point\022\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBi" +
-      "nding\022\027\n\004name\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigge" +
-      "r\030\002 \001(\0162\020.ui.EventTriggerB\010\272H\005\202\001\002\020\001\022\021\n\ti" +
-      "nt_value\030\003 \001(\005\022\034\n\024include_widget_value\030\004" +
-      " \001(\010\022\034\n\013set_subject\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tse" +
-      "t_value\030\006 \001(\005\022\016\n\006toggle\030\007 \001(\010\022\023\n\013notify_" +
-      "host\030\010 \001(\010\"l\n\021VisibilityBinding\022\032\n\007subje" +
-      "ct\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022\021\n\tref_value\030\002 \001(\005\022(" +
-      "\n\007compare\030\003 \001(\0162\r.ui.CompareOpB\010\272H\005\202\001\002\020\001" +
-      "\"\267\001\n\006Layout\022$\n\004flow\030\001 \001(\0162\014.ui.FlexFlowB" +
-      "\010\272H\005\202\001\002\020\001\022+\n\nmain_place\030\002 \001(\0162\r.ui.FlexA" +
-      "lignB\010\272H\005\202\001\002\020\001\022,\n\013cross_place\030\003 \001(\0162\r.ui" +
-      ".FlexAlignB\010\272H\005\202\001\002\020\001\022,\n\013track_place\030\004 \001(" +
-      "\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup" +
-      "\022\026\n\016state_selector\030\001 \001(\r\022/\n\010variants\030\002 \003" +
-      "(\0132\021.ui.ResolvedStyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rRes" +
-      "olvedStyle\022%\n\nproperties\030\001 \003(\0132\021.ui.Styl" +
-      "eProperty\"\337\001\n\rStyleProperty\022-\n\004type\030\001 \001(" +
-      "\0162\025.ui.StylePropertyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nui" +
-      "nt_value\030\002 \001(\rH\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n" +
-      "\013color_value\030\004 \001(\0132\t.ui.ColorH\000\022\037\n\014strin" +
-      "g_value\030\005 \001(\tB\007\272H\004r\002\030?H\000\022(\n\014shadow_value" +
-      "\030\006 \001(\0132\020.ui.ShadowBundleH\000B\007\n\005value\"F\n\005C" +
-      "olor\022\023\n\001r\030\001 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H" +
-      "\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB\010\272H\005*\003\030\377\001\"h\n\014ShadowBun" +
-      "dle\022\r\n\005width\030\001 \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010" +
-      "offset_y\030\003 \001(\005\022\016\n\006spread\030\004 \001(\r\022\025\n\003opa\030\005 " +
-      "\001(\rB\010\272H\005*\003\030\377\001*2\n\013SubjectType\022\017\n\013SUBJECT_" +
-      "INT\020\000\022\022\n\016SUBJECT_STRING\020\001*\361\002\n\nWidgetType" +
-      "\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rWIDGET_BUTTON\020\001\022\020\n\014W" +
-      "IDGET_LABEL\020\002\022\021\n\rWIDGET_SLIDER\020\003\022\020\n\014WIDG" +
-      "ET_IMAGE\020\004\022\016\n\nWIDGET_ARC\020\005\022\016\n\nWIDGET_BAR" +
-      "\020\006\022\021\n\rWIDGET_SWITCH\020\007\022\023\n\017WIDGET_CHECKBOX" +
-      "\020\010\022\023\n\017WIDGET_DROPDOWN\020\t\022\021\n\rWIDGET_ROLLER" +
-      "\020\n\022\023\n\017WIDGET_TEXTAREA\020\013\022\022\n\016WIDGET_SPINBO" +
-      "X\020\014\022\022\n\016WIDGET_SPINNER\020\r\022\016\n\nWIDGET_LED\020\016\022" +
-      "\017\n\013WIDGET_LINE\020\017\022\020\n\014WIDGET_SCALE\020\020\022\027\n\023WI" +
-      "DGET_BUTTONMATRIX\020\021\022\020\n\014WIDGET_TABLE\020\022*X\n" +
-      "\014EventTrigger\022\023\n\017TRIGGER_CLICKED\020\000\022\031\n\025TR" +
-      "IGGER_VALUE_CHANGED\020\001\022\030\n\024TRIGGER_LONG_PR" +
-      "ESSED\020\002*q\n\tCompareOp\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016" +
-      "COMPARE_NOT_EQ\020\001\022\016\n\nCOMPARE_GT\020\002\022\017\n\013COMP" +
-      "ARE_GTE\020\003\022\016\n\nCOMPARE_LT\020\004\022\017\n\013COMPARE_LTE" +
-      "\020\005*\366\001\n\010FlexFlow\022\022\n\016FLEX_FLOW_NONE\020\000\022\021\n\rF" +
-      "LEX_FLOW_ROW\020\001\022\024\n\020FLEX_FLOW_COLUMN\020\002\022\026\n\022" +
-      "FLEX_FLOW_ROW_WRAP\020\003\022\031\n\025FLEX_FLOW_ROW_RE" +
-      "VERSE\020\004\022\036\n\032FLEX_FLOW_ROW_WRAP_REVERSE\020\005\022" +
-      "\031\n\025FLEX_FLOW_COLUMN_WRAP\020\006\022\034\n\030FLEX_FLOW_" +
-      "COLUMN_REVERSE\020\007\022!\n\035FLEX_FLOW_COLUMN_WRA" +
-      "P_REVERSE\020\010*\244\001\n\tFlexAlign\022\024\n\020FLEX_ALIGN_" +
-      "START\020\000\022\022\n\016FLEX_ALIGN_END\020\001\022\025\n\021FLEX_ALIG" +
-      "N_CENTER\020\002\022\033\n\027FLEX_ALIGN_SPACE_EVENLY\020\003\022" +
-      "\033\n\027FLEX_ALIGN_SPACE_AROUND\020\004\022\034\n\030FLEX_ALI" +
-      "GN_SPACE_BETWEEN\020\005*\274\001\n\tGridAlign\022\024\n\020GRID" +
-      "_ALIGN_START\020\000\022\025\n\021GRID_ALIGN_CENTER\020\001\022\022\n" +
-      "\016GRID_ALIGN_END\020\002\022\026\n\022GRID_ALIGN_STRETCH\020" +
-      "\003\022\033\n\027GRID_ALIGN_SPACE_EVENLY\020\004\022\033\n\027GRID_A" +
-      "LIGN_SPACE_AROUND\020\005\022\034\n\030GRID_ALIGN_SPACE_" +
-      "BETWEEN\020\006*b\n\tTextAlign\022\023\n\017TEXT_ALIGN_AUT" +
-      "O\020\000\022\023\n\017TEXT_ALIGN_LEFT\020\001\022\025\n\021TEXT_ALIGN_C" +
-      "ENTER\020\002\022\024\n\020TEXT_ALIGN_RIGHT\020\003*X\n\tTextDec" +
-      "or\022\023\n\017TEXT_DECOR_NONE\020\000\022\030\n\024TEXT_DECOR_UN" +
-      "DERLINE\020\001\022\034\n\030TEXT_DECOR_STRIKETHROUGH\020\002*" +
-      "\213\001\n\tBlendMode\022\025\n\021BLEND_MODE_NORMAL\020\000\022\027\n\023" +
-      "BLEND_MODE_ADDITIVE\020\001\022\032\n\026BLEND_MODE_SUBT" +
-      "RACTIVE\020\002\022\027\n\023BLEND_MODE_MULTIPLY\020\003\022\031\n\025BL" +
-      "END_MODE_DIFFERENCE\020\004*i\n\007BaseDir\022\020\n\014BASE" +
-      "_DIR_LTR\020\000\022\020\n\014BASE_DIR_RTL\020\001\022\021\n\rBASE_DIR" +
-      "_AUTO\020\002\022\024\n\020BASE_DIR_NEUTRAL\020 \022\021\n\rBASE_DI" +
-      "R_WEAK\020!*\200\001\n\007GradDir\022\021\n\rGRAD_DIR_NONE\020\000\022" +
-      "\020\n\014GRAD_DIR_VER\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017G" +
-      "RAD_DIR_LINEAR\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n" +
-      "\020GRAD_DIR_CONICAL\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000" +
-      "\022\014\n\010DIR_LEFT\020\001\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_TOP" +
-      "\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_V" +
-      "ER\020\014\022\013\n\007DIR_ALL\020\017*\210\004\n\005Align\022\021\n\rALIGN_DEF" +
-      "AULT\020\000\022\022\n\016ALIGN_TOP_LEFT\020\001\022\021\n\rALIGN_TOP_" +
-      "MID\020\002\022\023\n\017ALIGN_TOP_RIGHT\020\003\022\025\n\021ALIGN_BOTT" +
-      "OM_LEFT\020\004\022\024\n\020ALIGN_BOTTOM_MID\020\005\022\026\n\022ALIGN" +
-      "_BOTTOM_RIGHT\020\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017A" +
-      "LIGN_RIGHT_MID\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022AL" +
-      "IGN_OUT_TOP_LEFT\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020" +
-      "\013\022\027\n\023ALIGN_OUT_TOP_RIGHT\020\014\022\031\n\025ALIGN_OUT_" +
-      "BOTTOM_LEFT\020\r\022\030\n\024ALIGN_OUT_BOTTOM_MID\020\016\022" +
-      "\032\n\026ALIGN_OUT_BOTTOM_RIGHT\020\017\022\026\n\022ALIGN_OUT" +
-      "_LEFT_TOP\020\020\022\026\n\022ALIGN_OUT_LEFT_MID\020\021\022\031\n\025A" +
-      "LIGN_OUT_LEFT_BOTTOM\020\022\022\027\n\023ALIGN_OUT_RIGH" +
-      "T_TOP\020\023\022\027\n\023ALIGN_OUT_RIGHT_MID\020\024\022\032\n\026ALIG" +
-      "N_OUT_RIGHT_BOTTOM\020\025*\254\001\n\nBorderSide\022\024\n\020B" +
-      "ORDER_SIDE_NONE\020\000\022\026\n\022BORDER_SIDE_BOTTOM\020" +
-      "\001\022\023\n\017BORDER_SIDE_TOP\020\002\022\024\n\020BORDER_SIDE_LE" +
-      "FT\020\004\022\025\n\021BORDER_SIDE_RIGHT\020\010\022\024\n\020BORDER_SI" +
-      "DE_FULL\020\017\022\030\n\024BORDER_SIDE_INTERNAL\020\020*\236\001\n\r" +
-      "LabelLongMode\022\030\n\024LABEL_LONG_MODE_WRAP\020\000\022" +
-      "\030\n\024LABEL_LONG_MODE_DOTS\020\001\022\032\n\026LABEL_LONG_" +
-      "MODE_SCROLL\020\002\022#\n\037LABEL_LONG_MODE_SCROLL_" +
-      "CIRCULAR\020\003\022\030\n\024LABEL_LONG_MODE_CLIP\020\004*L\n\007" +
-      "BarMode\022\023\n\017BAR_MODE_NORMAL\020\000\022\030\n\024BAR_MODE" +
-      "_SYMMETRICAL\020\001\022\022\n\016BAR_MODE_RANGE\020\002*N\n\007Ar" +
-      "cMode\022\023\n\017ARC_MODE_NORMAL\020\000\022\030\n\024ARC_MODE_S" +
-      "YMMETRICAL\020\001\022\024\n\020ARC_MODE_REVERSE\020\002*>\n\nRo" +
-      "llerMode\022\026\n\022ROLLER_MODE_NORMAL\020\000\022\030\n\024ROLL" +
-      "ER_MODE_INFINITE\020\001*\301\001\n\tScaleMode\022\035\n\031SCAL" +
-      "E_MODE_HORIZONTAL_TOP\020\000\022 \n\034SCALE_MODE_HO" +
-      "RIZONTAL_BOTTOM\020\001\022\034\n\030SCALE_MODE_VERTICAL" +
-      "_LEFT\020\002\022\035\n\031SCALE_MODE_VERTICAL_RIGHT\020\004\022\032" +
-      "\n\026SCALE_MODE_ROUND_INNER\020\010\022\032\n\026SCALE_MODE" +
-      "_ROUND_OUTER\020\020*\273\022\n\021StylePropertyType\022\021\n\r" +
-      "PROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OPA\020\001\022\023\n\017PROP" +
-      "_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FONT\020\003\022\025\n\021PRO" +
-      "P_BORDER_COLOR\020\004\022\025\n\021PROP_BORDER_WIDTH\020\005\022" +
-      "\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_ALL\020\007\022\020\n\014PR" +
-      "OP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022\017\n\013PROP_HEI" +
-      "GHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PROP_PAD_HOR\020\014" +
-      "\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MARGIN_ALL\020\016\022" +
-      "\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_MIN_WIDTH\020\020" +
-      "\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_MIN_HEIGHT\020" +
-      "\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PROP_LENGTH\020\024\022" +
-      "\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPROP_ALIGN\020\027\022" +
-      "\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025PROP_TRANSF" +
-      "ORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLATE_X\020\032\022\024\n\020PR" +
-      "OP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCALE_X\020\034\022\020\n\014PR" +
-      "OP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION\020\036\022\020\n\014PROP_" +
-      "PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017\n\013PROP_SKEW" +
-      "_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP_PAD_TOP\020#\022" +
-      "\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_PAD_LEFT\020%\022" +
-      "\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_PAD_ROW\020\'\022\023\n" +
-      "\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MARGIN_TOP\020)\022" +
-      "\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PROP_MARGIN_L" +
-      "EFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022\026\n\022PROP_BG_" +
-      "GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_DIR\020.\022\025\n\021PR" +
-      "OP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_GRAD_STOP\0200" +
-      "\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PROP_BG_GRAD_O" +
-      "PA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025\n\021PROP_BG_I" +
-      "MAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_RECOLOR\0205\022\035\n" +
-      "\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022\027\n\023PROP_BG_" +
-      "IMAGE_TILED\0207\022\024\n\020PROP_BORDER_SIDE\0208\022\024\n\020P" +
-      "ROP_BORDER_POST\0209\022\026\n\022PROP_OUTLINE_WIDTH\020" +
-      ":\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020PROP_OUTLIN" +
-      "E_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=\022\025\n\021PROP_SH" +
-      "ADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_OFFSET_X\020?\022\030" +
-      "\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022PROP_SHADOW_" +
-      "SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR\020B\022\023\n\017PROP_" +
-      "SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OPA\020D\022\026\n\022PROP" +
-      "_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAGE_RECOLOR_O" +
-      "PA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024PROP_LINE_D" +
-      "ASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH_GAP\020I\022\025\n\021P" +
-      "ROP_LINE_ROUNDED\020J\022\023\n\017PROP_LINE_COLOR\020K\022" +
-      "\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_ARC_WIDTH\020M\022\024" +
-      "\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_ARC_COLOR\020O" +
-      "\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TEXT_OPA\020Q\022\032\n" +
-      "\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024PROP_TEXT_L" +
-      "INE_SPACE\020S\022\023\n\017PROP_TEXT_DECOR\020T\022\023\n\017PROP" +
-      "_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_CORNER\020V\022\014\n\010P" +
-      "ROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED\020X\022\031\n\025PROP_" +
-      "COLOR_FILTER_OPA\020Y\022\026\n\022PROP_ANIM_DURATION" +
-      "\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPROP_BASE_DIR" +
-      "\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY\020]\022\022\n\016PROP_" +
-      "FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN_PLACE\020_\022\031\n" +
-      "\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025PROP_FLEX_TR" +
-      "ACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW\020b\022\032\n\026PROP_" +
-      "GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_GRID_ROW_ALI" +
-      "GN\020d\022\035\n\031PROP_GRID_CELL_COLUMN_POS\020e\022\032\n\026P" +
-      "ROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PROP_GRID_CEL" +
-      "L_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_CELL_ROW_PO" +
-      "S\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN\020i\022\033\n\027PROP_" +
-      "GRID_CELL_ROW_SPAN\020jBEZCgit-codecommit.e" +
-      "u-central-1.amazonaws.com/v1/repos/jetti" +
-      "son/jonp/uib\006proto3"
+      "i.BarModeB\010\272H\005\202\001\002\020\001\"j\n\nImageProps\022\025\n\003src" +
+      "\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\021\n\thas_pivot\030\002 \001(\010\022\017\n\007p" +
+      "ivot_x\030\003 \001(\005\022\017\n\007pivot_y\030\004 \001(\005\022\020\n\010rotatio" +
+      "n\030\005 \001(\005\"\364\001\n\010ArcProps\022\035\n\013start_angle\030\001 \001(" +
+      "\rB\010\272H\005*\003\030\350\002\022\033\n\tend_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002" +
+      "\022 \n\016bg_start_angle\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg" +
+      "_end_angle\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010rotation\030\005" +
+      " \001(\005\022#\n\004mode\030\006 \001(\0162\013.ui.ArcModeB\010\272H\005\202\001\002\020" +
+      "\001\022\021\n\tmin_value\030\007 \001(\005\022\021\n\tmax_value\030\010 \001(\005\022" +
+      "\r\n\005value\030\t \001(\005\"y\n\010BarProps\022\021\n\tmin_value\030" +
+      "\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022" +
+      "\023\n\013start_value\030\004 \001(\005\022#\n\004mode\030\005 \001(\0162\013.ui." +
+      "BarModeB\010\272H\005\202\001\002\020\001\"\036\n\013SwitchProps\022\017\n\007chec" +
+      "ked\030\001 \001(\010\" \n\rCheckboxProps\022\017\n\007checked\030\001 " +
+      "\001(\010\"b\n\rDropdownProps\022\031\n\007options\030\001 \001(\tB\010\272" +
+      "H\005r\003\030\377\007\022\020\n\010selected\030\002 \001(\r\022$\n\tdirection\030\003" +
+      " \001(\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\"}\n\013RollerProps\022\031" +
+      "\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010selected\030\002 " +
+      "\001(\r\022\031\n\021visible_row_count\030\003 \001(\r\022&\n\004mode\030\004" +
+      " \001(\0162\016.ui.RollerModeB\010\272H\005\202\001\002\020\001\"k\n\rTextar" +
+      "eaProps\022\035\n\013placeholder\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022" +
+      "\n\nmax_length\030\002 \001(\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\r" +
+      "password_mode\030\004 \001(\010\"\202\001\n\014SpinboxProps\022\021\n\t" +
+      "min_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005va" +
+      "lue\030\003 \001(\005\022\014\n\004step\030\004 \001(\005\022\023\n\013digit_count\030\005" +
+      " \001(\r\022\032\n\022separator_position\030\006 \001(\r\"5\n\014Spin" +
+      "nerProps\022\021\n\tspin_time\030\001 \001(\r\022\022\n\narc_lengt" +
+      "h\030\002 \001(\r\"B\n\010LedProps\022\030\n\005color\030\001 \001(\0132\t.ui." +
+      "Color\022\034\n\nbrightness\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tL" +
+      "ineProps\022\031\n\006points\030\001 \003(\0132\t.ui.Point\022\020\n\010y" +
+      "_invert\030\002 \001(\010\"\257\002\n\nScaleProps\022%\n\004mode\030\001 \001" +
+      "(\0162\r.ui.ScaleModeB\010\272H\005\202\001\002\020\001\022\030\n\020total_tic" +
+      "k_count\030\002 \001(\r\022\030\n\020major_tick_every\030\003 \001(\r\022" +
+      "\022\n\nlabel_show\030\004 \001(\010\022\021\n\tmin_value\030\005 \001(\005\022\021" +
+      "\n\tmax_value\030\006 \001(\005\022\020\n\010rotation\030\007 \001(\005\022\035\n\013a" +
+      "ngle_range\030\010 \001(\rB\010\272H\005*\003\030\350\002\022\032\n\010text_src\030\t" +
+      " \001(\tB\010\272H\005r\003\030\377\001\022\021\n\tpost_draw\030\n \001(\010\022,\n\010sec" +
+      "tions\030\013 \003(\0132\020.ui.ScaleSectionB\010\272H\005\222\001\002\020\004\"" +
+      "]\n\014ScaleSection\022\021\n\trange_min\030\001 \001(\005\022\021\n\tra" +
+      "nge_max\030\002 \001(\005\022\030\n\005color\030\003 \001(\0132\t.ui.Color\022" +
+      "\r\n\005width\030\004 \001(\r\"A\n\021ButtonMatrixProps\022\031\n\007m" +
+      "ap_str\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\021\n\tone_check\030\002 \001(" +
+      "\010\"5\n\nTableProps\022\021\n\trow_count\030\001 \001(\r\022\024\n\014co" +
+      "lumn_count\030\002 \001(\r\"\035\n\005Point\022\t\n\001x\030\001 \001(\005\022\t\n\001" +
+      "y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030\001 \001(\tB\t" +
+      "\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.EventTri" +
+      "ggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005\022\034\n\024inc" +
+      "lude_widget_value\030\004 \001(\010\022\034\n\013set_subject\030\005" +
+      " \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022\016\n\006togg" +
+      "le\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021Visibil" +
+      "ityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022\021" +
+      "\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(\0162\r.ui." +
+      "CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n\004flow\030\001" +
+      " \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nmain_pla" +
+      "ce\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022,\n\013cro" +
+      "ss_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022" +
+      ",\n\013track_place\030\004 \001(\0162\r.ui.FlexAlignB\010\272H\005" +
+      "\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_selector\030\001 " +
+      "\001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.ResolvedStyle" +
+      "B\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\npropert" +
+      "ies\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\rStylePr" +
+      "operty\022-\n\004type\030\001 \001(\0162\025.ui.StylePropertyT" +
+      "ypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022\023\n\ti" +
+      "nt_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(\0132\t." +
+      "ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H\004r\002\030" +
+      "?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.ShadowBun" +
+      "dleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010\272H\005*" +
+      "\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB\010\272H" +
+      "\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(\r\022\020\n" +
+      "\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n\006spr" +
+      "ead\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013Subj" +
+      "ectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_STRI" +
+      "NG\020\001*\361\002\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rW" +
+      "IDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rWIDG" +
+      "ET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDGET_" +
+      "ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWITCH\020\007" +
+      "\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROPDOWN" +
+      "\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXTAREA" +
+      "\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPINNER" +
+      "\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022\020\n\014W" +
+      "IDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX\020\021\022\020" +
+      "\n\014WIDGET_TABLE\020\022*X\n\014EventTrigger\022\023\n\017TRIG" +
+      "GER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CHANGED\020\001" +
+      "\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCompareOp\022" +
+      "\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ\020\001\022\016\n\nC" +
+      "OMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nCOMPARE_" +
+      "LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlow\022\022\n\016FL" +
+      "EX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001\022\024\n\020FLE" +
+      "X_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_WRAP\020\003\022" +
+      "\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLEX_FLOW_" +
+      "ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_COLUMN_W" +
+      "RAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE\020\007\022!\n\035F" +
+      "LEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001\n\tFlexA" +
+      "lign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLEX_ALIGN" +
+      "_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027FLEX_AL" +
+      "IGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_SPACE_A" +
+      "ROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWEEN\020\005*\274\001" +
+      "\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000\022\025\n\021GRI" +
+      "D_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_END\020\002\022\026\n\022" +
+      "GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIGN_SPACE" +
+      "_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_AROUND\020\005\022\034" +
+      "\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tTextAlig" +
+      "n\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_ALIGN_LEF" +
+      "T\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEXT_ALIGN" +
+      "_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DECOR_NONE" +
+      "\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030TEXT_DEC" +
+      "OR_STRIKETHROUGH\020\002*\213\001\n\tBlendMode\022\025\n\021BLEN" +
+      "D_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADDITIVE\020\001" +
+      "\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023BLEND_MO" +
+      "DE_MULTIPLY\020\003\022\031\n\025BLEND_MODE_DIFFERENCE\020\004" +
+      "*i\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000\022\020\n\014BASE_DI" +
+      "R_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002\022\024\n\020BASE_DIR_N" +
+      "EUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020!*\200\001\n\007GradDir\022" +
+      "\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR_VER\020\001\022\020\n\014" +
+      "GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LINEAR\020\003\022\023\n\017G" +
+      "RAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_CONICAL\020\005*t" +
+      "\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEFT\020\001\022\r\n\tDIR" +
+      "_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nDIR_BOTTOM\020\010\022\013\n" +
+      "\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n\007DIR_ALL\020\017*\210\004\n" +
+      "\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016ALIGN_TOP_L" +
+      "EFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017ALIGN_TOP_RI" +
+      "GHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024\n\020ALIGN_BO" +
+      "TTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIGHT\020\006\022\022\n\016AL" +
+      "IGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_MID\020\010\022\020\n\014A" +
+      "LIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP_LEFT\020\n\022\025\n" +
+      "\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_OUT_TOP_RI" +
+      "GHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT\020\r\022\030\n\024ALIG" +
+      "N_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OUT_BOTTOM_R" +
+      "IGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020\022\026\n\022ALIGN_" +
+      "OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LEFT_BOTTOM\020" +
+      "\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023ALIGN_OUT_" +
+      "RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT_BOTTOM\020\025*" +
+      "\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_NONE\020\000\022\026\n\022" +
+      "BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER_SIDE_TOP\020" +
+      "\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BORDER_SIDE_R" +
+      "IGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030\n\024BORDER_S" +
+      "IDE_INTERNAL\020\020*\236\001\n\rLabelLongMode\022\030\n\024LABE" +
+      "L_LONG_MODE_WRAP\020\000\022\030\n\024LABEL_LONG_MODE_DO" +
+      "TS\020\001\022\032\n\026LABEL_LONG_MODE_SCROLL\020\002\022#\n\037LABE" +
+      "L_LONG_MODE_SCROLL_CIRCULAR\020\003\022\030\n\024LABEL_L" +
+      "ONG_MODE_CLIP\020\004*L\n\007BarMode\022\023\n\017BAR_MODE_N" +
+      "ORMAL\020\000\022\030\n\024BAR_MODE_SYMMETRICAL\020\001\022\022\n\016BAR" +
+      "_MODE_RANGE\020\002*N\n\007ArcMode\022\023\n\017ARC_MODE_NOR" +
+      "MAL\020\000\022\030\n\024ARC_MODE_SYMMETRICAL\020\001\022\024\n\020ARC_M" +
+      "ODE_REVERSE\020\002*>\n\nRollerMode\022\026\n\022ROLLER_MO" +
+      "DE_NORMAL\020\000\022\030\n\024ROLLER_MODE_INFINITE\020\001*\301\001" +
+      "\n\tScaleMode\022\035\n\031SCALE_MODE_HORIZONTAL_TOP" +
+      "\020\000\022 \n\034SCALE_MODE_HORIZONTAL_BOTTOM\020\001\022\034\n\030" +
+      "SCALE_MODE_VERTICAL_LEFT\020\002\022\035\n\031SCALE_MODE" +
+      "_VERTICAL_RIGHT\020\004\022\032\n\026SCALE_MODE_ROUND_IN" +
+      "NER\020\010\022\032\n\026SCALE_MODE_ROUND_OUTER\020\020*\273\022\n\021St" +
+      "ylePropertyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PR" +
+      "OP_BG_OPA\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PROP" +
+      "_TEXT_FONT\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021P" +
+      "ROP_BORDER_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014P" +
+      "ROP_PAD_ALL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP_" +
+      "WIDTH\020\t\022\017\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW\020" +
+      "\013\022\020\n\014PROP_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n" +
+      "\017PROP_MARGIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022" +
+      "\022\n\016PROP_MIN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022" +
+      "\023\n\017PROP_MIN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT\020" +
+      "\023\022\017\n\013PROP_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y" +
+      "\020\026\022\016\n\nPROP_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_WID" +
+      "TH\020\030\022\031\n\025PROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP_" +
+      "TRANSLATE_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014P" +
+      "ROP_SCALE_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP_" +
+      "ROTATION\020\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PIV" +
+      "OT_Y\020 \022\017\n\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"" +
+      "\022\020\n\014PROP_PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022" +
+      "\021\n\rPROP_PAD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020" +
+      "\n\014PROP_PAD_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n" +
+      "\017PROP_MARGIN_TOP\020)\022\026\n\022PROP_MARGIN_BOTTOM" +
+      "\020*\022\024\n\020PROP_MARGIN_LEFT\020+\022\025\n\021PROP_MARGIN_" +
+      "RIGHT\020,\022\026\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PROP_" +
+      "BG_GRAD_DIR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n\021" +
+      "PROP_BG_GRAD_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA\020" +
+      "1\022\024\n\020PROP_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAGE" +
+      "_SRC\0203\022\025\n\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP_BG" +
+      "_IMAGE_RECOLOR\0205\022\035\n\031PROP_BG_IMAGE_RECOLO" +
+      "R_OPA\0206\022\027\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020PROP" +
+      "_BORDER_SIDE\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n\022" +
+      "PROP_OUTLINE_WIDTH\020:\022\026\n\022PROP_OUTLINE_COL" +
+      "OR\020;\022\024\n\020PROP_OUTLINE_OPA\020<\022\024\n\020PROP_OUTLI" +
+      "NE_PAD\020=\022\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PROP_" +
+      "SHADOW_OFFSET_X\020?\022\030\n\024PROP_SHADOW_OFFSET_" +
+      "Y\020@\022\026\n\022PROP_SHADOW_SPREAD\020A\022\025\n\021PROP_SHAD" +
+      "OW_COLOR\020B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP_" +
+      "IMAGE_OPA\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026P" +
+      "ROP_IMAGE_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_WID" +
+      "TH\020G\022\030\n\024PROP_LINE_DASH_WIDTH\020H\022\026\n\022PROP_L" +
+      "INE_DASH_GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023\n" +
+      "\017PROP_LINE_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n" +
+      "\016PROP_ARC_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N\022" +
+      "\022\n\016PROP_ARC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n" +
+      "\rPROP_TEXT_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_SPA" +
+      "CE\020R\022\030\n\024PROP_TEXT_LINE_SPACE\020S\022\023\n\017PROP_T" +
+      "EXT_DECOR\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PROP" +
+      "_CLIP_CORNER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OPA" +
+      "_LAYERED\020X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y\022\026\n" +
+      "\022PROP_ANIM_DURATION\020Z\022\023\n\017PROP_BLEND_MODE" +
+      "\020[\022\021\n\rPROP_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_SEN" +
+      "SITIVITY\020]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_F" +
+      "LEX_MAIN_PLACE\020_\022\031\n\025PROP_FLEX_CROSS_PLAC" +
+      "E\020`\022\031\n\025PROP_FLEX_TRACK_PLACE\020a\022\022\n\016PROP_F" +
+      "LEX_GROW\020b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020c\022\027" +
+      "\n\023PROP_GRID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_CEL" +
+      "L_COLUMN_POS\020e\022\032\n\026PROP_GRID_CELL_X_ALIGN" +
+      "\020f\022\036\n\032PROP_GRID_CELL_COLUMN_SPAN\020g\022\032\n\026PR" +
+      "OP_GRID_CELL_ROW_POS\020h\022\032\n\026PROP_GRID_CELL" +
+      "_Y_ALIGN\020i\022\033\n\027PROP_GRID_CELL_ROW_SPAN\020jB" +
+      "EZCgit-codecommit.eu-central-1.amazonaws" +
+      ".com/v1/repos/jettison/jonp/uib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -37451,7 +39353,7 @@ java.lang.String defaultValue) {
     internal_static_ui_ImageProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ImageProps_descriptor,
-        new java.lang.String[] { "Src", });
+        new java.lang.String[] { "Src", "HasPivot", "PivotX", "PivotY", "Rotation", });
     internal_static_ui_ArcProps_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_ui_ArcProps_fieldAccessorTable = new
@@ -37523,69 +39425,75 @@ java.lang.String defaultValue) {
     internal_static_ui_ScaleProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ScaleProps_descriptor,
-        new java.lang.String[] { "Mode", "TotalTickCount", "MajorTickEvery", "LabelShow", "MinValue", "MaxValue", "Rotation", "AngleRange", });
-    internal_static_ui_ButtonMatrixProps_descriptor =
+        new java.lang.String[] { "Mode", "TotalTickCount", "MajorTickEvery", "LabelShow", "MinValue", "MaxValue", "Rotation", "AngleRange", "TextSrc", "PostDraw", "Sections", });
+    internal_static_ui_ScaleSection_descriptor =
       getDescriptor().getMessageTypes().get(22);
+    internal_static_ui_ScaleSection_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ui_ScaleSection_descriptor,
+        new java.lang.String[] { "RangeMin", "RangeMax", "Color", "Width", });
+    internal_static_ui_ButtonMatrixProps_descriptor =
+      getDescriptor().getMessageTypes().get(23);
     internal_static_ui_ButtonMatrixProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ButtonMatrixProps_descriptor,
         new java.lang.String[] { "MapStr", "OneCheck", });
     internal_static_ui_TableProps_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_ui_TableProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_TableProps_descriptor,
         new java.lang.String[] { "RowCount", "ColumnCount", });
     internal_static_ui_Point_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_ui_Point_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Point_descriptor,
         new java.lang.String[] { "X", "Y", });
     internal_static_ui_EventBinding_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_ui_EventBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_EventBinding_descriptor,
         new java.lang.String[] { "Name", "Trigger", "IntValue", "IncludeWidgetValue", "SetSubject", "SetValue", "Toggle", "NotifyHost", });
     internal_static_ui_VisibilityBinding_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_ui_VisibilityBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_VisibilityBinding_descriptor,
         new java.lang.String[] { "Subject", "RefValue", "Compare", });
     internal_static_ui_Layout_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_ui_Layout_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Layout_descriptor,
         new java.lang.String[] { "Flow", "MainPlace", "CrossPlace", "TrackPlace", });
     internal_static_ui_StyleGroup_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_ui_StyleGroup_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleGroup_descriptor,
         new java.lang.String[] { "StateSelector", "Variants", });
     internal_static_ui_ResolvedStyle_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_ui_ResolvedStyle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ResolvedStyle_descriptor,
         new java.lang.String[] { "Properties", });
     internal_static_ui_StyleProperty_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_ui_StyleProperty_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleProperty_descriptor,
         new java.lang.String[] { "Type", "UintValue", "IntValue", "ColorValue", "StringValue", "ShadowValue", "Value", });
     internal_static_ui_Color_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_ui_Color_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Color_descriptor,
         new java.lang.String[] { "R", "G", "B", });
     internal_static_ui_ShadowBundle_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_ui_ShadowBundle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ShadowBundle_descriptor,
