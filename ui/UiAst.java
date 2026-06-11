@@ -29866,16 +29866,31 @@ java.lang.String defaultValue) {
     int getRangeMax();
 
     /**
+     * <pre>
+     * INDICATOR + ITEMS tick-line style for the section (line_color /
+     * line_width — the demo styles both parts identically).
+     * </pre>
+     *
      * <code>.ui.Color color = 3;</code>
      * @return Whether the color field is set.
      */
     boolean hasColor();
     /**
+     * <pre>
+     * INDICATOR + ITEMS tick-line style for the section (line_color /
+     * line_width — the demo styles both parts identically).
+     * </pre>
+     *
      * <code>.ui.Color color = 3;</code>
      * @return The color.
      */
     ui.UiAst.Color getColor();
     /**
+     * <pre>
+     * INDICATOR + ITEMS tick-line style for the section (line_color /
+     * line_width — the demo styles both parts identically).
+     * </pre>
+     *
      * <code>.ui.Color color = 3;</code>
      */
     ui.UiAst.ColorOrBuilder getColorOrBuilder();
@@ -29885,6 +29900,51 @@ java.lang.String defaultValue) {
      * @return The width.
      */
     int getWidth();
+
+    /**
+     * <pre>
+     * MAIN-part style for the section — the arc band on a round scale /
+     * the main line on a linear one (arc_color+arc_width AND
+     * line_color+line_width are both set from this pair; LVGL reads the
+     * part that matches the scale mode). Absent color + zero width = no
+     * MAIN section style.
+     * </pre>
+     *
+     * <code>.ui.Color main_color = 5;</code>
+     * @return Whether the mainColor field is set.
+     */
+    boolean hasMainColor();
+    /**
+     * <pre>
+     * MAIN-part style for the section — the arc band on a round scale /
+     * the main line on a linear one (arc_color+arc_width AND
+     * line_color+line_width are both set from this pair; LVGL reads the
+     * part that matches the scale mode). Absent color + zero width = no
+     * MAIN section style.
+     * </pre>
+     *
+     * <code>.ui.Color main_color = 5;</code>
+     * @return The mainColor.
+     */
+    ui.UiAst.Color getMainColor();
+    /**
+     * <pre>
+     * MAIN-part style for the section — the arc band on a round scale /
+     * the main line on a linear one (arc_color+arc_width AND
+     * line_color+line_width are both set from this pair; LVGL reads the
+     * part that matches the scale mode). Absent color + zero width = no
+     * MAIN section style.
+     * </pre>
+     *
+     * <code>.ui.Color main_color = 5;</code>
+     */
+    ui.UiAst.ColorOrBuilder getMainColorOrBuilder();
+
+    /**
+     * <code>uint32 main_width = 6;</code>
+     * @return The mainWidth.
+     */
+    int getMainWidth();
   }
   /**
    * Protobuf type {@code ui.ScaleSection}
@@ -29949,6 +30009,11 @@ java.lang.String defaultValue) {
     public static final int COLOR_FIELD_NUMBER = 3;
     private ui.UiAst.Color color_;
     /**
+     * <pre>
+     * INDICATOR + ITEMS tick-line style for the section (line_color /
+     * line_width — the demo styles both parts identically).
+     * </pre>
+     *
      * <code>.ui.Color color = 3;</code>
      * @return Whether the color field is set.
      */
@@ -29957,6 +30022,11 @@ java.lang.String defaultValue) {
       return ((bitField0_ & 0x00000001) != 0);
     }
     /**
+     * <pre>
+     * INDICATOR + ITEMS tick-line style for the section (line_color /
+     * line_width — the demo styles both parts identically).
+     * </pre>
+     *
      * <code>.ui.Color color = 3;</code>
      * @return The color.
      */
@@ -29965,6 +30035,11 @@ java.lang.String defaultValue) {
       return color_ == null ? ui.UiAst.Color.getDefaultInstance() : color_;
     }
     /**
+     * <pre>
+     * INDICATOR + ITEMS tick-line style for the section (line_color /
+     * line_width — the demo styles both parts identically).
+     * </pre>
+     *
      * <code>.ui.Color color = 3;</code>
      */
     @java.lang.Override
@@ -29981,6 +30056,67 @@ java.lang.String defaultValue) {
     @java.lang.Override
     public int getWidth() {
       return width_;
+    }
+
+    public static final int MAIN_COLOR_FIELD_NUMBER = 5;
+    private ui.UiAst.Color mainColor_;
+    /**
+     * <pre>
+     * MAIN-part style for the section — the arc band on a round scale /
+     * the main line on a linear one (arc_color+arc_width AND
+     * line_color+line_width are both set from this pair; LVGL reads the
+     * part that matches the scale mode). Absent color + zero width = no
+     * MAIN section style.
+     * </pre>
+     *
+     * <code>.ui.Color main_color = 5;</code>
+     * @return Whether the mainColor field is set.
+     */
+    @java.lang.Override
+    public boolean hasMainColor() {
+      return ((bitField0_ & 0x00000002) != 0);
+    }
+    /**
+     * <pre>
+     * MAIN-part style for the section — the arc band on a round scale /
+     * the main line on a linear one (arc_color+arc_width AND
+     * line_color+line_width are both set from this pair; LVGL reads the
+     * part that matches the scale mode). Absent color + zero width = no
+     * MAIN section style.
+     * </pre>
+     *
+     * <code>.ui.Color main_color = 5;</code>
+     * @return The mainColor.
+     */
+    @java.lang.Override
+    public ui.UiAst.Color getMainColor() {
+      return mainColor_ == null ? ui.UiAst.Color.getDefaultInstance() : mainColor_;
+    }
+    /**
+     * <pre>
+     * MAIN-part style for the section — the arc band on a round scale /
+     * the main line on a linear one (arc_color+arc_width AND
+     * line_color+line_width are both set from this pair; LVGL reads the
+     * part that matches the scale mode). Absent color + zero width = no
+     * MAIN section style.
+     * </pre>
+     *
+     * <code>.ui.Color main_color = 5;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.ColorOrBuilder getMainColorOrBuilder() {
+      return mainColor_ == null ? ui.UiAst.Color.getDefaultInstance() : mainColor_;
+    }
+
+    public static final int MAIN_WIDTH_FIELD_NUMBER = 6;
+    private int mainWidth_ = 0;
+    /**
+     * <code>uint32 main_width = 6;</code>
+     * @return The mainWidth.
+     */
+    @java.lang.Override
+    public int getMainWidth() {
+      return mainWidth_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -30009,6 +30145,12 @@ java.lang.String defaultValue) {
       if (width_ != 0) {
         output.writeUInt32(4, width_);
       }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        output.writeMessage(5, getMainColor());
+      }
+      if (mainWidth_ != 0) {
+        output.writeUInt32(6, mainWidth_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -30033,6 +30175,14 @@ java.lang.String defaultValue) {
       if (width_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(4, width_);
+      }
+      if (((bitField0_ & 0x00000002) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getMainColor());
+      }
+      if (mainWidth_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(6, mainWidth_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -30060,6 +30210,13 @@ java.lang.String defaultValue) {
       }
       if (getWidth()
           != other.getWidth()) return false;
+      if (hasMainColor() != other.hasMainColor()) return false;
+      if (hasMainColor()) {
+        if (!getMainColor()
+            .equals(other.getMainColor())) return false;
+      }
+      if (getMainWidth()
+          != other.getMainWidth()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -30081,6 +30238,12 @@ java.lang.String defaultValue) {
       }
       hash = (37 * hash) + WIDTH_FIELD_NUMBER;
       hash = (53 * hash) + getWidth();
+      if (hasMainColor()) {
+        hash = (37 * hash) + MAIN_COLOR_FIELD_NUMBER;
+        hash = (53 * hash) + getMainColor().hashCode();
+      }
+      hash = (37 * hash) + MAIN_WIDTH_FIELD_NUMBER;
+      hash = (53 * hash) + getMainWidth();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -30212,6 +30375,7 @@ java.lang.String defaultValue) {
         if (com.google.protobuf.GeneratedMessage
                 .alwaysUseFieldBuilders) {
           getColorFieldBuilder();
+          getMainColorFieldBuilder();
         }
       }
       @java.lang.Override
@@ -30226,6 +30390,12 @@ java.lang.String defaultValue) {
           colorBuilder_ = null;
         }
         width_ = 0;
+        mainColor_ = null;
+        if (mainColorBuilder_ != null) {
+          mainColorBuilder_.dispose();
+          mainColorBuilder_ = null;
+        }
+        mainWidth_ = 0;
         return this;
       }
 
@@ -30275,6 +30445,15 @@ java.lang.String defaultValue) {
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.width_ = width_;
         }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.mainColor_ = mainColorBuilder_ == null
+              ? mainColor_
+              : mainColorBuilder_.build();
+          to_bitField0_ |= 0x00000002;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.mainWidth_ = mainWidth_;
+        }
         result.bitField0_ |= to_bitField0_;
       }
 
@@ -30301,6 +30480,12 @@ java.lang.String defaultValue) {
         }
         if (other.getWidth() != 0) {
           setWidth(other.getWidth());
+        }
+        if (other.hasMainColor()) {
+          mergeMainColor(other.getMainColor());
+        }
+        if (other.getMainWidth() != 0) {
+          setMainWidth(other.getMainWidth());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -30350,6 +30535,18 @@ java.lang.String defaultValue) {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 32
+              case 42: {
+                input.readMessage(
+                    getMainColorFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 48: {
+                mainWidth_ = input.readUInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -30435,6 +30632,11 @@ java.lang.String defaultValue) {
       private com.google.protobuf.SingleFieldBuilder<
           ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder> colorBuilder_;
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        * @return Whether the color field is set.
        */
@@ -30442,6 +30644,11 @@ java.lang.String defaultValue) {
         return ((bitField0_ & 0x00000004) != 0);
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        * @return The color.
        */
@@ -30453,6 +30660,11 @@ java.lang.String defaultValue) {
         }
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        */
       public Builder setColor(ui.UiAst.Color value) {
@@ -30469,6 +30681,11 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        */
       public Builder setColor(
@@ -30483,6 +30700,11 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        */
       public Builder mergeColor(ui.UiAst.Color value) {
@@ -30504,6 +30726,11 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        */
       public Builder clearColor() {
@@ -30517,6 +30744,11 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        */
       public ui.UiAst.Color.Builder getColorBuilder() {
@@ -30525,6 +30757,11 @@ java.lang.String defaultValue) {
         return getColorFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        */
       public ui.UiAst.ColorOrBuilder getColorOrBuilder() {
@@ -30536,6 +30773,11 @@ java.lang.String defaultValue) {
         }
       }
       /**
+       * <pre>
+       * INDICATOR + ITEMS tick-line style for the section (line_color /
+       * line_width — the demo styles both parts identically).
+       * </pre>
+       *
        * <code>.ui.Color color = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
@@ -30580,6 +30822,231 @@ java.lang.String defaultValue) {
       public Builder clearWidth() {
         bitField0_ = (bitField0_ & ~0x00000008);
         width_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private ui.UiAst.Color mainColor_;
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder> mainColorBuilder_;
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       * @return Whether the mainColor field is set.
+       */
+      public boolean hasMainColor() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       * @return The mainColor.
+       */
+      public ui.UiAst.Color getMainColor() {
+        if (mainColorBuilder_ == null) {
+          return mainColor_ == null ? ui.UiAst.Color.getDefaultInstance() : mainColor_;
+        } else {
+          return mainColorBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       */
+      public Builder setMainColor(ui.UiAst.Color value) {
+        if (mainColorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mainColor_ = value;
+        } else {
+          mainColorBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       */
+      public Builder setMainColor(
+          ui.UiAst.Color.Builder builderForValue) {
+        if (mainColorBuilder_ == null) {
+          mainColor_ = builderForValue.build();
+        } else {
+          mainColorBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       */
+      public Builder mergeMainColor(ui.UiAst.Color value) {
+        if (mainColorBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) != 0) &&
+            mainColor_ != null &&
+            mainColor_ != ui.UiAst.Color.getDefaultInstance()) {
+            getMainColorBuilder().mergeFrom(value);
+          } else {
+            mainColor_ = value;
+          }
+        } else {
+          mainColorBuilder_.mergeFrom(value);
+        }
+        if (mainColor_ != null) {
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       */
+      public Builder clearMainColor() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        mainColor_ = null;
+        if (mainColorBuilder_ != null) {
+          mainColorBuilder_.dispose();
+          mainColorBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       */
+      public ui.UiAst.Color.Builder getMainColorBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getMainColorFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       */
+      public ui.UiAst.ColorOrBuilder getMainColorOrBuilder() {
+        if (mainColorBuilder_ != null) {
+          return mainColorBuilder_.getMessageOrBuilder();
+        } else {
+          return mainColor_ == null ?
+              ui.UiAst.Color.getDefaultInstance() : mainColor_;
+        }
+      }
+      /**
+       * <pre>
+       * MAIN-part style for the section — the arc band on a round scale /
+       * the main line on a linear one (arc_color+arc_width AND
+       * line_color+line_width are both set from this pair; LVGL reads the
+       * part that matches the scale mode). Absent color + zero width = no
+       * MAIN section style.
+       * </pre>
+       *
+       * <code>.ui.Color main_color = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder> 
+          getMainColorFieldBuilder() {
+        if (mainColorBuilder_ == null) {
+          mainColorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ui.UiAst.Color, ui.UiAst.Color.Builder, ui.UiAst.ColorOrBuilder>(
+                  getMainColor(),
+                  getParentForChildren(),
+                  isClean());
+          mainColor_ = null;
+        }
+        return mainColorBuilder_;
+      }
+
+      private int mainWidth_ ;
+      /**
+       * <code>uint32 main_width = 6;</code>
+       * @return The mainWidth.
+       */
+      @java.lang.Override
+      public int getMainWidth() {
+        return mainWidth_;
+      }
+      /**
+       * <code>uint32 main_width = 6;</code>
+       * @param value The mainWidth to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMainWidth(int value) {
+
+        mainWidth_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 main_width = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMainWidth() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        mainWidth_ = 0;
         onChanged();
         return this;
       }
@@ -31818,6 +32285,18 @@ java.lang.String defaultValue) {
      * @return The tabBarPosition.
      */
     ui.UiAst.Dir getTabBarPosition();
+
+    /**
+     * <pre>
+     * Extra left padding (px) on the tab bar itself — the demo offsets its
+     * tab buttons into the right half (pad_left = LV_HOR_RES/2) and floats
+     * logo + title decor over the freed left half. 0 = no extra padding.
+     * </pre>
+     *
+     * <code>int32 tab_bar_pad_left = 5;</code>
+     * @return The tabBarPadLeft.
+     */
+    int getTabBarPadLeft();
   }
   /**
    * Protobuf type {@code ui.TabviewProps}
@@ -31979,6 +32458,23 @@ java.lang.String defaultValue) {
       return result == null ? ui.UiAst.Dir.UNRECOGNIZED : result;
     }
 
+    public static final int TAB_BAR_PAD_LEFT_FIELD_NUMBER = 5;
+    private int tabBarPadLeft_ = 0;
+    /**
+     * <pre>
+     * Extra left padding (px) on the tab bar itself — the demo offsets its
+     * tab buttons into the right half (pad_left = LV_HOR_RES/2) and floats
+     * logo + title decor over the freed left half. 0 = no extra padding.
+     * </pre>
+     *
+     * <code>int32 tab_bar_pad_left = 5;</code>
+     * @return The tabBarPadLeft.
+     */
+    @java.lang.Override
+    public int getTabBarPadLeft() {
+      return tabBarPadLeft_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -32004,6 +32500,9 @@ java.lang.String defaultValue) {
       }
       if (tabBarPosition_ != ui.UiAst.Dir.DIR_NONE.getNumber()) {
         output.writeEnum(4, tabBarPosition_);
+      }
+      if (tabBarPadLeft_ != 0) {
+        output.writeInt32(5, tabBarPadLeft_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -32034,6 +32533,10 @@ java.lang.String defaultValue) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, tabBarPosition_);
       }
+      if (tabBarPadLeft_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, tabBarPadLeft_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -32056,6 +32559,8 @@ java.lang.String defaultValue) {
       if (getActiveIndex()
           != other.getActiveIndex()) return false;
       if (tabBarPosition_ != other.tabBarPosition_) return false;
+      if (getTabBarPadLeft()
+          != other.getTabBarPadLeft()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -32077,6 +32582,8 @@ java.lang.String defaultValue) {
       hash = (53 * hash) + getActiveIndex();
       hash = (37 * hash) + TAB_BAR_POSITION_FIELD_NUMBER;
       hash = (53 * hash) + tabBarPosition_;
+      hash = (37 * hash) + TAB_BAR_PAD_LEFT_FIELD_NUMBER;
+      hash = (53 * hash) + getTabBarPadLeft();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -32213,6 +32720,7 @@ java.lang.String defaultValue) {
         tabBarSize_ = 0;
         activeIndex_ = 0;
         tabBarPosition_ = 0;
+        tabBarPadLeft_ = 0;
         return this;
       }
 
@@ -32259,6 +32767,9 @@ java.lang.String defaultValue) {
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.tabBarPosition_ = tabBarPosition_;
         }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.tabBarPadLeft_ = tabBarPadLeft_;
+        }
       }
 
       @java.lang.Override
@@ -32291,6 +32802,9 @@ java.lang.String defaultValue) {
         }
         if (other.tabBarPosition_ != 0) {
           setTabBarPositionValue(other.getTabBarPositionValue());
+        }
+        if (other.getTabBarPadLeft() != 0) {
+          setTabBarPadLeft(other.getTabBarPadLeft());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -32339,6 +32853,11 @@ java.lang.String defaultValue) {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 32
+              case 40: {
+                tabBarPadLeft_ = input.readInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -32686,6 +33205,56 @@ java.lang.String defaultValue) {
       public Builder clearTabBarPosition() {
         bitField0_ = (bitField0_ & ~0x00000008);
         tabBarPosition_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int tabBarPadLeft_ ;
+      /**
+       * <pre>
+       * Extra left padding (px) on the tab bar itself — the demo offsets its
+       * tab buttons into the right half (pad_left = LV_HOR_RES/2) and floats
+       * logo + title decor over the freed left half. 0 = no extra padding.
+       * </pre>
+       *
+       * <code>int32 tab_bar_pad_left = 5;</code>
+       * @return The tabBarPadLeft.
+       */
+      @java.lang.Override
+      public int getTabBarPadLeft() {
+        return tabBarPadLeft_;
+      }
+      /**
+       * <pre>
+       * Extra left padding (px) on the tab bar itself — the demo offsets its
+       * tab buttons into the right half (pad_left = LV_HOR_RES/2) and floats
+       * logo + title decor over the freed left half. 0 = no extra padding.
+       * </pre>
+       *
+       * <code>int32 tab_bar_pad_left = 5;</code>
+       * @param value The tabBarPadLeft to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTabBarPadLeft(int value) {
+
+        tabBarPadLeft_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Extra left padding (px) on the tab bar itself — the demo offsets its
+       * tab buttons into the right half (pad_left = LV_HOR_RES/2) and floats
+       * logo + title decor over the freed left half. 0 = no extra padding.
+       * </pre>
+       *
+       * <code>int32 tab_bar_pad_left = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTabBarPadLeft() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        tabBarPadLeft_ = 0;
         onChanged();
         return this;
       }
@@ -43391,200 +43960,202 @@ java.lang.String defaultValue) {
       "\020\n\010rotation\030\007 \001(\005\022\035\n\013angle_range\030\010 \001(\rB\010" +
       "\272H\005*\003\030\350\002\022\032\n\010text_src\030\t \001(\tB\010\272H\005r\003\030\377\001\022\021\n\t" +
       "post_draw\030\n \001(\010\022,\n\010sections\030\013 \003(\0132\020.ui.S" +
-      "caleSectionB\010\272H\005\222\001\002\020\004\"]\n\014ScaleSection\022\021\n" +
-      "\trange_min\030\001 \001(\005\022\021\n\trange_max\030\002 \001(\005\022\030\n\005c" +
-      "olor\030\003 \001(\0132\t.ui.Color\022\r\n\005width\030\004 \001(\r\"A\n\021" +
-      "ButtonMatrixProps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005r" +
-      "\003\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nTableProps\022\021\n" +
-      "\trow_count\030\001 \001(\r\022\024\n\014column_count\030\002 \001(\r\"\212" +
-      "\001\n\014TabviewProps\022!\n\ttab_names\030\001 \003(\tB\016\272H\013\222" +
-      "\001\010\020\010\"\004r\002\030\037\022\024\n\014tab_bar_size\030\002 \001(\005\022\024\n\014acti" +
-      "ve_index\030\003 \001(\r\022+\n\020tab_bar_position\030\004 \001(\016" +
-      "2\007.ui.DirB\010\272H\005\202\001\002\020\001\"h\n\013ChartSeries\022\030\n\005co" +
-      "lor\030\001 \001(\0132\t.ui.Color\022%\n\004axis\030\002 \001(\0162\r.ui." +
-      "ChartAxisB\010\272H\005\202\001\002\020\001\022\030\n\006values\030\003 \003(\005B\010\272H\005" +
-      "\222\001\002\020 \"\331\001\n\nChartProps\022%\n\004type\030\001 \001(\0162\r.ui." +
-      "ChartTypeB\010\272H\005\202\001\002\020\001\022\023\n\013point_count\030\002 \001(\r" +
-      "\022\025\n\rhas_div_lines\030\003 \001(\010\022\034\n\nhdiv_count\030\004 " +
-      "\001(\rB\010\272H\005*\003\030\377\001\022\034\n\nvdiv_count\030\005 \001(\rB\010\272H\005*\003" +
-      "\030\377\001\022)\n\006series\030\006 \003(\0132\017.ui.ChartSeriesB\010\272H" +
-      "\005\222\001\002\020\010\022\021\n\tfade_area\030\007 \001(\010\"\035\n\005Point\022\t\n\001x\030" +
-      "\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004nam" +
-      "e\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui" +
-      ".EventTriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001" +
-      "(\005\022\034\n\024include_widget_value\030\004 \001(\010\022\034\n\013set_" +
-      "subject\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(" +
-      "\005\022\016\n\006toggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l" +
-      "\n\021VisibilityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H" +
-      "\006r\004\020\001\030?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 " +
-      "\001(\0162\r.ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022" +
-      "$\n\004flow\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n" +
-      "\nmain_place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002" +
-      "\020\001\022,\n\013cross_place\030\003 \001(\0162\r.ui.FlexAlignB\010" +
-      "\272H\005\202\001\002\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.FlexA" +
-      "lignB\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_se" +
-      "lector\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.Reso" +
-      "lvedStyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%" +
-      "\n\nproperties\030\001 \003(\0132\021.ui.StyleProperty\"\337\001" +
-      "\n\rStyleProperty\022-\n\004type\030\001 \001(\0162\025.ui.Style" +
-      "PropertyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001" +
-      "(\rH\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value" +
-      "\030\004 \001(\0132\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(" +
-      "\tB\007\272H\004r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui." +
-      "ShadowBundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 " +
-      "\001(\rB\010\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030" +
-      "\003 \001(\rB\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width" +
-      "\030\001 \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001" +
-      "(\005\022\016\n\006spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377" +
-      "\001*2\n\013SubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUB" +
-      "JECT_STRING\020\001*\227\003\n\nWidgetType\022\016\n\nWIDGET_O" +
-      "BJ\020\000\022\021\n\rWIDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020" +
-      "\002\022\021\n\rWIDGET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016" +
-      "\n\nWIDGET_ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET" +
-      "_SWITCH\020\007\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET" +
-      "_DROPDOWN\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET" +
-      "_TEXTAREA\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGE" +
-      "T_SPINNER\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LI" +
-      "NE\020\017\022\020\n\014WIDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONM" +
-      "ATRIX\020\021\022\020\n\014WIDGET_TABLE\020\022\022\022\n\016WIDGET_TABV" +
-      "IEW\020\023\022\020\n\014WIDGET_CHART\020\024*X\n\014EventTrigger\022" +
-      "\023\n\017TRIGGER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CH" +
-      "ANGED\020\001\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCom" +
-      "pareOp\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ" +
-      "\020\001\022\016\n\nCOMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nC" +
-      "OMPARE_LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlo" +
-      "w\022\022\n\016FLEX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001" +
-      "\022\024\n\020FLEX_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_" +
-      "WRAP\020\003\022\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLE" +
-      "X_FLOW_ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_C" +
-      "OLUMN_WRAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE" +
-      "\020\007\022!\n\035FLEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001" +
-      "\n\tFlexAlign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLE" +
-      "X_ALIGN_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027" +
-      "FLEX_ALIGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_" +
-      "SPACE_AROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWE" +
-      "EN\020\005*\274\001\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000" +
-      "\022\025\n\021GRID_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_EN" +
-      "D\020\002\022\026\n\022GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIG" +
-      "N_SPACE_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_ARO" +
-      "UND\020\005\022\034\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tT" +
-      "extAlign\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_AL" +
-      "IGN_LEFT\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEX" +
-      "T_ALIGN_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DEC" +
-      "OR_NONE\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030T" +
-      "EXT_DECOR_STRIKETHROUGH\020\002*\213\001\n\tBlendMode\022" +
-      "\025\n\021BLEND_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADD" +
-      "ITIVE\020\001\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023B" +
-      "LEND_MODE_MULTIPLY\020\003\022\031\n\025BLEND_MODE_DIFFE" +
-      "RENCE\020\004*i\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000\022\020\n\014" +
-      "BASE_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002\022\024\n\020BAS" +
-      "E_DIR_NEUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020!*\200\001\n\007G" +
-      "radDir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR_VE" +
-      "R\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LINEAR" +
-      "\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_CONI" +
-      "CAL\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEFT\020\001" +
-      "\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nDIR_BOTT" +
-      "OM\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n\007DIR_AL" +
-      "L\020\017*\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016ALIG" +
-      "N_TOP_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017ALIGN" +
-      "_TOP_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024\n\020A" +
-      "LIGN_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIGHT\020" +
-      "\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_MID" +
-      "\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP_LE" +
-      "FT\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_OUT" +
-      "_TOP_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT\020\r\022" +
-      "\030\n\024ALIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OUT_B" +
-      "OTTOM_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020\022\026\n" +
-      "\022ALIGN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LEFT_" +
-      "BOTTOM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023ALI" +
-      "GN_OUT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT_BO" +
-      "TTOM\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_NON" +
-      "E\020\000\022\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER_SI" +
-      "DE_TOP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BORDER" +
-      "_SIDE_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030\n\024B" +
-      "ORDER_SIDE_INTERNAL\020\020*\236\001\n\rLabelLongMode\022" +
-      "\030\n\024LABEL_LONG_MODE_WRAP\020\000\022\030\n\024LABEL_LONG_" +
-      "MODE_DOTS\020\001\022\032\n\026LABEL_LONG_MODE_SCROLL\020\002\022" +
-      "#\n\037LABEL_LONG_MODE_SCROLL_CIRCULAR\020\003\022\030\n\024" +
-      "LABEL_LONG_MODE_CLIP\020\004*L\n\007BarMode\022\023\n\017BAR" +
-      "_MODE_NORMAL\020\000\022\030\n\024BAR_MODE_SYMMETRICAL\020\001" +
-      "\022\022\n\016BAR_MODE_RANGE\020\002*N\n\007ArcMode\022\023\n\017ARC_M" +
-      "ODE_NORMAL\020\000\022\030\n\024ARC_MODE_SYMMETRICAL\020\001\022\024" +
-      "\n\020ARC_MODE_REVERSE\020\002*>\n\nRollerMode\022\026\n\022RO" +
-      "LLER_MODE_NORMAL\020\000\022\030\n\024ROLLER_MODE_INFINI" +
-      "TE\020\001*\301\001\n\tScaleMode\022\035\n\031SCALE_MODE_HORIZON" +
-      "TAL_TOP\020\000\022 \n\034SCALE_MODE_HORIZONTAL_BOTTO" +
-      "M\020\001\022\034\n\030SCALE_MODE_VERTICAL_LEFT\020\002\022\035\n\031SCA" +
-      "LE_MODE_VERTICAL_RIGHT\020\004\022\032\n\026SCALE_MODE_R" +
-      "OUND_INNER\020\010\022\032\n\026SCALE_MODE_ROUND_OUTER\020\020" +
-      "*\217\001\n\tChartType\022\023\n\017CHART_TYPE_NONE\020\000\022\023\n\017C" +
-      "HART_TYPE_LINE\020\001\022\024\n\020CHART_TYPE_CURVE\020\002\022\022" +
-      "\n\016CHART_TYPE_BAR\020\003\022\026\n\022CHART_TYPE_STACKED" +
-      "\020\004\022\026\n\022CHART_TYPE_SCATTER\020\005*w\n\tChartAxis\022" +
-      "\030\n\024CHART_AXIS_PRIMARY_Y\020\000\022\032\n\026CHART_AXIS_" +
-      "SECONDARY_Y\020\001\022\030\n\024CHART_AXIS_PRIMARY_X\020\002\022" +
-      "\032\n\026CHART_AXIS_SECONDARY_X\020\004*\273\022\n\021StylePro" +
-      "pertyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_" +
-      "OPA\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_" +
-      "FONT\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BO" +
-      "RDER_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PA" +
-      "D_ALL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020" +
-      "\t\022\017\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014P" +
-      "ROP_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_" +
-      "MARGIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PRO" +
-      "P_MIN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PRO" +
-      "P_MIN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013P" +
-      "ROP_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\n" +
-      "PROP_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031" +
-      "\n\025PROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSL" +
-      "ATE_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SC" +
-      "ALE_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATI" +
-      "ON\020\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 " +
-      "\022\017\n\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PR" +
-      "OP_PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPRO" +
-      "P_PAD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP" +
-      "_PAD_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_" +
-      "MARGIN_TOP\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020" +
-      "PROP_MARGIN_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020" +
-      ",\022\026\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRA" +
-      "D_DIR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_B" +
-      "G_GRAD_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020P" +
-      "ROP_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203" +
-      "\022\025\n\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE" +
-      "_RECOLOR\0205\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\020" +
-      "6\022\027\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDE" +
-      "R_SIDE\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_O" +
-      "UTLINE_WIDTH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024" +
-      "\n\020PROP_OUTLINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD" +
-      "\020=\022\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW" +
-      "_OFFSET_X\020?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n" +
-      "\022PROP_SHADOW_SPREAD\020A\022\025\n\021PROP_SHADOW_COL" +
-      "OR\020B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_" +
-      "OPA\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IM" +
-      "AGE_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030" +
-      "\n\024PROP_LINE_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DA" +
-      "SH_GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_" +
-      "LINE_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_" +
-      "ARC_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PRO" +
-      "P_ARC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_" +
-      "TEXT_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030" +
-      "\n\024PROP_TEXT_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DE" +
-      "COR\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_" +
-      "CORNER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYER" +
-      "ED\020X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_" +
-      "ANIM_DURATION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\r" +
-      "PROP_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVI" +
-      "TY\020]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MA" +
-      "IN_PLACE\020_\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n" +
-      "\025PROP_FLEX_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GR" +
-      "OW\020b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP" +
-      "_GRID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLU" +
-      "MN_POS\020e\022\032\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032" +
-      "PROP_GRID_CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRI" +
-      "D_CELL_ROW_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALI" +
-      "GN\020i\022\033\n\027PROP_GRID_CELL_ROW_SPAN\020jBEZCgit" +
-      "-codecommit.eu-central-1.amazonaws.com/v" +
-      "1/repos/jettison/jonp/uib\006proto3"
+      "caleSectionB\010\272H\005\222\001\002\020\004\"\220\001\n\014ScaleSection\022\021" +
+      "\n\trange_min\030\001 \001(\005\022\021\n\trange_max\030\002 \001(\005\022\030\n\005" +
+      "color\030\003 \001(\0132\t.ui.Color\022\r\n\005width\030\004 \001(\r\022\035\n" +
+      "\nmain_color\030\005 \001(\0132\t.ui.Color\022\022\n\nmain_wid" +
+      "th\030\006 \001(\r\"A\n\021ButtonMatrixProps\022\031\n\007map_str" +
+      "\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nT" +
+      "ableProps\022\021\n\trow_count\030\001 \001(\r\022\024\n\014column_c" +
+      "ount\030\002 \001(\r\"\244\001\n\014TabviewProps\022!\n\ttab_names" +
+      "\030\001 \003(\tB\016\272H\013\222\001\010\020\010\"\004r\002\030\037\022\024\n\014tab_bar_size\030\002" +
+      " \001(\005\022\024\n\014active_index\030\003 \001(\r\022+\n\020tab_bar_po" +
+      "sition\030\004 \001(\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\022\030\n\020tab_b" +
+      "ar_pad_left\030\005 \001(\005\"h\n\013ChartSeries\022\030\n\005colo" +
+      "r\030\001 \001(\0132\t.ui.Color\022%\n\004axis\030\002 \001(\0162\r.ui.Ch" +
+      "artAxisB\010\272H\005\202\001\002\020\001\022\030\n\006values\030\003 \003(\005B\010\272H\005\222\001" +
+      "\002\020 \"\331\001\n\nChartProps\022%\n\004type\030\001 \001(\0162\r.ui.Ch" +
+      "artTypeB\010\272H\005\202\001\002\020\001\022\023\n\013point_count\030\002 \001(\r\022\025" +
+      "\n\rhas_div_lines\030\003 \001(\010\022\034\n\nhdiv_count\030\004 \001(" +
+      "\rB\010\272H\005*\003\030\377\001\022\034\n\nvdiv_count\030\005 \001(\rB\010\272H\005*\003\030\377" +
+      "\001\022)\n\006series\030\006 \003(\0132\017.ui.ChartSeriesB\010\272H\005\222" +
+      "\001\002\020\010\022\021\n\tfade_area\030\007 \001(\010\"\035\n\005Point\022\t\n\001x\030\001 " +
+      "\001(\005\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030" +
+      "\001 \001(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.E" +
+      "ventTriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005" +
+      "\022\034\n\024include_widget_value\030\004 \001(\010\022\034\n\013set_su" +
+      "bject\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022" +
+      "\016\n\006toggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021" +
+      "VisibilityBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r" +
+      "\004\020\001\030?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(" +
+      "\0162\r.ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n" +
+      "\004flow\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nm" +
+      "ain_place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001" +
+      "\022,\n\013cross_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H" +
+      "\005\202\001\002\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.FlexAli" +
+      "gnB\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_sele" +
+      "ctor\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui.Resolv" +
+      "edStyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\n" +
+      "properties\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\r" +
+      "StyleProperty\022-\n\004type\030\001 \001(\0162\025.ui.StylePr" +
+      "opertyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\r" +
+      "H\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value\030\004" +
+      " \001(\0132\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB" +
+      "\007\272H\004r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.Sh" +
+      "adowBundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(" +
+      "\rB\010\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 " +
+      "\001(\rB\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001" +
+      " \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005" +
+      "\022\016\n\006spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*" +
+      "2\n\013SubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJE" +
+      "CT_STRING\020\001*\227\003\n\nWidgetType\022\016\n\nWIDGET_OBJ" +
+      "\020\000\022\021\n\rWIDGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022" +
+      "\021\n\rWIDGET_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\n" +
+      "WIDGET_ARC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_S" +
+      "WITCH\020\007\022\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_D" +
+      "ROPDOWN\020\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_T" +
+      "EXTAREA\020\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_" +
+      "SPINNER\020\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE" +
+      "\020\017\022\020\n\014WIDGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMAT" +
+      "RIX\020\021\022\020\n\014WIDGET_TABLE\020\022\022\022\n\016WIDGET_TABVIE" +
+      "W\020\023\022\020\n\014WIDGET_CHART\020\024*X\n\014EventTrigger\022\023\n" +
+      "\017TRIGGER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CHAN" +
+      "GED\020\001\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCompa" +
+      "reOp\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ\020\001" +
+      "\022\016\n\nCOMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nCOM" +
+      "PARE_LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlow\022" +
+      "\022\n\016FLEX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001\022\024" +
+      "\n\020FLEX_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_WR" +
+      "AP\020\003\022\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLEX_" +
+      "FLOW_ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_COL" +
+      "UMN_WRAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE\020\007" +
+      "\022!\n\035FLEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001\n\t" +
+      "FlexAlign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLEX_" +
+      "ALIGN_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027FL" +
+      "EX_ALIGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_SP" +
+      "ACE_AROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWEEN" +
+      "\020\005*\274\001\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000\022\025" +
+      "\n\021GRID_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_END\020" +
+      "\002\022\026\n\022GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIGN_" +
+      "SPACE_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_AROUN" +
+      "D\020\005\022\034\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tTex" +
+      "tAlign\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_ALIG" +
+      "N_LEFT\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEXT_" +
+      "ALIGN_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DECOR" +
+      "_NONE\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030TEX" +
+      "T_DECOR_STRIKETHROUGH\020\002*\213\001\n\tBlendMode\022\025\n" +
+      "\021BLEND_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADDIT" +
+      "IVE\020\001\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023BLE" +
+      "ND_MODE_MULTIPLY\020\003\022\031\n\025BLEND_MODE_DIFFERE" +
+      "NCE\020\004*i\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000\022\020\n\014BA" +
+      "SE_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002\022\024\n\020BASE_" +
+      "DIR_NEUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020!*\200\001\n\007Gra" +
+      "dDir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR_VER\020" +
+      "\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LINEAR\020\003" +
+      "\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_CONICA" +
+      "L\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEFT\020\001\022\r" +
+      "\n\tDIR_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nDIR_BOTTOM" +
+      "\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n\007DIR_ALL\020" +
+      "\017*\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016ALIGN_" +
+      "TOP_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017ALIGN_T" +
+      "OP_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024\n\020ALI" +
+      "GN_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIGHT\020\006\022" +
+      "\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_MID\020\010" +
+      "\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP_LEFT" +
+      "\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_OUT_T" +
+      "OP_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT\020\r\022\030\n" +
+      "\024ALIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OUT_BOT" +
+      "TOM_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020\022\026\n\022A" +
+      "LIGN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LEFT_BO" +
+      "TTOM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023ALIGN" +
+      "_OUT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT_BOTT" +
+      "OM\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_NONE\020" +
+      "\000\022\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER_SIDE" +
+      "_TOP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BORDER_S" +
+      "IDE_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030\n\024BOR" +
+      "DER_SIDE_INTERNAL\020\020*\236\001\n\rLabelLongMode\022\030\n" +
+      "\024LABEL_LONG_MODE_WRAP\020\000\022\030\n\024LABEL_LONG_MO" +
+      "DE_DOTS\020\001\022\032\n\026LABEL_LONG_MODE_SCROLL\020\002\022#\n" +
+      "\037LABEL_LONG_MODE_SCROLL_CIRCULAR\020\003\022\030\n\024LA" +
+      "BEL_LONG_MODE_CLIP\020\004*L\n\007BarMode\022\023\n\017BAR_M" +
+      "ODE_NORMAL\020\000\022\030\n\024BAR_MODE_SYMMETRICAL\020\001\022\022" +
+      "\n\016BAR_MODE_RANGE\020\002*N\n\007ArcMode\022\023\n\017ARC_MOD" +
+      "E_NORMAL\020\000\022\030\n\024ARC_MODE_SYMMETRICAL\020\001\022\024\n\020" +
+      "ARC_MODE_REVERSE\020\002*>\n\nRollerMode\022\026\n\022ROLL" +
+      "ER_MODE_NORMAL\020\000\022\030\n\024ROLLER_MODE_INFINITE" +
+      "\020\001*\301\001\n\tScaleMode\022\035\n\031SCALE_MODE_HORIZONTA" +
+      "L_TOP\020\000\022 \n\034SCALE_MODE_HORIZONTAL_BOTTOM\020" +
+      "\001\022\034\n\030SCALE_MODE_VERTICAL_LEFT\020\002\022\035\n\031SCALE" +
+      "_MODE_VERTICAL_RIGHT\020\004\022\032\n\026SCALE_MODE_ROU" +
+      "ND_INNER\020\010\022\032\n\026SCALE_MODE_ROUND_OUTER\020\020*\217" +
+      "\001\n\tChartType\022\023\n\017CHART_TYPE_NONE\020\000\022\023\n\017CHA" +
+      "RT_TYPE_LINE\020\001\022\024\n\020CHART_TYPE_CURVE\020\002\022\022\n\016" +
+      "CHART_TYPE_BAR\020\003\022\026\n\022CHART_TYPE_STACKED\020\004" +
+      "\022\026\n\022CHART_TYPE_SCATTER\020\005*w\n\tChartAxis\022\030\n" +
+      "\024CHART_AXIS_PRIMARY_Y\020\000\022\032\n\026CHART_AXIS_SE" +
+      "CONDARY_Y\020\001\022\030\n\024CHART_AXIS_PRIMARY_X\020\002\022\032\n" +
+      "\026CHART_AXIS_SECONDARY_X\020\004*\273\022\n\021StylePrope" +
+      "rtyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OP" +
+      "A\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FO" +
+      "NT\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BORD" +
+      "ER_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_" +
+      "ALL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022" +
+      "\017\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PRO" +
+      "P_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MA" +
+      "RGIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_" +
+      "MIN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_" +
+      "MIN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PRO" +
+      "P_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPR" +
+      "OP_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025" +
+      "PROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLAT" +
+      "E_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCAL" +
+      "E_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION" +
+      "\020\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017" +
+      "\n\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP" +
+      "_PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_" +
+      "PAD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_P" +
+      "AD_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MA" +
+      "RGIN_TOP\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PR" +
+      "OP_MARGIN_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022" +
+      "\026\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_" +
+      "DIR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_" +
+      "GRAD_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PRO" +
+      "P_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025" +
+      "\n\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_R" +
+      "ECOLOR\0205\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022" +
+      "\027\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDER_" +
+      "SIDE\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_OUT" +
+      "LINE_WIDTH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020" +
+      "PROP_OUTLINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=" +
+      "\022\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_O" +
+      "FFSET_X\020?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022P" +
+      "ROP_SHADOW_SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR" +
+      "\020B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OP" +
+      "A\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAG" +
+      "E_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024" +
+      "PROP_LINE_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH" +
+      "_GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_LI" +
+      "NE_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_AR" +
+      "C_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_" +
+      "ARC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TE" +
+      "XT_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024" +
+      "PROP_TEXT_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DECO" +
+      "R\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_CO" +
+      "RNER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED" +
+      "\020X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_AN" +
+      "IM_DURATION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPR" +
+      "OP_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY" +
+      "\020]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN" +
+      "_PLACE\020_\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025P" +
+      "ROP_FLEX_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW" +
+      "\020b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_G" +
+      "RID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLUMN" +
+      "_POS\020e\022\032\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PR" +
+      "OP_GRID_CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_" +
+      "CELL_ROW_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN" +
+      "\020i\022\033\n\027PROP_GRID_CELL_ROW_SPAN\020jBEZCgit-c" +
+      "odecommit.eu-central-1.amazonaws.com/v1/" +
+      "repos/jettison/jonp/uib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -43740,7 +44311,7 @@ java.lang.String defaultValue) {
     internal_static_ui_ScaleSection_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ScaleSection_descriptor,
-        new java.lang.String[] { "RangeMin", "RangeMax", "Color", "Width", });
+        new java.lang.String[] { "RangeMin", "RangeMax", "Color", "Width", "MainColor", "MainWidth", });
     internal_static_ui_ButtonMatrixProps_descriptor =
       getDescriptor().getMessageTypes().get(23);
     internal_static_ui_ButtonMatrixProps_fieldAccessorTable = new
@@ -43758,7 +44329,7 @@ java.lang.String defaultValue) {
     internal_static_ui_TabviewProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_TabviewProps_descriptor,
-        new java.lang.String[] { "TabNames", "TabBarSize", "ActiveIndex", "TabBarPosition", });
+        new java.lang.String[] { "TabNames", "TabBarSize", "ActiveIndex", "TabBarPosition", "TabBarPadLeft", });
     internal_static_ui_ChartSeries_descriptor =
       getDescriptor().getMessageTypes().get(26);
     internal_static_ui_ChartSeries_fieldAccessorTable = new
