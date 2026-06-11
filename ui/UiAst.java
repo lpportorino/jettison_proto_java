@@ -43366,53 +43366,40 @@ java.lang.String defaultValue) {
     int getStateSelector();
 
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
-    java.util.List<ui.UiAst.ResolvedStyle> 
+    java.util.List<ui.UiAst.StyleVariant> 
         getVariantsList();
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
-    ui.UiAst.ResolvedStyle getVariants(int index);
+    ui.UiAst.StyleVariant getVariants(int index);
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     int getVariantsCount();
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
-    java.util.List<? extends ui.UiAst.ResolvedStyleOrBuilder> 
+    java.util.List<? extends ui.UiAst.StyleVariantOrBuilder> 
         getVariantsOrBuilderList();
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
-    ui.UiAst.ResolvedStyleOrBuilder getVariantsOrBuilder(
+    ui.UiAst.StyleVariantOrBuilder getVariantsOrBuilder(
         int index);
   }
   /**
    * <pre>
    * A group of style variants for one LVGL state selector.
    * state_selector encodes LV_PART_MAIN (0x0), LV_PART_MAIN | LV_STATE_PRESSED (0x20), etc.
+   *
+   * Sparse composite encoding: the entry with variant_index 0 (the base) is
+   * ALWAYS present and emitted first; an entry for composite index 1-7 is
+   * present ONLY when its resolved prop set differs from the base, and then
+   * carries the COMPLETE prop set for that index (full replacement, not a
+   * per-prop delta). An absent index renders exactly as the base, so a
+   * fully-uniform group ships one entry.
    * </pre>
    *
    * Protobuf type {@code ui.StyleGroup}
@@ -43465,61 +43452,41 @@ java.lang.String defaultValue) {
 
     public static final int VARIANTS_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private java.util.List<ui.UiAst.ResolvedStyle> variants_;
+    private java.util.List<ui.UiAst.StyleVariant> variants_;
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
-    public java.util.List<ui.UiAst.ResolvedStyle> getVariantsList() {
+    public java.util.List<ui.UiAst.StyleVariant> getVariantsList() {
       return variants_;
     }
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
-    public java.util.List<? extends ui.UiAst.ResolvedStyleOrBuilder> 
+    public java.util.List<? extends ui.UiAst.StyleVariantOrBuilder> 
         getVariantsOrBuilderList() {
       return variants_;
     }
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
     public int getVariantsCount() {
       return variants_.size();
     }
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
-    public ui.UiAst.ResolvedStyle getVariants(int index) {
+    public ui.UiAst.StyleVariant getVariants(int index) {
       return variants_.get(index);
     }
     /**
-     * <pre>
-     * exactly 8 entries (composite indices 0-7)
-     * </pre>
-     *
-     * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+     * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
      */
     @java.lang.Override
-    public ui.UiAst.ResolvedStyleOrBuilder getVariantsOrBuilder(
+    public ui.UiAst.StyleVariantOrBuilder getVariantsOrBuilder(
         int index) {
       return variants_.get(index);
     }
@@ -43698,6 +43665,13 @@ java.lang.String defaultValue) {
      * <pre>
      * A group of style variants for one LVGL state selector.
      * state_selector encodes LV_PART_MAIN (0x0), LV_PART_MAIN | LV_STATE_PRESSED (0x20), etc.
+     *
+     * Sparse composite encoding: the entry with variant_index 0 (the base) is
+     * ALWAYS present and emitted first; an entry for composite index 1-7 is
+     * present ONLY when its resolved prop set differs from the base, and then
+     * carries the COMPLETE prop set for that index (full replacement, not a
+     * per-prop delta). An absent index renders exactly as the base, so a
+     * fully-uniform group ships one entry.
      * </pre>
      *
      * Protobuf type {@code ui.StyleGroup}
@@ -43865,9 +43839,9 @@ java.lang.String defaultValue) {
                 break;
               } // case 8
               case 18: {
-                ui.UiAst.ResolvedStyle m =
+                ui.UiAst.StyleVariant m =
                     input.readMessage(
-                        ui.UiAst.ResolvedStyle.parser(),
+                        ui.UiAst.StyleVariant.parser(),
                         extensionRegistry);
                 if (variantsBuilder_ == null) {
                   ensureVariantsIsMutable();
@@ -43926,26 +43900,22 @@ java.lang.String defaultValue) {
         return this;
       }
 
-      private java.util.List<ui.UiAst.ResolvedStyle> variants_ =
+      private java.util.List<ui.UiAst.StyleVariant> variants_ =
         java.util.Collections.emptyList();
       private void ensureVariantsIsMutable() {
         if (!((bitField0_ & 0x00000002) != 0)) {
-          variants_ = new java.util.ArrayList<ui.UiAst.ResolvedStyle>(variants_);
+          variants_ = new java.util.ArrayList<ui.UiAst.StyleVariant>(variants_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilder<
-          ui.UiAst.ResolvedStyle, ui.UiAst.ResolvedStyle.Builder, ui.UiAst.ResolvedStyleOrBuilder> variantsBuilder_;
+          ui.UiAst.StyleVariant, ui.UiAst.StyleVariant.Builder, ui.UiAst.StyleVariantOrBuilder> variantsBuilder_;
 
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public java.util.List<ui.UiAst.ResolvedStyle> getVariantsList() {
+      public java.util.List<ui.UiAst.StyleVariant> getVariantsList() {
         if (variantsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(variants_);
         } else {
@@ -43953,11 +43923,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public int getVariantsCount() {
         if (variantsBuilder_ == null) {
@@ -43967,13 +43933,9 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public ui.UiAst.ResolvedStyle getVariants(int index) {
+      public ui.UiAst.StyleVariant getVariants(int index) {
         if (variantsBuilder_ == null) {
           return variants_.get(index);
         } else {
@@ -43981,14 +43943,10 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder setVariants(
-          int index, ui.UiAst.ResolvedStyle value) {
+          int index, ui.UiAst.StyleVariant value) {
         if (variantsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -44002,14 +43960,10 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder setVariants(
-          int index, ui.UiAst.ResolvedStyle.Builder builderForValue) {
+          int index, ui.UiAst.StyleVariant.Builder builderForValue) {
         if (variantsBuilder_ == null) {
           ensureVariantsIsMutable();
           variants_.set(index, builderForValue.build());
@@ -44020,13 +43974,9 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public Builder addVariants(ui.UiAst.ResolvedStyle value) {
+      public Builder addVariants(ui.UiAst.StyleVariant value) {
         if (variantsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -44040,14 +43990,10 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addVariants(
-          int index, ui.UiAst.ResolvedStyle value) {
+          int index, ui.UiAst.StyleVariant value) {
         if (variantsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -44061,14 +44007,10 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addVariants(
-          ui.UiAst.ResolvedStyle.Builder builderForValue) {
+          ui.UiAst.StyleVariant.Builder builderForValue) {
         if (variantsBuilder_ == null) {
           ensureVariantsIsMutable();
           variants_.add(builderForValue.build());
@@ -44079,14 +44021,10 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addVariants(
-          int index, ui.UiAst.ResolvedStyle.Builder builderForValue) {
+          int index, ui.UiAst.StyleVariant.Builder builderForValue) {
         if (variantsBuilder_ == null) {
           ensureVariantsIsMutable();
           variants_.add(index, builderForValue.build());
@@ -44097,14 +44035,10 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder addAllVariants(
-          java.lang.Iterable<? extends ui.UiAst.ResolvedStyle> values) {
+          java.lang.Iterable<? extends ui.UiAst.StyleVariant> values) {
         if (variantsBuilder_ == null) {
           ensureVariantsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -44116,11 +44050,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder clearVariants() {
         if (variantsBuilder_ == null) {
@@ -44133,11 +44063,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
       public Builder removeVariants(int index) {
         if (variantsBuilder_ == null) {
@@ -44150,24 +44076,16 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public ui.UiAst.ResolvedStyle.Builder getVariantsBuilder(
+      public ui.UiAst.StyleVariant.Builder getVariantsBuilder(
           int index) {
         return getVariantsFieldBuilder().getBuilder(index);
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public ui.UiAst.ResolvedStyleOrBuilder getVariantsOrBuilder(
+      public ui.UiAst.StyleVariantOrBuilder getVariantsOrBuilder(
           int index) {
         if (variantsBuilder_ == null) {
           return variants_.get(index);  } else {
@@ -44175,13 +44093,9 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public java.util.List<? extends ui.UiAst.ResolvedStyleOrBuilder> 
+      public java.util.List<? extends ui.UiAst.StyleVariantOrBuilder> 
            getVariantsOrBuilderList() {
         if (variantsBuilder_ != null) {
           return variantsBuilder_.getMessageOrBuilderList();
@@ -44190,45 +44104,33 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public ui.UiAst.ResolvedStyle.Builder addVariantsBuilder() {
+      public ui.UiAst.StyleVariant.Builder addVariantsBuilder() {
         return getVariantsFieldBuilder().addBuilder(
-            ui.UiAst.ResolvedStyle.getDefaultInstance());
+            ui.UiAst.StyleVariant.getDefaultInstance());
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public ui.UiAst.ResolvedStyle.Builder addVariantsBuilder(
+      public ui.UiAst.StyleVariant.Builder addVariantsBuilder(
           int index) {
         return getVariantsFieldBuilder().addBuilder(
-            index, ui.UiAst.ResolvedStyle.getDefaultInstance());
+            index, ui.UiAst.StyleVariant.getDefaultInstance());
       }
       /**
-       * <pre>
-       * exactly 8 entries (composite indices 0-7)
-       * </pre>
-       *
-       * <code>repeated .ui.ResolvedStyle variants = 2 [(.buf.validate.field) = { ... }</code>
+       * <code>repeated .ui.StyleVariant variants = 2 [(.buf.validate.field) = { ... }</code>
        */
-      public java.util.List<ui.UiAst.ResolvedStyle.Builder> 
+      public java.util.List<ui.UiAst.StyleVariant.Builder> 
            getVariantsBuilderList() {
         return getVariantsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          ui.UiAst.ResolvedStyle, ui.UiAst.ResolvedStyle.Builder, ui.UiAst.ResolvedStyleOrBuilder> 
+          ui.UiAst.StyleVariant, ui.UiAst.StyleVariant.Builder, ui.UiAst.StyleVariantOrBuilder> 
           getVariantsFieldBuilder() {
         if (variantsBuilder_ == null) {
           variantsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-              ui.UiAst.ResolvedStyle, ui.UiAst.ResolvedStyle.Builder, ui.UiAst.ResolvedStyleOrBuilder>(
+              ui.UiAst.StyleVariant, ui.UiAst.StyleVariant.Builder, ui.UiAst.StyleVariantOrBuilder>(
                   variants_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -44289,45 +44191,53 @@ java.lang.String defaultValue) {
 
   }
 
-  public interface ResolvedStyleOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:ui.ResolvedStyle)
+  public interface StyleVariantOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ui.StyleVariant)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>uint32 variant_index = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The variantIndex.
+     */
+    int getVariantIndex();
+
+    /**
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     java.util.List<ui.UiAst.StyleProperty> 
         getPropertiesList();
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     ui.UiAst.StyleProperty getProperties(int index);
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     int getPropertiesCount();
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     java.util.List<? extends ui.UiAst.StylePropertyOrBuilder> 
         getPropertiesOrBuilderList();
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     ui.UiAst.StylePropertyOrBuilder getPropertiesOrBuilder(
         int index);
   }
   /**
    * <pre>
-   * A fully-resolved style: all token refs are resolved to concrete LVGL values.
+   * One sparse composite variant: the complete fully-resolved prop set (all
+   * token refs resolved to concrete LVGL values) for composite index
+   * variant_index (breakpoint_tier * 2 + theme_dark, range 0-7).
    * </pre>
    *
-   * Protobuf type {@code ui.ResolvedStyle}
+   * Protobuf type {@code ui.StyleVariant}
    */
-  public static final class ResolvedStyle extends
+  public static final class StyleVariant extends
       com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:ui.ResolvedStyle)
-      ResolvedStyleOrBuilder {
+      // @@protoc_insertion_point(message_implements:ui.StyleVariant)
+      StyleVariantOrBuilder {
   private static final long serialVersionUID = 0L;
     static {
       com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -44336,41 +44246,52 @@ java.lang.String defaultValue) {
         /* minor= */ 29,
         /* patch= */ 2,
         /* suffix= */ "",
-        ResolvedStyle.class.getName());
+        StyleVariant.class.getName());
     }
-    // Use ResolvedStyle.newBuilder() to construct.
-    private ResolvedStyle(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    // Use StyleVariant.newBuilder() to construct.
+    private StyleVariant(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
     }
-    private ResolvedStyle() {
+    private StyleVariant() {
       properties_ = java.util.Collections.emptyList();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ui.UiAst.internal_static_ui_ResolvedStyle_descriptor;
+      return ui.UiAst.internal_static_ui_StyleVariant_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ui.UiAst.internal_static_ui_ResolvedStyle_fieldAccessorTable
+      return ui.UiAst.internal_static_ui_StyleVariant_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ui.UiAst.ResolvedStyle.class, ui.UiAst.ResolvedStyle.Builder.class);
+              ui.UiAst.StyleVariant.class, ui.UiAst.StyleVariant.Builder.class);
     }
 
-    public static final int PROPERTIES_FIELD_NUMBER = 1;
+    public static final int VARIANT_INDEX_FIELD_NUMBER = 1;
+    private int variantIndex_ = 0;
+    /**
+     * <code>uint32 variant_index = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The variantIndex.
+     */
+    @java.lang.Override
+    public int getVariantIndex() {
+      return variantIndex_;
+    }
+
+    public static final int PROPERTIES_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
     private java.util.List<ui.UiAst.StyleProperty> properties_;
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     @java.lang.Override
     public java.util.List<ui.UiAst.StyleProperty> getPropertiesList() {
       return properties_;
     }
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     @java.lang.Override
     public java.util.List<? extends ui.UiAst.StylePropertyOrBuilder> 
@@ -44378,21 +44299,21 @@ java.lang.String defaultValue) {
       return properties_;
     }
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     @java.lang.Override
     public int getPropertiesCount() {
       return properties_.size();
     }
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     @java.lang.Override
     public ui.UiAst.StyleProperty getProperties(int index) {
       return properties_.get(index);
     }
     /**
-     * <code>repeated .ui.StyleProperty properties = 1;</code>
+     * <code>repeated .ui.StyleProperty properties = 2;</code>
      */
     @java.lang.Override
     public ui.UiAst.StylePropertyOrBuilder getPropertiesOrBuilder(
@@ -44414,8 +44335,11 @@ java.lang.String defaultValue) {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (variantIndex_ != 0) {
+        output.writeUInt32(1, variantIndex_);
+      }
       for (int i = 0; i < properties_.size(); i++) {
-        output.writeMessage(1, properties_.get(i));
+        output.writeMessage(2, properties_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -44426,9 +44350,13 @@ java.lang.String defaultValue) {
       if (size != -1) return size;
 
       size = 0;
+      if (variantIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, variantIndex_);
+      }
       for (int i = 0; i < properties_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, properties_.get(i));
+          .computeMessageSize(2, properties_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -44440,11 +44368,13 @@ java.lang.String defaultValue) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ui.UiAst.ResolvedStyle)) {
+      if (!(obj instanceof ui.UiAst.StyleVariant)) {
         return super.equals(obj);
       }
-      ui.UiAst.ResolvedStyle other = (ui.UiAst.ResolvedStyle) obj;
+      ui.UiAst.StyleVariant other = (ui.UiAst.StyleVariant) obj;
 
+      if (getVariantIndex()
+          != other.getVariantIndex()) return false;
       if (!getPropertiesList()
           .equals(other.getPropertiesList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -44458,6 +44388,8 @@ java.lang.String defaultValue) {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + VARIANT_INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getVariantIndex();
       if (getPropertiesCount() > 0) {
         hash = (37 * hash) + PROPERTIES_FIELD_NUMBER;
         hash = (53 * hash) + getPropertiesList().hashCode();
@@ -44467,44 +44399,44 @@ java.lang.String defaultValue) {
       return hash;
     }
 
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(byte[] data)
+    public static ui.UiAst.StyleVariant parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(java.io.InputStream input)
+    public static ui.UiAst.StyleVariant parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -44512,26 +44444,26 @@ java.lang.String defaultValue) {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static ui.UiAst.ResolvedStyle parseDelimitedFrom(java.io.InputStream input)
+    public static ui.UiAst.StyleVariant parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static ui.UiAst.ResolvedStyle parseDelimitedFrom(
+    public static ui.UiAst.StyleVariant parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static ui.UiAst.ResolvedStyle parseFrom(
+    public static ui.UiAst.StyleVariant parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -44544,7 +44476,7 @@ java.lang.String defaultValue) {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ui.UiAst.ResolvedStyle prototype) {
+    public static Builder newBuilder(ui.UiAst.StyleVariant prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -44561,29 +44493,31 @@ java.lang.String defaultValue) {
     }
     /**
      * <pre>
-     * A fully-resolved style: all token refs are resolved to concrete LVGL values.
+     * One sparse composite variant: the complete fully-resolved prop set (all
+     * token refs resolved to concrete LVGL values) for composite index
+     * variant_index (breakpoint_tier * 2 + theme_dark, range 0-7).
      * </pre>
      *
-     * Protobuf type {@code ui.ResolvedStyle}
+     * Protobuf type {@code ui.StyleVariant}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:ui.ResolvedStyle)
-        ui.UiAst.ResolvedStyleOrBuilder {
+        // @@protoc_insertion_point(builder_implements:ui.StyleVariant)
+        ui.UiAst.StyleVariantOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ui.UiAst.internal_static_ui_ResolvedStyle_descriptor;
+        return ui.UiAst.internal_static_ui_StyleVariant_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ui.UiAst.internal_static_ui_ResolvedStyle_fieldAccessorTable
+        return ui.UiAst.internal_static_ui_StyleVariant_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ui.UiAst.ResolvedStyle.class, ui.UiAst.ResolvedStyle.Builder.class);
+                ui.UiAst.StyleVariant.class, ui.UiAst.StyleVariant.Builder.class);
       }
 
-      // Construct using ui.UiAst.ResolvedStyle.newBuilder()
+      // Construct using ui.UiAst.StyleVariant.newBuilder()
       private Builder() {
 
       }
@@ -44597,30 +44531,31 @@ java.lang.String defaultValue) {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
+        variantIndex_ = 0;
         if (propertiesBuilder_ == null) {
           properties_ = java.util.Collections.emptyList();
         } else {
           properties_ = null;
           propertiesBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ui.UiAst.internal_static_ui_ResolvedStyle_descriptor;
+        return ui.UiAst.internal_static_ui_StyleVariant_descriptor;
       }
 
       @java.lang.Override
-      public ui.UiAst.ResolvedStyle getDefaultInstanceForType() {
-        return ui.UiAst.ResolvedStyle.getDefaultInstance();
+      public ui.UiAst.StyleVariant getDefaultInstanceForType() {
+        return ui.UiAst.StyleVariant.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ui.UiAst.ResolvedStyle build() {
-        ui.UiAst.ResolvedStyle result = buildPartial();
+      public ui.UiAst.StyleVariant build() {
+        ui.UiAst.StyleVariant result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -44628,19 +44563,19 @@ java.lang.String defaultValue) {
       }
 
       @java.lang.Override
-      public ui.UiAst.ResolvedStyle buildPartial() {
-        ui.UiAst.ResolvedStyle result = new ui.UiAst.ResolvedStyle(this);
+      public ui.UiAst.StyleVariant buildPartial() {
+        ui.UiAst.StyleVariant result = new ui.UiAst.StyleVariant(this);
         buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartialRepeatedFields(ui.UiAst.ResolvedStyle result) {
+      private void buildPartialRepeatedFields(ui.UiAst.StyleVariant result) {
         if (propertiesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             properties_ = java.util.Collections.unmodifiableList(properties_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.properties_ = properties_;
         } else {
@@ -44648,27 +44583,33 @@ java.lang.String defaultValue) {
         }
       }
 
-      private void buildPartial0(ui.UiAst.ResolvedStyle result) {
+      private void buildPartial0(ui.UiAst.StyleVariant result) {
         int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.variantIndex_ = variantIndex_;
+        }
       }
 
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ui.UiAst.ResolvedStyle) {
-          return mergeFrom((ui.UiAst.ResolvedStyle)other);
+        if (other instanceof ui.UiAst.StyleVariant) {
+          return mergeFrom((ui.UiAst.StyleVariant)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ui.UiAst.ResolvedStyle other) {
-        if (other == ui.UiAst.ResolvedStyle.getDefaultInstance()) return this;
+      public Builder mergeFrom(ui.UiAst.StyleVariant other) {
+        if (other == ui.UiAst.StyleVariant.getDefaultInstance()) return this;
+        if (other.getVariantIndex() != 0) {
+          setVariantIndex(other.getVariantIndex());
+        }
         if (propertiesBuilder_ == null) {
           if (!other.properties_.isEmpty()) {
             if (properties_.isEmpty()) {
               properties_ = other.properties_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensurePropertiesIsMutable();
               properties_.addAll(other.properties_);
@@ -44681,7 +44622,7 @@ java.lang.String defaultValue) {
               propertiesBuilder_.dispose();
               propertiesBuilder_ = null;
               properties_ = other.properties_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
               propertiesBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                    getPropertiesFieldBuilder() : null;
@@ -44716,7 +44657,12 @@ java.lang.String defaultValue) {
               case 0:
                 done = true;
                 break;
-              case 10: {
+              case 8: {
+                variantIndex_ = input.readUInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
                 ui.UiAst.StyleProperty m =
                     input.readMessage(
                         ui.UiAst.StyleProperty.parser(),
@@ -44728,7 +44674,7 @@ java.lang.String defaultValue) {
                   propertiesBuilder_.addMessage(m);
                 }
                 break;
-              } // case 10
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -44746,12 +44692,44 @@ java.lang.String defaultValue) {
       }
       private int bitField0_;
 
+      private int variantIndex_ ;
+      /**
+       * <code>uint32 variant_index = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The variantIndex.
+       */
+      @java.lang.Override
+      public int getVariantIndex() {
+        return variantIndex_;
+      }
+      /**
+       * <code>uint32 variant_index = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The variantIndex to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVariantIndex(int value) {
+
+        variantIndex_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint32 variant_index = 1 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVariantIndex() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        variantIndex_ = 0;
+        onChanged();
+        return this;
+      }
+
       private java.util.List<ui.UiAst.StyleProperty> properties_ =
         java.util.Collections.emptyList();
       private void ensurePropertiesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           properties_ = new java.util.ArrayList<ui.UiAst.StyleProperty>(properties_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -44759,7 +44737,7 @@ java.lang.String defaultValue) {
           ui.UiAst.StyleProperty, ui.UiAst.StyleProperty.Builder, ui.UiAst.StylePropertyOrBuilder> propertiesBuilder_;
 
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public java.util.List<ui.UiAst.StyleProperty> getPropertiesList() {
         if (propertiesBuilder_ == null) {
@@ -44769,7 +44747,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public int getPropertiesCount() {
         if (propertiesBuilder_ == null) {
@@ -44779,7 +44757,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public ui.UiAst.StyleProperty getProperties(int index) {
         if (propertiesBuilder_ == null) {
@@ -44789,7 +44767,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder setProperties(
           int index, ui.UiAst.StyleProperty value) {
@@ -44806,7 +44784,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder setProperties(
           int index, ui.UiAst.StyleProperty.Builder builderForValue) {
@@ -44820,7 +44798,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder addProperties(ui.UiAst.StyleProperty value) {
         if (propertiesBuilder_ == null) {
@@ -44836,7 +44814,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder addProperties(
           int index, ui.UiAst.StyleProperty value) {
@@ -44853,7 +44831,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder addProperties(
           ui.UiAst.StyleProperty.Builder builderForValue) {
@@ -44867,7 +44845,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder addProperties(
           int index, ui.UiAst.StyleProperty.Builder builderForValue) {
@@ -44881,7 +44859,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder addAllProperties(
           java.lang.Iterable<? extends ui.UiAst.StyleProperty> values) {
@@ -44896,12 +44874,12 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder clearProperties() {
         if (propertiesBuilder_ == null) {
           properties_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           propertiesBuilder_.clear();
@@ -44909,7 +44887,7 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public Builder removeProperties(int index) {
         if (propertiesBuilder_ == null) {
@@ -44922,14 +44900,14 @@ java.lang.String defaultValue) {
         return this;
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public ui.UiAst.StyleProperty.Builder getPropertiesBuilder(
           int index) {
         return getPropertiesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public ui.UiAst.StylePropertyOrBuilder getPropertiesOrBuilder(
           int index) {
@@ -44939,7 +44917,7 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public java.util.List<? extends ui.UiAst.StylePropertyOrBuilder> 
            getPropertiesOrBuilderList() {
@@ -44950,14 +44928,14 @@ java.lang.String defaultValue) {
         }
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public ui.UiAst.StyleProperty.Builder addPropertiesBuilder() {
         return getPropertiesFieldBuilder().addBuilder(
             ui.UiAst.StyleProperty.getDefaultInstance());
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public ui.UiAst.StyleProperty.Builder addPropertiesBuilder(
           int index) {
@@ -44965,7 +44943,7 @@ java.lang.String defaultValue) {
             index, ui.UiAst.StyleProperty.getDefaultInstance());
       }
       /**
-       * <code>repeated .ui.StyleProperty properties = 1;</code>
+       * <code>repeated .ui.StyleProperty properties = 2;</code>
        */
       public java.util.List<ui.UiAst.StyleProperty.Builder> 
            getPropertiesBuilderList() {
@@ -44978,7 +44956,7 @@ java.lang.String defaultValue) {
           propertiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               ui.UiAst.StyleProperty, ui.UiAst.StyleProperty.Builder, ui.UiAst.StylePropertyOrBuilder>(
                   properties_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           properties_ = null;
@@ -44986,23 +44964,23 @@ java.lang.String defaultValue) {
         return propertiesBuilder_;
       }
 
-      // @@protoc_insertion_point(builder_scope:ui.ResolvedStyle)
+      // @@protoc_insertion_point(builder_scope:ui.StyleVariant)
     }
 
-    // @@protoc_insertion_point(class_scope:ui.ResolvedStyle)
-    private static final ui.UiAst.ResolvedStyle DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:ui.StyleVariant)
+    private static final ui.UiAst.StyleVariant DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ui.UiAst.ResolvedStyle();
+      DEFAULT_INSTANCE = new ui.UiAst.StyleVariant();
     }
 
-    public static ui.UiAst.ResolvedStyle getDefaultInstance() {
+    public static ui.UiAst.StyleVariant getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ResolvedStyle>
-        PARSER = new com.google.protobuf.AbstractParser<ResolvedStyle>() {
+    private static final com.google.protobuf.Parser<StyleVariant>
+        PARSER = new com.google.protobuf.AbstractParser<StyleVariant>() {
       @java.lang.Override
-      public ResolvedStyle parsePartialFrom(
+      public StyleVariant parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -45021,17 +44999,17 @@ java.lang.String defaultValue) {
       }
     };
 
-    public static com.google.protobuf.Parser<ResolvedStyle> parser() {
+    public static com.google.protobuf.Parser<StyleVariant> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ResolvedStyle> getParserForType() {
+    public com.google.protobuf.Parser<StyleVariant> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public ui.UiAst.ResolvedStyle getDefaultInstanceForType() {
+    public ui.UiAst.StyleVariant getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -48092,10 +48070,10 @@ java.lang.String defaultValue) {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ui_StyleGroup_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ui_ResolvedStyle_descriptor;
+    internal_static_ui_StyleVariant_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_ui_ResolvedStyle_fieldAccessorTable;
+      internal_static_ui_StyleVariant_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ui_StyleProperty_descriptor;
   private static final 
@@ -48257,176 +48235,177 @@ java.lang.String defaultValue) {
       "\001\022+\n\nmain_place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H" +
       "\005\202\001\002\020\001\022,\n\013cross_place\030\003 \001(\0162\r.ui.FlexAli" +
       "gnB\010\272H\005\202\001\002\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.F" +
-      "lexAlignB\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016stat" +
-      "e_selector\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui." +
-      "ResolvedStyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedSty" +
-      "le\022%\n\nproperties\030\001 \003(\0132\021.ui.StylePropert" +
-      "y\"\337\001\n\rStyleProperty\022-\n\004type\030\001 \001(\0162\025.ui.S" +
-      "tylePropertyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value" +
-      "\030\002 \001(\rH\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_v" +
-      "alue\030\004 \001(\0132\t.ui.ColorH\000\022\037\n\014string_value\030" +
-      "\005 \001(\tB\007\272H\004r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020" +
-      ".ui.ShadowBundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001" +
-      "r\030\001 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023" +
-      "\n\001b\030\003 \001(\rB\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005w" +
-      "idth\030\001 \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y" +
-      "\030\003 \001(\005\022\016\n\006spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005" +
-      "*\003\030\377\001*2\n\013SubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n" +
-      "\016SUBJECT_STRING\020\001*\217\001\n\013PatchOpKind\022\031\n\025PAT" +
-      "CH_OP_UPDATE_PROPS\020\000\022\031\n\025PATCH_OP_REPLACE" +
-      "_NODE\020\001\022\030\n\024PATCH_OP_INSERT_NODE\020\002\022\030\n\024PAT" +
-      "CH_OP_REMOVE_NODE\020\003\022\026\n\022PATCH_OP_MOVE_NOD" +
-      "E\020\004*\256\003\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rWI" +
-      "DGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rWIDGE" +
-      "T_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDGET_A" +
-      "RC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWITCH\020\007\022" +
-      "\023\n\017WIDGET_CHECKBOX\020\010\022\023\n\017WIDGET_DROPDOWN\020" +
-      "\t\022\021\n\rWIDGET_ROLLER\020\n\022\023\n\017WIDGET_TEXTAREA\020" +
-      "\013\022\022\n\016WIDGET_SPINBOX\020\014\022\022\n\016WIDGET_SPINNER\020" +
-      "\r\022\016\n\nWIDGET_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022\020\n\014WI" +
-      "DGET_SCALE\020\020\022\027\n\023WIDGET_BUTTONMATRIX\020\021\022\020\n" +
-      "\014WIDGET_TABLE\020\022\022\022\n\016WIDGET_TABVIEW\020\023\022\020\n\014W" +
-      "IDGET_CHART\020\024\022\025\n\021WIDGET_HOST_PROXY\020\025*p\n\t" +
-      "ProxyMode\022\025\n\021PROXY_MODE_STATIC\020\000\022\030\n\024PROX" +
-      "Y_MODE_DRAGGABLE\020\001\022\030\n\024PROXY_MODE_RESIZAB" +
-      "LE\020\002\022\030\n\024PROXY_MODE_ALIGNABLE\020\003*X\n\014EventT" +
-      "rigger\022\023\n\017TRIGGER_CLICKED\020\000\022\031\n\025TRIGGER_V" +
-      "ALUE_CHANGED\020\001\022\030\n\024TRIGGER_LONG_PRESSED\020\002" +
-      "*q\n\tCompareOp\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE" +
-      "_NOT_EQ\020\001\022\016\n\nCOMPARE_GT\020\002\022\017\n\013COMPARE_GTE" +
-      "\020\003\022\016\n\nCOMPARE_LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010" +
-      "FlexFlow\022\022\n\016FLEX_FLOW_NONE\020\000\022\021\n\rFLEX_FLO" +
-      "W_ROW\020\001\022\024\n\020FLEX_FLOW_COLUMN\020\002\022\026\n\022FLEX_FL" +
-      "OW_ROW_WRAP\020\003\022\031\n\025FLEX_FLOW_ROW_REVERSE\020\004" +
-      "\022\036\n\032FLEX_FLOW_ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX" +
-      "_FLOW_COLUMN_WRAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_" +
-      "REVERSE\020\007\022!\n\035FLEX_FLOW_COLUMN_WRAP_REVER" +
-      "SE\020\010*\244\001\n\tFlexAlign\022\024\n\020FLEX_ALIGN_START\020\000" +
-      "\022\022\n\016FLEX_ALIGN_END\020\001\022\025\n\021FLEX_ALIGN_CENTE" +
-      "R\020\002\022\033\n\027FLEX_ALIGN_SPACE_EVENLY\020\003\022\033\n\027FLEX" +
-      "_ALIGN_SPACE_AROUND\020\004\022\034\n\030FLEX_ALIGN_SPAC" +
-      "E_BETWEEN\020\005*\274\001\n\tGridAlign\022\024\n\020GRID_ALIGN_" +
-      "START\020\000\022\025\n\021GRID_ALIGN_CENTER\020\001\022\022\n\016GRID_A" +
-      "LIGN_END\020\002\022\026\n\022GRID_ALIGN_STRETCH\020\003\022\033\n\027GR" +
-      "ID_ALIGN_SPACE_EVENLY\020\004\022\033\n\027GRID_ALIGN_SP" +
-      "ACE_AROUND\020\005\022\034\n\030GRID_ALIGN_SPACE_BETWEEN" +
-      "\020\006*b\n\tTextAlign\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017" +
-      "TEXT_ALIGN_LEFT\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002" +
-      "\022\024\n\020TEXT_ALIGN_RIGHT\020\003*X\n\tTextDecor\022\023\n\017T" +
-      "EXT_DECOR_NONE\020\000\022\030\n\024TEXT_DECOR_UNDERLINE" +
-      "\020\001\022\034\n\030TEXT_DECOR_STRIKETHROUGH\020\002*\213\001\n\tBle" +
-      "ndMode\022\025\n\021BLEND_MODE_NORMAL\020\000\022\027\n\023BLEND_M" +
-      "ODE_ADDITIVE\020\001\022\032\n\026BLEND_MODE_SUBTRACTIVE" +
-      "\020\002\022\027\n\023BLEND_MODE_MULTIPLY\020\003\022\031\n\025BLEND_MOD" +
-      "E_DIFFERENCE\020\004*i\n\007BaseDir\022\020\n\014BASE_DIR_LT" +
-      "R\020\000\022\020\n\014BASE_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002" +
-      "\022\024\n\020BASE_DIR_NEUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020" +
-      "!*\200\001\n\007GradDir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD" +
-      "_DIR_VER\020\001\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR" +
-      "_LINEAR\020\003\022\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_D" +
-      "IR_CONICAL\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR" +
-      "_LEFT\020\001\022\r\n\tDIR_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nD" +
-      "IR_BOTTOM\020\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n" +
-      "\007DIR_ALL\020\017*\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022" +
-      "\022\n\016ALIGN_TOP_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023" +
-      "\n\017ALIGN_TOP_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT" +
-      "\020\004\022\024\n\020ALIGN_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM" +
-      "_RIGHT\020\006\022\022\n\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RI" +
-      "GHT_MID\020\010\022\020\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT" +
-      "_TOP_LEFT\020\n\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023AL" +
-      "IGN_OUT_TOP_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_" +
-      "LEFT\020\r\022\030\n\024ALIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIG" +
-      "N_OUT_BOTTOM_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_T" +
-      "OP\020\020\022\026\n\022ALIGN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OU" +
-      "T_LEFT_BOTTOM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023" +
-      "\022\027\n\023ALIGN_OUT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_R" +
-      "IGHT_BOTTOM\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_S" +
-      "IDE_NONE\020\000\022\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BO" +
-      "RDER_SIDE_TOP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n" +
-      "\021BORDER_SIDE_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL" +
-      "\020\017\022\030\n\024BORDER_SIDE_INTERNAL\020\020*\236\001\n\rLabelLo" +
-      "ngMode\022\030\n\024LABEL_LONG_MODE_WRAP\020\000\022\030\n\024LABE" +
-      "L_LONG_MODE_DOTS\020\001\022\032\n\026LABEL_LONG_MODE_SC" +
-      "ROLL\020\002\022#\n\037LABEL_LONG_MODE_SCROLL_CIRCULA" +
-      "R\020\003\022\030\n\024LABEL_LONG_MODE_CLIP\020\004*L\n\007BarMode" +
-      "\022\023\n\017BAR_MODE_NORMAL\020\000\022\030\n\024BAR_MODE_SYMMET" +
-      "RICAL\020\001\022\022\n\016BAR_MODE_RANGE\020\002*N\n\007ArcMode\022\023" +
-      "\n\017ARC_MODE_NORMAL\020\000\022\030\n\024ARC_MODE_SYMMETRI" +
-      "CAL\020\001\022\024\n\020ARC_MODE_REVERSE\020\002*>\n\nRollerMod" +
-      "e\022\026\n\022ROLLER_MODE_NORMAL\020\000\022\030\n\024ROLLER_MODE" +
-      "_INFINITE\020\001*\301\001\n\tScaleMode\022\035\n\031SCALE_MODE_" +
-      "HORIZONTAL_TOP\020\000\022 \n\034SCALE_MODE_HORIZONTA" +
-      "L_BOTTOM\020\001\022\034\n\030SCALE_MODE_VERTICAL_LEFT\020\002" +
-      "\022\035\n\031SCALE_MODE_VERTICAL_RIGHT\020\004\022\032\n\026SCALE" +
-      "_MODE_ROUND_INNER\020\010\022\032\n\026SCALE_MODE_ROUND_" +
-      "OUTER\020\020*\217\001\n\tChartType\022\023\n\017CHART_TYPE_NONE" +
-      "\020\000\022\023\n\017CHART_TYPE_LINE\020\001\022\024\n\020CHART_TYPE_CU" +
-      "RVE\020\002\022\022\n\016CHART_TYPE_BAR\020\003\022\026\n\022CHART_TYPE_" +
-      "STACKED\020\004\022\026\n\022CHART_TYPE_SCATTER\020\005*w\n\tCha" +
-      "rtAxis\022\030\n\024CHART_AXIS_PRIMARY_Y\020\000\022\032\n\026CHAR" +
-      "T_AXIS_SECONDARY_Y\020\001\022\030\n\024CHART_AXIS_PRIMA" +
-      "RY_X\020\002\022\032\n\026CHART_AXIS_SECONDARY_X\020\004*\273\022\n\021S" +
-      "tylePropertyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013P" +
-      "ROP_BG_OPA\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PRO" +
-      "P_TEXT_FONT\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021" +
-      "PROP_BORDER_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014" +
-      "PROP_PAD_ALL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP" +
-      "_WIDTH\020\t\022\017\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW" +
-      "\020\013\022\020\n\014PROP_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023" +
-      "\n\017PROP_MARGIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017" +
-      "\022\022\n\016PROP_MIN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021" +
-      "\022\023\n\017PROP_MIN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT" +
-      "\020\023\022\017\n\013PROP_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_" +
-      "Y\020\026\022\016\n\nPROP_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_WI" +
-      "DTH\020\030\022\031\n\025PROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP" +
-      "_TRANSLATE_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014" +
-      "PROP_SCALE_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP" +
-      "_ROTATION\020\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PI" +
-      "VOT_Y\020 \022\017\n\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020" +
-      "\"\022\020\n\014PROP_PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$" +
-      "\022\021\n\rPROP_PAD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022" +
-      "\020\n\014PROP_PAD_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023" +
-      "\n\017PROP_MARGIN_TOP\020)\022\026\n\022PROP_MARGIN_BOTTO" +
-      "M\020*\022\024\n\020PROP_MARGIN_LEFT\020+\022\025\n\021PROP_MARGIN" +
-      "_RIGHT\020,\022\026\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PROP" +
-      "_BG_GRAD_DIR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n" +
-      "\021PROP_BG_GRAD_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA" +
-      "\0201\022\024\n\020PROP_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAG" +
-      "E_SRC\0203\022\025\n\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP_B" +
-      "G_IMAGE_RECOLOR\0205\022\035\n\031PROP_BG_IMAGE_RECOL" +
-      "OR_OPA\0206\022\027\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020PRO" +
-      "P_BORDER_SIDE\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n" +
-      "\022PROP_OUTLINE_WIDTH\020:\022\026\n\022PROP_OUTLINE_CO" +
-      "LOR\020;\022\024\n\020PROP_OUTLINE_OPA\020<\022\024\n\020PROP_OUTL" +
-      "INE_PAD\020=\022\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PROP" +
-      "_SHADOW_OFFSET_X\020?\022\030\n\024PROP_SHADOW_OFFSET" +
-      "_Y\020@\022\026\n\022PROP_SHADOW_SPREAD\020A\022\025\n\021PROP_SHA" +
-      "DOW_COLOR\020B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP" +
-      "_IMAGE_OPA\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026" +
-      "PROP_IMAGE_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_WI" +
-      "DTH\020G\022\030\n\024PROP_LINE_DASH_WIDTH\020H\022\026\n\022PROP_" +
-      "LINE_DASH_GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023" +
-      "\n\017PROP_LINE_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022" +
-      "\n\016PROP_ARC_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N" +
-      "\022\022\n\016PROP_ARC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021" +
-      "\n\rPROP_TEXT_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_SP" +
-      "ACE\020R\022\030\n\024PROP_TEXT_LINE_SPACE\020S\022\023\n\017PROP_" +
-      "TEXT_DECOR\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PRO" +
-      "P_CLIP_CORNER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OP" +
-      "A_LAYERED\020X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y\022\026" +
-      "\n\022PROP_ANIM_DURATION\020Z\022\023\n\017PROP_BLEND_MOD" +
-      "E\020[\022\021\n\rPROP_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_SE" +
-      "NSITIVITY\020]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_" +
-      "FLEX_MAIN_PLACE\020_\022\031\n\025PROP_FLEX_CROSS_PLA" +
-      "CE\020`\022\031\n\025PROP_FLEX_TRACK_PLACE\020a\022\022\n\016PROP_" +
-      "FLEX_GROW\020b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020c\022" +
-      "\027\n\023PROP_GRID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_CE" +
-      "LL_COLUMN_POS\020e\022\032\n\026PROP_GRID_CELL_X_ALIG" +
-      "N\020f\022\036\n\032PROP_GRID_CELL_COLUMN_SPAN\020g\022\032\n\026P" +
-      "ROP_GRID_CELL_ROW_POS\020h\022\032\n\026PROP_GRID_CEL" +
-      "L_Y_ALIGN\020i\022\033\n\027PROP_GRID_CELL_ROW_SPAN\020j" +
-      "BEZCgit-codecommit.eu-central-1.amazonaw" +
-      "s.com/v1/repos/jettison/jonp/uib\006proto3"
+      "lexAlignB\010\272H\005\202\001\002\020\001\"T\n\nStyleGroup\022\026\n\016stat" +
+      "e_selector\030\001 \001(\r\022.\n\010variants\030\002 \003(\0132\020.ui." +
+      "StyleVariantB\n\272H\007\222\001\004\010\001\020\010\"U\n\014StyleVariant" +
+      "\022\036\n\rvariant_index\030\001 \001(\rB\007\272H\004*\002\030\007\022%\n\nprop" +
+      "erties\030\002 \003(\0132\021.ui.StyleProperty\"\337\001\n\rStyl" +
+      "eProperty\022-\n\004type\030\001 \001(\0162\025.ui.StyleProper" +
+      "tyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022\023" +
+      "\n\tint_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(\013" +
+      "2\t.ui.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H\004" +
+      "r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.Shadow" +
+      "BundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010\272" +
+      "H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB" +
+      "\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(\r" +
+      "\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n\006" +
+      "spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013S" +
+      "ubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_S" +
+      "TRING\020\001*\217\001\n\013PatchOpKind\022\031\n\025PATCH_OP_UPDA" +
+      "TE_PROPS\020\000\022\031\n\025PATCH_OP_REPLACE_NODE\020\001\022\030\n" +
+      "\024PATCH_OP_INSERT_NODE\020\002\022\030\n\024PATCH_OP_REMO" +
+      "VE_NODE\020\003\022\026\n\022PATCH_OP_MOVE_NODE\020\004*\256\003\n\nWi" +
+      "dgetType\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rWIDGET_BUTTO" +
+      "N\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rWIDGET_SLIDER\020\003" +
+      "\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDGET_ARC\020\005\022\016\n\nWI" +
+      "DGET_BAR\020\006\022\021\n\rWIDGET_SWITCH\020\007\022\023\n\017WIDGET_" +
+      "CHECKBOX\020\010\022\023\n\017WIDGET_DROPDOWN\020\t\022\021\n\rWIDGE" +
+      "T_ROLLER\020\n\022\023\n\017WIDGET_TEXTAREA\020\013\022\022\n\016WIDGE" +
+      "T_SPINBOX\020\014\022\022\n\016WIDGET_SPINNER\020\r\022\016\n\nWIDGE" +
+      "T_LED\020\016\022\017\n\013WIDGET_LINE\020\017\022\020\n\014WIDGET_SCALE" +
+      "\020\020\022\027\n\023WIDGET_BUTTONMATRIX\020\021\022\020\n\014WIDGET_TA" +
+      "BLE\020\022\022\022\n\016WIDGET_TABVIEW\020\023\022\020\n\014WIDGET_CHAR" +
+      "T\020\024\022\025\n\021WIDGET_HOST_PROXY\020\025*p\n\tProxyMode\022" +
+      "\025\n\021PROXY_MODE_STATIC\020\000\022\030\n\024PROXY_MODE_DRA" +
+      "GGABLE\020\001\022\030\n\024PROXY_MODE_RESIZABLE\020\002\022\030\n\024PR" +
+      "OXY_MODE_ALIGNABLE\020\003*X\n\014EventTrigger\022\023\n\017" +
+      "TRIGGER_CLICKED\020\000\022\031\n\025TRIGGER_VALUE_CHANG" +
+      "ED\020\001\022\030\n\024TRIGGER_LONG_PRESSED\020\002*q\n\tCompar" +
+      "eOp\022\016\n\nCOMPARE_EQ\020\000\022\022\n\016COMPARE_NOT_EQ\020\001\022" +
+      "\016\n\nCOMPARE_GT\020\002\022\017\n\013COMPARE_GTE\020\003\022\016\n\nCOMP" +
+      "ARE_LT\020\004\022\017\n\013COMPARE_LTE\020\005*\366\001\n\010FlexFlow\022\022" +
+      "\n\016FLEX_FLOW_NONE\020\000\022\021\n\rFLEX_FLOW_ROW\020\001\022\024\n" +
+      "\020FLEX_FLOW_COLUMN\020\002\022\026\n\022FLEX_FLOW_ROW_WRA" +
+      "P\020\003\022\031\n\025FLEX_FLOW_ROW_REVERSE\020\004\022\036\n\032FLEX_F" +
+      "LOW_ROW_WRAP_REVERSE\020\005\022\031\n\025FLEX_FLOW_COLU" +
+      "MN_WRAP\020\006\022\034\n\030FLEX_FLOW_COLUMN_REVERSE\020\007\022" +
+      "!\n\035FLEX_FLOW_COLUMN_WRAP_REVERSE\020\010*\244\001\n\tF" +
+      "lexAlign\022\024\n\020FLEX_ALIGN_START\020\000\022\022\n\016FLEX_A" +
+      "LIGN_END\020\001\022\025\n\021FLEX_ALIGN_CENTER\020\002\022\033\n\027FLE" +
+      "X_ALIGN_SPACE_EVENLY\020\003\022\033\n\027FLEX_ALIGN_SPA" +
+      "CE_AROUND\020\004\022\034\n\030FLEX_ALIGN_SPACE_BETWEEN\020" +
+      "\005*\274\001\n\tGridAlign\022\024\n\020GRID_ALIGN_START\020\000\022\025\n" +
+      "\021GRID_ALIGN_CENTER\020\001\022\022\n\016GRID_ALIGN_END\020\002" +
+      "\022\026\n\022GRID_ALIGN_STRETCH\020\003\022\033\n\027GRID_ALIGN_S" +
+      "PACE_EVENLY\020\004\022\033\n\027GRID_ALIGN_SPACE_AROUND" +
+      "\020\005\022\034\n\030GRID_ALIGN_SPACE_BETWEEN\020\006*b\n\tText" +
+      "Align\022\023\n\017TEXT_ALIGN_AUTO\020\000\022\023\n\017TEXT_ALIGN" +
+      "_LEFT\020\001\022\025\n\021TEXT_ALIGN_CENTER\020\002\022\024\n\020TEXT_A" +
+      "LIGN_RIGHT\020\003*X\n\tTextDecor\022\023\n\017TEXT_DECOR_" +
+      "NONE\020\000\022\030\n\024TEXT_DECOR_UNDERLINE\020\001\022\034\n\030TEXT" +
+      "_DECOR_STRIKETHROUGH\020\002*\213\001\n\tBlendMode\022\025\n\021" +
+      "BLEND_MODE_NORMAL\020\000\022\027\n\023BLEND_MODE_ADDITI" +
+      "VE\020\001\022\032\n\026BLEND_MODE_SUBTRACTIVE\020\002\022\027\n\023BLEN" +
+      "D_MODE_MULTIPLY\020\003\022\031\n\025BLEND_MODE_DIFFEREN" +
+      "CE\020\004*i\n\007BaseDir\022\020\n\014BASE_DIR_LTR\020\000\022\020\n\014BAS" +
+      "E_DIR_RTL\020\001\022\021\n\rBASE_DIR_AUTO\020\002\022\024\n\020BASE_D" +
+      "IR_NEUTRAL\020 \022\021\n\rBASE_DIR_WEAK\020!*\200\001\n\007Grad" +
+      "Dir\022\021\n\rGRAD_DIR_NONE\020\000\022\020\n\014GRAD_DIR_VER\020\001" +
+      "\022\020\n\014GRAD_DIR_HOR\020\002\022\023\n\017GRAD_DIR_LINEAR\020\003\022" +
+      "\023\n\017GRAD_DIR_RADIAL\020\004\022\024\n\020GRAD_DIR_CONICAL" +
+      "\020\005*t\n\003Dir\022\014\n\010DIR_NONE\020\000\022\014\n\010DIR_LEFT\020\001\022\r\n" +
+      "\tDIR_RIGHT\020\002\022\013\n\007DIR_TOP\020\004\022\016\n\nDIR_BOTTOM\020" +
+      "\010\022\013\n\007DIR_HOR\020\003\022\013\n\007DIR_VER\020\014\022\013\n\007DIR_ALL\020\017" +
+      "*\210\004\n\005Align\022\021\n\rALIGN_DEFAULT\020\000\022\022\n\016ALIGN_T" +
+      "OP_LEFT\020\001\022\021\n\rALIGN_TOP_MID\020\002\022\023\n\017ALIGN_TO" +
+      "P_RIGHT\020\003\022\025\n\021ALIGN_BOTTOM_LEFT\020\004\022\024\n\020ALIG" +
+      "N_BOTTOM_MID\020\005\022\026\n\022ALIGN_BOTTOM_RIGHT\020\006\022\022" +
+      "\n\016ALIGN_LEFT_MID\020\007\022\023\n\017ALIGN_RIGHT_MID\020\010\022" +
+      "\020\n\014ALIGN_CENTER\020\t\022\026\n\022ALIGN_OUT_TOP_LEFT\020" +
+      "\n\022\025\n\021ALIGN_OUT_TOP_MID\020\013\022\027\n\023ALIGN_OUT_TO" +
+      "P_RIGHT\020\014\022\031\n\025ALIGN_OUT_BOTTOM_LEFT\020\r\022\030\n\024" +
+      "ALIGN_OUT_BOTTOM_MID\020\016\022\032\n\026ALIGN_OUT_BOTT" +
+      "OM_RIGHT\020\017\022\026\n\022ALIGN_OUT_LEFT_TOP\020\020\022\026\n\022AL" +
+      "IGN_OUT_LEFT_MID\020\021\022\031\n\025ALIGN_OUT_LEFT_BOT" +
+      "TOM\020\022\022\027\n\023ALIGN_OUT_RIGHT_TOP\020\023\022\027\n\023ALIGN_" +
+      "OUT_RIGHT_MID\020\024\022\032\n\026ALIGN_OUT_RIGHT_BOTTO" +
+      "M\020\025*\254\001\n\nBorderSide\022\024\n\020BORDER_SIDE_NONE\020\000" +
+      "\022\026\n\022BORDER_SIDE_BOTTOM\020\001\022\023\n\017BORDER_SIDE_" +
+      "TOP\020\002\022\024\n\020BORDER_SIDE_LEFT\020\004\022\025\n\021BORDER_SI" +
+      "DE_RIGHT\020\010\022\024\n\020BORDER_SIDE_FULL\020\017\022\030\n\024BORD" +
+      "ER_SIDE_INTERNAL\020\020*\236\001\n\rLabelLongMode\022\030\n\024" +
+      "LABEL_LONG_MODE_WRAP\020\000\022\030\n\024LABEL_LONG_MOD" +
+      "E_DOTS\020\001\022\032\n\026LABEL_LONG_MODE_SCROLL\020\002\022#\n\037" +
+      "LABEL_LONG_MODE_SCROLL_CIRCULAR\020\003\022\030\n\024LAB" +
+      "EL_LONG_MODE_CLIP\020\004*L\n\007BarMode\022\023\n\017BAR_MO" +
+      "DE_NORMAL\020\000\022\030\n\024BAR_MODE_SYMMETRICAL\020\001\022\022\n" +
+      "\016BAR_MODE_RANGE\020\002*N\n\007ArcMode\022\023\n\017ARC_MODE" +
+      "_NORMAL\020\000\022\030\n\024ARC_MODE_SYMMETRICAL\020\001\022\024\n\020A" +
+      "RC_MODE_REVERSE\020\002*>\n\nRollerMode\022\026\n\022ROLLE" +
+      "R_MODE_NORMAL\020\000\022\030\n\024ROLLER_MODE_INFINITE\020" +
+      "\001*\301\001\n\tScaleMode\022\035\n\031SCALE_MODE_HORIZONTAL" +
+      "_TOP\020\000\022 \n\034SCALE_MODE_HORIZONTAL_BOTTOM\020\001" +
+      "\022\034\n\030SCALE_MODE_VERTICAL_LEFT\020\002\022\035\n\031SCALE_" +
+      "MODE_VERTICAL_RIGHT\020\004\022\032\n\026SCALE_MODE_ROUN" +
+      "D_INNER\020\010\022\032\n\026SCALE_MODE_ROUND_OUTER\020\020*\217\001" +
+      "\n\tChartType\022\023\n\017CHART_TYPE_NONE\020\000\022\023\n\017CHAR" +
+      "T_TYPE_LINE\020\001\022\024\n\020CHART_TYPE_CURVE\020\002\022\022\n\016C" +
+      "HART_TYPE_BAR\020\003\022\026\n\022CHART_TYPE_STACKED\020\004\022" +
+      "\026\n\022CHART_TYPE_SCATTER\020\005*w\n\tChartAxis\022\030\n\024" +
+      "CHART_AXIS_PRIMARY_Y\020\000\022\032\n\026CHART_AXIS_SEC" +
+      "ONDARY_Y\020\001\022\030\n\024CHART_AXIS_PRIMARY_X\020\002\022\032\n\026" +
+      "CHART_AXIS_SECONDARY_X\020\004*\273\022\n\021StyleProper" +
+      "tyType\022\021\n\rPROP_BG_COLOR\020\000\022\017\n\013PROP_BG_OPA" +
+      "\020\001\022\023\n\017PROP_TEXT_COLOR\020\002\022\022\n\016PROP_TEXT_FON" +
+      "T\020\003\022\025\n\021PROP_BORDER_COLOR\020\004\022\025\n\021PROP_BORDE" +
+      "R_WIDTH\020\005\022\017\n\013PROP_RADIUS\020\006\022\020\n\014PROP_PAD_A" +
+      "LL\020\007\022\020\n\014PROP_PAD_GAP\020\010\022\016\n\nPROP_WIDTH\020\t\022\017" +
+      "\n\013PROP_HEIGHT\020\n\022\017\n\013PROP_SHADOW\020\013\022\020\n\014PROP" +
+      "_PAD_HOR\020\014\022\020\n\014PROP_PAD_VER\020\r\022\023\n\017PROP_MAR" +
+      "GIN_ALL\020\016\022\023\n\017PROP_BORDER_OPA\020\017\022\022\n\016PROP_M" +
+      "IN_WIDTH\020\020\022\022\n\016PROP_MAX_WIDTH\020\021\022\023\n\017PROP_M" +
+      "IN_HEIGHT\020\022\022\023\n\017PROP_MAX_HEIGHT\020\023\022\017\n\013PROP" +
+      "_LENGTH\020\024\022\n\n\006PROP_X\020\025\022\n\n\006PROP_Y\020\026\022\016\n\nPRO" +
+      "P_ALIGN\020\027\022\030\n\024PROP_TRANSFORM_WIDTH\020\030\022\031\n\025P" +
+      "ROP_TRANSFORM_HEIGHT\020\031\022\024\n\020PROP_TRANSLATE" +
+      "_X\020\032\022\024\n\020PROP_TRANSLATE_Y\020\033\022\020\n\014PROP_SCALE" +
+      "_X\020\034\022\020\n\014PROP_SCALE_Y\020\035\022\021\n\rPROP_ROTATION\020" +
+      "\036\022\020\n\014PROP_PIVOT_X\020\037\022\020\n\014PROP_PIVOT_Y\020 \022\017\n" +
+      "\013PROP_SKEW_X\020!\022\017\n\013PROP_SKEW_Y\020\"\022\020\n\014PROP_" +
+      "PAD_TOP\020#\022\023\n\017PROP_PAD_BOTTOM\020$\022\021\n\rPROP_P" +
+      "AD_LEFT\020%\022\022\n\016PROP_PAD_RIGHT\020&\022\020\n\014PROP_PA" +
+      "D_ROW\020\'\022\023\n\017PROP_PAD_COLUMN\020(\022\023\n\017PROP_MAR" +
+      "GIN_TOP\020)\022\026\n\022PROP_MARGIN_BOTTOM\020*\022\024\n\020PRO" +
+      "P_MARGIN_LEFT\020+\022\025\n\021PROP_MARGIN_RIGHT\020,\022\026" +
+      "\n\022PROP_BG_GRAD_COLOR\020-\022\024\n\020PROP_BG_GRAD_D" +
+      "IR\020.\022\025\n\021PROP_BG_MAIN_STOP\020/\022\025\n\021PROP_BG_G" +
+      "RAD_STOP\0200\022\024\n\020PROP_BG_MAIN_OPA\0201\022\024\n\020PROP" +
+      "_BG_GRAD_OPA\0202\022\025\n\021PROP_BG_IMAGE_SRC\0203\022\025\n" +
+      "\021PROP_BG_IMAGE_OPA\0204\022\031\n\025PROP_BG_IMAGE_RE" +
+      "COLOR\0205\022\035\n\031PROP_BG_IMAGE_RECOLOR_OPA\0206\022\027" +
+      "\n\023PROP_BG_IMAGE_TILED\0207\022\024\n\020PROP_BORDER_S" +
+      "IDE\0208\022\024\n\020PROP_BORDER_POST\0209\022\026\n\022PROP_OUTL" +
+      "INE_WIDTH\020:\022\026\n\022PROP_OUTLINE_COLOR\020;\022\024\n\020P" +
+      "ROP_OUTLINE_OPA\020<\022\024\n\020PROP_OUTLINE_PAD\020=\022" +
+      "\025\n\021PROP_SHADOW_WIDTH\020>\022\030\n\024PROP_SHADOW_OF" +
+      "FSET_X\020?\022\030\n\024PROP_SHADOW_OFFSET_Y\020@\022\026\n\022PR" +
+      "OP_SHADOW_SPREAD\020A\022\025\n\021PROP_SHADOW_COLOR\020" +
+      "B\022\023\n\017PROP_SHADOW_OPA\020C\022\022\n\016PROP_IMAGE_OPA" +
+      "\020D\022\026\n\022PROP_IMAGE_RECOLOR\020E\022\032\n\026PROP_IMAGE" +
+      "_RECOLOR_OPA\020F\022\023\n\017PROP_LINE_WIDTH\020G\022\030\n\024P" +
+      "ROP_LINE_DASH_WIDTH\020H\022\026\n\022PROP_LINE_DASH_" +
+      "GAP\020I\022\025\n\021PROP_LINE_ROUNDED\020J\022\023\n\017PROP_LIN" +
+      "E_COLOR\020K\022\021\n\rPROP_LINE_OPA\020L\022\022\n\016PROP_ARC" +
+      "_WIDTH\020M\022\024\n\020PROP_ARC_ROUNDED\020N\022\022\n\016PROP_A" +
+      "RC_COLOR\020O\022\020\n\014PROP_ARC_OPA\020P\022\021\n\rPROP_TEX" +
+      "T_OPA\020Q\022\032\n\026PROP_TEXT_LETTER_SPACE\020R\022\030\n\024P" +
+      "ROP_TEXT_LINE_SPACE\020S\022\023\n\017PROP_TEXT_DECOR" +
+      "\020T\022\023\n\017PROP_TEXT_ALIGN\020U\022\024\n\020PROP_CLIP_COR" +
+      "NER\020V\022\014\n\010PROP_OPA\020W\022\024\n\020PROP_OPA_LAYERED\020" +
+      "X\022\031\n\025PROP_COLOR_FILTER_OPA\020Y\022\026\n\022PROP_ANI" +
+      "M_DURATION\020Z\022\023\n\017PROP_BLEND_MODE\020[\022\021\n\rPRO" +
+      "P_BASE_DIR\020\\\022\033\n\027PROP_ROTARY_SENSITIVITY\020" +
+      "]\022\022\n\016PROP_FLEX_FLOW\020^\022\030\n\024PROP_FLEX_MAIN_" +
+      "PLACE\020_\022\031\n\025PROP_FLEX_CROSS_PLACE\020`\022\031\n\025PR" +
+      "OP_FLEX_TRACK_PLACE\020a\022\022\n\016PROP_FLEX_GROW\020" +
+      "b\022\032\n\026PROP_GRID_COLUMN_ALIGN\020c\022\027\n\023PROP_GR" +
+      "ID_ROW_ALIGN\020d\022\035\n\031PROP_GRID_CELL_COLUMN_" +
+      "POS\020e\022\032\n\026PROP_GRID_CELL_X_ALIGN\020f\022\036\n\032PRO" +
+      "P_GRID_CELL_COLUMN_SPAN\020g\022\032\n\026PROP_GRID_C" +
+      "ELL_ROW_POS\020h\022\032\n\026PROP_GRID_CELL_Y_ALIGN\020" +
+      "i\022\033\n\027PROP_GRID_CELL_ROW_SPAN\020jBEZCgit-co" +
+      "decommit.eu-central-1.amazonaws.com/v1/r" +
+      "epos/jettison/jonp/uib\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -48661,12 +48640,12 @@ java.lang.String defaultValue) {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleGroup_descriptor,
         new java.lang.String[] { "StateSelector", "Variants", });
-    internal_static_ui_ResolvedStyle_descriptor =
+    internal_static_ui_StyleVariant_descriptor =
       getDescriptor().getMessageTypes().get(36);
-    internal_static_ui_ResolvedStyle_fieldAccessorTable = new
+    internal_static_ui_StyleVariant_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_ui_ResolvedStyle_descriptor,
-        new java.lang.String[] { "Properties", });
+        internal_static_ui_StyleVariant_descriptor,
+        new java.lang.String[] { "VariantIndex", "Properties", });
     internal_static_ui_StyleProperty_descriptor =
       getDescriptor().getMessageTypes().get(37);
     internal_static_ui_StyleProperty_fieldAccessorTable = new
