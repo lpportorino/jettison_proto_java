@@ -148,6 +148,190 @@ public final class UiAst {
   }
 
   /**
+   * Protobuf enum {@code ui.PatchOpKind}
+   */
+  public enum PatchOpKind
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * morph target in place from node's props
+     * </pre>
+     *
+     * <code>PATCH_OP_UPDATE_PROPS = 0;</code>
+     */
+    PATCH_OP_UPDATE_PROPS(0),
+    /**
+     * <pre>
+     * teardown target subtree, build node in slot
+     * </pre>
+     *
+     * <code>PATCH_OP_REPLACE_NODE = 1;</code>
+     */
+    PATCH_OP_REPLACE_NODE(1),
+    /**
+     * <pre>
+     * build node under parent_uid at index
+     * </pre>
+     *
+     * <code>PATCH_OP_INSERT_NODE = 2;</code>
+     */
+    PATCH_OP_INSERT_NODE(2),
+    /**
+     * <pre>
+     * teardown target subtree
+     * </pre>
+     *
+     * <code>PATCH_OP_REMOVE_NODE = 3;</code>
+     */
+    PATCH_OP_REMOVE_NODE(3),
+    /**
+     * <pre>
+     * reorder target to index (same parent)
+     * </pre>
+     *
+     * <code>PATCH_OP_MOVE_NODE = 4;</code>
+     */
+    PATCH_OP_MOVE_NODE(4),
+    UNRECOGNIZED(-1),
+    ;
+
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        PatchOpKind.class.getName());
+    }
+    /**
+     * <pre>
+     * morph target in place from node's props
+     * </pre>
+     *
+     * <code>PATCH_OP_UPDATE_PROPS = 0;</code>
+     */
+    public static final int PATCH_OP_UPDATE_PROPS_VALUE = 0;
+    /**
+     * <pre>
+     * teardown target subtree, build node in slot
+     * </pre>
+     *
+     * <code>PATCH_OP_REPLACE_NODE = 1;</code>
+     */
+    public static final int PATCH_OP_REPLACE_NODE_VALUE = 1;
+    /**
+     * <pre>
+     * build node under parent_uid at index
+     * </pre>
+     *
+     * <code>PATCH_OP_INSERT_NODE = 2;</code>
+     */
+    public static final int PATCH_OP_INSERT_NODE_VALUE = 2;
+    /**
+     * <pre>
+     * teardown target subtree
+     * </pre>
+     *
+     * <code>PATCH_OP_REMOVE_NODE = 3;</code>
+     */
+    public static final int PATCH_OP_REMOVE_NODE_VALUE = 3;
+    /**
+     * <pre>
+     * reorder target to index (same parent)
+     * </pre>
+     *
+     * <code>PATCH_OP_MOVE_NODE = 4;</code>
+     */
+    public static final int PATCH_OP_MOVE_NODE_VALUE = 4;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static PatchOpKind valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static PatchOpKind forNumber(int value) {
+      switch (value) {
+        case 0: return PATCH_OP_UPDATE_PROPS;
+        case 1: return PATCH_OP_REPLACE_NODE;
+        case 2: return PATCH_OP_INSERT_NODE;
+        case 3: return PATCH_OP_REMOVE_NODE;
+        case 4: return PATCH_OP_MOVE_NODE;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<PatchOpKind>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        PatchOpKind> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<PatchOpKind>() {
+            public PatchOpKind findValueByNumber(int number) {
+              return PatchOpKind.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return ui.UiAst.getDescriptor().getEnumTypes().get(1);
+    }
+
+    private static final PatchOpKind[] VALUES = values();
+
+    public static PatchOpKind valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private PatchOpKind(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ui.PatchOpKind)
+  }
+
+  /**
    * Protobuf enum {@code ui.WidgetType}
    */
   public enum WidgetType
@@ -418,7 +602,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(1);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(2);
     }
 
     private static final WidgetType[] VALUES = values();
@@ -590,7 +774,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(2);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(3);
     }
 
     private static final ProxyMode[] VALUES = values();
@@ -744,7 +928,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(3);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(4);
     }
 
     private static final EventTrigger[] VALUES = values();
@@ -949,7 +1133,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(4);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(5);
     }
 
     private static final CompareOp[] VALUES = values();
@@ -1129,7 +1313,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(5);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(6);
     }
 
     private static final FlexFlow[] VALUES = values();
@@ -1282,7 +1466,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(6);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(7);
     }
 
     private static final FlexAlign[] VALUES = values();
@@ -1444,7 +1628,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(7);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(8);
     }
 
     private static final GridAlign[] VALUES = values();
@@ -1579,7 +1763,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(8);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(9);
     }
 
     private static final TextAlign[] VALUES = values();
@@ -1705,7 +1889,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(9);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(10);
     }
 
     private static final TextDecor[] VALUES = values();
@@ -1849,7 +2033,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(10);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(11);
     }
 
     private static final BlendMode[] VALUES = values();
@@ -1993,7 +2177,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(11);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(12);
     }
 
     private static final BaseDir[] VALUES = values();
@@ -2146,7 +2330,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(12);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(13);
     }
 
     private static final GradDir[] VALUES = values();
@@ -2317,7 +2501,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(13);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(14);
     }
 
     private static final Dir[] VALUES = values();
@@ -2614,7 +2798,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(14);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(15);
     }
 
     private static final Align[] VALUES = values();
@@ -2776,7 +2960,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(15);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(16);
     }
 
     private static final BorderSide[] VALUES = values();
@@ -2920,7 +3104,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(16);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(17);
     }
 
     private static final LabelLongMode[] VALUES = values();
@@ -3046,7 +3230,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(17);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(18);
     }
 
     private static final BarMode[] VALUES = values();
@@ -3172,7 +3356,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(18);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(19);
     }
 
     private static final ArcMode[] VALUES = values();
@@ -3289,7 +3473,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(19);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(20);
     }
 
     private static final RollerMode[] VALUES = values();
@@ -3442,7 +3626,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(20);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(21);
     }
 
     private static final ScaleMode[] VALUES = values();
@@ -3595,7 +3779,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(21);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(22);
     }
 
     private static final ChartType[] VALUES = values();
@@ -3730,7 +3914,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(22);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(23);
     }
 
     private static final ChartAxis[] VALUES = values();
@@ -4928,7 +5112,7 @@ public final class UiAst {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ui.UiAst.getDescriptor().getEnumTypes().get(23);
+      return ui.UiAst.getDescriptor().getEnumTypes().get(24);
     }
 
     private static final StylePropertyType[] VALUES = values();
@@ -9659,6 +9843,21 @@ java.lang.String defaultValue);
      */
     ui.UiAst.VisibilityBindingOrBuilder getCheckedWhenOrBuilder();
 
+    /**
+     * <pre>
+     * Stable node identity for tree patching: FNV-1a-32 of the node's
+     * root→node identity path (author :id segments, else type#ordinal among
+     * unkeyed same-type siblings), assigned + collision-checked by codegen.
+     * 0 = never assigned (proto3 default); the renderer mirrors it into
+     * lv_obj user_data and a uid→obj registry so ScreenPatch ops can
+     * address live widgets.
+     * </pre>
+     *
+     * <code>uint32 uid = 43;</code>
+     * @return The uid.
+     */
+    int getUid();
+
     ui.UiAst.WidgetNode.WidgetPropsCase getWidgetPropsCase();
   }
   /**
@@ -11231,6 +11430,26 @@ java.lang.String defaultValue) {
       return checkedWhen_ == null ? ui.UiAst.VisibilityBinding.getDefaultInstance() : checkedWhen_;
     }
 
+    public static final int UID_FIELD_NUMBER = 43;
+    private int uid_ = 0;
+    /**
+     * <pre>
+     * Stable node identity for tree patching: FNV-1a-32 of the node's
+     * root→node identity path (author :id segments, else type#ordinal among
+     * unkeyed same-type siblings), assigned + collision-checked by codegen.
+     * 0 = never assigned (proto3 default); the renderer mirrors it into
+     * lv_obj user_data and a uid→obj registry so ScreenPatch ops can
+     * address live widgets.
+     * </pre>
+     *
+     * <code>uint32 uid = 43;</code>
+     * @return The uid.
+     */
+    @java.lang.Override
+    public int getUid() {
+      return uid_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -11385,6 +11604,9 @@ java.lang.String defaultValue) {
       }
       if (((bitField0_ & 0x00000008) != 0)) {
         output.writeMessage(42, getCheckedWhen());
+      }
+      if (uid_ != 0) {
+        output.writeUInt32(43, uid_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -11594,6 +11816,10 @@ java.lang.String defaultValue) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(42, getCheckedWhen());
       }
+      if (uid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(43, uid_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -11660,6 +11886,8 @@ java.lang.String defaultValue) {
         if (!getCheckedWhen()
             .equals(other.getCheckedWhen())) return false;
       }
+      if (getUid()
+          != other.getUid()) return false;
       if (!getWidgetPropsCase().equals(other.getWidgetPropsCase())) return false;
       switch (widgetPropsCase_) {
         case 10:
@@ -11826,6 +12054,8 @@ java.lang.String defaultValue) {
         hash = (37 * hash) + CHECKED_WHEN_FIELD_NUMBER;
         hash = (53 * hash) + getCheckedWhen().hashCode();
       }
+      hash = (37 * hash) + UID_FIELD_NUMBER;
+      hash = (53 * hash) + getUid();
       switch (widgetPropsCase_) {
         case 10:
           hash = (37 * hash) + OBJ_PROPS_FIELD_NUMBER;
@@ -12205,6 +12435,7 @@ java.lang.String defaultValue) {
           checkedWhenBuilder_.dispose();
           checkedWhenBuilder_ = null;
         }
+        uid_ = 0;
         widgetPropsCase_ = 0;
         widgetProps_ = null;
         return this;
@@ -12340,6 +12571,9 @@ java.lang.String defaultValue) {
               ? checkedWhen_
               : checkedWhenBuilder_.build();
           to_bitField0_ |= 0x00000008;
+        }
+        if (((from_bitField1_ & 0x00000400) != 0)) {
+          result.uid_ = uid_;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -12572,6 +12806,9 @@ java.lang.String defaultValue) {
         }
         if (other.hasCheckedWhen()) {
           mergeCheckedWhen(other.getCheckedWhen());
+        }
+        if (other.getUid() != 0) {
+          setUid(other.getUid());
         }
         switch (other.getWidgetPropsCase()) {
           case OBJ_PROPS: {
@@ -13000,6 +13237,11 @@ java.lang.String defaultValue) {
                 bitField1_ |= 0x00000200;
                 break;
               } // case 338
+              case 344: {
+                uid_ = input.readUInt32();
+                bitField1_ |= 0x00000400;
+                break;
+              } // case 344
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -18480,6 +18722,65 @@ java.lang.String defaultValue) {
         return checkedWhenBuilder_;
       }
 
+      private int uid_ ;
+      /**
+       * <pre>
+       * Stable node identity for tree patching: FNV-1a-32 of the node's
+       * root→node identity path (author :id segments, else type#ordinal among
+       * unkeyed same-type siblings), assigned + collision-checked by codegen.
+       * 0 = never assigned (proto3 default); the renderer mirrors it into
+       * lv_obj user_data and a uid→obj registry so ScreenPatch ops can
+       * address live widgets.
+       * </pre>
+       *
+       * <code>uint32 uid = 43;</code>
+       * @return The uid.
+       */
+      @java.lang.Override
+      public int getUid() {
+        return uid_;
+      }
+      /**
+       * <pre>
+       * Stable node identity for tree patching: FNV-1a-32 of the node's
+       * root→node identity path (author :id segments, else type#ordinal among
+       * unkeyed same-type siblings), assigned + collision-checked by codegen.
+       * 0 = never assigned (proto3 default); the renderer mirrors it into
+       * lv_obj user_data and a uid→obj registry so ScreenPatch ops can
+       * address live widgets.
+       * </pre>
+       *
+       * <code>uint32 uid = 43;</code>
+       * @param value The uid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUid(int value) {
+
+        uid_ = value;
+        bitField1_ |= 0x00000400;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Stable node identity for tree patching: FNV-1a-32 of the node's
+       * root→node identity path (author :id segments, else type#ordinal among
+       * unkeyed same-type siblings), assigned + collision-checked by codegen.
+       * 0 = never assigned (proto3 default); the renderer mirrors it into
+       * lv_obj user_data and a uid→obj registry so ScreenPatch ops can
+       * address live widgets.
+       * </pre>
+       *
+       * <code>uint32 uid = 43;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUid() {
+        bitField1_ = (bitField1_ & ~0x00000400);
+        uid_ = 0;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:ui.WidgetNode)
     }
 
@@ -18526,6 +18827,1989 @@ java.lang.String defaultValue) {
 
     @java.lang.Override
     public ui.UiAst.WidgetNode getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TreePatchOpOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ui.TreePatchOp)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for kind.
+     */
+    int getKindValue();
+    /**
+     * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The kind.
+     */
+    ui.UiAst.PatchOpKind getKind();
+
+    /**
+     * <pre>
+     * UPDATE / REPLACE / REMOVE / MOVE
+     * </pre>
+     *
+     * <code>uint32 target_uid = 2;</code>
+     * @return The targetUid.
+     */
+    int getTargetUid();
+
+    /**
+     * <pre>
+     * INSERT / MOVE destination
+     * </pre>
+     *
+     * <code>uint32 parent_uid = 3;</code>
+     * @return The parentUid.
+     */
+    int getParentUid();
+
+    /**
+     * <pre>
+     * INSERT / MOVE child slot
+     * </pre>
+     *
+     * <code>uint32 index = 4;</code>
+     * @return The index.
+     */
+    int getIndex();
+
+    /**
+     * <pre>
+     * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+     * morphable prop set with children EMPTY (non-empty children in an
+     * UPDATE op is a decode error).
+     * </pre>
+     *
+     * <code>optional .ui.WidgetNode node = 5;</code>
+     * @return Whether the node field is set.
+     */
+    boolean hasNode();
+    /**
+     * <pre>
+     * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+     * morphable prop set with children EMPTY (non-empty children in an
+     * UPDATE op is a decode error).
+     * </pre>
+     *
+     * <code>optional .ui.WidgetNode node = 5;</code>
+     * @return The node.
+     */
+    ui.UiAst.WidgetNode getNode();
+    /**
+     * <pre>
+     * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+     * morphable prop set with children EMPTY (non-empty children in an
+     * UPDATE op is a decode error).
+     * </pre>
+     *
+     * <code>optional .ui.WidgetNode node = 5;</code>
+     */
+    ui.UiAst.WidgetNodeOrBuilder getNodeOrBuilder();
+  }
+  /**
+   * Protobuf type {@code ui.TreePatchOp}
+   */
+  public static final class TreePatchOp extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ui.TreePatchOp)
+      TreePatchOpOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        TreePatchOp.class.getName());
+    }
+    // Use TreePatchOp.newBuilder() to construct.
+    private TreePatchOp(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private TreePatchOp() {
+      kind_ = 0;
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ui.UiAst.internal_static_ui_TreePatchOp_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ui.UiAst.internal_static_ui_TreePatchOp_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ui.UiAst.TreePatchOp.class, ui.UiAst.TreePatchOp.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int KIND_FIELD_NUMBER = 1;
+    private int kind_ = 0;
+    /**
+     * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The enum numeric value on the wire for kind.
+     */
+    @java.lang.Override public int getKindValue() {
+      return kind_;
+    }
+    /**
+     * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The kind.
+     */
+    @java.lang.Override public ui.UiAst.PatchOpKind getKind() {
+      ui.UiAst.PatchOpKind result = ui.UiAst.PatchOpKind.forNumber(kind_);
+      return result == null ? ui.UiAst.PatchOpKind.UNRECOGNIZED : result;
+    }
+
+    public static final int TARGET_UID_FIELD_NUMBER = 2;
+    private int targetUid_ = 0;
+    /**
+     * <pre>
+     * UPDATE / REPLACE / REMOVE / MOVE
+     * </pre>
+     *
+     * <code>uint32 target_uid = 2;</code>
+     * @return The targetUid.
+     */
+    @java.lang.Override
+    public int getTargetUid() {
+      return targetUid_;
+    }
+
+    public static final int PARENT_UID_FIELD_NUMBER = 3;
+    private int parentUid_ = 0;
+    /**
+     * <pre>
+     * INSERT / MOVE destination
+     * </pre>
+     *
+     * <code>uint32 parent_uid = 3;</code>
+     * @return The parentUid.
+     */
+    @java.lang.Override
+    public int getParentUid() {
+      return parentUid_;
+    }
+
+    public static final int INDEX_FIELD_NUMBER = 4;
+    private int index_ = 0;
+    /**
+     * <pre>
+     * INSERT / MOVE child slot
+     * </pre>
+     *
+     * <code>uint32 index = 4;</code>
+     * @return The index.
+     */
+    @java.lang.Override
+    public int getIndex() {
+      return index_;
+    }
+
+    public static final int NODE_FIELD_NUMBER = 5;
+    private ui.UiAst.WidgetNode node_;
+    /**
+     * <pre>
+     * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+     * morphable prop set with children EMPTY (non-empty children in an
+     * UPDATE op is a decode error).
+     * </pre>
+     *
+     * <code>optional .ui.WidgetNode node = 5;</code>
+     * @return Whether the node field is set.
+     */
+    @java.lang.Override
+    public boolean hasNode() {
+      return ((bitField0_ & 0x00000001) != 0);
+    }
+    /**
+     * <pre>
+     * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+     * morphable prop set with children EMPTY (non-empty children in an
+     * UPDATE op is a decode error).
+     * </pre>
+     *
+     * <code>optional .ui.WidgetNode node = 5;</code>
+     * @return The node.
+     */
+    @java.lang.Override
+    public ui.UiAst.WidgetNode getNode() {
+      return node_ == null ? ui.UiAst.WidgetNode.getDefaultInstance() : node_;
+    }
+    /**
+     * <pre>
+     * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+     * morphable prop set with children EMPTY (non-empty children in an
+     * UPDATE op is a decode error).
+     * </pre>
+     *
+     * <code>optional .ui.WidgetNode node = 5;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.WidgetNodeOrBuilder getNodeOrBuilder() {
+      return node_ == null ? ui.UiAst.WidgetNode.getDefaultInstance() : node_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (kind_ != ui.UiAst.PatchOpKind.PATCH_OP_UPDATE_PROPS.getNumber()) {
+        output.writeEnum(1, kind_);
+      }
+      if (targetUid_ != 0) {
+        output.writeUInt32(2, targetUid_);
+      }
+      if (parentUid_ != 0) {
+        output.writeUInt32(3, parentUid_);
+      }
+      if (index_ != 0) {
+        output.writeUInt32(4, index_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        output.writeMessage(5, getNode());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (kind_ != ui.UiAst.PatchOpKind.PATCH_OP_UPDATE_PROPS.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, kind_);
+      }
+      if (targetUid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, targetUid_);
+      }
+      if (parentUid_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, parentUid_);
+      }
+      if (index_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(4, index_);
+      }
+      if (((bitField0_ & 0x00000001) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, getNode());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ui.UiAst.TreePatchOp)) {
+        return super.equals(obj);
+      }
+      ui.UiAst.TreePatchOp other = (ui.UiAst.TreePatchOp) obj;
+
+      if (kind_ != other.kind_) return false;
+      if (getTargetUid()
+          != other.getTargetUid()) return false;
+      if (getParentUid()
+          != other.getParentUid()) return false;
+      if (getIndex()
+          != other.getIndex()) return false;
+      if (hasNode() != other.hasNode()) return false;
+      if (hasNode()) {
+        if (!getNode()
+            .equals(other.getNode())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KIND_FIELD_NUMBER;
+      hash = (53 * hash) + kind_;
+      hash = (37 * hash) + TARGET_UID_FIELD_NUMBER;
+      hash = (53 * hash) + getTargetUid();
+      hash = (37 * hash) + PARENT_UID_FIELD_NUMBER;
+      hash = (53 * hash) + getParentUid();
+      hash = (37 * hash) + INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getIndex();
+      if (hasNode()) {
+        hash = (37 * hash) + NODE_FIELD_NUMBER;
+        hash = (53 * hash) + getNode().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ui.UiAst.TreePatchOp parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ui.UiAst.TreePatchOp parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ui.UiAst.TreePatchOp parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.TreePatchOp parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ui.UiAst.TreePatchOp prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ui.TreePatchOp}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ui.TreePatchOp)
+        ui.UiAst.TreePatchOpOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ui.UiAst.internal_static_ui_TreePatchOp_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ui.UiAst.internal_static_ui_TreePatchOp_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ui.UiAst.TreePatchOp.class, ui.UiAst.TreePatchOp.Builder.class);
+      }
+
+      // Construct using ui.UiAst.TreePatchOp.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage
+                .alwaysUseFieldBuilders) {
+          getNodeFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        kind_ = 0;
+        targetUid_ = 0;
+        parentUid_ = 0;
+        index_ = 0;
+        node_ = null;
+        if (nodeBuilder_ != null) {
+          nodeBuilder_.dispose();
+          nodeBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ui.UiAst.internal_static_ui_TreePatchOp_descriptor;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.TreePatchOp getDefaultInstanceForType() {
+        return ui.UiAst.TreePatchOp.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ui.UiAst.TreePatchOp build() {
+        ui.UiAst.TreePatchOp result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.TreePatchOp buildPartial() {
+        ui.UiAst.TreePatchOp result = new ui.UiAst.TreePatchOp(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(ui.UiAst.TreePatchOp result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.kind_ = kind_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.targetUid_ = targetUid_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.parentUid_ = parentUid_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.index_ = index_;
+        }
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.node_ = nodeBuilder_ == null
+              ? node_
+              : nodeBuilder_.build();
+          to_bitField0_ |= 0x00000001;
+        }
+        result.bitField0_ |= to_bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ui.UiAst.TreePatchOp) {
+          return mergeFrom((ui.UiAst.TreePatchOp)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ui.UiAst.TreePatchOp other) {
+        if (other == ui.UiAst.TreePatchOp.getDefaultInstance()) return this;
+        if (other.kind_ != 0) {
+          setKindValue(other.getKindValue());
+        }
+        if (other.getTargetUid() != 0) {
+          setTargetUid(other.getTargetUid());
+        }
+        if (other.getParentUid() != 0) {
+          setParentUid(other.getParentUid());
+        }
+        if (other.getIndex() != 0) {
+          setIndex(other.getIndex());
+        }
+        if (other.hasNode()) {
+          mergeNode(other.getNode());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                kind_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                targetUid_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                parentUid_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                index_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 42: {
+                input.readMessage(
+                    getNodeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int kind_ = 0;
+      /**
+       * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The enum numeric value on the wire for kind.
+       */
+      @java.lang.Override public int getKindValue() {
+        return kind_;
+      }
+      /**
+       * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The enum numeric value on the wire for kind to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKindValue(int value) {
+        kind_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The kind.
+       */
+      @java.lang.Override
+      public ui.UiAst.PatchOpKind getKind() {
+        ui.UiAst.PatchOpKind result = ui.UiAst.PatchOpKind.forNumber(kind_);
+        return result == null ? ui.UiAst.PatchOpKind.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The kind to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKind(ui.UiAst.PatchOpKind value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        kind_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.ui.PatchOpKind kind = 1 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKind() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        kind_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int targetUid_ ;
+      /**
+       * <pre>
+       * UPDATE / REPLACE / REMOVE / MOVE
+       * </pre>
+       *
+       * <code>uint32 target_uid = 2;</code>
+       * @return The targetUid.
+       */
+      @java.lang.Override
+      public int getTargetUid() {
+        return targetUid_;
+      }
+      /**
+       * <pre>
+       * UPDATE / REPLACE / REMOVE / MOVE
+       * </pre>
+       *
+       * <code>uint32 target_uid = 2;</code>
+       * @param value The targetUid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTargetUid(int value) {
+
+        targetUid_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * UPDATE / REPLACE / REMOVE / MOVE
+       * </pre>
+       *
+       * <code>uint32 target_uid = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTargetUid() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        targetUid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int parentUid_ ;
+      /**
+       * <pre>
+       * INSERT / MOVE destination
+       * </pre>
+       *
+       * <code>uint32 parent_uid = 3;</code>
+       * @return The parentUid.
+       */
+      @java.lang.Override
+      public int getParentUid() {
+        return parentUid_;
+      }
+      /**
+       * <pre>
+       * INSERT / MOVE destination
+       * </pre>
+       *
+       * <code>uint32 parent_uid = 3;</code>
+       * @param value The parentUid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setParentUid(int value) {
+
+        parentUid_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * INSERT / MOVE destination
+       * </pre>
+       *
+       * <code>uint32 parent_uid = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearParentUid() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        parentUid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int index_ ;
+      /**
+       * <pre>
+       * INSERT / MOVE child slot
+       * </pre>
+       *
+       * <code>uint32 index = 4;</code>
+       * @return The index.
+       */
+      @java.lang.Override
+      public int getIndex() {
+        return index_;
+      }
+      /**
+       * <pre>
+       * INSERT / MOVE child slot
+       * </pre>
+       *
+       * <code>uint32 index = 4;</code>
+       * @param value The index to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIndex(int value) {
+
+        index_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * INSERT / MOVE child slot
+       * </pre>
+       *
+       * <code>uint32 index = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIndex() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        index_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private ui.UiAst.WidgetNode node_;
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.WidgetNode, ui.UiAst.WidgetNode.Builder, ui.UiAst.WidgetNodeOrBuilder> nodeBuilder_;
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       * @return Whether the node field is set.
+       */
+      public boolean hasNode() {
+        return ((bitField0_ & 0x00000010) != 0);
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       * @return The node.
+       */
+      public ui.UiAst.WidgetNode getNode() {
+        if (nodeBuilder_ == null) {
+          return node_ == null ? ui.UiAst.WidgetNode.getDefaultInstance() : node_;
+        } else {
+          return nodeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       */
+      public Builder setNode(ui.UiAst.WidgetNode value) {
+        if (nodeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          node_ = value;
+        } else {
+          nodeBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       */
+      public Builder setNode(
+          ui.UiAst.WidgetNode.Builder builderForValue) {
+        if (nodeBuilder_ == null) {
+          node_ = builderForValue.build();
+        } else {
+          nodeBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       */
+      public Builder mergeNode(ui.UiAst.WidgetNode value) {
+        if (nodeBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) != 0) &&
+            node_ != null &&
+            node_ != ui.UiAst.WidgetNode.getDefaultInstance()) {
+            getNodeBuilder().mergeFrom(value);
+          } else {
+            node_ = value;
+          }
+        } else {
+          nodeBuilder_.mergeFrom(value);
+        }
+        if (node_ != null) {
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       */
+      public Builder clearNode() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        node_ = null;
+        if (nodeBuilder_ != null) {
+          nodeBuilder_.dispose();
+          nodeBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       */
+      public ui.UiAst.WidgetNode.Builder getNodeBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getNodeFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       */
+      public ui.UiAst.WidgetNodeOrBuilder getNodeOrBuilder() {
+        if (nodeBuilder_ != null) {
+          return nodeBuilder_.getMessageOrBuilder();
+        } else {
+          return node_ == null ?
+              ui.UiAst.WidgetNode.getDefaultInstance() : node_;
+        }
+      }
+      /**
+       * <pre>
+       * INSERT/REPLACE: the full new subtree; UPDATE_PROPS: the node's
+       * morphable prop set with children EMPTY (non-empty children in an
+       * UPDATE op is a decode error).
+       * </pre>
+       *
+       * <code>optional .ui.WidgetNode node = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          ui.UiAst.WidgetNode, ui.UiAst.WidgetNode.Builder, ui.UiAst.WidgetNodeOrBuilder> 
+          getNodeFieldBuilder() {
+        if (nodeBuilder_ == null) {
+          nodeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              ui.UiAst.WidgetNode, ui.UiAst.WidgetNode.Builder, ui.UiAst.WidgetNodeOrBuilder>(
+                  getNode(),
+                  getParentForChildren(),
+                  isClean());
+          node_ = null;
+        }
+        return nodeBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ui.TreePatchOp)
+    }
+
+    // @@protoc_insertion_point(class_scope:ui.TreePatchOp)
+    private static final ui.UiAst.TreePatchOp DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ui.UiAst.TreePatchOp();
+    }
+
+    public static ui.UiAst.TreePatchOp getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TreePatchOp>
+        PARSER = new com.google.protobuf.AbstractParser<TreePatchOp>() {
+      @java.lang.Override
+      public TreePatchOp parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<TreePatchOp> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TreePatchOp> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ui.UiAst.TreePatchOp getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ScreenPatchOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ui.ScreenPatch)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * FNV-1a-32 of the base .pb bytes this patch was diffed from; the
+     * reconciler refuses on mismatch (fail-fast against out-of-order pushes).
+     * </pre>
+     *
+     * <code>uint32 base_hash = 1;</code>
+     * @return The baseHash.
+     */
+    int getBaseHash();
+
+    /**
+     * <pre>
+     * Hash of the target full .pb; becomes the current-state hash after a
+     * successful apply.
+     * </pre>
+     *
+     * <code>uint32 target_hash = 2;</code>
+     * @return The targetHash.
+     */
+    int getTargetHash();
+
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    java.util.List<ui.UiAst.TreePatchOp> 
+        getOpsList();
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    ui.UiAst.TreePatchOp getOps(int index);
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    int getOpsCount();
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    java.util.List<? extends ui.UiAst.TreePatchOpOrBuilder> 
+        getOpsOrBuilderList();
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    ui.UiAst.TreePatchOpOrBuilder getOpsOrBuilder(
+        int index);
+  }
+  /**
+   * <pre>
+   * Tree patch container — pushed via controls_apply_patch(ptr, len).
+   * </pre>
+   *
+   * Protobuf type {@code ui.ScreenPatch}
+   */
+  public static final class ScreenPatch extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:ui.ScreenPatch)
+      ScreenPatchOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 29,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        ScreenPatch.class.getName());
+    }
+    // Use ScreenPatch.newBuilder() to construct.
+    private ScreenPatch(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private ScreenPatch() {
+      ops_ = java.util.Collections.emptyList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return ui.UiAst.internal_static_ui_ScreenPatch_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return ui.UiAst.internal_static_ui_ScreenPatch_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              ui.UiAst.ScreenPatch.class, ui.UiAst.ScreenPatch.Builder.class);
+    }
+
+    public static final int BASE_HASH_FIELD_NUMBER = 1;
+    private int baseHash_ = 0;
+    /**
+     * <pre>
+     * FNV-1a-32 of the base .pb bytes this patch was diffed from; the
+     * reconciler refuses on mismatch (fail-fast against out-of-order pushes).
+     * </pre>
+     *
+     * <code>uint32 base_hash = 1;</code>
+     * @return The baseHash.
+     */
+    @java.lang.Override
+    public int getBaseHash() {
+      return baseHash_;
+    }
+
+    public static final int TARGET_HASH_FIELD_NUMBER = 2;
+    private int targetHash_ = 0;
+    /**
+     * <pre>
+     * Hash of the target full .pb; becomes the current-state hash after a
+     * successful apply.
+     * </pre>
+     *
+     * <code>uint32 target_hash = 2;</code>
+     * @return The targetHash.
+     */
+    @java.lang.Override
+    public int getTargetHash() {
+      return targetHash_;
+    }
+
+    public static final int OPS_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private java.util.List<ui.UiAst.TreePatchOp> ops_;
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<ui.UiAst.TreePatchOp> getOpsList() {
+      return ops_;
+    }
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends ui.UiAst.TreePatchOpOrBuilder> 
+        getOpsOrBuilderList() {
+      return ops_;
+    }
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    @java.lang.Override
+    public int getOpsCount() {
+      return ops_.size();
+    }
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.TreePatchOp getOps(int index) {
+      return ops_.get(index);
+    }
+    /**
+     * <code>repeated .ui.TreePatchOp ops = 3;</code>
+     */
+    @java.lang.Override
+    public ui.UiAst.TreePatchOpOrBuilder getOpsOrBuilder(
+        int index) {
+      return ops_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (baseHash_ != 0) {
+        output.writeUInt32(1, baseHash_);
+      }
+      if (targetHash_ != 0) {
+        output.writeUInt32(2, targetHash_);
+      }
+      for (int i = 0; i < ops_.size(); i++) {
+        output.writeMessage(3, ops_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (baseHash_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, baseHash_);
+      }
+      if (targetHash_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, targetHash_);
+      }
+      for (int i = 0; i < ops_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, ops_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof ui.UiAst.ScreenPatch)) {
+        return super.equals(obj);
+      }
+      ui.UiAst.ScreenPatch other = (ui.UiAst.ScreenPatch) obj;
+
+      if (getBaseHash()
+          != other.getBaseHash()) return false;
+      if (getTargetHash()
+          != other.getTargetHash()) return false;
+      if (!getOpsList()
+          .equals(other.getOpsList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BASE_HASH_FIELD_NUMBER;
+      hash = (53 * hash) + getBaseHash();
+      hash = (37 * hash) + TARGET_HASH_FIELD_NUMBER;
+      hash = (53 * hash) + getTargetHash();
+      if (getOpsCount() > 0) {
+        hash = (37 * hash) + OPS_FIELD_NUMBER;
+        hash = (53 * hash) + getOpsList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static ui.UiAst.ScreenPatch parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ui.UiAst.ScreenPatch parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ui.UiAst.ScreenPatch parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static ui.UiAst.ScreenPatch parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(ui.UiAst.ScreenPatch prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Tree patch container — pushed via controls_apply_patch(ptr, len).
+     * </pre>
+     *
+     * Protobuf type {@code ui.ScreenPatch}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ui.ScreenPatch)
+        ui.UiAst.ScreenPatchOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return ui.UiAst.internal_static_ui_ScreenPatch_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return ui.UiAst.internal_static_ui_ScreenPatch_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                ui.UiAst.ScreenPatch.class, ui.UiAst.ScreenPatch.Builder.class);
+      }
+
+      // Construct using ui.UiAst.ScreenPatch.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        baseHash_ = 0;
+        targetHash_ = 0;
+        if (opsBuilder_ == null) {
+          ops_ = java.util.Collections.emptyList();
+        } else {
+          ops_ = null;
+          opsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return ui.UiAst.internal_static_ui_ScreenPatch_descriptor;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ScreenPatch getDefaultInstanceForType() {
+        return ui.UiAst.ScreenPatch.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ScreenPatch build() {
+        ui.UiAst.ScreenPatch result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public ui.UiAst.ScreenPatch buildPartial() {
+        ui.UiAst.ScreenPatch result = new ui.UiAst.ScreenPatch(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(ui.UiAst.ScreenPatch result) {
+        if (opsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0)) {
+            ops_ = java.util.Collections.unmodifiableList(ops_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.ops_ = ops_;
+        } else {
+          result.ops_ = opsBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(ui.UiAst.ScreenPatch result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.baseHash_ = baseHash_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.targetHash_ = targetHash_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof ui.UiAst.ScreenPatch) {
+          return mergeFrom((ui.UiAst.ScreenPatch)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(ui.UiAst.ScreenPatch other) {
+        if (other == ui.UiAst.ScreenPatch.getDefaultInstance()) return this;
+        if (other.getBaseHash() != 0) {
+          setBaseHash(other.getBaseHash());
+        }
+        if (other.getTargetHash() != 0) {
+          setTargetHash(other.getTargetHash());
+        }
+        if (opsBuilder_ == null) {
+          if (!other.ops_.isEmpty()) {
+            if (ops_.isEmpty()) {
+              ops_ = other.ops_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureOpsIsMutable();
+              ops_.addAll(other.ops_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.ops_.isEmpty()) {
+            if (opsBuilder_.isEmpty()) {
+              opsBuilder_.dispose();
+              opsBuilder_ = null;
+              ops_ = other.ops_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              opsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getOpsFieldBuilder() : null;
+            } else {
+              opsBuilder_.addAllMessages(other.ops_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                baseHash_ = input.readUInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                targetHash_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                ui.UiAst.TreePatchOp m =
+                    input.readMessage(
+                        ui.UiAst.TreePatchOp.parser(),
+                        extensionRegistry);
+                if (opsBuilder_ == null) {
+                  ensureOpsIsMutable();
+                  ops_.add(m);
+                } else {
+                  opsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int baseHash_ ;
+      /**
+       * <pre>
+       * FNV-1a-32 of the base .pb bytes this patch was diffed from; the
+       * reconciler refuses on mismatch (fail-fast against out-of-order pushes).
+       * </pre>
+       *
+       * <code>uint32 base_hash = 1;</code>
+       * @return The baseHash.
+       */
+      @java.lang.Override
+      public int getBaseHash() {
+        return baseHash_;
+      }
+      /**
+       * <pre>
+       * FNV-1a-32 of the base .pb bytes this patch was diffed from; the
+       * reconciler refuses on mismatch (fail-fast against out-of-order pushes).
+       * </pre>
+       *
+       * <code>uint32 base_hash = 1;</code>
+       * @param value The baseHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBaseHash(int value) {
+
+        baseHash_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * FNV-1a-32 of the base .pb bytes this patch was diffed from; the
+       * reconciler refuses on mismatch (fail-fast against out-of-order pushes).
+       * </pre>
+       *
+       * <code>uint32 base_hash = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBaseHash() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        baseHash_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int targetHash_ ;
+      /**
+       * <pre>
+       * Hash of the target full .pb; becomes the current-state hash after a
+       * successful apply.
+       * </pre>
+       *
+       * <code>uint32 target_hash = 2;</code>
+       * @return The targetHash.
+       */
+      @java.lang.Override
+      public int getTargetHash() {
+        return targetHash_;
+      }
+      /**
+       * <pre>
+       * Hash of the target full .pb; becomes the current-state hash after a
+       * successful apply.
+       * </pre>
+       *
+       * <code>uint32 target_hash = 2;</code>
+       * @param value The targetHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTargetHash(int value) {
+
+        targetHash_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Hash of the target full .pb; becomes the current-state hash after a
+       * successful apply.
+       * </pre>
+       *
+       * <code>uint32 target_hash = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTargetHash() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        targetHash_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<ui.UiAst.TreePatchOp> ops_ =
+        java.util.Collections.emptyList();
+      private void ensureOpsIsMutable() {
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          ops_ = new java.util.ArrayList<ui.UiAst.TreePatchOp>(ops_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ui.UiAst.TreePatchOp, ui.UiAst.TreePatchOp.Builder, ui.UiAst.TreePatchOpOrBuilder> opsBuilder_;
+
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public java.util.List<ui.UiAst.TreePatchOp> getOpsList() {
+        if (opsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(ops_);
+        } else {
+          return opsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public int getOpsCount() {
+        if (opsBuilder_ == null) {
+          return ops_.size();
+        } else {
+          return opsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public ui.UiAst.TreePatchOp getOps(int index) {
+        if (opsBuilder_ == null) {
+          return ops_.get(index);
+        } else {
+          return opsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder setOps(
+          int index, ui.UiAst.TreePatchOp value) {
+        if (opsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOpsIsMutable();
+          ops_.set(index, value);
+          onChanged();
+        } else {
+          opsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder setOps(
+          int index, ui.UiAst.TreePatchOp.Builder builderForValue) {
+        if (opsBuilder_ == null) {
+          ensureOpsIsMutable();
+          ops_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          opsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder addOps(ui.UiAst.TreePatchOp value) {
+        if (opsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOpsIsMutable();
+          ops_.add(value);
+          onChanged();
+        } else {
+          opsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder addOps(
+          int index, ui.UiAst.TreePatchOp value) {
+        if (opsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureOpsIsMutable();
+          ops_.add(index, value);
+          onChanged();
+        } else {
+          opsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder addOps(
+          ui.UiAst.TreePatchOp.Builder builderForValue) {
+        if (opsBuilder_ == null) {
+          ensureOpsIsMutable();
+          ops_.add(builderForValue.build());
+          onChanged();
+        } else {
+          opsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder addOps(
+          int index, ui.UiAst.TreePatchOp.Builder builderForValue) {
+        if (opsBuilder_ == null) {
+          ensureOpsIsMutable();
+          ops_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          opsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder addAllOps(
+          java.lang.Iterable<? extends ui.UiAst.TreePatchOp> values) {
+        if (opsBuilder_ == null) {
+          ensureOpsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, ops_);
+          onChanged();
+        } else {
+          opsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder clearOps() {
+        if (opsBuilder_ == null) {
+          ops_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          opsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public Builder removeOps(int index) {
+        if (opsBuilder_ == null) {
+          ensureOpsIsMutable();
+          ops_.remove(index);
+          onChanged();
+        } else {
+          opsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public ui.UiAst.TreePatchOp.Builder getOpsBuilder(
+          int index) {
+        return getOpsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public ui.UiAst.TreePatchOpOrBuilder getOpsOrBuilder(
+          int index) {
+        if (opsBuilder_ == null) {
+          return ops_.get(index);  } else {
+          return opsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public java.util.List<? extends ui.UiAst.TreePatchOpOrBuilder> 
+           getOpsOrBuilderList() {
+        if (opsBuilder_ != null) {
+          return opsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(ops_);
+        }
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public ui.UiAst.TreePatchOp.Builder addOpsBuilder() {
+        return getOpsFieldBuilder().addBuilder(
+            ui.UiAst.TreePatchOp.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public ui.UiAst.TreePatchOp.Builder addOpsBuilder(
+          int index) {
+        return getOpsFieldBuilder().addBuilder(
+            index, ui.UiAst.TreePatchOp.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ui.TreePatchOp ops = 3;</code>
+       */
+      public java.util.List<ui.UiAst.TreePatchOp.Builder> 
+           getOpsBuilderList() {
+        return getOpsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ui.UiAst.TreePatchOp, ui.UiAst.TreePatchOp.Builder, ui.UiAst.TreePatchOpOrBuilder> 
+          getOpsFieldBuilder() {
+        if (opsBuilder_ == null) {
+          opsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              ui.UiAst.TreePatchOp, ui.UiAst.TreePatchOp.Builder, ui.UiAst.TreePatchOpOrBuilder>(
+                  ops_,
+                  ((bitField0_ & 0x00000004) != 0),
+                  getParentForChildren(),
+                  isClean());
+          ops_ = null;
+        }
+        return opsBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ui.ScreenPatch)
+    }
+
+    // @@protoc_insertion_point(class_scope:ui.ScreenPatch)
+    private static final ui.UiAst.ScreenPatch DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ui.UiAst.ScreenPatch();
+    }
+
+    public static ui.UiAst.ScreenPatch getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ScreenPatch>
+        PARSER = new com.google.protobuf.AbstractParser<ScreenPatch>() {
+      @java.lang.Override
+      public ScreenPatch parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ScreenPatch> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ScreenPatch> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public ui.UiAst.ScreenPatch getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -45653,6 +47937,16 @@ java.lang.String defaultValue) {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ui_WidgetNode_BindFormatsEntry_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ui_TreePatchOp_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ui_TreePatchOp_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ui_ScreenPatch_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ui_ScreenPatch_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ui_ObjProps_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -45837,7 +48131,7 @@ java.lang.String defaultValue) {
       "\022 \n\014string_value\030\003 \001(\tB\010\272H\005r\003\030\377\001H\000B\007\n\005va" +
       "lue\"^\n\006Screen\022!\n\004root\030\001 \001(\0132\016.ui.WidgetN" +
       "odeH\000\210\001\001\022(\n\010subjects\030\002 \003(\0132\026.ui.SubjectD" +
-      "eclarationB\007\n\005_root\"\276\014\n\nWidgetNode\022&\n\004ty" +
+      "eclarationB\007\n\005_root\"\313\014\n\nWidgetNode\022&\n\004ty" +
       "pe\030\001 \001(\0162\016.ui.WidgetTypeB\010\272H\005\202\001\002\020\001\022\t\n\001x\030" +
       "\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\026\n\004text\030\004 \001(\tB\010\272H\005r\003\030\377\001" +
       "\022.\n\010bindings\030\005 \003(\0132\034.ui.WidgetNode.Bindi" +
@@ -45874,105 +48168,115 @@ java.lang.String defaultValue) {
       "\022\022\n\nscroll_dir\030\" \001(\r\022\024\n\014grid_col_dsc\030# \003" +
       "(\005\022\024\n\014grid_row_dsc\030$ \003(\005\022\014\n\004bare\030% \001(\010\022\022" +
       "\n\nin_tab_bar\030\' \001(\010\022+\n\014checked_when\030* \001(\013" +
-      "2\025.ui.VisibilityBinding\032/\n\rBindingsEntry" +
-      "\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0322\n\020Bind" +
-      "FormatsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t" +
-      ":\0028\001B\016\n\014widget_props\"\n\n\010ObjProps\"\r\n\013Butt" +
-      "onProps\"<\n\nLabelProps\022.\n\tlong_mode\030\001 \001(\016" +
-      "2\021.ui.LabelLongModeB\010\272H\005\202\001\002\020\001\"g\n\013SliderP" +
-      "rops\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001" +
-      "(\005\022\r\n\005value\030\003 \001(\005\022#\n\004mode\030\004 \001(\0162\013.ui.Bar" +
-      "ModeB\010\272H\005\202\001\002\020\001\"j\n\nImageProps\022\025\n\003src\030\001 \001(" +
-      "\tB\010\272H\005r\003\030\377\001\022\021\n\thas_pivot\030\002 \001(\010\022\017\n\007pivot_" +
-      "x\030\003 \001(\005\022\017\n\007pivot_y\030\004 \001(\005\022\020\n\010rotation\030\005 \001" +
-      "(\005\"\364\001\n\010ArcProps\022\035\n\013start_angle\030\001 \001(\rB\010\272H" +
-      "\005*\003\030\350\002\022\033\n\tend_angle\030\002 \001(\rB\010\272H\005*\003\030\350\002\022 \n\016b" +
-      "g_start_angle\030\003 \001(\rB\010\272H\005*\003\030\350\002\022\036\n\014bg_end_" +
-      "angle\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010rotation\030\005 \001(\005\022" +
-      "#\n\004mode\030\006 \001(\0162\013.ui.ArcModeB\010\272H\005\202\001\002\020\001\022\021\n\t" +
-      "min_value\030\007 \001(\005\022\021\n\tmax_value\030\010 \001(\005\022\r\n\005va" +
-      "lue\030\t \001(\005\"y\n\010BarProps\022\021\n\tmin_value\030\001 \001(\005" +
-      "\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022\023\n\013st" +
-      "art_value\030\004 \001(\005\022#\n\004mode\030\005 \001(\0162\013.ui.BarMo" +
-      "deB\010\272H\005\202\001\002\020\001\"\036\n\013SwitchProps\022\017\n\007checked\030\001" +
-      " \001(\010\" \n\rCheckboxProps\022\017\n\007checked\030\001 \001(\010\"b" +
-      "\n\rDropdownProps\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030" +
-      "\377\007\022\020\n\010selected\030\002 \001(\r\022$\n\tdirection\030\003 \001(\0162" +
-      "\007.ui.DirB\010\272H\005\202\001\002\020\001\"}\n\013RollerProps\022\031\n\007opt" +
-      "ions\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010selected\030\002 \001(\r\022\031" +
-      "\n\021visible_row_count\030\003 \001(\r\022&\n\004mode\030\004 \001(\0162" +
-      "\016.ui.RollerModeB\010\272H\005\202\001\002\020\001\"k\n\rTextareaPro" +
-      "ps\022\035\n\013placeholder\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\022\n\nmax" +
-      "_length\030\002 \001(\r\022\020\n\010one_line\030\003 \001(\010\022\025\n\rpassw" +
-      "ord_mode\030\004 \001(\010\"\202\001\n\014SpinboxProps\022\021\n\tmin_v" +
-      "alue\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005value\030\003" +
-      " \001(\005\022\014\n\004step\030\004 \001(\005\022\023\n\013digit_count\030\005 \001(\r\022" +
-      "\032\n\022separator_position\030\006 \001(\r\"5\n\014SpinnerPr" +
-      "ops\022\021\n\tspin_time\030\001 \001(\r\022\022\n\narc_length\030\002 \001" +
-      "(\r\"B\n\010LedProps\022\030\n\005color\030\001 \001(\0132\t.ui.Color" +
-      "\022\034\n\nbrightness\030\002 \001(\rB\010\272H\005*\003\030\377\001\"8\n\tLinePr" +
-      "ops\022\031\n\006points\030\001 \003(\0132\t.ui.Point\022\020\n\010y_inve" +
-      "rt\030\002 \001(\010\"\257\002\n\nScaleProps\022%\n\004mode\030\001 \001(\0162\r." +
-      "ui.ScaleModeB\010\272H\005\202\001\002\020\001\022\030\n\020total_tick_cou" +
-      "nt\030\002 \001(\r\022\030\n\020major_tick_every\030\003 \001(\r\022\022\n\nla" +
-      "bel_show\030\004 \001(\010\022\021\n\tmin_value\030\005 \001(\005\022\021\n\tmax" +
-      "_value\030\006 \001(\005\022\020\n\010rotation\030\007 \001(\005\022\035\n\013angle_" +
-      "range\030\010 \001(\rB\010\272H\005*\003\030\350\002\022\032\n\010text_src\030\t \001(\tB" +
-      "\010\272H\005r\003\030\377\001\022\021\n\tpost_draw\030\n \001(\010\022,\n\010sections" +
-      "\030\013 \003(\0132\020.ui.ScaleSectionB\010\272H\005\222\001\002\020\004\"\220\001\n\014S" +
-      "caleSection\022\021\n\trange_min\030\001 \001(\005\022\021\n\trange_" +
-      "max\030\002 \001(\005\022\030\n\005color\030\003 \001(\0132\t.ui.Color\022\r\n\005w" +
-      "idth\030\004 \001(\r\022\035\n\nmain_color\030\005 \001(\0132\t.ui.Colo" +
-      "r\022\022\n\nmain_width\030\006 \001(\r\"A\n\021ButtonMatrixPro" +
-      "ps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\021\n\tone_che" +
-      "ck\030\002 \001(\010\"5\n\nTableProps\022\021\n\trow_count\030\001 \001(" +
-      "\r\022\024\n\014column_count\030\002 \001(\r\"\244\001\n\014TabviewProps" +
-      "\022!\n\ttab_names\030\001 \003(\tB\016\272H\013\222\001\010\020\010\"\004r\002\030\037\022\024\n\014t" +
-      "ab_bar_size\030\002 \001(\005\022\024\n\014active_index\030\003 \001(\r\022" +
-      "+\n\020tab_bar_position\030\004 \001(\0162\007.ui.DirB\010\272H\005\202" +
-      "\001\002\020\001\022\030\n\020tab_bar_pad_left\030\005 \001(\005\"h\n\013ChartS" +
-      "eries\022\030\n\005color\030\001 \001(\0132\t.ui.Color\022%\n\004axis\030" +
-      "\002 \001(\0162\r.ui.ChartAxisB\010\272H\005\202\001\002\020\001\022\030\n\006values" +
-      "\030\003 \003(\005B\010\272H\005\222\001\002\020 \"\331\001\n\nChartProps\022%\n\004type\030" +
-      "\001 \001(\0162\r.ui.ChartTypeB\010\272H\005\202\001\002\020\001\022\023\n\013point_" +
-      "count\030\002 \001(\r\022\025\n\rhas_div_lines\030\003 \001(\010\022\034\n\nhd" +
-      "iv_count\030\004 \001(\rB\010\272H\005*\003\030\377\001\022\034\n\nvdiv_count\030\005" +
-      " \001(\rB\010\272H\005*\003\030\377\001\022)\n\006series\030\006 \003(\0132\017.ui.Char" +
-      "tSeriesB\010\272H\005\222\001\002\020\010\022\021\n\tfade_area\030\007 \001(\010\"\260\001\n" +
-      "\016HostProxyProps\022\033\n\010proxy_id\030\001 \001(\tB\t\272H\006r\004" +
-      "\020\001\030?\022%\n\004mode\030\002 \001(\0162\r.ui.ProxyModeB\010\272H\005\202\001" +
-      "\002\020\001\022\r\n\005min_w\030\003 \001(\005\022\r\n\005min_h\030\004 \001(\005\022\r\n\005max" +
-      "_w\030\005 \001(\005\022\r\n\005max_h\030\006 \001(\005\022\023\n\013handle_size\030\007" +
-      " \001(\r\022\t\n\001z\030\010 \001(\005\"\035\n\005Point\022\t\n\001x\030\001 \001(\005\022\t\n\001y" +
-      "\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n\004name\030\001 \001(\tB\t\272" +
-      "H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162\020.ui.EventTrig" +
-      "gerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value\030\003 \001(\005\022\034\n\024incl" +
-      "ude_widget_value\030\004 \001(\010\022\034\n\013set_subject\030\005 " +
-      "\001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030\006 \001(\005\022\016\n\006toggl" +
-      "e\030\007 \001(\010\022\023\n\013notify_host\030\010 \001(\010\"l\n\021Visibili" +
-      "tyBinding\022\032\n\007subject\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022\021\n" +
-      "\tref_value\030\002 \001(\005\022(\n\007compare\030\003 \001(\0162\r.ui.C" +
-      "ompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Layout\022$\n\004flow\030\001 " +
-      "\001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020\001\022+\n\nmain_plac" +
-      "e\030\002 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022,\n\013cros" +
-      "s_place\030\003 \001(\0162\r.ui.FlexAlignB\010\272H\005\202\001\002\020\001\022," +
-      "\n\013track_place\030\004 \001(\0162\r.ui.FlexAlignB\010\272H\005\202" +
-      "\001\002\020\001\"U\n\nStyleGroup\022\026\n\016state_selector\030\001 \001" +
-      "(\r\022/\n\010variants\030\002 \003(\0132\021.ui.ResolvedStyleB" +
-      "\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedStyle\022%\n\nproperti" +
-      "es\030\001 \003(\0132\021.ui.StyleProperty\"\337\001\n\rStylePro" +
-      "perty\022-\n\004type\030\001 \001(\0162\025.ui.StylePropertyTy" +
-      "peB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value\030\002 \001(\rH\000\022\023\n\tin" +
-      "t_value\030\003 \001(\005H\000\022 \n\013color_value\030\004 \001(\0132\t.u" +
-      "i.ColorH\000\022\037\n\014string_value\030\005 \001(\tB\007\272H\004r\002\030?" +
-      "H\000\022(\n\014shadow_value\030\006 \001(\0132\020.ui.ShadowBund" +
-      "leH\000B\007\n\005value\"F\n\005Color\022\023\n\001r\030\001 \001(\rB\010\272H\005*\003" +
-      "\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001b\030\003 \001(\rB\010\272H\005" +
-      "*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005width\030\001 \001(\r\022\020\n\010" +
-      "offset_x\030\002 \001(\005\022\020\n\010offset_y\030\003 \001(\005\022\016\n\006spre" +
-      "ad\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005*\003\030\377\001*2\n\013Subje" +
-      "ctType\022\017\n\013SUBJECT_INT\020\000\022\022\n\016SUBJECT_STRIN" +
-      "G\020\001*\256\003\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rWI" +
+      "2\025.ui.VisibilityBinding\022\013\n\003uid\030+ \001(\r\032/\n\r" +
+      "BindingsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(" +
+      "\t:\0028\001\0322\n\020BindFormatsEntry\022\013\n\003key\030\001 \001(\t\022\r" +
+      "\n\005value\030\002 \001(\t:\0028\001B\016\n\014widget_props\"\231\001\n\013Tr" +
+      "eePatchOp\022\'\n\004kind\030\001 \001(\0162\017.ui.PatchOpKind" +
+      "B\010\272H\005\202\001\002\020\001\022\022\n\ntarget_uid\030\002 \001(\r\022\022\n\nparent" +
+      "_uid\030\003 \001(\r\022\r\n\005index\030\004 \001(\r\022!\n\004node\030\005 \001(\0132" +
+      "\016.ui.WidgetNodeH\000\210\001\001B\007\n\005_node\"S\n\013ScreenP" +
+      "atch\022\021\n\tbase_hash\030\001 \001(\r\022\023\n\013target_hash\030\002" +
+      " \001(\r\022\034\n\003ops\030\003 \003(\0132\017.ui.TreePatchOp\"\n\n\010Ob" +
+      "jProps\"\r\n\013ButtonProps\"<\n\nLabelProps\022.\n\tl" +
+      "ong_mode\030\001 \001(\0162\021.ui.LabelLongModeB\010\272H\005\202\001" +
+      "\002\020\001\"g\n\013SliderProps\022\021\n\tmin_value\030\001 \001(\005\022\021\n" +
+      "\tmax_value\030\002 \001(\005\022\r\n\005value\030\003 \001(\005\022#\n\004mode\030" +
+      "\004 \001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020\001\"j\n\nImagePro" +
+      "ps\022\025\n\003src\030\001 \001(\tB\010\272H\005r\003\030\377\001\022\021\n\thas_pivot\030\002" +
+      " \001(\010\022\017\n\007pivot_x\030\003 \001(\005\022\017\n\007pivot_y\030\004 \001(\005\022\020" +
+      "\n\010rotation\030\005 \001(\005\"\364\001\n\010ArcProps\022\035\n\013start_a" +
+      "ngle\030\001 \001(\rB\010\272H\005*\003\030\350\002\022\033\n\tend_angle\030\002 \001(\rB" +
+      "\010\272H\005*\003\030\350\002\022 \n\016bg_start_angle\030\003 \001(\rB\010\272H\005*\003" +
+      "\030\350\002\022\036\n\014bg_end_angle\030\004 \001(\rB\010\272H\005*\003\030\350\002\022\020\n\010r" +
+      "otation\030\005 \001(\005\022#\n\004mode\030\006 \001(\0162\013.ui.ArcMode" +
+      "B\010\272H\005\202\001\002\020\001\022\021\n\tmin_value\030\007 \001(\005\022\021\n\tmax_val" +
+      "ue\030\010 \001(\005\022\r\n\005value\030\t \001(\005\"y\n\010BarProps\022\021\n\tm" +
+      "in_value\030\001 \001(\005\022\021\n\tmax_value\030\002 \001(\005\022\r\n\005val" +
+      "ue\030\003 \001(\005\022\023\n\013start_value\030\004 \001(\005\022#\n\004mode\030\005 " +
+      "\001(\0162\013.ui.BarModeB\010\272H\005\202\001\002\020\001\"\036\n\013SwitchProp" +
+      "s\022\017\n\007checked\030\001 \001(\010\" \n\rCheckboxProps\022\017\n\007c" +
+      "hecked\030\001 \001(\010\"b\n\rDropdownProps\022\031\n\007options" +
+      "\030\001 \001(\tB\010\272H\005r\003\030\377\007\022\020\n\010selected\030\002 \001(\r\022$\n\tdi" +
+      "rection\030\003 \001(\0162\007.ui.DirB\010\272H\005\202\001\002\020\001\"}\n\013Roll" +
+      "erProps\022\031\n\007options\030\001 \001(\tB\010\272H\005r\003\030\377\003\022\020\n\010se" +
+      "lected\030\002 \001(\r\022\031\n\021visible_row_count\030\003 \001(\r\022" +
+      "&\n\004mode\030\004 \001(\0162\016.ui.RollerModeB\010\272H\005\202\001\002\020\001\"" +
+      "k\n\rTextareaProps\022\035\n\013placeholder\030\001 \001(\tB\010\272" +
+      "H\005r\003\030\377\001\022\022\n\nmax_length\030\002 \001(\r\022\020\n\010one_line\030" +
+      "\003 \001(\010\022\025\n\rpassword_mode\030\004 \001(\010\"\202\001\n\014Spinbox" +
+      "Props\022\021\n\tmin_value\030\001 \001(\005\022\021\n\tmax_value\030\002 " +
+      "\001(\005\022\r\n\005value\030\003 \001(\005\022\014\n\004step\030\004 \001(\005\022\023\n\013digi" +
+      "t_count\030\005 \001(\r\022\032\n\022separator_position\030\006 \001(" +
+      "\r\"5\n\014SpinnerProps\022\021\n\tspin_time\030\001 \001(\r\022\022\n\n" +
+      "arc_length\030\002 \001(\r\"B\n\010LedProps\022\030\n\005color\030\001 " +
+      "\001(\0132\t.ui.Color\022\034\n\nbrightness\030\002 \001(\rB\010\272H\005*" +
+      "\003\030\377\001\"8\n\tLineProps\022\031\n\006points\030\001 \003(\0132\t.ui.P" +
+      "oint\022\020\n\010y_invert\030\002 \001(\010\"\257\002\n\nScaleProps\022%\n" +
+      "\004mode\030\001 \001(\0162\r.ui.ScaleModeB\010\272H\005\202\001\002\020\001\022\030\n\020" +
+      "total_tick_count\030\002 \001(\r\022\030\n\020major_tick_eve" +
+      "ry\030\003 \001(\r\022\022\n\nlabel_show\030\004 \001(\010\022\021\n\tmin_valu" +
+      "e\030\005 \001(\005\022\021\n\tmax_value\030\006 \001(\005\022\020\n\010rotation\030\007" +
+      " \001(\005\022\035\n\013angle_range\030\010 \001(\rB\010\272H\005*\003\030\350\002\022\032\n\010t" +
+      "ext_src\030\t \001(\tB\010\272H\005r\003\030\377\001\022\021\n\tpost_draw\030\n \001" +
+      "(\010\022,\n\010sections\030\013 \003(\0132\020.ui.ScaleSectionB\010" +
+      "\272H\005\222\001\002\020\004\"\220\001\n\014ScaleSection\022\021\n\trange_min\030\001" +
+      " \001(\005\022\021\n\trange_max\030\002 \001(\005\022\030\n\005color\030\003 \001(\0132\t" +
+      ".ui.Color\022\r\n\005width\030\004 \001(\r\022\035\n\nmain_color\030\005" +
+      " \001(\0132\t.ui.Color\022\022\n\nmain_width\030\006 \001(\r\"A\n\021B" +
+      "uttonMatrixProps\022\031\n\007map_str\030\001 \001(\tB\010\272H\005r\003" +
+      "\030\377\007\022\021\n\tone_check\030\002 \001(\010\"5\n\nTableProps\022\021\n\t" +
+      "row_count\030\001 \001(\r\022\024\n\014column_count\030\002 \001(\r\"\244\001" +
+      "\n\014TabviewProps\022!\n\ttab_names\030\001 \003(\tB\016\272H\013\222\001" +
+      "\010\020\010\"\004r\002\030\037\022\024\n\014tab_bar_size\030\002 \001(\005\022\024\n\014activ" +
+      "e_index\030\003 \001(\r\022+\n\020tab_bar_position\030\004 \001(\0162" +
+      "\007.ui.DirB\010\272H\005\202\001\002\020\001\022\030\n\020tab_bar_pad_left\030\005" +
+      " \001(\005\"h\n\013ChartSeries\022\030\n\005color\030\001 \001(\0132\t.ui." +
+      "Color\022%\n\004axis\030\002 \001(\0162\r.ui.ChartAxisB\010\272H\005\202" +
+      "\001\002\020\001\022\030\n\006values\030\003 \003(\005B\010\272H\005\222\001\002\020 \"\331\001\n\nChart" +
+      "Props\022%\n\004type\030\001 \001(\0162\r.ui.ChartTypeB\010\272H\005\202" +
+      "\001\002\020\001\022\023\n\013point_count\030\002 \001(\r\022\025\n\rhas_div_lin" +
+      "es\030\003 \001(\010\022\034\n\nhdiv_count\030\004 \001(\rB\010\272H\005*\003\030\377\001\022\034" +
+      "\n\nvdiv_count\030\005 \001(\rB\010\272H\005*\003\030\377\001\022)\n\006series\030\006" +
+      " \003(\0132\017.ui.ChartSeriesB\010\272H\005\222\001\002\020\010\022\021\n\tfade_" +
+      "area\030\007 \001(\010\"\260\001\n\016HostProxyProps\022\033\n\010proxy_i" +
+      "d\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022%\n\004mode\030\002 \001(\0162\r.ui.Pr" +
+      "oxyModeB\010\272H\005\202\001\002\020\001\022\r\n\005min_w\030\003 \001(\005\022\r\n\005min_" +
+      "h\030\004 \001(\005\022\r\n\005max_w\030\005 \001(\005\022\r\n\005max_h\030\006 \001(\005\022\023\n" +
+      "\013handle_size\030\007 \001(\r\022\t\n\001z\030\010 \001(\005\"\035\n\005Point\022\t" +
+      "\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"\333\001\n\014EventBinding\022\027\n" +
+      "\004name\030\001 \001(\tB\t\272H\006r\004\020\001\030?\022+\n\007trigger\030\002 \001(\0162" +
+      "\020.ui.EventTriggerB\010\272H\005\202\001\002\020\001\022\021\n\tint_value" +
+      "\030\003 \001(\005\022\034\n\024include_widget_value\030\004 \001(\010\022\034\n\013" +
+      "set_subject\030\005 \001(\tB\007\272H\004r\002\030?\022\021\n\tset_value\030" +
+      "\006 \001(\005\022\016\n\006toggle\030\007 \001(\010\022\023\n\013notify_host\030\010 \001" +
+      "(\010\"l\n\021VisibilityBinding\022\032\n\007subject\030\001 \001(\t" +
+      "B\t\272H\006r\004\020\001\030?\022\021\n\tref_value\030\002 \001(\005\022(\n\007compar" +
+      "e\030\003 \001(\0162\r.ui.CompareOpB\010\272H\005\202\001\002\020\001\"\267\001\n\006Lay" +
+      "out\022$\n\004flow\030\001 \001(\0162\014.ui.FlexFlowB\010\272H\005\202\001\002\020" +
+      "\001\022+\n\nmain_place\030\002 \001(\0162\r.ui.FlexAlignB\010\272H" +
+      "\005\202\001\002\020\001\022,\n\013cross_place\030\003 \001(\0162\r.ui.FlexAli" +
+      "gnB\010\272H\005\202\001\002\020\001\022,\n\013track_place\030\004 \001(\0162\r.ui.F" +
+      "lexAlignB\010\272H\005\202\001\002\020\001\"U\n\nStyleGroup\022\026\n\016stat" +
+      "e_selector\030\001 \001(\r\022/\n\010variants\030\002 \003(\0132\021.ui." +
+      "ResolvedStyleB\n\272H\007\222\001\004\010\010\020\010\"6\n\rResolvedSty" +
+      "le\022%\n\nproperties\030\001 \003(\0132\021.ui.StylePropert" +
+      "y\"\337\001\n\rStyleProperty\022-\n\004type\030\001 \001(\0162\025.ui.S" +
+      "tylePropertyTypeB\010\272H\005\202\001\002\020\001\022\024\n\nuint_value" +
+      "\030\002 \001(\rH\000\022\023\n\tint_value\030\003 \001(\005H\000\022 \n\013color_v" +
+      "alue\030\004 \001(\0132\t.ui.ColorH\000\022\037\n\014string_value\030" +
+      "\005 \001(\tB\007\272H\004r\002\030?H\000\022(\n\014shadow_value\030\006 \001(\0132\020" +
+      ".ui.ShadowBundleH\000B\007\n\005value\"F\n\005Color\022\023\n\001" +
+      "r\030\001 \001(\rB\010\272H\005*\003\030\377\001\022\023\n\001g\030\002 \001(\rB\010\272H\005*\003\030\377\001\022\023" +
+      "\n\001b\030\003 \001(\rB\010\272H\005*\003\030\377\001\"h\n\014ShadowBundle\022\r\n\005w" +
+      "idth\030\001 \001(\r\022\020\n\010offset_x\030\002 \001(\005\022\020\n\010offset_y" +
+      "\030\003 \001(\005\022\016\n\006spread\030\004 \001(\r\022\025\n\003opa\030\005 \001(\rB\010\272H\005" +
+      "*\003\030\377\001*2\n\013SubjectType\022\017\n\013SUBJECT_INT\020\000\022\022\n" +
+      "\016SUBJECT_STRING\020\001*\217\001\n\013PatchOpKind\022\031\n\025PAT" +
+      "CH_OP_UPDATE_PROPS\020\000\022\031\n\025PATCH_OP_REPLACE" +
+      "_NODE\020\001\022\030\n\024PATCH_OP_INSERT_NODE\020\002\022\030\n\024PAT" +
+      "CH_OP_REMOVE_NODE\020\003\022\026\n\022PATCH_OP_MOVE_NOD" +
+      "E\020\004*\256\003\n\nWidgetType\022\016\n\nWIDGET_OBJ\020\000\022\021\n\rWI" +
       "DGET_BUTTON\020\001\022\020\n\014WIDGET_LABEL\020\002\022\021\n\rWIDGE" +
       "T_SLIDER\020\003\022\020\n\014WIDGET_IMAGE\020\004\022\016\n\nWIDGET_A" +
       "RC\020\005\022\016\n\nWIDGET_BAR\020\006\022\021\n\rWIDGET_SWITCH\020\007\022" +
@@ -46158,7 +48462,7 @@ java.lang.String defaultValue) {
     internal_static_ui_WidgetNode_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_WidgetNode_descriptor,
-        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "TabviewProps", "ChartProps", "HostProxyProps", "Visibility", "BindFormats", "ObjFlags", "ObjFlagsClear", "States", "ScrollDir", "GridColDsc", "GridRowDsc", "Bare", "InTabBar", "CheckedWhen", "WidgetProps", });
+        new java.lang.String[] { "Type", "X", "Y", "Text", "Bindings", "Event", "Layout", "Children", "StyleGroups", "ObjProps", "ButtonProps", "LabelProps", "SliderProps", "ImageProps", "ArcProps", "BarProps", "SwitchProps", "CheckboxProps", "DropdownProps", "RollerProps", "TextareaProps", "SpinboxProps", "SpinnerProps", "LedProps", "LineProps", "ScaleProps", "ButtonmatrixProps", "TableProps", "TabviewProps", "ChartProps", "HostProxyProps", "Visibility", "BindFormats", "ObjFlags", "ObjFlagsClear", "States", "ScrollDir", "GridColDsc", "GridRowDsc", "Bare", "InTabBar", "CheckedWhen", "Uid", "WidgetProps", });
     internal_static_ui_WidgetNode_BindingsEntry_descriptor =
       internal_static_ui_WidgetNode_descriptor.getNestedTypes().get(0);
     internal_static_ui_WidgetNode_BindingsEntry_fieldAccessorTable = new
@@ -46171,200 +48475,212 @@ java.lang.String defaultValue) {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_WidgetNode_BindFormatsEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
-    internal_static_ui_ObjProps_descriptor =
+    internal_static_ui_TreePatchOp_descriptor =
       getDescriptor().getMessageTypes().get(5);
+    internal_static_ui_TreePatchOp_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ui_TreePatchOp_descriptor,
+        new java.lang.String[] { "Kind", "TargetUid", "ParentUid", "Index", "Node", });
+    internal_static_ui_ScreenPatch_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_ui_ScreenPatch_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_ui_ScreenPatch_descriptor,
+        new java.lang.String[] { "BaseHash", "TargetHash", "Ops", });
+    internal_static_ui_ObjProps_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_ui_ObjProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ObjProps_descriptor,
         new java.lang.String[] { });
     internal_static_ui_ButtonProps_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_ui_ButtonProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ButtonProps_descriptor,
         new java.lang.String[] { });
     internal_static_ui_LabelProps_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_ui_LabelProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_LabelProps_descriptor,
         new java.lang.String[] { "LongMode", });
     internal_static_ui_SliderProps_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_ui_SliderProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_SliderProps_descriptor,
         new java.lang.String[] { "MinValue", "MaxValue", "Value", "Mode", });
     internal_static_ui_ImageProps_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_ui_ImageProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ImageProps_descriptor,
         new java.lang.String[] { "Src", "HasPivot", "PivotX", "PivotY", "Rotation", });
     internal_static_ui_ArcProps_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_ui_ArcProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ArcProps_descriptor,
         new java.lang.String[] { "StartAngle", "EndAngle", "BgStartAngle", "BgEndAngle", "Rotation", "Mode", "MinValue", "MaxValue", "Value", });
     internal_static_ui_BarProps_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_ui_BarProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_BarProps_descriptor,
         new java.lang.String[] { "MinValue", "MaxValue", "Value", "StartValue", "Mode", });
     internal_static_ui_SwitchProps_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_ui_SwitchProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_SwitchProps_descriptor,
         new java.lang.String[] { "Checked", });
     internal_static_ui_CheckboxProps_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_ui_CheckboxProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_CheckboxProps_descriptor,
         new java.lang.String[] { "Checked", });
     internal_static_ui_DropdownProps_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_ui_DropdownProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_DropdownProps_descriptor,
         new java.lang.String[] { "Options", "Selected", "Direction", });
     internal_static_ui_RollerProps_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_ui_RollerProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_RollerProps_descriptor,
         new java.lang.String[] { "Options", "Selected", "VisibleRowCount", "Mode", });
     internal_static_ui_TextareaProps_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_ui_TextareaProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_TextareaProps_descriptor,
         new java.lang.String[] { "Placeholder", "MaxLength", "OneLine", "PasswordMode", });
     internal_static_ui_SpinboxProps_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_ui_SpinboxProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_SpinboxProps_descriptor,
         new java.lang.String[] { "MinValue", "MaxValue", "Value", "Step", "DigitCount", "SeparatorPosition", });
     internal_static_ui_SpinnerProps_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_ui_SpinnerProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_SpinnerProps_descriptor,
         new java.lang.String[] { "SpinTime", "ArcLength", });
     internal_static_ui_LedProps_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_ui_LedProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_LedProps_descriptor,
         new java.lang.String[] { "Color", "Brightness", });
     internal_static_ui_LineProps_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_ui_LineProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_LineProps_descriptor,
         new java.lang.String[] { "Points", "YInvert", });
     internal_static_ui_ScaleProps_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_ui_ScaleProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ScaleProps_descriptor,
         new java.lang.String[] { "Mode", "TotalTickCount", "MajorTickEvery", "LabelShow", "MinValue", "MaxValue", "Rotation", "AngleRange", "TextSrc", "PostDraw", "Sections", });
     internal_static_ui_ScaleSection_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_ui_ScaleSection_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ScaleSection_descriptor,
         new java.lang.String[] { "RangeMin", "RangeMax", "Color", "Width", "MainColor", "MainWidth", });
     internal_static_ui_ButtonMatrixProps_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_ui_ButtonMatrixProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ButtonMatrixProps_descriptor,
         new java.lang.String[] { "MapStr", "OneCheck", });
     internal_static_ui_TableProps_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_ui_TableProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_TableProps_descriptor,
         new java.lang.String[] { "RowCount", "ColumnCount", });
     internal_static_ui_TabviewProps_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_ui_TabviewProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_TabviewProps_descriptor,
         new java.lang.String[] { "TabNames", "TabBarSize", "ActiveIndex", "TabBarPosition", "TabBarPadLeft", });
     internal_static_ui_ChartSeries_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_ui_ChartSeries_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ChartSeries_descriptor,
         new java.lang.String[] { "Color", "Axis", "Values", });
     internal_static_ui_ChartProps_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_ui_ChartProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ChartProps_descriptor,
         new java.lang.String[] { "Type", "PointCount", "HasDivLines", "HdivCount", "VdivCount", "Series", "FadeArea", });
     internal_static_ui_HostProxyProps_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_ui_HostProxyProps_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_HostProxyProps_descriptor,
         new java.lang.String[] { "ProxyId", "Mode", "MinW", "MinH", "MaxW", "MaxH", "HandleSize", "Z", });
     internal_static_ui_Point_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_ui_Point_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Point_descriptor,
         new java.lang.String[] { "X", "Y", });
     internal_static_ui_EventBinding_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_ui_EventBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_EventBinding_descriptor,
         new java.lang.String[] { "Name", "Trigger", "IntValue", "IncludeWidgetValue", "SetSubject", "SetValue", "Toggle", "NotifyHost", });
     internal_static_ui_VisibilityBinding_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_ui_VisibilityBinding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_VisibilityBinding_descriptor,
         new java.lang.String[] { "Subject", "RefValue", "Compare", });
     internal_static_ui_Layout_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(34);
     internal_static_ui_Layout_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Layout_descriptor,
         new java.lang.String[] { "Flow", "MainPlace", "CrossPlace", "TrackPlace", });
     internal_static_ui_StyleGroup_descriptor =
-      getDescriptor().getMessageTypes().get(33);
+      getDescriptor().getMessageTypes().get(35);
     internal_static_ui_StyleGroup_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleGroup_descriptor,
         new java.lang.String[] { "StateSelector", "Variants", });
     internal_static_ui_ResolvedStyle_descriptor =
-      getDescriptor().getMessageTypes().get(34);
+      getDescriptor().getMessageTypes().get(36);
     internal_static_ui_ResolvedStyle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ResolvedStyle_descriptor,
         new java.lang.String[] { "Properties", });
     internal_static_ui_StyleProperty_descriptor =
-      getDescriptor().getMessageTypes().get(35);
+      getDescriptor().getMessageTypes().get(37);
     internal_static_ui_StyleProperty_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_StyleProperty_descriptor,
         new java.lang.String[] { "Type", "UintValue", "IntValue", "ColorValue", "StringValue", "ShadowValue", "Value", });
     internal_static_ui_Color_descriptor =
-      getDescriptor().getMessageTypes().get(36);
+      getDescriptor().getMessageTypes().get(38);
     internal_static_ui_Color_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_Color_descriptor,
         new java.lang.String[] { "R", "G", "B", });
     internal_static_ui_ShadowBundle_descriptor =
-      getDescriptor().getMessageTypes().get(37);
+      getDescriptor().getMessageTypes().get(39);
     internal_static_ui_ShadowBundle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_ui_ShadowBundle_descriptor,
