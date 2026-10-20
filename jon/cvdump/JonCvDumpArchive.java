@@ -365,6 +365,13 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
    * Groups are ordered by this value so every group of one kind is CONTIGUOUS in
    * the encoded archive — the property a future codec needs, since a homogeneous
    * byte run is what compresses.
+   *
+   * Every kind except STREAM_KIND_TSDB_TABLE is a REDIS-STREAM kind: its source
+   * is a stream key on the LOGS redis and its payload is RedisStreamRecords.
+   * STREAM_KIND_TSDB_TABLE alone is a table slice. The comments on StreamGroup,
+   * RedisStreamRecords and TableRows refer to the kinds by that split, never by
+   * a numeric range, so a new redis-stream kind is declared here and nowhere
+   * else.
    * </pre>
    *
    * Protobuf enum {@code jon.cvdump.StreamKind}
@@ -423,6 +430,32 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
      * <code>STREAM_KIND_MOTION_HISTORY = 5;</code>
      */
     STREAM_KIND_MOTION_HISTORY(5),
+    /**
+     * <pre>
+     * `logs:gige:&lt;channel&gt;` on the LOGS redis (db 6) — the GigE camera link's
+     * trace records at the `control` and `frames` trace levels. BOTH ends write
+     * into the same per-channel stream: the receiver on the Orin (gige-ingress,
+     * inside the sensor harness) and the camera-side sender (gige-device: the
+     * twin, later the head). The record's own header says which side wrote it,
+     * never the stream. Each entry carries ONE encoded record, field `rec`, in
+     * the `JGTR` record format (authority mods/gige/crates/gige-wire/src/trace.rs,
+     * C mirror inc/gige/gige_trace.h). One group per channel stream key. payload
+     * is RedisStreamRecords.
+     *
+     * The writer trims each stream approximately (XADD MAXLEN ~), so a window
+     * longer than the stream holds loses its HEAD to the trim before the harvest
+     * reads it, and the group's `truncated` flag does NOT report that loss — it
+     * reports only the harvester's own per-source cap.
+     *
+     * The `packets` trace level never reaches redis; its ring files are carried
+     * as CvDumpArchive.gige_packet_rings. Nor does the day channel's `stats`
+     * record (gige_trace.stats); its ring is carried as
+     * CvDumpArchive.gige_stats_rings.
+     * </pre>
+     *
+     * <code>STREAM_KIND_GIGE = 6;</code>
+     */
+    STREAM_KIND_GIGE(6),
     UNRECOGNIZED(-1),
     ;
 
@@ -487,6 +520,32 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
      * <code>STREAM_KIND_MOTION_HISTORY = 5;</code>
      */
     public static final int STREAM_KIND_MOTION_HISTORY_VALUE = 5;
+    /**
+     * <pre>
+     * `logs:gige:&lt;channel&gt;` on the LOGS redis (db 6) — the GigE camera link's
+     * trace records at the `control` and `frames` trace levels. BOTH ends write
+     * into the same per-channel stream: the receiver on the Orin (gige-ingress,
+     * inside the sensor harness) and the camera-side sender (gige-device: the
+     * twin, later the head). The record's own header says which side wrote it,
+     * never the stream. Each entry carries ONE encoded record, field `rec`, in
+     * the `JGTR` record format (authority mods/gige/crates/gige-wire/src/trace.rs,
+     * C mirror inc/gige/gige_trace.h). One group per channel stream key. payload
+     * is RedisStreamRecords.
+     *
+     * The writer trims each stream approximately (XADD MAXLEN ~), so a window
+     * longer than the stream holds loses its HEAD to the trim before the harvest
+     * reads it, and the group's `truncated` flag does NOT report that loss — it
+     * reports only the harvester's own per-source cap.
+     *
+     * The `packets` trace level never reaches redis; its ring files are carried
+     * as CvDumpArchive.gige_packet_rings. Nor does the day channel's `stats`
+     * record (gige_trace.stats); its ring is carried as
+     * CvDumpArchive.gige_stats_rings.
+     * </pre>
+     *
+     * <code>STREAM_KIND_GIGE = 6;</code>
+     */
+    public static final int STREAM_KIND_GIGE_VALUE = 6;
 
 
     public final int getNumber() {
@@ -519,6 +578,7 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
         case 3: return STREAM_KIND_FRAME_TAP;
         case 4: return STREAM_KIND_TSDB_TABLE;
         case 5: return STREAM_KIND_MOTION_HISTORY;
+        case 6: return STREAM_KIND_GIGE;
         default: return null;
       }
     }
@@ -1274,6 +1334,159 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
      */
     jon.cvdump.JonCvDumpArchive.ShotCaptureOrBuilder getShotsOrBuilder(
         int index);
+
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    java.util.List<jon.cvdump.JonCvDumpArchive.GigePacketRing> 
+        getGigePacketRingsList();
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    jon.cvdump.JonCvDumpArchive.GigePacketRing getGigePacketRings(int index);
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    int getGigePacketRingsCount();
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    java.util.List<? extends jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder> 
+        getGigePacketRingsOrBuilderList();
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder getGigePacketRingsOrBuilder(
+        int index);
+
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    java.util.List<jon.cvdump.JonCvDumpArchive.GigeStatsRing> 
+        getGigeStatsRingsList();
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    jon.cvdump.JonCvDumpArchive.GigeStatsRing getGigeStatsRings(int index);
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    int getGigeStatsRingsCount();
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    java.util.List<? extends jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder> 
+        getGigeStatsRingsOrBuilderList();
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder getGigeStatsRingsOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -1327,6 +1540,8 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       video_ = java.util.Collections.emptyList();
       streams_ = java.util.Collections.emptyList();
       shots_ = java.util.Collections.emptyList();
+      gigePacketRings_ = java.util.Collections.emptyList();
+      gigeStatsRings_ = java.util.Collections.emptyList();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -1912,6 +2127,193 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       return shots_.get(index);
     }
 
+    public static final int GIGE_PACKET_RINGS_FIELD_NUMBER = 12;
+    @SuppressWarnings("serial")
+    private java.util.List<jon.cvdump.JonCvDumpArchive.GigePacketRing> gigePacketRings_;
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    @java.lang.Override
+    public java.util.List<jon.cvdump.JonCvDumpArchive.GigePacketRing> getGigePacketRingsList() {
+      return gigePacketRings_;
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder> 
+        getGigePacketRingsOrBuilderList() {
+      return gigePacketRings_;
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    @java.lang.Override
+    public int getGigePacketRingsCount() {
+      return gigePacketRings_.size();
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    @java.lang.Override
+    public jon.cvdump.JonCvDumpArchive.GigePacketRing getGigePacketRings(int index) {
+      return gigePacketRings_.get(index);
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `packets` trace level: one compacted ring file per
+     * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+     * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+     * file appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files, like the video segments; this is their
+     * inventory plus what the harvest discarded and why. The `control` and
+     * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+     */
+    @java.lang.Override
+    public jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder getGigePacketRingsOrBuilder(
+        int index) {
+      return gigePacketRings_.get(index);
+    }
+
+    public static final int GIGE_STATS_RINGS_FIELD_NUMBER = 13;
+    @SuppressWarnings("serial")
+    private java.util.List<jon.cvdump.JonCvDumpArchive.GigeStatsRing> gigeStatsRings_;
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    @java.lang.Override
+    public java.util.List<jon.cvdump.JonCvDumpArchive.GigeStatsRing> getGigeStatsRingsList() {
+      return gigeStatsRings_;
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder> 
+        getGigeStatsRingsOrBuilderList() {
+      return gigeStatsRings_;
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    @java.lang.Override
+    public int getGigeStatsRingsCount() {
+      return gigeStatsRings_.size();
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    @java.lang.Override
+    public jon.cvdump.JonCvDumpArchive.GigeStatsRing getGigeStatsRings(int index) {
+      return gigeStatsRings_.get(index);
+    }
+    /**
+     * <pre>
+     * The GigE camera link's `stats` trace: one compacted ring file per channel
+     * under `gige/`, described here, each record one frame's MAX10 statistics
+     * chunks beside the ISP statistics the harness published for the same
+     * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+     * VideoChannel rule — a channel with no ring file (heat has none at all)
+     * appears with zero records and an absent_reason rather than being
+     * dropped. The ring BYTES are files; this is their inventory plus what the
+     * harvest discarded and why.
+     * </pre>
+     *
+     * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+     */
+    @java.lang.Override
+    public jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder getGigeStatsRingsOrBuilder(
+        int index) {
+      return gigeStatsRings_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1958,6 +2360,12 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       for (int i = 0; i < shots_.size(); i++) {
         output.writeMessage(11, shots_.get(i));
+      }
+      for (int i = 0; i < gigePacketRings_.size(); i++) {
+        output.writeMessage(12, gigePacketRings_.get(i));
+      }
+      for (int i = 0; i < gigeStatsRings_.size(); i++) {
+        output.writeMessage(13, gigeStatsRings_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -2019,6 +2427,24 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
             }
             size += 1 * count;
           }
+
+          {
+            final int count = gigePacketRings_.size();
+            for (int i = 0; i < count; i++) {
+              size += com.google.protobuf.CodedOutputStream
+                .computeMessageSizeNoTag(gigePacketRings_.get(i));
+            }
+            size += 1 * count;
+          }
+
+          {
+            final int count = gigeStatsRings_.size();
+            for (int i = 0; i < count; i++) {
+              size += com.google.protobuf.CodedOutputStream
+                .computeMessageSizeNoTag(gigeStatsRings_.get(i));
+            }
+            size += 1 * count;
+          }
       return size;
     }
     @java.lang.Override
@@ -2072,6 +2498,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
           .equals(other.getStreamsList())) return false;
       if (!getShotsList()
           .equals(other.getShotsList())) return false;
+      if (!getGigePacketRingsList()
+          .equals(other.getGigePacketRingsList())) return false;
+      if (!getGigeStatsRingsList()
+          .equals(other.getGigeStatsRingsList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -2116,6 +2546,14 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       if (getShotsCount() > 0) {
         hash = (37 * hash) + SHOTS_FIELD_NUMBER;
         hash = (53 * hash) + getShotsList().hashCode();
+      }
+      if (getGigePacketRingsCount() > 0) {
+        hash = (37 * hash) + GIGE_PACKET_RINGS_FIELD_NUMBER;
+        hash = (53 * hash) + getGigePacketRingsList().hashCode();
+      }
+      if (getGigeStatsRingsCount() > 0) {
+        hash = (37 * hash) + GIGE_STATS_RINGS_FIELD_NUMBER;
+        hash = (53 * hash) + getGigeStatsRingsList().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -2275,6 +2713,8 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
           internalGetVideoFieldBuilder();
           internalGetStreamsFieldBuilder();
           internalGetShotsFieldBuilder();
+          internalGetGigePacketRingsFieldBuilder();
+          internalGetGigeStatsRingsFieldBuilder();
         }
       }
       @java.lang.Override
@@ -2322,6 +2762,20 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
           shotsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000400);
+        if (gigePacketRingsBuilder_ == null) {
+          gigePacketRings_ = java.util.Collections.emptyList();
+        } else {
+          gigePacketRings_ = null;
+          gigePacketRingsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000800);
+        if (gigeStatsRingsBuilder_ == null) {
+          gigeStatsRings_ = java.util.Collections.emptyList();
+        } else {
+          gigeStatsRings_ = null;
+          gigeStatsRingsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00001000);
         return this;
       }
 
@@ -2381,6 +2835,24 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
           result.shots_ = shots_;
         } else {
           result.shots_ = shotsBuilder_.build();
+        }
+        if (gigePacketRingsBuilder_ == null) {
+          if (((bitField0_ & 0x00000800) != 0)) {
+            gigePacketRings_ = java.util.Collections.unmodifiableList(gigePacketRings_);
+            bitField0_ = (bitField0_ & ~0x00000800);
+          }
+          result.gigePacketRings_ = gigePacketRings_;
+        } else {
+          result.gigePacketRings_ = gigePacketRingsBuilder_.build();
+        }
+        if (gigeStatsRingsBuilder_ == null) {
+          if (((bitField0_ & 0x00001000) != 0)) {
+            gigeStatsRings_ = java.util.Collections.unmodifiableList(gigeStatsRings_);
+            bitField0_ = (bitField0_ & ~0x00001000);
+          }
+          result.gigeStatsRings_ = gigeStatsRings_;
+        } else {
+          result.gigeStatsRings_ = gigeStatsRingsBuilder_.build();
         }
       }
 
@@ -2543,6 +3015,58 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
             }
           }
         }
+        if (gigePacketRingsBuilder_ == null) {
+          if (!other.gigePacketRings_.isEmpty()) {
+            if (gigePacketRings_.isEmpty()) {
+              gigePacketRings_ = other.gigePacketRings_;
+              bitField0_ = (bitField0_ & ~0x00000800);
+            } else {
+              ensureGigePacketRingsIsMutable();
+              gigePacketRings_.addAll(other.gigePacketRings_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.gigePacketRings_.isEmpty()) {
+            if (gigePacketRingsBuilder_.isEmpty()) {
+              gigePacketRingsBuilder_.dispose();
+              gigePacketRingsBuilder_ = null;
+              gigePacketRings_ = other.gigePacketRings_;
+              bitField0_ = (bitField0_ & ~0x00000800);
+              gigePacketRingsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   internalGetGigePacketRingsFieldBuilder() : null;
+            } else {
+              gigePacketRingsBuilder_.addAllMessages(other.gigePacketRings_);
+            }
+          }
+        }
+        if (gigeStatsRingsBuilder_ == null) {
+          if (!other.gigeStatsRings_.isEmpty()) {
+            if (gigeStatsRings_.isEmpty()) {
+              gigeStatsRings_ = other.gigeStatsRings_;
+              bitField0_ = (bitField0_ & ~0x00001000);
+            } else {
+              ensureGigeStatsRingsIsMutable();
+              gigeStatsRings_.addAll(other.gigeStatsRings_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.gigeStatsRings_.isEmpty()) {
+            if (gigeStatsRingsBuilder_.isEmpty()) {
+              gigeStatsRingsBuilder_.dispose();
+              gigeStatsRingsBuilder_ = null;
+              gigeStatsRings_ = other.gigeStatsRings_;
+              bitField0_ = (bitField0_ & ~0x00001000);
+              gigeStatsRingsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   internalGetGigeStatsRingsFieldBuilder() : null;
+            } else {
+              gigeStatsRingsBuilder_.addAllMessages(other.gigeStatsRings_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -2652,6 +3176,32 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
                 }
                 break;
               } // case 90
+              case 98: {
+                jon.cvdump.JonCvDumpArchive.GigePacketRing m =
+                    input.readMessage(
+                        jon.cvdump.JonCvDumpArchive.GigePacketRing.parser(),
+                        extensionRegistry);
+                if (gigePacketRingsBuilder_ == null) {
+                  ensureGigePacketRingsIsMutable();
+                  gigePacketRings_.add(m);
+                } else {
+                  gigePacketRingsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 98
+              case 106: {
+                jon.cvdump.JonCvDumpArchive.GigeStatsRing m =
+                    input.readMessage(
+                        jon.cvdump.JonCvDumpArchive.GigeStatsRing.parser(),
+                        extensionRegistry);
+                if (gigeStatsRingsBuilder_ == null) {
+                  ensureGigeStatsRingsIsMutable();
+                  gigeStatsRings_.add(m);
+                } else {
+                  gigeStatsRingsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 106
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -4728,6 +5278,852 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
           shots_ = null;
         }
         return shotsBuilder_;
+      }
+
+      private java.util.List<jon.cvdump.JonCvDumpArchive.GigePacketRing> gigePacketRings_ =
+        java.util.Collections.emptyList();
+      private void ensureGigePacketRingsIsMutable() {
+        if (!((bitField0_ & 0x00000800) != 0)) {
+          gigePacketRings_ = new java.util.ArrayList<jon.cvdump.JonCvDumpArchive.GigePacketRing>(gigePacketRings_);
+          bitField0_ |= 0x00000800;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          jon.cvdump.JonCvDumpArchive.GigePacketRing, jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder, jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder> gigePacketRingsBuilder_;
+
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public java.util.List<jon.cvdump.JonCvDumpArchive.GigePacketRing> getGigePacketRingsList() {
+        if (gigePacketRingsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(gigePacketRings_);
+        } else {
+          return gigePacketRingsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public int getGigePacketRingsCount() {
+        if (gigePacketRingsBuilder_ == null) {
+          return gigePacketRings_.size();
+        } else {
+          return gigePacketRingsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigePacketRing getGigePacketRings(int index) {
+        if (gigePacketRingsBuilder_ == null) {
+          return gigePacketRings_.get(index);
+        } else {
+          return gigePacketRingsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder setGigePacketRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigePacketRing value) {
+        if (gigePacketRingsBuilder_ == null) {
+          java.util.Objects.requireNonNull(value);
+          ensureGigePacketRingsIsMutable();
+          gigePacketRings_.set(index, value);
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder setGigePacketRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder builderForValue) {
+        if (gigePacketRingsBuilder_ == null) {
+          ensureGigePacketRingsIsMutable();
+          gigePacketRings_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder addGigePacketRings(jon.cvdump.JonCvDumpArchive.GigePacketRing value) {
+        if (gigePacketRingsBuilder_ == null) {
+          java.util.Objects.requireNonNull(value);
+          ensureGigePacketRingsIsMutable();
+          gigePacketRings_.add(value);
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder addGigePacketRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigePacketRing value) {
+        if (gigePacketRingsBuilder_ == null) {
+          java.util.Objects.requireNonNull(value);
+          ensureGigePacketRingsIsMutable();
+          gigePacketRings_.add(index, value);
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder addGigePacketRings(
+          jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder builderForValue) {
+        if (gigePacketRingsBuilder_ == null) {
+          ensureGigePacketRingsIsMutable();
+          gigePacketRings_.add(builderForValue.build());
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder addGigePacketRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder builderForValue) {
+        if (gigePacketRingsBuilder_ == null) {
+          ensureGigePacketRingsIsMutable();
+          gigePacketRings_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder addAllGigePacketRings(
+          java.lang.Iterable<? extends jon.cvdump.JonCvDumpArchive.GigePacketRing> values) {
+        if (gigePacketRingsBuilder_ == null) {
+          ensureGigePacketRingsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, gigePacketRings_);
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder clearGigePacketRings() {
+        if (gigePacketRingsBuilder_ == null) {
+          gigePacketRings_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000800);
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public Builder removeGigePacketRings(int index) {
+        if (gigePacketRingsBuilder_ == null) {
+          ensureGigePacketRingsIsMutable();
+          gigePacketRings_.remove(index);
+          onChanged();
+        } else {
+          gigePacketRingsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder getGigePacketRingsBuilder(
+          int index) {
+        return internalGetGigePacketRingsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder getGigePacketRingsOrBuilder(
+          int index) {
+        if (gigePacketRingsBuilder_ == null) {
+          return gigePacketRings_.get(index);  } else {
+          return gigePacketRingsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public java.util.List<? extends jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder> 
+           getGigePacketRingsOrBuilderList() {
+        if (gigePacketRingsBuilder_ != null) {
+          return gigePacketRingsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(gigePacketRings_);
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder addGigePacketRingsBuilder() {
+        return internalGetGigePacketRingsFieldBuilder().addBuilder(
+            jon.cvdump.JonCvDumpArchive.GigePacketRing.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder addGigePacketRingsBuilder(
+          int index) {
+        return internalGetGigePacketRingsFieldBuilder().addBuilder(
+            index, jon.cvdump.JonCvDumpArchive.GigePacketRing.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `packets` trace level: one compacted ring file per
+       * channel under `gige/`, described here. ONE ENTRY PER CHANNEL WHOSE RING
+       * THE HARVESTER LOOKED FOR, the VideoChannel rule — a channel with no ring
+       * file appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files, like the video segments; this is their
+       * inventory plus what the harvest discarded and why. The `control` and
+       * `frames` levels travel as STREAM_KIND_GIGE groups in `streams`.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigePacketRing gige_packet_rings = 12;</code>
+       */
+      public java.util.List<jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder> 
+           getGigePacketRingsBuilderList() {
+        return internalGetGigePacketRingsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          jon.cvdump.JonCvDumpArchive.GigePacketRing, jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder, jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder> 
+          internalGetGigePacketRingsFieldBuilder() {
+        if (gigePacketRingsBuilder_ == null) {
+          gigePacketRingsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              jon.cvdump.JonCvDumpArchive.GigePacketRing, jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder, jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder>(
+                  gigePacketRings_,
+                  ((bitField0_ & 0x00000800) != 0),
+                  getParentForChildren(),
+                  isClean());
+          gigePacketRings_ = null;
+        }
+        return gigePacketRingsBuilder_;
+      }
+
+      private java.util.List<jon.cvdump.JonCvDumpArchive.GigeStatsRing> gigeStatsRings_ =
+        java.util.Collections.emptyList();
+      private void ensureGigeStatsRingsIsMutable() {
+        if (!((bitField0_ & 0x00001000) != 0)) {
+          gigeStatsRings_ = new java.util.ArrayList<jon.cvdump.JonCvDumpArchive.GigeStatsRing>(gigeStatsRings_);
+          bitField0_ |= 0x00001000;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          jon.cvdump.JonCvDumpArchive.GigeStatsRing, jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder, jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder> gigeStatsRingsBuilder_;
+
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public java.util.List<jon.cvdump.JonCvDumpArchive.GigeStatsRing> getGigeStatsRingsList() {
+        if (gigeStatsRingsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(gigeStatsRings_);
+        } else {
+          return gigeStatsRingsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public int getGigeStatsRingsCount() {
+        if (gigeStatsRingsBuilder_ == null) {
+          return gigeStatsRings_.size();
+        } else {
+          return gigeStatsRingsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRing getGigeStatsRings(int index) {
+        if (gigeStatsRingsBuilder_ == null) {
+          return gigeStatsRings_.get(index);
+        } else {
+          return gigeStatsRingsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder setGigeStatsRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigeStatsRing value) {
+        if (gigeStatsRingsBuilder_ == null) {
+          java.util.Objects.requireNonNull(value);
+          ensureGigeStatsRingsIsMutable();
+          gigeStatsRings_.set(index, value);
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder setGigeStatsRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder builderForValue) {
+        if (gigeStatsRingsBuilder_ == null) {
+          ensureGigeStatsRingsIsMutable();
+          gigeStatsRings_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder addGigeStatsRings(jon.cvdump.JonCvDumpArchive.GigeStatsRing value) {
+        if (gigeStatsRingsBuilder_ == null) {
+          java.util.Objects.requireNonNull(value);
+          ensureGigeStatsRingsIsMutable();
+          gigeStatsRings_.add(value);
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder addGigeStatsRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigeStatsRing value) {
+        if (gigeStatsRingsBuilder_ == null) {
+          java.util.Objects.requireNonNull(value);
+          ensureGigeStatsRingsIsMutable();
+          gigeStatsRings_.add(index, value);
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder addGigeStatsRings(
+          jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder builderForValue) {
+        if (gigeStatsRingsBuilder_ == null) {
+          ensureGigeStatsRingsIsMutable();
+          gigeStatsRings_.add(builderForValue.build());
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder addGigeStatsRings(
+          int index, jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder builderForValue) {
+        if (gigeStatsRingsBuilder_ == null) {
+          ensureGigeStatsRingsIsMutable();
+          gigeStatsRings_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder addAllGigeStatsRings(
+          java.lang.Iterable<? extends jon.cvdump.JonCvDumpArchive.GigeStatsRing> values) {
+        if (gigeStatsRingsBuilder_ == null) {
+          ensureGigeStatsRingsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, gigeStatsRings_);
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder clearGigeStatsRings() {
+        if (gigeStatsRingsBuilder_ == null) {
+          gigeStatsRings_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00001000);
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public Builder removeGigeStatsRings(int index) {
+        if (gigeStatsRingsBuilder_ == null) {
+          ensureGigeStatsRingsIsMutable();
+          gigeStatsRings_.remove(index);
+          onChanged();
+        } else {
+          gigeStatsRingsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder getGigeStatsRingsBuilder(
+          int index) {
+        return internalGetGigeStatsRingsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder getGigeStatsRingsOrBuilder(
+          int index) {
+        if (gigeStatsRingsBuilder_ == null) {
+          return gigeStatsRings_.get(index);  } else {
+          return gigeStatsRingsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public java.util.List<? extends jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder> 
+           getGigeStatsRingsOrBuilderList() {
+        if (gigeStatsRingsBuilder_ != null) {
+          return gigeStatsRingsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(gigeStatsRings_);
+        }
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder addGigeStatsRingsBuilder() {
+        return internalGetGigeStatsRingsFieldBuilder().addBuilder(
+            jon.cvdump.JonCvDumpArchive.GigeStatsRing.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder addGigeStatsRingsBuilder(
+          int index) {
+        return internalGetGigeStatsRingsFieldBuilder().addBuilder(
+            index, jon.cvdump.JonCvDumpArchive.GigeStatsRing.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * The GigE camera link's `stats` trace: one compacted ring file per channel
+       * under `gige/`, described here, each record one frame's MAX10 statistics
+       * chunks beside the ISP statistics the harness published for the same
+       * frame. ONE ENTRY PER CHANNEL WHOSE RING THE HARVESTER LOOKED FOR, the
+       * VideoChannel rule — a channel with no ring file (heat has none at all)
+       * appears with zero records and an absent_reason rather than being
+       * dropped. The ring BYTES are files; this is their inventory plus what the
+       * harvest discarded and why.
+       * </pre>
+       *
+       * <code>repeated .jon.cvdump.GigeStatsRing gige_stats_rings = 13;</code>
+       */
+      public java.util.List<jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder> 
+           getGigeStatsRingsBuilderList() {
+        return internalGetGigeStatsRingsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          jon.cvdump.JonCvDumpArchive.GigeStatsRing, jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder, jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder> 
+          internalGetGigeStatsRingsFieldBuilder() {
+        if (gigeStatsRingsBuilder_ == null) {
+          gigeStatsRingsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              jon.cvdump.JonCvDumpArchive.GigeStatsRing, jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder, jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder>(
+                  gigeStatsRings_,
+                  ((bitField0_ & 0x00001000) != 0),
+                  getParentForChildren(),
+                  isClean());
+          gigeStatsRings_ = null;
+        }
+        return gigeStatsRingsBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:jon.cvdump.CvDumpArchive)
@@ -13350,6 +14746,39 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
      * @return The ioRecordsIncomplete.
      */
     boolean getIoRecordsIncomplete();
+
+    /**
+     * <pre>
+     * A GigE packet ring file that EXISTED could not be read or failed
+     * validation — bad magic, version or record length in its header, or a
+     * record kept for the window that does not decode — so the window's packet
+     * trace is unrecoverable later, and this IS partial. The refused channel's
+     * GigePacketRing carries the reason too. A ring that does not exist (no file
+     * on the box, the `packets` level never armed) does NOT set this flag: it is
+     * recorded only as that channel's GigePacketRing.absent_reason.
+     * </pre>
+     *
+     * <code>bool gige_packet_rings_incomplete = 11;</code>
+     * @return The gigePacketRingsIncomplete.
+     */
+    boolean getGigePacketRingsIncomplete();
+
+    /**
+     * <pre>
+     * A GigE stats ring file that EXISTED could not be read or failed
+     * validation — bad magic, version or record length in its header, or a
+     * record kept for the window that does not decode — so the window's
+     * per-frame statistics pairs are unrecoverable later, and this IS partial.
+     * The refused channel's GigeStatsRing carries the reason too. A ring that
+     * does not exist (no file on the box, `gige_trace.stats` never on, a
+     * channel that has no stats ring) does NOT set this flag: it is recorded
+     * only as that channel's GigeStatsRing.absent_reason.
+     * </pre>
+     *
+     * <code>bool gige_stats_rings_incomplete = 12;</code>
+     * @return The gigeStatsRingsIncomplete.
+     */
+    boolean getGigeStatsRingsIncomplete();
   }
   /**
    * <pre>
@@ -13688,6 +15117,49 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       return ioRecordsIncomplete_;
     }
 
+    public static final int GIGE_PACKET_RINGS_INCOMPLETE_FIELD_NUMBER = 11;
+    private boolean gigePacketRingsIncomplete_ = false;
+    /**
+     * <pre>
+     * A GigE packet ring file that EXISTED could not be read or failed
+     * validation — bad magic, version or record length in its header, or a
+     * record kept for the window that does not decode — so the window's packet
+     * trace is unrecoverable later, and this IS partial. The refused channel's
+     * GigePacketRing carries the reason too. A ring that does not exist (no file
+     * on the box, the `packets` level never armed) does NOT set this flag: it is
+     * recorded only as that channel's GigePacketRing.absent_reason.
+     * </pre>
+     *
+     * <code>bool gige_packet_rings_incomplete = 11;</code>
+     * @return The gigePacketRingsIncomplete.
+     */
+    @java.lang.Override
+    public boolean getGigePacketRingsIncomplete() {
+      return gigePacketRingsIncomplete_;
+    }
+
+    public static final int GIGE_STATS_RINGS_INCOMPLETE_FIELD_NUMBER = 12;
+    private boolean gigeStatsRingsIncomplete_ = false;
+    /**
+     * <pre>
+     * A GigE stats ring file that EXISTED could not be read or failed
+     * validation — bad magic, version or record length in its header, or a
+     * record kept for the window that does not decode — so the window's
+     * per-frame statistics pairs are unrecoverable later, and this IS partial.
+     * The refused channel's GigeStatsRing carries the reason too. A ring that
+     * does not exist (no file on the box, `gige_trace.stats` never on, a
+     * channel that has no stats ring) does NOT set this flag: it is recorded
+     * only as that channel's GigeStatsRing.absent_reason.
+     * </pre>
+     *
+     * <code>bool gige_stats_rings_incomplete = 12;</code>
+     * @return The gigeStatsRingsIncomplete.
+     */
+    @java.lang.Override
+    public boolean getGigeStatsRingsIncomplete() {
+      return gigeStatsRingsIncomplete_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -13731,6 +15203,12 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       if (ioRecordsIncomplete_ != false) {
         output.writeBool(10, ioRecordsIncomplete_);
+      }
+      if (gigePacketRingsIncomplete_ != false) {
+        output.writeBool(11, gigePacketRingsIncomplete_);
+      }
+      if (gigeStatsRingsIncomplete_ != false) {
+        output.writeBool(12, gigeStatsRingsIncomplete_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -13784,6 +15262,14 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(10, ioRecordsIncomplete_);
       }
+      if (gigePacketRingsIncomplete_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(11, gigePacketRingsIncomplete_);
+      }
+      if (gigeStatsRingsIncomplete_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(12, gigeStatsRingsIncomplete_);
+      }
       return size;
     }
     @java.lang.Override
@@ -13827,6 +15313,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
           != other.getTelemetryIncomplete()) return false;
       if (getIoRecordsIncomplete()
           != other.getIoRecordsIncomplete()) return false;
+      if (getGigePacketRingsIncomplete()
+          != other.getGigePacketRingsIncomplete()) return false;
+      if (getGigeStatsRingsIncomplete()
+          != other.getGigeStatsRingsIncomplete()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -13868,6 +15358,12 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       hash = (37 * hash) + IO_RECORDS_INCOMPLETE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIoRecordsIncomplete());
+      hash = (37 * hash) + GIGE_PACKET_RINGS_INCOMPLETE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getGigePacketRingsIncomplete());
+      hash = (37 * hash) + GIGE_STATS_RINGS_INCOMPLETE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getGigeStatsRingsIncomplete());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -14017,6 +15513,8 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
             com.google.protobuf.LazyStringArrayList.emptyList();
         telemetryIncomplete_ = false;
         ioRecordsIncomplete_ = false;
+        gigePacketRingsIncomplete_ = false;
+        gigeStatsRingsIncomplete_ = false;
         return this;
       }
 
@@ -14082,6 +15580,12 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
         if (((from_bitField0_ & 0x00000200) != 0)) {
           result.ioRecordsIncomplete_ = ioRecordsIncomplete_;
         }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.gigePacketRingsIncomplete_ = gigePacketRingsIncomplete_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.gigeStatsRingsIncomplete_ = gigeStatsRingsIncomplete_;
+        }
       }
 
       @java.lang.Override
@@ -14139,6 +15643,12 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
         }
         if (other.getIoRecordsIncomplete() != false) {
           setIoRecordsIncomplete(other.getIoRecordsIncomplete());
+        }
+        if (other.getGigePacketRingsIncomplete() != false) {
+          setGigePacketRingsIncomplete(other.getGigePacketRingsIncomplete());
+        }
+        if (other.getGigeStatsRingsIncomplete() != false) {
+          setGigeStatsRingsIncomplete(other.getGigeStatsRingsIncomplete());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -14214,6 +15724,16 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
                 bitField0_ |= 0x00000200;
                 break;
               } // case 80
+              case 88: {
+                gigePacketRingsIncomplete_ = input.readBool();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 88
+              case 96: {
+                gigeStatsRingsIncomplete_ = input.readBool();
+                bitField0_ |= 0x00000800;
+                break;
+              } // case 96
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -15016,6 +16536,133 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       public Builder clearIoRecordsIncomplete() {
         bitField0_ = (bitField0_ & ~0x00000200);
         ioRecordsIncomplete_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean gigePacketRingsIncomplete_ ;
+      /**
+       * <pre>
+       * A GigE packet ring file that EXISTED could not be read or failed
+       * validation — bad magic, version or record length in its header, or a
+       * record kept for the window that does not decode — so the window's packet
+       * trace is unrecoverable later, and this IS partial. The refused channel's
+       * GigePacketRing carries the reason too. A ring that does not exist (no file
+       * on the box, the `packets` level never armed) does NOT set this flag: it is
+       * recorded only as that channel's GigePacketRing.absent_reason.
+       * </pre>
+       *
+       * <code>bool gige_packet_rings_incomplete = 11;</code>
+       * @return The gigePacketRingsIncomplete.
+       */
+      @java.lang.Override
+      public boolean getGigePacketRingsIncomplete() {
+        return gigePacketRingsIncomplete_;
+      }
+      /**
+       * <pre>
+       * A GigE packet ring file that EXISTED could not be read or failed
+       * validation — bad magic, version or record length in its header, or a
+       * record kept for the window that does not decode — so the window's packet
+       * trace is unrecoverable later, and this IS partial. The refused channel's
+       * GigePacketRing carries the reason too. A ring that does not exist (no file
+       * on the box, the `packets` level never armed) does NOT set this flag: it is
+       * recorded only as that channel's GigePacketRing.absent_reason.
+       * </pre>
+       *
+       * <code>bool gige_packet_rings_incomplete = 11;</code>
+       * @param value The gigePacketRingsIncomplete to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGigePacketRingsIncomplete(boolean value) {
+
+        gigePacketRingsIncomplete_ = value;
+        bitField0_ |= 0x00000400;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * A GigE packet ring file that EXISTED could not be read or failed
+       * validation — bad magic, version or record length in its header, or a
+       * record kept for the window that does not decode — so the window's packet
+       * trace is unrecoverable later, and this IS partial. The refused channel's
+       * GigePacketRing carries the reason too. A ring that does not exist (no file
+       * on the box, the `packets` level never armed) does NOT set this flag: it is
+       * recorded only as that channel's GigePacketRing.absent_reason.
+       * </pre>
+       *
+       * <code>bool gige_packet_rings_incomplete = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGigePacketRingsIncomplete() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        gigePacketRingsIncomplete_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean gigeStatsRingsIncomplete_ ;
+      /**
+       * <pre>
+       * A GigE stats ring file that EXISTED could not be read or failed
+       * validation — bad magic, version or record length in its header, or a
+       * record kept for the window that does not decode — so the window's
+       * per-frame statistics pairs are unrecoverable later, and this IS partial.
+       * The refused channel's GigeStatsRing carries the reason too. A ring that
+       * does not exist (no file on the box, `gige_trace.stats` never on, a
+       * channel that has no stats ring) does NOT set this flag: it is recorded
+       * only as that channel's GigeStatsRing.absent_reason.
+       * </pre>
+       *
+       * <code>bool gige_stats_rings_incomplete = 12;</code>
+       * @return The gigeStatsRingsIncomplete.
+       */
+      @java.lang.Override
+      public boolean getGigeStatsRingsIncomplete() {
+        return gigeStatsRingsIncomplete_;
+      }
+      /**
+       * <pre>
+       * A GigE stats ring file that EXISTED could not be read or failed
+       * validation — bad magic, version or record length in its header, or a
+       * record kept for the window that does not decode — so the window's
+       * per-frame statistics pairs are unrecoverable later, and this IS partial.
+       * The refused channel's GigeStatsRing carries the reason too. A ring that
+       * does not exist (no file on the box, `gige_trace.stats` never on, a
+       * channel that has no stats ring) does NOT set this flag: it is recorded
+       * only as that channel's GigeStatsRing.absent_reason.
+       * </pre>
+       *
+       * <code>bool gige_stats_rings_incomplete = 12;</code>
+       * @param value The gigeStatsRingsIncomplete to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGigeStatsRingsIncomplete(boolean value) {
+
+        gigeStatsRingsIncomplete_ = value;
+        bitField0_ |= 0x00000800;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * A GigE stats ring file that EXISTED could not be read or failed
+       * validation — bad magic, version or record length in its header, or a
+       * record kept for the window that does not decode — so the window's
+       * per-frame statistics pairs are unrecoverable later, and this IS partial.
+       * The refused channel's GigeStatsRing carries the reason too. A ring that
+       * does not exist (no file on the box, `gige_trace.stats` never on, a
+       * channel that has no stats ring) does NOT set this flag: it is recorded
+       * only as that channel's GigeStatsRing.absent_reason.
+       * </pre>
+       *
+       * <code>bool gige_stats_rings_incomplete = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGigeStatsRingsIncomplete() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        gigeStatsRingsIncomplete_ = false;
         onChanged();
         return this;
       }
@@ -17226,6 +18873,4104 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
 
   }
 
+  public interface GigePacketRingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:jon.cvdump.GigePacketRing)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * "day" | "heat".
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The channel.
+     */
+    java.lang.String getChannel();
+    /**
+     * <pre>
+     * "day" | "heat".
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for channel.
+     */
+    com.google.protobuf.ByteString
+        getChannelBytes();
+
+    /**
+     * <pre>
+     * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The path.
+     */
+    java.lang.String getPath();
+    /**
+     * <pre>
+     * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The bytes for path.
+     */
+    com.google.protobuf.ByteString
+        getPathBytes();
+
+    /**
+     * <pre>
+     * Size of the bundle file; 0 when absent.
+     * </pre>
+     *
+     * <code>uint64 bytes = 3;</code>
+     * @return The bytes.
+     */
+    long getBytes();
+
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The sha256.
+     */
+    java.lang.String getSha256();
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for sha256.
+     */
+    com.google.protobuf.ByteString
+        getSha256Bytes();
+
+    /**
+     * <pre>
+     * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+     * Also the file's capacity, head and begun.
+     * </pre>
+     *
+     * <code>uint64 record_count = 5;</code>
+     * @return The recordCount.
+     */
+    long getRecordCount();
+
+    /**
+     * <pre>
+     * Records the copy took that the writer may have overwritten while the copy
+     * was being taken (refused by the seqlock rule), discarded. It counts losses
+     * DURING the copy only; records overwritten before it began are counted
+     * nowhere.
+     * </pre>
+     *
+     * <code>uint64 overwritten_during_copy = 6;</code>
+     * @return The overwrittenDuringCopy.
+     */
+    long getOverwrittenDuringCopy();
+
+    /**
+     * <pre>
+     * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+     * are normal: the ring holds history from before t0 and keeps filling
+     * between t1 and the copy. Not a loss.
+     * </pre>
+     *
+     * <code>uint64 outside_window = 7;</code>
+     * @return The outsideWindow.
+     */
+    long getOutsideWindow();
+
+    /**
+     * <pre>
+     * The window's HEAD is missing from the packet trace: the ring had lost
+     * records before they could be kept (it had wrapped before the copy, or
+     * overwritten_during_copy is non-zero) AND the oldest record kept is later
+     * than t0. A ring that never wrapped and simply has its first datagram after
+     * t0 (the `packets` level armed mid-window, the stream started late) does
+     * NOT set it. Per-channel and informational — it is not an IntegrityReport
+     * degrade flag.
+     * </pre>
+     *
+     * <code>bool window_start_lost = 8;</code>
+     * @return The windowStartLost.
+     */
+    boolean getWindowStartLost();
+
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box, the `packets` level never
+     * armed, no record survived the seqlock and window filters, or the ring
+     * could not be read or validated (that last case also sets
+     * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+     * present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The absentReason.
+     */
+    java.lang.String getAbsentReason();
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box, the `packets` level never
+     * armed, no record survived the seqlock and window filters, or the ring
+     * could not be read or validated (that last case also sets
+     * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+     * present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The bytes for absentReason.
+     */
+    com.google.protobuf.ByteString
+        getAbsentReasonBytes();
+
+    /**
+     * <pre>
+     * Records the WRITER could not place in the ring since it was created (the
+     * ring header's refused count): datagrams the receiver took that the
+     * packet trace never held. Cumulative over the ring's life, not scoped to
+     * the window; non-zero means the trace under-counts packets somewhere, and
+     * possibly inside the window. 0 when there is no ring to read.
+     * </pre>
+     *
+     * <code>uint64 writer_refused = 10;</code>
+     * @return The writerRefused.
+     */
+    long getWriterRefused();
+
+    /**
+     * <pre>
+     * Records the ring no longer held when the copy began, because later
+     * records overwrote them (records written minus capacity; 0 before the ring
+     * first wrapped). Cumulative over the ring's life; whether any of them fell
+     * inside the window is window_start_lost. 0 when there is no ring to read.
+     * </pre>
+     *
+     * <code>uint64 overwritten_before_copy = 11;</code>
+     * @return The overwrittenBeforeCopy.
+     */
+    long getOverwrittenBeforeCopy();
+  }
+  /**
+   * <pre>
+   * One channel's GigE `packets` trace ring, copied off the box and compacted to
+   * the capture window.
+   *
+   * On the box the ring is
+   * `/dev/shm/jettison/gige-&lt;chan&gt;/jon_gige_packets_&lt;chan&gt;.ring`, written by the
+   * receiver (gige-ingress, inside the sensor harness) only while the `packets`
+   * trace level is in force: a 64-byte `JGRG` header, then one 48-byte
+   * record per GVSP datagram received, in a 64 MiB file overwritten oldest-first
+   * under a seqlock (header layout GIGE_TRACE_RING_* in inc/gige/gige_trace.h).
+   * The camera side writes no packets ring. The harvester copies the ring while
+   * its writer may still be writing, keeps only the records no write could have
+   * touched during the copy (the seqlock rule of PacketRing::read in
+   * mods/gige/crates/gige-ingress/src/trace.rs), then keeps only those whose
+   * mono_ns falls inside [t0,t1].
+   *
+   * mono_ns is CLOCK_MONOTONIC (the receive batch the datagram arrived in),
+   * compared here against the CLOCK_BOOTTIME window in CaptureWindow. On a
+   * target that never suspends the two coincide; that is a premise, not an
+   * identity.
+   *
+   * The bundle file is itself a VALID ring, so the same readers read it: the
+   * box's 64-byte header with capacity, head and begun each set to
+   * record_count (every other header field as the box wrote it), then the kept
+   * records oldest-first from slot 0. Every ring reader refuses a zero-capacity
+   * header (RingHeader::decode), so when no record survives no file is written:
+   * path and sha256 are empty, record_count is 0 and absent_reason says why.
+   *
+   * What it can NOT hold: datagrams the ring had already overwritten before the
+   * copy began (counted over the ring's life by overwritten_before_copy;
+   * window_start_lost says whether they reach into the window), datagrams the
+   * writer could not place (writer_refused), and datagrams the receiver never
+   * saw. A record proves a datagram ARRIVED; a missing packet id proves nothing
+   * until window_start_lost and overwritten_during_copy are both clear for the
+   * stretch it falls in and writer_refused is 0.
+   * </pre>
+   *
+   * Protobuf type {@code jon.cvdump.GigePacketRing}
+   */
+  public static final class GigePacketRing extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:jon.cvdump.GigePacketRing)
+      GigePacketRingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 36,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        "GigePacketRing");
+    }
+    // Use GigePacketRing.newBuilder() to construct.
+    private GigePacketRing(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private GigePacketRing() {
+      channel_ = "";
+      path_ = "";
+      sha256_ = "";
+      absentReason_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigePacketRing_descriptor;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigePacketRing_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigePacketRing_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              jon.cvdump.JonCvDumpArchive.GigePacketRing.class, jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder.class);
+    }
+
+    public static final int CHANNEL_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object channel_ = "";
+    /**
+     * <pre>
+     * "day" | "heat".
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The channel.
+     */
+    @java.lang.Override
+    public java.lang.String getChannel() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * "day" | "heat".
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for channel.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getChannelBytes() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PATH_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object path_ = "";
+    /**
+     * <pre>
+     * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The path.
+     */
+    @java.lang.Override
+    public java.lang.String getPath() {
+      java.lang.Object ref = path_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        path_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The bytes for path.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPathBytes() {
+      java.lang.Object ref = path_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        path_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BYTES_FIELD_NUMBER = 3;
+    private long bytes_ = 0L;
+    /**
+     * <pre>
+     * Size of the bundle file; 0 when absent.
+     * </pre>
+     *
+     * <code>uint64 bytes = 3;</code>
+     * @return The bytes.
+     */
+    @java.lang.Override
+    public long getBytes() {
+      return bytes_;
+    }
+
+    public static final int SHA256_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sha256_ = "";
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The sha256.
+     */
+    @java.lang.Override
+    public java.lang.String getSha256() {
+      java.lang.Object ref = sha256_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sha256_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for sha256.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSha256Bytes() {
+      java.lang.Object ref = sha256_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sha256_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int RECORD_COUNT_FIELD_NUMBER = 5;
+    private long recordCount_ = 0L;
+    /**
+     * <pre>
+     * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+     * Also the file's capacity, head and begun.
+     * </pre>
+     *
+     * <code>uint64 record_count = 5;</code>
+     * @return The recordCount.
+     */
+    @java.lang.Override
+    public long getRecordCount() {
+      return recordCount_;
+    }
+
+    public static final int OVERWRITTEN_DURING_COPY_FIELD_NUMBER = 6;
+    private long overwrittenDuringCopy_ = 0L;
+    /**
+     * <pre>
+     * Records the copy took that the writer may have overwritten while the copy
+     * was being taken (refused by the seqlock rule), discarded. It counts losses
+     * DURING the copy only; records overwritten before it began are counted
+     * nowhere.
+     * </pre>
+     *
+     * <code>uint64 overwritten_during_copy = 6;</code>
+     * @return The overwrittenDuringCopy.
+     */
+    @java.lang.Override
+    public long getOverwrittenDuringCopy() {
+      return overwrittenDuringCopy_;
+    }
+
+    public static final int OUTSIDE_WINDOW_FIELD_NUMBER = 7;
+    private long outsideWindow_ = 0L;
+    /**
+     * <pre>
+     * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+     * are normal: the ring holds history from before t0 and keeps filling
+     * between t1 and the copy. Not a loss.
+     * </pre>
+     *
+     * <code>uint64 outside_window = 7;</code>
+     * @return The outsideWindow.
+     */
+    @java.lang.Override
+    public long getOutsideWindow() {
+      return outsideWindow_;
+    }
+
+    public static final int WINDOW_START_LOST_FIELD_NUMBER = 8;
+    private boolean windowStartLost_ = false;
+    /**
+     * <pre>
+     * The window's HEAD is missing from the packet trace: the ring had lost
+     * records before they could be kept (it had wrapped before the copy, or
+     * overwritten_during_copy is non-zero) AND the oldest record kept is later
+     * than t0. A ring that never wrapped and simply has its first datagram after
+     * t0 (the `packets` level armed mid-window, the stream started late) does
+     * NOT set it. Per-channel and informational — it is not an IntegrityReport
+     * degrade flag.
+     * </pre>
+     *
+     * <code>bool window_start_lost = 8;</code>
+     * @return The windowStartLost.
+     */
+    @java.lang.Override
+    public boolean getWindowStartLost() {
+      return windowStartLost_;
+    }
+
+    public static final int ABSENT_REASON_FIELD_NUMBER = 9;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object absentReason_ = "";
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box, the `packets` level never
+     * armed, no record survived the seqlock and window filters, or the ring
+     * could not be read or validated (that last case also sets
+     * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+     * present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The absentReason.
+     */
+    @java.lang.Override
+    public java.lang.String getAbsentReason() {
+      java.lang.Object ref = absentReason_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        absentReason_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box, the `packets` level never
+     * armed, no record survived the seqlock and window filters, or the ring
+     * could not be read or validated (that last case also sets
+     * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+     * present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The bytes for absentReason.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAbsentReasonBytes() {
+      java.lang.Object ref = absentReason_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        absentReason_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int WRITER_REFUSED_FIELD_NUMBER = 10;
+    private long writerRefused_ = 0L;
+    /**
+     * <pre>
+     * Records the WRITER could not place in the ring since it was created (the
+     * ring header's refused count): datagrams the receiver took that the
+     * packet trace never held. Cumulative over the ring's life, not scoped to
+     * the window; non-zero means the trace under-counts packets somewhere, and
+     * possibly inside the window. 0 when there is no ring to read.
+     * </pre>
+     *
+     * <code>uint64 writer_refused = 10;</code>
+     * @return The writerRefused.
+     */
+    @java.lang.Override
+    public long getWriterRefused() {
+      return writerRefused_;
+    }
+
+    public static final int OVERWRITTEN_BEFORE_COPY_FIELD_NUMBER = 11;
+    private long overwrittenBeforeCopy_ = 0L;
+    /**
+     * <pre>
+     * Records the ring no longer held when the copy began, because later
+     * records overwrote them (records written minus capacity; 0 before the ring
+     * first wrapped). Cumulative over the ring's life; whether any of them fell
+     * inside the window is window_start_lost. 0 when there is no ring to read.
+     * </pre>
+     *
+     * <code>uint64 overwritten_before_copy = 11;</code>
+     * @return The overwrittenBeforeCopy.
+     */
+    @java.lang.Override
+    public long getOverwrittenBeforeCopy() {
+      return overwrittenBeforeCopy_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(channel_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, channel_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(path_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, path_);
+      }
+      if (bytes_ != 0L) {
+        output.writeUInt64(3, bytes_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sha256_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, sha256_);
+      }
+      if (recordCount_ != 0L) {
+        output.writeUInt64(5, recordCount_);
+      }
+      if (overwrittenDuringCopy_ != 0L) {
+        output.writeUInt64(6, overwrittenDuringCopy_);
+      }
+      if (outsideWindow_ != 0L) {
+        output.writeUInt64(7, outsideWindow_);
+      }
+      if (windowStartLost_ != false) {
+        output.writeBool(8, windowStartLost_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(absentReason_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 9, absentReason_);
+      }
+      if (writerRefused_ != 0L) {
+        output.writeUInt64(10, writerRefused_);
+      }
+      if (overwrittenBeforeCopy_ != 0L) {
+        output.writeUInt64(11, overwrittenBeforeCopy_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    private int computeSerializedSize_0() {
+      int size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(channel_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, channel_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(path_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, path_);
+      }
+      if (bytes_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, bytes_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sha256_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, sha256_);
+      }
+      if (recordCount_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(5, recordCount_);
+      }
+      if (overwrittenDuringCopy_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(6, overwrittenDuringCopy_);
+      }
+      if (outsideWindow_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(7, outsideWindow_);
+      }
+      if (windowStartLost_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, windowStartLost_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(absentReason_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(9, absentReason_);
+      }
+      if (writerRefused_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(10, writerRefused_);
+      }
+      if (overwrittenBeforeCopy_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(11, overwrittenBeforeCopy_);
+      }
+      return size;
+    }
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += computeSerializedSize_0();
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof jon.cvdump.JonCvDumpArchive.GigePacketRing)) {
+        return super.equals(obj);
+      }
+      jon.cvdump.JonCvDumpArchive.GigePacketRing other = (jon.cvdump.JonCvDumpArchive.GigePacketRing) obj;
+
+      if (!getChannel()
+          .equals(other.getChannel())) return false;
+      if (!getPath()
+          .equals(other.getPath())) return false;
+      if (getBytes()
+          != other.getBytes()) return false;
+      if (!getSha256()
+          .equals(other.getSha256())) return false;
+      if (getRecordCount()
+          != other.getRecordCount()) return false;
+      if (getOverwrittenDuringCopy()
+          != other.getOverwrittenDuringCopy()) return false;
+      if (getOutsideWindow()
+          != other.getOutsideWindow()) return false;
+      if (getWindowStartLost()
+          != other.getWindowStartLost()) return false;
+      if (!getAbsentReason()
+          .equals(other.getAbsentReason())) return false;
+      if (getWriterRefused()
+          != other.getWriterRefused()) return false;
+      if (getOverwrittenBeforeCopy()
+          != other.getOverwrittenBeforeCopy()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel().hashCode();
+      hash = (37 * hash) + PATH_FIELD_NUMBER;
+      hash = (53 * hash) + getPath().hashCode();
+      hash = (37 * hash) + BYTES_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBytes());
+      hash = (37 * hash) + SHA256_FIELD_NUMBER;
+      hash = (53 * hash) + getSha256().hashCode();
+      hash = (37 * hash) + RECORD_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRecordCount());
+      hash = (37 * hash) + OVERWRITTEN_DURING_COPY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOverwrittenDuringCopy());
+      hash = (37 * hash) + OUTSIDE_WINDOW_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOutsideWindow());
+      hash = (37 * hash) + WINDOW_START_LOST_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getWindowStartLost());
+      hash = (37 * hash) + ABSENT_REASON_FIELD_NUMBER;
+      hash = (53 * hash) + getAbsentReason().hashCode();
+      hash = (37 * hash) + WRITER_REFUSED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getWriterRefused());
+      hash = (37 * hash) + OVERWRITTEN_BEFORE_COPY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOverwrittenBeforeCopy());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(jon.cvdump.JonCvDumpArchive.GigePacketRing prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * One channel's GigE `packets` trace ring, copied off the box and compacted to
+     * the capture window.
+     *
+     * On the box the ring is
+     * `/dev/shm/jettison/gige-&lt;chan&gt;/jon_gige_packets_&lt;chan&gt;.ring`, written by the
+     * receiver (gige-ingress, inside the sensor harness) only while the `packets`
+     * trace level is in force: a 64-byte `JGRG` header, then one 48-byte
+     * record per GVSP datagram received, in a 64 MiB file overwritten oldest-first
+     * under a seqlock (header layout GIGE_TRACE_RING_* in inc/gige/gige_trace.h).
+     * The camera side writes no packets ring. The harvester copies the ring while
+     * its writer may still be writing, keeps only the records no write could have
+     * touched during the copy (the seqlock rule of PacketRing::read in
+     * mods/gige/crates/gige-ingress/src/trace.rs), then keeps only those whose
+     * mono_ns falls inside [t0,t1].
+     *
+     * mono_ns is CLOCK_MONOTONIC (the receive batch the datagram arrived in),
+     * compared here against the CLOCK_BOOTTIME window in CaptureWindow. On a
+     * target that never suspends the two coincide; that is a premise, not an
+     * identity.
+     *
+     * The bundle file is itself a VALID ring, so the same readers read it: the
+     * box's 64-byte header with capacity, head and begun each set to
+     * record_count (every other header field as the box wrote it), then the kept
+     * records oldest-first from slot 0. Every ring reader refuses a zero-capacity
+     * header (RingHeader::decode), so when no record survives no file is written:
+     * path and sha256 are empty, record_count is 0 and absent_reason says why.
+     *
+     * What it can NOT hold: datagrams the ring had already overwritten before the
+     * copy began (counted over the ring's life by overwritten_before_copy;
+     * window_start_lost says whether they reach into the window), datagrams the
+     * writer could not place (writer_refused), and datagrams the receiver never
+     * saw. A record proves a datagram ARRIVED; a missing packet id proves nothing
+     * until window_start_lost and overwritten_during_copy are both clear for the
+     * stretch it falls in and writer_refused is 0.
+     * </pre>
+     *
+     * Protobuf type {@code jon.cvdump.GigePacketRing}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:jon.cvdump.GigePacketRing)
+        jon.cvdump.JonCvDumpArchive.GigePacketRingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigePacketRing_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigePacketRing_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                jon.cvdump.JonCvDumpArchive.GigePacketRing.class, jon.cvdump.JonCvDumpArchive.GigePacketRing.Builder.class);
+      }
+
+      // Construct using jon.cvdump.JonCvDumpArchive.GigePacketRing.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        channel_ = "";
+        path_ = "";
+        bytes_ = 0L;
+        sha256_ = "";
+        recordCount_ = 0L;
+        overwrittenDuringCopy_ = 0L;
+        outsideWindow_ = 0L;
+        windowStartLost_ = false;
+        absentReason_ = "";
+        writerRefused_ = 0L;
+        overwrittenBeforeCopy_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigePacketRing_descriptor;
+      }
+
+      @java.lang.Override
+      public jon.cvdump.JonCvDumpArchive.GigePacketRing getDefaultInstanceForType() {
+        return jon.cvdump.JonCvDumpArchive.GigePacketRing.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public jon.cvdump.JonCvDumpArchive.GigePacketRing build() {
+        jon.cvdump.JonCvDumpArchive.GigePacketRing result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public jon.cvdump.JonCvDumpArchive.GigePacketRing buildPartial() {
+        jon.cvdump.JonCvDumpArchive.GigePacketRing result = new jon.cvdump.JonCvDumpArchive.GigePacketRing(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(jon.cvdump.JonCvDumpArchive.GigePacketRing result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.channel_ = channel_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.path_ = path_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.bytes_ = bytes_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.sha256_ = sha256_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.recordCount_ = recordCount_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.overwrittenDuringCopy_ = overwrittenDuringCopy_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.outsideWindow_ = outsideWindow_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.windowStartLost_ = windowStartLost_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.absentReason_ = absentReason_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.writerRefused_ = writerRefused_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.overwrittenBeforeCopy_ = overwrittenBeforeCopy_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof jon.cvdump.JonCvDumpArchive.GigePacketRing) {
+          return mergeFrom((jon.cvdump.JonCvDumpArchive.GigePacketRing)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(jon.cvdump.JonCvDumpArchive.GigePacketRing other) {
+        if (other == jon.cvdump.JonCvDumpArchive.GigePacketRing.getDefaultInstance()) return this;
+        if (!other.getChannel().isEmpty()) {
+          channel_ = other.channel_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getPath().isEmpty()) {
+          path_ = other.path_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getBytes() != 0L) {
+          setBytes(other.getBytes());
+        }
+        if (!other.getSha256().isEmpty()) {
+          sha256_ = other.sha256_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        if (other.getRecordCount() != 0L) {
+          setRecordCount(other.getRecordCount());
+        }
+        if (other.getOverwrittenDuringCopy() != 0L) {
+          setOverwrittenDuringCopy(other.getOverwrittenDuringCopy());
+        }
+        if (other.getOutsideWindow() != 0L) {
+          setOutsideWindow(other.getOutsideWindow());
+        }
+        if (other.getWindowStartLost() != false) {
+          setWindowStartLost(other.getWindowStartLost());
+        }
+        if (!other.getAbsentReason().isEmpty()) {
+          absentReason_ = other.absentReason_;
+          bitField0_ |= 0x00000100;
+          onChanged();
+        }
+        if (other.getWriterRefused() != 0L) {
+          setWriterRefused(other.getWriterRefused());
+        }
+        if (other.getOverwrittenBeforeCopy() != 0L) {
+          setOverwrittenBeforeCopy(other.getOverwrittenBeforeCopy());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        java.util.Objects.requireNonNull(extensionRegistry);
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                channel_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                path_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                bytes_ = input.readUInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                sha256_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 40: {
+                recordCount_ = input.readUInt64();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                overwrittenDuringCopy_ = input.readUInt64();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              case 56: {
+                outsideWindow_ = input.readUInt64();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
+              case 64: {
+                windowStartLost_ = input.readBool();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
+              case 74: {
+                absentReason_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 74
+              case 80: {
+                writerRefused_ = input.readUInt64();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 80
+              case 88: {
+                overwrittenBeforeCopy_ = input.readUInt64();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 88
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object channel_ = "";
+      /**
+       * <pre>
+       * "day" | "heat".
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The channel.
+       */
+      public java.lang.String getChannel() {
+        java.lang.Object ref = channel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * "day" | "heat".
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The bytes for channel.
+       */
+      public com.google.protobuf.ByteString
+          getChannelBytes() {
+        java.lang.Object ref = channel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * "day" | "heat".
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The channel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannel(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        channel_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * "day" | "heat".
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearChannel() {
+        channel_ = getDefaultInstance().getChannel();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * "day" | "heat".
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The bytes for channel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannelBytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        channel_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object path_ = "";
+      /**
+       * <pre>
+       * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @return The path.
+       */
+      public java.lang.String getPath() {
+        java.lang.Object ref = path_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          path_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @return The bytes for path.
+       */
+      public com.google.protobuf.ByteString
+          getPathBytes() {
+        java.lang.Object ref = path_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          path_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @param value The path to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPath(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        path_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPath() {
+        path_ = getDefaultInstance().getPath();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/packets_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @param value The bytes for path to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPathBytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        path_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private long bytes_ ;
+      /**
+       * <pre>
+       * Size of the bundle file; 0 when absent.
+       * </pre>
+       *
+       * <code>uint64 bytes = 3;</code>
+       * @return The bytes.
+       */
+      @java.lang.Override
+      public long getBytes() {
+        return bytes_;
+      }
+      /**
+       * <pre>
+       * Size of the bundle file; 0 when absent.
+       * </pre>
+       *
+       * <code>uint64 bytes = 3;</code>
+       * @param value The bytes to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBytes(long value) {
+
+        bytes_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Size of the bundle file; 0 when absent.
+       * </pre>
+       *
+       * <code>uint64 bytes = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBytes() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        bytes_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sha256_ = "";
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @return The sha256.
+       */
+      public java.lang.String getSha256() {
+        java.lang.Object ref = sha256_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sha256_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @return The bytes for sha256.
+       */
+      public com.google.protobuf.ByteString
+          getSha256Bytes() {
+        java.lang.Object ref = sha256_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sha256_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @param value The sha256 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSha256(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        sha256_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSha256() {
+        sha256_ = getDefaultInstance().getSha256();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @param value The bytes for sha256 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSha256Bytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        sha256_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      private long recordCount_ ;
+      /**
+       * <pre>
+       * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+       * Also the file's capacity, head and begun.
+       * </pre>
+       *
+       * <code>uint64 record_count = 5;</code>
+       * @return The recordCount.
+       */
+      @java.lang.Override
+      public long getRecordCount() {
+        return recordCount_;
+      }
+      /**
+       * <pre>
+       * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+       * Also the file's capacity, head and begun.
+       * </pre>
+       *
+       * <code>uint64 record_count = 5;</code>
+       * @param value The recordCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRecordCount(long value) {
+
+        recordCount_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+       * Also the file's capacity, head and begun.
+       * </pre>
+       *
+       * <code>uint64 record_count = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRecordCount() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        recordCount_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long overwrittenDuringCopy_ ;
+      /**
+       * <pre>
+       * Records the copy took that the writer may have overwritten while the copy
+       * was being taken (refused by the seqlock rule), discarded. It counts losses
+       * DURING the copy only; records overwritten before it began are counted
+       * nowhere.
+       * </pre>
+       *
+       * <code>uint64 overwritten_during_copy = 6;</code>
+       * @return The overwrittenDuringCopy.
+       */
+      @java.lang.Override
+      public long getOverwrittenDuringCopy() {
+        return overwrittenDuringCopy_;
+      }
+      /**
+       * <pre>
+       * Records the copy took that the writer may have overwritten while the copy
+       * was being taken (refused by the seqlock rule), discarded. It counts losses
+       * DURING the copy only; records overwritten before it began are counted
+       * nowhere.
+       * </pre>
+       *
+       * <code>uint64 overwritten_during_copy = 6;</code>
+       * @param value The overwrittenDuringCopy to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOverwrittenDuringCopy(long value) {
+
+        overwrittenDuringCopy_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records the copy took that the writer may have overwritten while the copy
+       * was being taken (refused by the seqlock rule), discarded. It counts losses
+       * DURING the copy only; records overwritten before it began are counted
+       * nowhere.
+       * </pre>
+       *
+       * <code>uint64 overwritten_during_copy = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOverwrittenDuringCopy() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        overwrittenDuringCopy_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long outsideWindow_ ;
+      /**
+       * <pre>
+       * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+       * are normal: the ring holds history from before t0 and keeps filling
+       * between t1 and the copy. Not a loss.
+       * </pre>
+       *
+       * <code>uint64 outside_window = 7;</code>
+       * @return The outsideWindow.
+       */
+      @java.lang.Override
+      public long getOutsideWindow() {
+        return outsideWindow_;
+      }
+      /**
+       * <pre>
+       * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+       * are normal: the ring holds history from before t0 and keeps filling
+       * between t1 and the copy. Not a loss.
+       * </pre>
+       *
+       * <code>uint64 outside_window = 7;</code>
+       * @param value The outsideWindow to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOutsideWindow(long value) {
+
+        outsideWindow_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+       * are normal: the ring holds history from before t0 and keeps filling
+       * between t1 and the copy. Not a loss.
+       * </pre>
+       *
+       * <code>uint64 outside_window = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOutsideWindow() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        outsideWindow_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private boolean windowStartLost_ ;
+      /**
+       * <pre>
+       * The window's HEAD is missing from the packet trace: the ring had lost
+       * records before they could be kept (it had wrapped before the copy, or
+       * overwritten_during_copy is non-zero) AND the oldest record kept is later
+       * than t0. A ring that never wrapped and simply has its first datagram after
+       * t0 (the `packets` level armed mid-window, the stream started late) does
+       * NOT set it. Per-channel and informational — it is not an IntegrityReport
+       * degrade flag.
+       * </pre>
+       *
+       * <code>bool window_start_lost = 8;</code>
+       * @return The windowStartLost.
+       */
+      @java.lang.Override
+      public boolean getWindowStartLost() {
+        return windowStartLost_;
+      }
+      /**
+       * <pre>
+       * The window's HEAD is missing from the packet trace: the ring had lost
+       * records before they could be kept (it had wrapped before the copy, or
+       * overwritten_during_copy is non-zero) AND the oldest record kept is later
+       * than t0. A ring that never wrapped and simply has its first datagram after
+       * t0 (the `packets` level armed mid-window, the stream started late) does
+       * NOT set it. Per-channel and informational — it is not an IntegrityReport
+       * degrade flag.
+       * </pre>
+       *
+       * <code>bool window_start_lost = 8;</code>
+       * @param value The windowStartLost to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWindowStartLost(boolean value) {
+
+        windowStartLost_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * The window's HEAD is missing from the packet trace: the ring had lost
+       * records before they could be kept (it had wrapped before the copy, or
+       * overwritten_during_copy is non-zero) AND the oldest record kept is later
+       * than t0. A ring that never wrapped and simply has its first datagram after
+       * t0 (the `packets` level armed mid-window, the stream started late) does
+       * NOT set it. Per-channel and informational — it is not an IntegrityReport
+       * degrade flag.
+       * </pre>
+       *
+       * <code>bool window_start_lost = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWindowStartLost() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        windowStartLost_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object absentReason_ = "";
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box, the `packets` level never
+       * armed, no record survived the seqlock and window filters, or the ring
+       * could not be read or validated (that last case also sets
+       * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+       * present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @return The absentReason.
+       */
+      public java.lang.String getAbsentReason() {
+        java.lang.Object ref = absentReason_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          absentReason_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box, the `packets` level never
+       * armed, no record survived the seqlock and window filters, or the ring
+       * could not be read or validated (that last case also sets
+       * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+       * present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @return The bytes for absentReason.
+       */
+      public com.google.protobuf.ByteString
+          getAbsentReasonBytes() {
+        java.lang.Object ref = absentReason_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          absentReason_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box, the `packets` level never
+       * armed, no record survived the seqlock and window filters, or the ring
+       * could not be read or validated (that last case also sets
+       * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+       * present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @param value The absentReason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAbsentReason(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        absentReason_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box, the `packets` level never
+       * armed, no record survived the seqlock and window filters, or the ring
+       * could not be read or validated (that last case also sets
+       * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+       * present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAbsentReason() {
+        absentReason_ = getDefaultInstance().getAbsentReason();
+        bitField0_ = (bitField0_ & ~0x00000100);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box, the `packets` level never
+       * armed, no record survived the seqlock and window filters, or the ring
+       * could not be read or validated (that last case also sets
+       * IntegrityReport.gige_packet_rings_incomplete). Empty when the file is
+       * present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @param value The bytes for absentReason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAbsentReasonBytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        absentReason_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+
+      private long writerRefused_ ;
+      /**
+       * <pre>
+       * Records the WRITER could not place in the ring since it was created (the
+       * ring header's refused count): datagrams the receiver took that the
+       * packet trace never held. Cumulative over the ring's life, not scoped to
+       * the window; non-zero means the trace under-counts packets somewhere, and
+       * possibly inside the window. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 writer_refused = 10;</code>
+       * @return The writerRefused.
+       */
+      @java.lang.Override
+      public long getWriterRefused() {
+        return writerRefused_;
+      }
+      /**
+       * <pre>
+       * Records the WRITER could not place in the ring since it was created (the
+       * ring header's refused count): datagrams the receiver took that the
+       * packet trace never held. Cumulative over the ring's life, not scoped to
+       * the window; non-zero means the trace under-counts packets somewhere, and
+       * possibly inside the window. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 writer_refused = 10;</code>
+       * @param value The writerRefused to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWriterRefused(long value) {
+
+        writerRefused_ = value;
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records the WRITER could not place in the ring since it was created (the
+       * ring header's refused count): datagrams the receiver took that the
+       * packet trace never held. Cumulative over the ring's life, not scoped to
+       * the window; non-zero means the trace under-counts packets somewhere, and
+       * possibly inside the window. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 writer_refused = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWriterRefused() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        writerRefused_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long overwrittenBeforeCopy_ ;
+      /**
+       * <pre>
+       * Records the ring no longer held when the copy began, because later
+       * records overwrote them (records written minus capacity; 0 before the ring
+       * first wrapped). Cumulative over the ring's life; whether any of them fell
+       * inside the window is window_start_lost. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 overwritten_before_copy = 11;</code>
+       * @return The overwrittenBeforeCopy.
+       */
+      @java.lang.Override
+      public long getOverwrittenBeforeCopy() {
+        return overwrittenBeforeCopy_;
+      }
+      /**
+       * <pre>
+       * Records the ring no longer held when the copy began, because later
+       * records overwrote them (records written minus capacity; 0 before the ring
+       * first wrapped). Cumulative over the ring's life; whether any of them fell
+       * inside the window is window_start_lost. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 overwritten_before_copy = 11;</code>
+       * @param value The overwrittenBeforeCopy to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOverwrittenBeforeCopy(long value) {
+
+        overwrittenBeforeCopy_ = value;
+        bitField0_ |= 0x00000400;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records the ring no longer held when the copy began, because later
+       * records overwrote them (records written minus capacity; 0 before the ring
+       * first wrapped). Cumulative over the ring's life; whether any of them fell
+       * inside the window is window_start_lost. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 overwritten_before_copy = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOverwrittenBeforeCopy() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        overwrittenBeforeCopy_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:jon.cvdump.GigePacketRing)
+    }
+
+    // @@protoc_insertion_point(class_scope:jon.cvdump.GigePacketRing)
+    private static final jon.cvdump.JonCvDumpArchive.GigePacketRing DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new jon.cvdump.JonCvDumpArchive.GigePacketRing();
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigePacketRing getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GigePacketRing>
+        PARSER = new com.google.protobuf.AbstractParser<GigePacketRing>() {
+      @java.lang.Override
+      public GigePacketRing parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GigePacketRing> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GigePacketRing> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public jon.cvdump.JonCvDumpArchive.GigePacketRing getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface GigeStatsRingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:jon.cvdump.GigeStatsRing)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * "day" | "heat". Only the day channel has a stats ring; heat is listed
+     * with an absent_reason, the VideoChannel rule.
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The channel.
+     */
+    java.lang.String getChannel();
+    /**
+     * <pre>
+     * "day" | "heat". Only the day channel has a stats ring; heat is listed
+     * with an absent_reason, the VideoChannel rule.
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for channel.
+     */
+    com.google.protobuf.ByteString
+        getChannelBytes();
+
+    /**
+     * <pre>
+     * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The path.
+     */
+    java.lang.String getPath();
+    /**
+     * <pre>
+     * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The bytes for path.
+     */
+    com.google.protobuf.ByteString
+        getPathBytes();
+
+    /**
+     * <pre>
+     * Size of the bundle file; 0 when absent.
+     * </pre>
+     *
+     * <code>uint64 bytes = 3;</code>
+     * @return The bytes.
+     */
+    long getBytes();
+
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The sha256.
+     */
+    java.lang.String getSha256();
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for sha256.
+     */
+    com.google.protobuf.ByteString
+        getSha256Bytes();
+
+    /**
+     * <pre>
+     * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+     * Also the file's capacity, head and begun.
+     * </pre>
+     *
+     * <code>uint64 record_count = 5;</code>
+     * @return The recordCount.
+     */
+    long getRecordCount();
+
+    /**
+     * <pre>
+     * Records the copy took that the writer may have overwritten while the copy
+     * was being taken (refused by the seqlock rule), discarded. It counts losses
+     * DURING the copy only; records overwritten before it began are counted
+     * nowhere.
+     * </pre>
+     *
+     * <code>uint64 overwritten_during_copy = 6;</code>
+     * @return The overwrittenDuringCopy.
+     */
+    long getOverwrittenDuringCopy();
+
+    /**
+     * <pre>
+     * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+     * are normal: the ring holds history from before t0 and keeps filling
+     * between t1 and the copy. Not a loss.
+     * </pre>
+     *
+     * <code>uint64 outside_window = 7;</code>
+     * @return The outsideWindow.
+     */
+    long getOutsideWindow();
+
+    /**
+     * <pre>
+     * The window's HEAD is missing from the stats trace: the ring had lost
+     * records before they could be kept (it had wrapped before the copy, or
+     * overwritten_during_copy is non-zero) AND the oldest record kept is later
+     * than t0. A ring that never wrapped and simply has its first record after
+     * t0 (`gige_trace.stats` turned on mid-window) does NOT set it.
+     * Per-channel and informational — it is not an IntegrityReport degrade
+     * flag.
+     * </pre>
+     *
+     * <code>bool window_start_lost = 8;</code>
+     * @return The windowStartLost.
+     */
+    boolean getWindowStartLost();
+
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box (heat has none; on day,
+     * `gige_trace.stats` never turned on), no record survived the seqlock and
+     * window filters, or the ring could not be read or validated (that last
+     * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+     * the file is present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The absentReason.
+     */
+    java.lang.String getAbsentReason();
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box (heat has none; on day,
+     * `gige_trace.stats` never turned on), no record survived the seqlock and
+     * window filters, or the ring could not be read or validated (that last
+     * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+     * the file is present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The bytes for absentReason.
+     */
+    com.google.protobuf.ByteString
+        getAbsentReasonBytes();
+
+    /**
+     * <pre>
+     * Records the WRITER could not place in the ring since it started (the ring
+     * header's refused count), across its life, not scoped to the window. The
+     * harness's stats writer never advances this count, so it reads 0 today; a
+     * record that writer could not write is counted in its own
+     * `[[GIGE_TRACE]]` receipt (stats_failed), not here. 0 when there is no
+     * ring to read.
+     * </pre>
+     *
+     * <code>uint64 writer_refused = 10;</code>
+     * @return The writerRefused.
+     */
+    long getWriterRefused();
+
+    /**
+     * <pre>
+     * Records the ring no longer held when the copy began, because later
+     * records overwrote them (records written minus capacity; 0 before the ring
+     * first wrapped). Cumulative over the ring's life; whether any of them fell
+     * inside the window is window_start_lost. 0 when there is no ring to read.
+     * </pre>
+     *
+     * <code>uint64 overwritten_before_copy = 11;</code>
+     * @return The overwrittenBeforeCopy.
+     */
+    long getOverwrittenBeforeCopy();
+
+    /**
+     * <pre>
+     * Bytes per record slot, read from the box ring's header (40,272 for the
+     * `stats` record of the format it was written in). Lets a reader walk the
+     * file without knowing the record format; 0 when absent.
+     * </pre>
+     *
+     * <code>uint32 record_len = 12;</code>
+     * @return The recordLen.
+     */
+    int getRecordLen();
+  }
+  /**
+   * <pre>
+   * One channel's GigE `stats` trace ring, copied off the box and compacted to
+   * the capture window.
+   *
+   * On the box the ring is
+   * `/dev/shm/jettison/gige-&lt;chan&gt;/jon_gige_stats_&lt;chan&gt;.ring`, written by the
+   * receiver (the sensor harness) only while `gige_trace.stats` is on, and only
+   * for the day channel: the same 64-byte `JGRG` header and seqlock mechanism as
+   * the packets ring (GigePacketRing), its header's record length naming the
+   * kind, then one 40,272-byte `stats` record per frame the harness took — the
+   * frame's MAX10 statistics and footer chunk data as received, beside the ISP
+   * statistics block the harness published for that same frame (record layout
+   * STATS_OFF_* in mods/gige/crates/gige-wire/src/trace.rs). The ring holds a
+   * few minutes of frames, so a window longer than that loses its head before
+   * the harvest copies it (window_start_lost). The harvester copies it while its
+   * writer may still be writing, keeps only the records no write could have
+   * touched during the copy, then keeps only those whose mono_ns falls inside
+   * [t0,t1].
+   *
+   * mono_ns is CLOCK_MONOTONIC when the harness WROTE the record (after the
+   * frame's ring publish, not its capture — the record's capture stamp is
+   * another field), at the same record offset as the packet record's, compared
+   * here against the CLOCK_BOOTTIME window in CaptureWindow. On a target that
+   * never suspends the two coincide; that is a premise, not an identity.
+   *
+   * The bundle file is itself a VALID ring, laid out exactly as GigePacketRing
+   * describes for the packets ring: the box's header with capacity, head and
+   * begun each set to record_count, then the kept records oldest-first from
+   * slot 0. When no record survives no file is written: path and sha256 are
+   * empty, record_count is 0 and absent_reason says why.
+   *
+   * What it can NOT hold: frames whose records the ring had already overwritten
+   * before the copy began (overwritten_before_copy; window_start_lost says
+   * whether they reach into the window), records the writer turned away
+   * (writer_refused), and frames the harness never recorded. A frame missing
+   * from the bundle proves nothing until window_start_lost and
+   * overwritten_during_copy are both clear for the stretch it falls in and
+   * writer_refused is 0.
+   * </pre>
+   *
+   * Protobuf type {@code jon.cvdump.GigeStatsRing}
+   */
+  public static final class GigeStatsRing extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:jon.cvdump.GigeStatsRing)
+      GigeStatsRingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    static {
+      com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
+        com.google.protobuf.RuntimeVersion.RuntimeDomain.PUBLIC,
+        /* major= */ 4,
+        /* minor= */ 36,
+        /* patch= */ 2,
+        /* suffix= */ "",
+        "GigeStatsRing");
+    }
+    // Use GigeStatsRing.newBuilder() to construct.
+    private GigeStatsRing(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+    }
+    private GigeStatsRing() {
+      channel_ = "";
+      path_ = "";
+      sha256_ = "";
+      absentReason_ = "";
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigeStatsRing_descriptor;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
+      return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigeStatsRing_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigeStatsRing_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              jon.cvdump.JonCvDumpArchive.GigeStatsRing.class, jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder.class);
+    }
+
+    public static final int CHANNEL_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object channel_ = "";
+    /**
+     * <pre>
+     * "day" | "heat". Only the day channel has a stats ring; heat is listed
+     * with an absent_reason, the VideoChannel rule.
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The channel.
+     */
+    @java.lang.Override
+    public java.lang.String getChannel() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        channel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * "day" | "heat". Only the day channel has a stats ring; heat is listed
+     * with an absent_reason, the VideoChannel rule.
+     * </pre>
+     *
+     * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for channel.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getChannelBytes() {
+      java.lang.Object ref = channel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        channel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PATH_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object path_ = "";
+    /**
+     * <pre>
+     * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The path.
+     */
+    @java.lang.Override
+    public java.lang.String getPath() {
+      java.lang.Object ref = path_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        path_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+     * no file — then absent_reason says why.
+     * </pre>
+     *
+     * <code>string path = 2;</code>
+     * @return The bytes for path.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPathBytes() {
+      java.lang.Object ref = path_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        path_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BYTES_FIELD_NUMBER = 3;
+    private long bytes_ = 0L;
+    /**
+     * <pre>
+     * Size of the bundle file; 0 when absent.
+     * </pre>
+     *
+     * <code>uint64 bytes = 3;</code>
+     * @return The bytes.
+     */
+    @java.lang.Override
+    public long getBytes() {
+      return bytes_;
+    }
+
+    public static final int SHA256_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sha256_ = "";
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The sha256.
+     */
+    @java.lang.Override
+    public java.lang.String getSha256() {
+      java.lang.Object ref = sha256_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        sha256_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+     * admits exactly those two forms, so an absent ring validates without a
+     * placeholder digest and a present one is still held to 64 hex digits.
+     * </pre>
+     *
+     * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+     * @return The bytes for sha256.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getSha256Bytes() {
+      java.lang.Object ref = sha256_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        sha256_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int RECORD_COUNT_FIELD_NUMBER = 5;
+    private long recordCount_ = 0L;
+    /**
+     * <pre>
+     * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+     * Also the file's capacity, head and begun.
+     * </pre>
+     *
+     * <code>uint64 record_count = 5;</code>
+     * @return The recordCount.
+     */
+    @java.lang.Override
+    public long getRecordCount() {
+      return recordCount_;
+    }
+
+    public static final int OVERWRITTEN_DURING_COPY_FIELD_NUMBER = 6;
+    private long overwrittenDuringCopy_ = 0L;
+    /**
+     * <pre>
+     * Records the copy took that the writer may have overwritten while the copy
+     * was being taken (refused by the seqlock rule), discarded. It counts losses
+     * DURING the copy only; records overwritten before it began are counted
+     * nowhere.
+     * </pre>
+     *
+     * <code>uint64 overwritten_during_copy = 6;</code>
+     * @return The overwrittenDuringCopy.
+     */
+    @java.lang.Override
+    public long getOverwrittenDuringCopy() {
+      return overwrittenDuringCopy_;
+    }
+
+    public static final int OUTSIDE_WINDOW_FIELD_NUMBER = 7;
+    private long outsideWindow_ = 0L;
+    /**
+     * <pre>
+     * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+     * are normal: the ring holds history from before t0 and keeps filling
+     * between t1 and the copy. Not a loss.
+     * </pre>
+     *
+     * <code>uint64 outside_window = 7;</code>
+     * @return The outsideWindow.
+     */
+    @java.lang.Override
+    public long getOutsideWindow() {
+      return outsideWindow_;
+    }
+
+    public static final int WINDOW_START_LOST_FIELD_NUMBER = 8;
+    private boolean windowStartLost_ = false;
+    /**
+     * <pre>
+     * The window's HEAD is missing from the stats trace: the ring had lost
+     * records before they could be kept (it had wrapped before the copy, or
+     * overwritten_during_copy is non-zero) AND the oldest record kept is later
+     * than t0. A ring that never wrapped and simply has its first record after
+     * t0 (`gige_trace.stats` turned on mid-window) does NOT set it.
+     * Per-channel and informational — it is not an IntegrityReport degrade
+     * flag.
+     * </pre>
+     *
+     * <code>bool window_start_lost = 8;</code>
+     * @return The windowStartLost.
+     */
+    @java.lang.Override
+    public boolean getWindowStartLost() {
+      return windowStartLost_;
+    }
+
+    public static final int ABSENT_REASON_FIELD_NUMBER = 9;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object absentReason_ = "";
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box (heat has none; on day,
+     * `gige_trace.stats` never turned on), no record survived the seqlock and
+     * window filters, or the ring could not be read or validated (that last
+     * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+     * the file is present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The absentReason.
+     */
+    @java.lang.Override
+    public java.lang.String getAbsentReason() {
+      java.lang.Object ref = absentReason_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        absentReason_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * Why there is no file: no ring on the box (heat has none; on day,
+     * `gige_trace.stats` never turned on), no record survived the seqlock and
+     * window filters, or the ring could not be read or validated (that last
+     * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+     * the file is present.
+     * </pre>
+     *
+     * <code>string absent_reason = 9;</code>
+     * @return The bytes for absentReason.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAbsentReasonBytes() {
+      java.lang.Object ref = absentReason_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        absentReason_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int WRITER_REFUSED_FIELD_NUMBER = 10;
+    private long writerRefused_ = 0L;
+    /**
+     * <pre>
+     * Records the WRITER could not place in the ring since it started (the ring
+     * header's refused count), across its life, not scoped to the window. The
+     * harness's stats writer never advances this count, so it reads 0 today; a
+     * record that writer could not write is counted in its own
+     * `[[GIGE_TRACE]]` receipt (stats_failed), not here. 0 when there is no
+     * ring to read.
+     * </pre>
+     *
+     * <code>uint64 writer_refused = 10;</code>
+     * @return The writerRefused.
+     */
+    @java.lang.Override
+    public long getWriterRefused() {
+      return writerRefused_;
+    }
+
+    public static final int OVERWRITTEN_BEFORE_COPY_FIELD_NUMBER = 11;
+    private long overwrittenBeforeCopy_ = 0L;
+    /**
+     * <pre>
+     * Records the ring no longer held when the copy began, because later
+     * records overwrote them (records written minus capacity; 0 before the ring
+     * first wrapped). Cumulative over the ring's life; whether any of them fell
+     * inside the window is window_start_lost. 0 when there is no ring to read.
+     * </pre>
+     *
+     * <code>uint64 overwritten_before_copy = 11;</code>
+     * @return The overwrittenBeforeCopy.
+     */
+    @java.lang.Override
+    public long getOverwrittenBeforeCopy() {
+      return overwrittenBeforeCopy_;
+    }
+
+    public static final int RECORD_LEN_FIELD_NUMBER = 12;
+    private int recordLen_ = 0;
+    /**
+     * <pre>
+     * Bytes per record slot, read from the box ring's header (40,272 for the
+     * `stats` record of the format it was written in). Lets a reader walk the
+     * file without knowing the record format; 0 when absent.
+     * </pre>
+     *
+     * <code>uint32 record_len = 12;</code>
+     * @return The recordLen.
+     */
+    @java.lang.Override
+    public int getRecordLen() {
+      return recordLen_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(channel_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 1, channel_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(path_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 2, path_);
+      }
+      if (bytes_ != 0L) {
+        output.writeUInt64(3, bytes_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sha256_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 4, sha256_);
+      }
+      if (recordCount_ != 0L) {
+        output.writeUInt64(5, recordCount_);
+      }
+      if (overwrittenDuringCopy_ != 0L) {
+        output.writeUInt64(6, overwrittenDuringCopy_);
+      }
+      if (outsideWindow_ != 0L) {
+        output.writeUInt64(7, outsideWindow_);
+      }
+      if (windowStartLost_ != false) {
+        output.writeBool(8, windowStartLost_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(absentReason_)) {
+        com.google.protobuf.GeneratedMessage.writeString(output, 9, absentReason_);
+      }
+      if (writerRefused_ != 0L) {
+        output.writeUInt64(10, writerRefused_);
+      }
+      if (overwrittenBeforeCopy_ != 0L) {
+        output.writeUInt64(11, overwrittenBeforeCopy_);
+      }
+      if (recordLen_ != 0) {
+        output.writeUInt32(12, recordLen_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+    private int computeSerializedSize_0() {
+      int size = 0;
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(channel_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(1, channel_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(path_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(2, path_);
+      }
+      if (bytes_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, bytes_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(sha256_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(4, sha256_);
+      }
+      if (recordCount_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(5, recordCount_);
+      }
+      if (overwrittenDuringCopy_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(6, overwrittenDuringCopy_);
+      }
+      if (outsideWindow_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(7, outsideWindow_);
+      }
+      if (windowStartLost_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(8, windowStartLost_);
+      }
+      if (!com.google.protobuf.GeneratedMessage.isStringEmpty(absentReason_)) {
+        size += com.google.protobuf.GeneratedMessage.computeStringSize(9, absentReason_);
+      }
+      if (writerRefused_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(10, writerRefused_);
+      }
+      if (overwrittenBeforeCopy_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(11, overwrittenBeforeCopy_);
+      }
+      if (recordLen_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(12, recordLen_);
+      }
+      return size;
+    }
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += computeSerializedSize_0();
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof jon.cvdump.JonCvDumpArchive.GigeStatsRing)) {
+        return super.equals(obj);
+      }
+      jon.cvdump.JonCvDumpArchive.GigeStatsRing other = (jon.cvdump.JonCvDumpArchive.GigeStatsRing) obj;
+
+      if (!getChannel()
+          .equals(other.getChannel())) return false;
+      if (!getPath()
+          .equals(other.getPath())) return false;
+      if (getBytes()
+          != other.getBytes()) return false;
+      if (!getSha256()
+          .equals(other.getSha256())) return false;
+      if (getRecordCount()
+          != other.getRecordCount()) return false;
+      if (getOverwrittenDuringCopy()
+          != other.getOverwrittenDuringCopy()) return false;
+      if (getOutsideWindow()
+          != other.getOutsideWindow()) return false;
+      if (getWindowStartLost()
+          != other.getWindowStartLost()) return false;
+      if (!getAbsentReason()
+          .equals(other.getAbsentReason())) return false;
+      if (getWriterRefused()
+          != other.getWriterRefused()) return false;
+      if (getOverwrittenBeforeCopy()
+          != other.getOverwrittenBeforeCopy()) return false;
+      if (getRecordLen()
+          != other.getRecordLen()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel().hashCode();
+      hash = (37 * hash) + PATH_FIELD_NUMBER;
+      hash = (53 * hash) + getPath().hashCode();
+      hash = (37 * hash) + BYTES_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBytes());
+      hash = (37 * hash) + SHA256_FIELD_NUMBER;
+      hash = (53 * hash) + getSha256().hashCode();
+      hash = (37 * hash) + RECORD_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getRecordCount());
+      hash = (37 * hash) + OVERWRITTEN_DURING_COPY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOverwrittenDuringCopy());
+      hash = (37 * hash) + OUTSIDE_WINDOW_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOutsideWindow());
+      hash = (37 * hash) + WINDOW_START_LOST_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getWindowStartLost());
+      hash = (37 * hash) + ABSENT_REASON_FIELD_NUMBER;
+      hash = (53 * hash) + getAbsentReason().hashCode();
+      hash = (37 * hash) + WRITER_REFUSED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getWriterRefused());
+      hash = (37 * hash) + OVERWRITTEN_BEFORE_COPY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getOverwrittenBeforeCopy());
+      hash = (37 * hash) + RECORD_LEN_FIELD_NUMBER;
+      hash = (53 * hash) + getRecordLen();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input);
+    }
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessage
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(jon.cvdump.JonCvDumpArchive.GigeStatsRing prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * One channel's GigE `stats` trace ring, copied off the box and compacted to
+     * the capture window.
+     *
+     * On the box the ring is
+     * `/dev/shm/jettison/gige-&lt;chan&gt;/jon_gige_stats_&lt;chan&gt;.ring`, written by the
+     * receiver (the sensor harness) only while `gige_trace.stats` is on, and only
+     * for the day channel: the same 64-byte `JGRG` header and seqlock mechanism as
+     * the packets ring (GigePacketRing), its header's record length naming the
+     * kind, then one 40,272-byte `stats` record per frame the harness took — the
+     * frame's MAX10 statistics and footer chunk data as received, beside the ISP
+     * statistics block the harness published for that same frame (record layout
+     * STATS_OFF_* in mods/gige/crates/gige-wire/src/trace.rs). The ring holds a
+     * few minutes of frames, so a window longer than that loses its head before
+     * the harvest copies it (window_start_lost). The harvester copies it while its
+     * writer may still be writing, keeps only the records no write could have
+     * touched during the copy, then keeps only those whose mono_ns falls inside
+     * [t0,t1].
+     *
+     * mono_ns is CLOCK_MONOTONIC when the harness WROTE the record (after the
+     * frame's ring publish, not its capture — the record's capture stamp is
+     * another field), at the same record offset as the packet record's, compared
+     * here against the CLOCK_BOOTTIME window in CaptureWindow. On a target that
+     * never suspends the two coincide; that is a premise, not an identity.
+     *
+     * The bundle file is itself a VALID ring, laid out exactly as GigePacketRing
+     * describes for the packets ring: the box's header with capacity, head and
+     * begun each set to record_count, then the kept records oldest-first from
+     * slot 0. When no record survives no file is written: path and sha256 are
+     * empty, record_count is 0 and absent_reason says why.
+     *
+     * What it can NOT hold: frames whose records the ring had already overwritten
+     * before the copy began (overwritten_before_copy; window_start_lost says
+     * whether they reach into the window), records the writer turned away
+     * (writer_refused), and frames the harness never recorded. A frame missing
+     * from the bundle proves nothing until window_start_lost and
+     * overwritten_during_copy are both clear for the stretch it falls in and
+     * writer_refused is 0.
+     * </pre>
+     *
+     * Protobuf type {@code jon.cvdump.GigeStatsRing}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:jon.cvdump.GigeStatsRing)
+        jon.cvdump.JonCvDumpArchive.GigeStatsRingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigeStatsRing_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigeStatsRing_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                jon.cvdump.JonCvDumpArchive.GigeStatsRing.class, jon.cvdump.JonCvDumpArchive.GigeStatsRing.Builder.class);
+      }
+
+      // Construct using jon.cvdump.JonCvDumpArchive.GigeStatsRing.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        channel_ = "";
+        path_ = "";
+        bytes_ = 0L;
+        sha256_ = "";
+        recordCount_ = 0L;
+        overwrittenDuringCopy_ = 0L;
+        outsideWindow_ = 0L;
+        windowStartLost_ = false;
+        absentReason_ = "";
+        writerRefused_ = 0L;
+        overwrittenBeforeCopy_ = 0L;
+        recordLen_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return jon.cvdump.JonCvDumpArchive.internal_static_jon_cvdump_GigeStatsRing_descriptor;
+      }
+
+      @java.lang.Override
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRing getDefaultInstanceForType() {
+        return jon.cvdump.JonCvDumpArchive.GigeStatsRing.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRing build() {
+        jon.cvdump.JonCvDumpArchive.GigeStatsRing result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public jon.cvdump.JonCvDumpArchive.GigeStatsRing buildPartial() {
+        jon.cvdump.JonCvDumpArchive.GigeStatsRing result = new jon.cvdump.JonCvDumpArchive.GigeStatsRing(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(jon.cvdump.JonCvDumpArchive.GigeStatsRing result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.channel_ = channel_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.path_ = path_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.bytes_ = bytes_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.sha256_ = sha256_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.recordCount_ = recordCount_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.overwrittenDuringCopy_ = overwrittenDuringCopy_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.outsideWindow_ = outsideWindow_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.windowStartLost_ = windowStartLost_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.absentReason_ = absentReason_;
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.writerRefused_ = writerRefused_;
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.overwrittenBeforeCopy_ = overwrittenBeforeCopy_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.recordLen_ = recordLen_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof jon.cvdump.JonCvDumpArchive.GigeStatsRing) {
+          return mergeFrom((jon.cvdump.JonCvDumpArchive.GigeStatsRing)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(jon.cvdump.JonCvDumpArchive.GigeStatsRing other) {
+        if (other == jon.cvdump.JonCvDumpArchive.GigeStatsRing.getDefaultInstance()) return this;
+        if (!other.getChannel().isEmpty()) {
+          channel_ = other.channel_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getPath().isEmpty()) {
+          path_ = other.path_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getBytes() != 0L) {
+          setBytes(other.getBytes());
+        }
+        if (!other.getSha256().isEmpty()) {
+          sha256_ = other.sha256_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        if (other.getRecordCount() != 0L) {
+          setRecordCount(other.getRecordCount());
+        }
+        if (other.getOverwrittenDuringCopy() != 0L) {
+          setOverwrittenDuringCopy(other.getOverwrittenDuringCopy());
+        }
+        if (other.getOutsideWindow() != 0L) {
+          setOutsideWindow(other.getOutsideWindow());
+        }
+        if (other.getWindowStartLost() != false) {
+          setWindowStartLost(other.getWindowStartLost());
+        }
+        if (!other.getAbsentReason().isEmpty()) {
+          absentReason_ = other.absentReason_;
+          bitField0_ |= 0x00000100;
+          onChanged();
+        }
+        if (other.getWriterRefused() != 0L) {
+          setWriterRefused(other.getWriterRefused());
+        }
+        if (other.getOverwrittenBeforeCopy() != 0L) {
+          setOverwrittenBeforeCopy(other.getOverwrittenBeforeCopy());
+        }
+        if (other.getRecordLen() != 0) {
+          setRecordLen(other.getRecordLen());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        java.util.Objects.requireNonNull(extensionRegistry);
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                channel_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                path_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                bytes_ = input.readUInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                sha256_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 40: {
+                recordCount_ = input.readUInt64();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                overwrittenDuringCopy_ = input.readUInt64();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              case 56: {
+                outsideWindow_ = input.readUInt64();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
+              case 64: {
+                windowStartLost_ = input.readBool();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
+              case 74: {
+                absentReason_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 74
+              case 80: {
+                writerRefused_ = input.readUInt64();
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 80
+              case 88: {
+                overwrittenBeforeCopy_ = input.readUInt64();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 88
+              case 96: {
+                recordLen_ = input.readUInt32();
+                bitField0_ |= 0x00000800;
+                break;
+              } // case 96
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object channel_ = "";
+      /**
+       * <pre>
+       * "day" | "heat". Only the day channel has a stats ring; heat is listed
+       * with an absent_reason, the VideoChannel rule.
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The channel.
+       */
+      public java.lang.String getChannel() {
+        java.lang.Object ref = channel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          channel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * "day" | "heat". Only the day channel has a stats ring; heat is listed
+       * with an absent_reason, the VideoChannel rule.
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @return The bytes for channel.
+       */
+      public com.google.protobuf.ByteString
+          getChannelBytes() {
+        java.lang.Object ref = channel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          channel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * "day" | "heat". Only the day channel has a stats ring; heat is listed
+       * with an absent_reason, the VideoChannel rule.
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The channel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannel(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        channel_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * "day" | "heat". Only the day channel has a stats ring; heat is listed
+       * with an absent_reason, the VideoChannel rule.
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearChannel() {
+        channel_ = getDefaultInstance().getChannel();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * "day" | "heat". Only the day channel has a stats ring; heat is listed
+       * with an absent_reason, the VideoChannel rule.
+       * </pre>
+       *
+       * <code>string channel = 1 [(.buf.validate.field) = { ... }</code>
+       * @param value The bytes for channel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannelBytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        channel_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object path_ = "";
+      /**
+       * <pre>
+       * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @return The path.
+       */
+      public java.lang.String getPath() {
+        java.lang.Object ref = path_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          path_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @return The bytes for path.
+       */
+      public com.google.protobuf.ByteString
+          getPathBytes() {
+        java.lang.Object ref = path_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          path_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @param value The path to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPath(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        path_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPath() {
+        path_ = getDefaultInstance().getPath();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Bundle-relative, "gige/stats_&lt;chan&gt;.ring". Empty exactly when there is
+       * no file — then absent_reason says why.
+       * </pre>
+       *
+       * <code>string path = 2;</code>
+       * @param value The bytes for path to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPathBytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        path_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private long bytes_ ;
+      /**
+       * <pre>
+       * Size of the bundle file; 0 when absent.
+       * </pre>
+       *
+       * <code>uint64 bytes = 3;</code>
+       * @return The bytes.
+       */
+      @java.lang.Override
+      public long getBytes() {
+        return bytes_;
+      }
+      /**
+       * <pre>
+       * Size of the bundle file; 0 when absent.
+       * </pre>
+       *
+       * <code>uint64 bytes = 3;</code>
+       * @param value The bytes to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBytes(long value) {
+
+        bytes_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Size of the bundle file; 0 when absent.
+       * </pre>
+       *
+       * <code>uint64 bytes = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBytes() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        bytes_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object sha256_ = "";
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @return The sha256.
+       */
+      public java.lang.String getSha256() {
+        java.lang.Object ref = sha256_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          sha256_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @return The bytes for sha256.
+       */
+      public com.google.protobuf.ByteString
+          getSha256Bytes() {
+        java.lang.Object ref = sha256_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          sha256_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @param value The sha256 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSha256(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        sha256_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSha256() {
+        sha256_ = getDefaultInstance().getSha256();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Lowercase hex SHA-256 of the bundle file; empty when absent. The pattern
+       * admits exactly those two forms, so an absent ring validates without a
+       * placeholder digest and a present one is still held to 64 hex digits.
+       * </pre>
+       *
+       * <code>string sha256 = 4 [(.buf.validate.field) = { ... }</code>
+       * @param value The bytes for sha256 to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSha256Bytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        sha256_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      private long recordCount_ ;
+      /**
+       * <pre>
+       * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+       * Also the file's capacity, head and begun.
+       * </pre>
+       *
+       * <code>uint64 record_count = 5;</code>
+       * @return The recordCount.
+       */
+      @java.lang.Override
+      public long getRecordCount() {
+        return recordCount_;
+      }
+      /**
+       * <pre>
+       * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+       * Also the file's capacity, head and begun.
+       * </pre>
+       *
+       * <code>uint64 record_count = 5;</code>
+       * @param value The recordCount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRecordCount(long value) {
+
+        recordCount_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records in the bundle file — each one whole, decoded and inside [t0,t1].
+       * Also the file's capacity, head and begun.
+       * </pre>
+       *
+       * <code>uint64 record_count = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRecordCount() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        recordCount_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long overwrittenDuringCopy_ ;
+      /**
+       * <pre>
+       * Records the copy took that the writer may have overwritten while the copy
+       * was being taken (refused by the seqlock rule), discarded. It counts losses
+       * DURING the copy only; records overwritten before it began are counted
+       * nowhere.
+       * </pre>
+       *
+       * <code>uint64 overwritten_during_copy = 6;</code>
+       * @return The overwrittenDuringCopy.
+       */
+      @java.lang.Override
+      public long getOverwrittenDuringCopy() {
+        return overwrittenDuringCopy_;
+      }
+      /**
+       * <pre>
+       * Records the copy took that the writer may have overwritten while the copy
+       * was being taken (refused by the seqlock rule), discarded. It counts losses
+       * DURING the copy only; records overwritten before it began are counted
+       * nowhere.
+       * </pre>
+       *
+       * <code>uint64 overwritten_during_copy = 6;</code>
+       * @param value The overwrittenDuringCopy to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOverwrittenDuringCopy(long value) {
+
+        overwrittenDuringCopy_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records the copy took that the writer may have overwritten while the copy
+       * was being taken (refused by the seqlock rule), discarded. It counts losses
+       * DURING the copy only; records overwritten before it began are counted
+       * nowhere.
+       * </pre>
+       *
+       * <code>uint64 overwritten_during_copy = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOverwrittenDuringCopy() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        overwrittenDuringCopy_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long outsideWindow_ ;
+      /**
+       * <pre>
+       * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+       * are normal: the ring holds history from before t0 and keeps filling
+       * between t1 and the copy. Not a loss.
+       * </pre>
+       *
+       * <code>uint64 outside_window = 7;</code>
+       * @return The outsideWindow.
+       */
+      @java.lang.Override
+      public long getOutsideWindow() {
+        return outsideWindow_;
+      }
+      /**
+       * <pre>
+       * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+       * are normal: the ring holds history from before t0 and keeps filling
+       * between t1 and the copy. Not a loss.
+       * </pre>
+       *
+       * <code>uint64 outside_window = 7;</code>
+       * @param value The outsideWindow to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOutsideWindow(long value) {
+
+        outsideWindow_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Whole records whose mono_ns fell outside [t0,t1], discarded. Large values
+       * are normal: the ring holds history from before t0 and keeps filling
+       * between t1 and the copy. Not a loss.
+       * </pre>
+       *
+       * <code>uint64 outside_window = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOutsideWindow() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        outsideWindow_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private boolean windowStartLost_ ;
+      /**
+       * <pre>
+       * The window's HEAD is missing from the stats trace: the ring had lost
+       * records before they could be kept (it had wrapped before the copy, or
+       * overwritten_during_copy is non-zero) AND the oldest record kept is later
+       * than t0. A ring that never wrapped and simply has its first record after
+       * t0 (`gige_trace.stats` turned on mid-window) does NOT set it.
+       * Per-channel and informational — it is not an IntegrityReport degrade
+       * flag.
+       * </pre>
+       *
+       * <code>bool window_start_lost = 8;</code>
+       * @return The windowStartLost.
+       */
+      @java.lang.Override
+      public boolean getWindowStartLost() {
+        return windowStartLost_;
+      }
+      /**
+       * <pre>
+       * The window's HEAD is missing from the stats trace: the ring had lost
+       * records before they could be kept (it had wrapped before the copy, or
+       * overwritten_during_copy is non-zero) AND the oldest record kept is later
+       * than t0. A ring that never wrapped and simply has its first record after
+       * t0 (`gige_trace.stats` turned on mid-window) does NOT set it.
+       * Per-channel and informational — it is not an IntegrityReport degrade
+       * flag.
+       * </pre>
+       *
+       * <code>bool window_start_lost = 8;</code>
+       * @param value The windowStartLost to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWindowStartLost(boolean value) {
+
+        windowStartLost_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * The window's HEAD is missing from the stats trace: the ring had lost
+       * records before they could be kept (it had wrapped before the copy, or
+       * overwritten_during_copy is non-zero) AND the oldest record kept is later
+       * than t0. A ring that never wrapped and simply has its first record after
+       * t0 (`gige_trace.stats` turned on mid-window) does NOT set it.
+       * Per-channel and informational — it is not an IntegrityReport degrade
+       * flag.
+       * </pre>
+       *
+       * <code>bool window_start_lost = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWindowStartLost() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        windowStartLost_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object absentReason_ = "";
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box (heat has none; on day,
+       * `gige_trace.stats` never turned on), no record survived the seqlock and
+       * window filters, or the ring could not be read or validated (that last
+       * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+       * the file is present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @return The absentReason.
+       */
+      public java.lang.String getAbsentReason() {
+        java.lang.Object ref = absentReason_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          absentReason_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box (heat has none; on day,
+       * `gige_trace.stats` never turned on), no record survived the seqlock and
+       * window filters, or the ring could not be read or validated (that last
+       * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+       * the file is present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @return The bytes for absentReason.
+       */
+      public com.google.protobuf.ByteString
+          getAbsentReasonBytes() {
+        java.lang.Object ref = absentReason_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          absentReason_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box (heat has none; on day,
+       * `gige_trace.stats` never turned on), no record survived the seqlock and
+       * window filters, or the ring could not be read or validated (that last
+       * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+       * the file is present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @param value The absentReason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAbsentReason(
+          java.lang.String value) {
+        java.util.Objects.requireNonNull(value);
+        absentReason_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box (heat has none; on day,
+       * `gige_trace.stats` never turned on), no record survived the seqlock and
+       * window filters, or the ring could not be read or validated (that last
+       * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+       * the file is present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAbsentReason() {
+        absentReason_ = getDefaultInstance().getAbsentReason();
+        bitField0_ = (bitField0_ & ~0x00000100);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Why there is no file: no ring on the box (heat has none; on day,
+       * `gige_trace.stats` never turned on), no record survived the seqlock and
+       * window filters, or the ring could not be read or validated (that last
+       * case also sets IntegrityReport.gige_stats_rings_incomplete). Empty when
+       * the file is present.
+       * </pre>
+       *
+       * <code>string absent_reason = 9;</code>
+       * @param value The bytes for absentReason to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAbsentReasonBytes(
+          com.google.protobuf.ByteString value) {
+        java.util.Objects.requireNonNull(value);
+        checkByteStringIsUtf8(value);
+        absentReason_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+
+      private long writerRefused_ ;
+      /**
+       * <pre>
+       * Records the WRITER could not place in the ring since it started (the ring
+       * header's refused count), across its life, not scoped to the window. The
+       * harness's stats writer never advances this count, so it reads 0 today; a
+       * record that writer could not write is counted in its own
+       * `[[GIGE_TRACE]]` receipt (stats_failed), not here. 0 when there is no
+       * ring to read.
+       * </pre>
+       *
+       * <code>uint64 writer_refused = 10;</code>
+       * @return The writerRefused.
+       */
+      @java.lang.Override
+      public long getWriterRefused() {
+        return writerRefused_;
+      }
+      /**
+       * <pre>
+       * Records the WRITER could not place in the ring since it started (the ring
+       * header's refused count), across its life, not scoped to the window. The
+       * harness's stats writer never advances this count, so it reads 0 today; a
+       * record that writer could not write is counted in its own
+       * `[[GIGE_TRACE]]` receipt (stats_failed), not here. 0 when there is no
+       * ring to read.
+       * </pre>
+       *
+       * <code>uint64 writer_refused = 10;</code>
+       * @param value The writerRefused to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWriterRefused(long value) {
+
+        writerRefused_ = value;
+        bitField0_ |= 0x00000200;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records the WRITER could not place in the ring since it started (the ring
+       * header's refused count), across its life, not scoped to the window. The
+       * harness's stats writer never advances this count, so it reads 0 today; a
+       * record that writer could not write is counted in its own
+       * `[[GIGE_TRACE]]` receipt (stats_failed), not here. 0 when there is no
+       * ring to read.
+       * </pre>
+       *
+       * <code>uint64 writer_refused = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWriterRefused() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        writerRefused_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long overwrittenBeforeCopy_ ;
+      /**
+       * <pre>
+       * Records the ring no longer held when the copy began, because later
+       * records overwrote them (records written minus capacity; 0 before the ring
+       * first wrapped). Cumulative over the ring's life; whether any of them fell
+       * inside the window is window_start_lost. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 overwritten_before_copy = 11;</code>
+       * @return The overwrittenBeforeCopy.
+       */
+      @java.lang.Override
+      public long getOverwrittenBeforeCopy() {
+        return overwrittenBeforeCopy_;
+      }
+      /**
+       * <pre>
+       * Records the ring no longer held when the copy began, because later
+       * records overwrote them (records written minus capacity; 0 before the ring
+       * first wrapped). Cumulative over the ring's life; whether any of them fell
+       * inside the window is window_start_lost. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 overwritten_before_copy = 11;</code>
+       * @param value The overwrittenBeforeCopy to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOverwrittenBeforeCopy(long value) {
+
+        overwrittenBeforeCopy_ = value;
+        bitField0_ |= 0x00000400;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Records the ring no longer held when the copy began, because later
+       * records overwrote them (records written minus capacity; 0 before the ring
+       * first wrapped). Cumulative over the ring's life; whether any of them fell
+       * inside the window is window_start_lost. 0 when there is no ring to read.
+       * </pre>
+       *
+       * <code>uint64 overwritten_before_copy = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOverwrittenBeforeCopy() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        overwrittenBeforeCopy_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int recordLen_ ;
+      /**
+       * <pre>
+       * Bytes per record slot, read from the box ring's header (40,272 for the
+       * `stats` record of the format it was written in). Lets a reader walk the
+       * file without knowing the record format; 0 when absent.
+       * </pre>
+       *
+       * <code>uint32 record_len = 12;</code>
+       * @return The recordLen.
+       */
+      @java.lang.Override
+      public int getRecordLen() {
+        return recordLen_;
+      }
+      /**
+       * <pre>
+       * Bytes per record slot, read from the box ring's header (40,272 for the
+       * `stats` record of the format it was written in). Lets a reader walk the
+       * file without knowing the record format; 0 when absent.
+       * </pre>
+       *
+       * <code>uint32 record_len = 12;</code>
+       * @param value The recordLen to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRecordLen(int value) {
+
+        recordLen_ = value;
+        bitField0_ |= 0x00000800;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * Bytes per record slot, read from the box ring's header (40,272 for the
+       * `stats` record of the format it was written in). Lets a reader walk the
+       * file without knowing the record format; 0 when absent.
+       * </pre>
+       *
+       * <code>uint32 record_len = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRecordLen() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        recordLen_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:jon.cvdump.GigeStatsRing)
+    }
+
+    // @@protoc_insertion_point(class_scope:jon.cvdump.GigeStatsRing)
+    private static final jon.cvdump.JonCvDumpArchive.GigeStatsRing DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new jon.cvdump.JonCvDumpArchive.GigeStatsRing();
+    }
+
+    public static jon.cvdump.JonCvDumpArchive.GigeStatsRing getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GigeStatsRing>
+        PARSER = new com.google.protobuf.AbstractParser<GigeStatsRing>() {
+      @java.lang.Override
+      public GigeStatsRing parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<GigeStatsRing> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GigeStatsRing> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public jon.cvdump.JonCvDumpArchive.GigeStatsRing getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface StreamGroupOrBuilder extends
       // @@protoc_insertion_point(interface_extends:jon.cvdump.StreamGroup)
       com.google.protobuf.MessageOrBuilder {
@@ -17243,9 +22988,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
 
     /**
      * <pre>
-     * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-     * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-     * kind 4 (e.g. "state_logs").
+     * The EXACT source, never sanitized: a redis stream key for every
+     * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+     * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+     * "state_logs"). Which kinds are which: see StreamKind.
      * </pre>
      *
      * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -17254,9 +23000,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     java.lang.String getSource();
     /**
      * <pre>
-     * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-     * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-     * kind 4 (e.g. "state_logs").
+     * The EXACT source, never sanitized: a redis stream key for every
+     * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+     * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+     * "state_logs"). Which kinds are which: see StreamKind.
      * </pre>
      *
      * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -17344,9 +23091,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
 
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17355,9 +23102,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
         getColumnsList();
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17365,9 +23112,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     jon.cvdump.JonCvDumpArchive.ColumnDef getColumns(int index);
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17375,9 +23122,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     int getColumnsCount();
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17386,9 +23133,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
         getColumnsOrBuilderList();
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17398,8 +23145,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
 
     /**
      * <pre>
-     * The records. Decode with codec, then parse as RedisStreamRecords for kinds
-     * 1-3 or TableRows for kind 4.
+     * The records. Decode with codec, then parse as TableRows for
+     * STREAM_KIND_TSDB_TABLE and as RedisStreamRecords for every redis-stream
+     * kind.
      * </pre>
      *
      * <code>bytes payload = 9;</code>
@@ -17488,9 +23236,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     private volatile java.lang.Object source_ = "";
     /**
      * <pre>
-     * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-     * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-     * kind 4 (e.g. "state_logs").
+     * The EXACT source, never sanitized: a redis stream key for every
+     * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+     * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+     * "state_logs"). Which kinds are which: see StreamKind.
      * </pre>
      *
      * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -17511,9 +23260,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     }
     /**
      * <pre>
-     * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-     * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-     * kind 4 (e.g. "state_logs").
+     * The EXACT source, never sanitized: a redis stream key for every
+     * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+     * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+     * "state_logs"). Which kinds are which: see StreamKind.
      * </pre>
      *
      * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -17665,9 +23415,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     private java.util.List<jon.cvdump.JonCvDumpArchive.ColumnDef> columns_;
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17678,9 +23428,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     }
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17692,9 +23442,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     }
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17705,9 +23455,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     }
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17718,9 +23468,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     }
     /**
      * <pre>
-     * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-     * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-     * kinds.
+     * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+     * so the rows parse offline with no PostgreSQL catalog. Empty for every
+     * redis-stream kind.
      * </pre>
      *
      * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -17735,8 +23485,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
-     * The records. Decode with codec, then parse as RedisStreamRecords for kinds
-     * 1-3 or TableRows for kind 4.
+     * The records. Decode with codec, then parse as TableRows for
+     * STREAM_KIND_TSDB_TABLE and as RedisStreamRecords for every redis-stream
+     * kind.
      * </pre>
      *
      * <code>bytes payload = 9;</code>
@@ -18348,9 +24099,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       private java.lang.Object source_ = "";
       /**
        * <pre>
-       * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-       * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-       * kind 4 (e.g. "state_logs").
+       * The EXACT source, never sanitized: a redis stream key for every
+       * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+       * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+       * "state_logs"). Which kinds are which: see StreamKind.
        * </pre>
        *
        * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -18370,9 +24122,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-       * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-       * kind 4 (e.g. "state_logs").
+       * The EXACT source, never sanitized: a redis stream key for every
+       * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+       * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+       * "state_logs"). Which kinds are which: see StreamKind.
        * </pre>
        *
        * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -18393,9 +24146,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-       * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-       * kind 4 (e.g. "state_logs").
+       * The EXACT source, never sanitized: a redis stream key for every
+       * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+       * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+       * "state_logs"). Which kinds are which: see StreamKind.
        * </pre>
        *
        * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -18412,9 +24166,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-       * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-       * kind 4 (e.g. "state_logs").
+       * The EXACT source, never sanitized: a redis stream key for every
+       * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+       * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+       * "state_logs"). Which kinds are which: see StreamKind.
        * </pre>
        *
        * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -18428,9 +24183,10 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * The EXACT source, never sanitized: a redis stream key for kinds 1-3
-       * (e.g. "logs:can:0x500", "logs:rotary:uart:tx"), a TSDB table name for
-       * kind 4 (e.g. "state_logs").
+       * The EXACT source, never sanitized: a redis stream key for every
+       * redis-stream kind (e.g. "logs:can:0x500", "logs:rotary:uart:tx",
+       * "logs:gige:day"), a TSDB table name for STREAM_KIND_TSDB_TABLE (e.g.
+       * "state_logs"). Which kinds are which: see StreamKind.
        * </pre>
        *
        * <code>string source = 2 [(.buf.validate.field) = { ... }</code>
@@ -18779,9 +24535,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
 
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18795,9 +24551,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18811,9 +24567,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18827,9 +24583,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18848,9 +24604,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18868,9 +24624,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18888,9 +24644,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18909,9 +24665,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18929,9 +24685,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18949,9 +24705,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18970,9 +24726,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -18989,9 +24745,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -19008,9 +24764,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -19021,9 +24777,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -19037,9 +24793,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -19054,9 +24810,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -19067,9 +24823,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -19081,9 +24837,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * TSDB-table groups only (kind 4): the table's columns in ordinal order, so
-       * the rows parse offline with no PostgreSQL catalog. Empty for redis-stream
-       * kinds.
+       * STREAM_KIND_TSDB_TABLE groups only: the table's columns in ordinal order,
+       * so the rows parse offline with no PostgreSQL catalog. Empty for every
+       * redis-stream kind.
        * </pre>
        *
        * <code>repeated .jon.cvdump.ColumnDef columns = 8;</code>
@@ -19110,8 +24866,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * The records. Decode with codec, then parse as RedisStreamRecords for kinds
-       * 1-3 or TableRows for kind 4.
+       * The records. Decode with codec, then parse as TableRows for
+       * STREAM_KIND_TSDB_TABLE and as RedisStreamRecords for every redis-stream
+       * kind.
        * </pre>
        *
        * <code>bytes payload = 9;</code>
@@ -19123,8 +24880,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * The records. Decode with codec, then parse as RedisStreamRecords for kinds
-       * 1-3 or TableRows for kind 4.
+       * The records. Decode with codec, then parse as TableRows for
+       * STREAM_KIND_TSDB_TABLE and as RedisStreamRecords for every redis-stream
+       * kind.
        * </pre>
        *
        * <code>bytes payload = 9;</code>
@@ -19140,8 +24898,9 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       }
       /**
        * <pre>
-       * The records. Decode with codec, then parse as RedisStreamRecords for kinds
-       * 1-3 or TableRows for kind 4.
+       * The records. Decode with codec, then parse as TableRows for
+       * STREAM_KIND_TSDB_TABLE and as RedisStreamRecords for every redis-stream
+       * kind.
        * </pre>
        *
        * <code>bytes payload = 9;</code>
@@ -19944,7 +25703,8 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
   }
   /**
    * <pre>
-   * The decoded payload of a redis-stream group (StreamKind 1-3).
+   * The decoded payload of a group of any redis-stream kind (every StreamKind
+   * except STREAM_KIND_TSDB_TABLE).
    * </pre>
    *
    * Protobuf type {@code jon.cvdump.RedisStreamRecords}
@@ -20200,7 +25960,8 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     }
     /**
      * <pre>
-     * The decoded payload of a redis-stream group (StreamKind 1-3).
+     * The decoded payload of a group of any redis-stream kind (every StreamKind
+     * except STREAM_KIND_TSDB_TABLE).
      * </pre>
      *
      * Protobuf type {@code jon.cvdump.RedisStreamRecords}
@@ -21808,8 +27569,8 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
   /**
    * <pre>
    * A single redis field. value is RAW BYTES and is never UTF-8 decoded: the
-   * io-record streams carry binary payloads (DATCON frames, CAN blobs) that a
-   * text round-trip would destroy.
+   * io-record streams carry binary payloads (DATCON frames, CAN blobs, GigE
+   * trace records) that a text round-trip would destroy.
    * </pre>
    *
    * Protobuf type {@code jon.cvdump.RedisStreamField}
@@ -22079,8 +27840,8 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     /**
      * <pre>
      * A single redis field. value is RAW BYTES and is never UTF-8 decoded: the
-     * io-record streams carry binary payloads (DATCON frames, CAN blobs) that a
-     * text round-trip would destroy.
+     * io-record streams carry binary payloads (DATCON frames, CAN blobs, GigE
+     * trace records) that a text round-trip would destroy.
      * </pre>
      *
      * Protobuf type {@code jon.cvdump.RedisStreamField}
@@ -22429,7 +28190,7 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
   }
   /**
    * <pre>
-   * The decoded payload of a TSDB-table group (StreamKind 4).
+   * The decoded payload of a STREAM_KIND_TSDB_TABLE group.
    * </pre>
    *
    * Protobuf type {@code jon.cvdump.TableRows}
@@ -22694,7 +28455,7 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     }
     /**
      * <pre>
-     * The decoded payload of a TSDB-table group (StreamKind 4).
+     * The decoded payload of a STREAM_KIND_TSDB_TABLE group.
      * </pre>
      *
      * Protobuf type {@code jon.cvdump.TableRows}
@@ -23075,6 +28836,16 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_jon_cvdump_VideoSegment_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_jon_cvdump_GigePacketRing_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_jon_cvdump_GigePacketRing_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_jon_cvdump_GigeStatsRing_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_jon_cvdump_GigeStatsRing_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jon_cvdump_StreamGroup_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -23114,7 +28885,7 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
   static {
     java.lang.String[] descriptorData = {
       "\n\031jon_cv_dump_archive.proto\022\njon.cvdump\032" +
-      "\033buf/validate/validate.proto\"\262\003\n\rCvDumpA" +
+      "\033buf/validate/validate.proto\"\236\004\n\rCvDumpA" +
       "rchive\0221\n\007version\030\001 \001(\0162 .jon.cvdump.Arc" +
       "hiveFormatVersion\022\023\n\002id\030\002 \001(\tB\007\272H\004r\002\020$\022\024" +
       "\n\014generated_at\030\003 \001(\t\022)\n\006window\030\004 \001(\0132\031.j" +
@@ -23125,78 +28896,99 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       "cvdump.IntegrityReport\022\'\n\005video\030\t \003(\0132\030." +
       "jon.cvdump.VideoChannel\022(\n\007streams\030\n \003(\013" +
       "2\027.jon.cvdump.StreamGroup\022&\n\005shots\030\013 \003(\013" +
-      "2\027.jon.cvdump.ShotCapture\"\363\001\n\tShotPlane\022" +
-      "\026\n\005plane\030\001 \001(\rB\007\272H\004*\002\030\003\022\013\n\003tag\030\002 \001(\r\022\025\n\r" +
-      "source_format\030\003 \001(\r\022\025\n\004path\030\004 \001(\tB\007\272H\004r\002" +
-      "\020\001\022\031\n\010encoding\030\005 \001(\tB\007\272H\004r\002\020\001\022\r\n\005width\030\006" +
-      " \001(\r\022\016\n\006height\030\007 \001(\r\022\r\n\005pitch\030\010 \001(\r\022\021\n\tu" +
-      "v_offset\030\t \001(\r\022\r\n\005bytes\030\n \001(\004\022(\n\006sha256\030" +
-      "\013 \001(\tB\030\272H\025r\0232\016^[0-9a-f]{64}$\230\001@\"\301\001\n\013Shot" +
-      "Capture\022!\n\007channel\030\001 \001(\tB\020\272H\rr\013R\003dayR\004he" +
-      "at\022\022\n\ngeneration\030\002 \001(\r\022\016\n\006pts_ns\030\003 \001(\004\022\027" +
-      "\n\017capture_time_ns\030\004 \001(\004\022\024\n\014ctl_snapshot\030" +
-      "\005 \001(\014\022%\n\006planes\030\006 \003(\0132\025.jon.cvdump.ShotP" +
-      "lane\022\025\n\rabsent_reason\030\007 \001(\t\"Y\n\rCaptureWi" +
-      "ndow\022\017\n\007t0_wall\030\001 \001(\t\022\017\n\007t1_wall\030\002 \001(\t\022\022" +
-      "\n\nt0_boot_ns\030\003 \001(\003\022\022\n\nt1_boot_ns\030\004 \001(\003\"\242" +
-      "\002\n\017MachineIdentity\022\027\n\nmachine_id\030\001 \001(\tH\000" +
-      "\210\001\001\022\025\n\010hostname\030\002 \001(\tH\001\210\001\001\022\025\n\010hw_model\030\003" +
-      " \001(\tH\002\210\001\001\022\024\n\007boot_id\030\004 \001(\tH\003\210\001\001\022-\n\006deplo" +
-      "y\030\005 \001(\0132\035.jon.cvdump.DeployFingerprint\0222" +
-      "\n\017channels_config\030\006 \003(\0132\031.jon.cvdump.Cha" +
-      "nnelConfig\022\032\n\022machine_incomplete\030\007 \001(\010B\r" +
-      "\n\013_machine_idB\013\n\t_hostnameB\013\n\t_hw_modelB" +
-      "\n\n\010_boot_id\"e\n\021DeployFingerprint\022\023\n\013fing" +
-      "erprint\030\001 \001(\t\022\024\n\014jettison_sha\030\002 \001(\t\022\020\n\010d" +
-      "escribe\030\003 \001(\t\022\023\n\013deployed_at\030\004 \001(\t\"|\n\rCh" +
-      "annelConfig\022\017\n\007channel\030\001 \001(\t\022\r\n\005width\030\002 " +
-      "\001(\r\022\016\n\006height\030\003 \001(\r\022\021\n\tfps_limit\030\004 \001(\r\022\022" +
-      "\n\nsensor_fps\030\005 \001(\r\022\024\n\014crop_margins\030\006 \001(\r" +
-      "\"\276\002\n\017IntegrityReport\022)\n\006status\030\001 \001(\0162\031.j" +
-      "on.cvdump.ArchiveStatus\022\027\n\017lapped_segmen" +
-      "ts\030\002 \001(\r\022\031\n\021window_start_lost\030\003 \001(\010\022\032\n\022w" +
-      "riter_seg_skipped\030\004 \001(\010\022\033\n\023rec_control_u" +
-      "nknown\030\005 \001(\010\022\031\n\021rec_enable_failed\030\006 \001(\010\022" +
-      " \n\030no_window_video_channels\030\007 \003(\t\022\031\n\021tru" +
-      "ncated_sources\030\010 \003(\t\022\034\n\024telemetry_incomp" +
-      "lete\030\t \001(\010\022\035\n\025io_records_incomplete\030\n \001(" +
-      "\010\"K\n\014VideoChannel\022\017\n\007channel\030\001 \001(\t\022*\n\010se" +
-      "gments\030\002 \003(\0132\030.jon.cvdump.VideoSegment\"\213" +
-      "\001\n\014VideoSegment\022\020\n\010sequence\030\001 \001(\r\022\014\n\004pat" +
-      "h\030\002 \001(\t\022\r\n\005bytes\030\003 \001(\004\022\030\n\006sha256\030\004 \001(\tB\010" +
-      "\272H\005r\003\230\001@\022\020\n\010start_ns\030\005 \001(\003\022\016\n\006end_ns\030\006 \001" +
-      "(\003\022\020\n\010open_end\030\007 \001(\010\"\220\002\n\013StreamGroup\022$\n\004" +
-      "kind\030\001 \001(\0162\026.jon.cvdump.StreamKind\022\027\n\006so" +
-      "urce\030\002 \001(\tB\007\272H\004r\002\020\001\022\'\n\005codec\030\003 \001(\0162\030.jon" +
-      ".cvdump.ArchiveCodec\022\024\n\014record_count\030\004 \001" +
-      "(\004\022\025\n\rdecoded_bytes\030\005 \001(\004\022 \n\016decoded_sha" +
-      "256\030\006 \001(\tB\010\272H\005r\003\230\001@\022\021\n\ttruncated\030\007 \001(\010\022&" +
-      "\n\007columns\030\010 \003(\0132\025.jon.cvdump.ColumnDef\022\017" +
-      "\n\007payload\030\t \001(\014\"\'\n\tColumnDef\022\014\n\004name\030\001 \001" +
-      "(\t\022\014\n\004type\030\002 \001(\t\"D\n\022RedisStreamRecords\022." +
-      "\n\007records\030\001 \003(\0132\035.jon.cvdump.RedisStream" +
-      "Record\"M\n\021RedisStreamRecord\022\n\n\002id\030\001 \001(\t\022" +
-      ",\n\006fields\030\002 \003(\0132\034.jon.cvdump.RedisStream" +
-      "Field\"/\n\020RedisStreamField\022\014\n\004name\030\001 \001(\t\022" +
-      "\r\n\005value\030\002 \001(\014\"\031\n\tTableRows\022\014\n\004rows\030\001 \003(" +
-      "\014*]\n\024ArchiveFormatVersion\022&\n\"ARCHIVE_FOR" +
-      "MAT_VERSION_UNSPECIFIED\020\000\022\035\n\031ARCHIVE_FOR" +
-      "MAT_VERSION_V3\020\003*E\n\014ArchiveCodec\022\035\n\031ARCH" +
-      "IVE_CODEC_UNSPECIFIED\020\000\022\026\n\022ARCHIVE_CODEC" +
-      "_NONE\020\001*\262\001\n\nStreamKind\022\033\n\027STREAM_KIND_UN" +
-      "SPECIFIED\020\000\022\023\n\017STREAM_KIND_CAN\020\001\022\033\n\027STRE" +
-      "AM_KIND_ROTARY_UART\020\002\022\031\n\025STREAM_KIND_FRA" +
-      "ME_TAP\020\003\022\032\n\026STREAM_KIND_TSDB_TABLE\020\004\022\036\n\032" +
-      "STREAM_KIND_MOTION_HISTORY\020\005*\203\001\n\rArchive" +
-      "Status\022\036\n\032ARCHIVE_STATUS_UNSPECIFIED\020\000\022\033" +
-      "\n\027ARCHIVE_STATUS_COMPLETE\020\001\022\032\n\026ARCHIVE_S" +
-      "TATUS_PARTIAL\020\002\022\031\n\025ARCHIVE_STATUS_FAILED" +
-      "\020\003*|\n\021SessionProvenance\022\"\n\036SESSION_PROVE" +
-      "NANCE_UNSPECIFIED\020\000\022\037\n\033SESSION_PROVENANC" +
-      "E_EUTROPIA\020\001\022\"\n\036SESSION_PROVENANCE_SYNTH" +
-      "ESIZED\020\002BIZGgit-codecommit.eu-central-1." +
-      "amazonaws.com/v1/repos/jettison/jonp/cvd" +
-      "umpb\006proto3"
+      "2\027.jon.cvdump.ShotCapture\0225\n\021gige_packet" +
+      "_rings\030\014 \003(\0132\032.jon.cvdump.GigePacketRing" +
+      "\0223\n\020gige_stats_rings\030\r \003(\0132\031.jon.cvdump." +
+      "GigeStatsRing\"\363\001\n\tShotPlane\022\026\n\005plane\030\001 \001" +
+      "(\rB\007\272H\004*\002\030\003\022\013\n\003tag\030\002 \001(\r\022\025\n\rsource_forma" +
+      "t\030\003 \001(\r\022\025\n\004path\030\004 \001(\tB\007\272H\004r\002\020\001\022\031\n\010encodi" +
+      "ng\030\005 \001(\tB\007\272H\004r\002\020\001\022\r\n\005width\030\006 \001(\r\022\016\n\006heig" +
+      "ht\030\007 \001(\r\022\r\n\005pitch\030\010 \001(\r\022\021\n\tuv_offset\030\t \001" +
+      "(\r\022\r\n\005bytes\030\n \001(\004\022(\n\006sha256\030\013 \001(\tB\030\272H\025r\023" +
+      "2\016^[0-9a-f]{64}$\230\001@\"\301\001\n\013ShotCapture\022!\n\007c" +
+      "hannel\030\001 \001(\tB\020\272H\rr\013R\003dayR\004heat\022\022\n\ngenera" +
+      "tion\030\002 \001(\r\022\016\n\006pts_ns\030\003 \001(\004\022\027\n\017capture_ti" +
+      "me_ns\030\004 \001(\004\022\024\n\014ctl_snapshot\030\005 \001(\014\022%\n\006pla" +
+      "nes\030\006 \003(\0132\025.jon.cvdump.ShotPlane\022\025\n\rabse" +
+      "nt_reason\030\007 \001(\t\"Y\n\rCaptureWindow\022\017\n\007t0_w" +
+      "all\030\001 \001(\t\022\017\n\007t1_wall\030\002 \001(\t\022\022\n\nt0_boot_ns" +
+      "\030\003 \001(\003\022\022\n\nt1_boot_ns\030\004 \001(\003\"\242\002\n\017MachineId" +
+      "entity\022\027\n\nmachine_id\030\001 \001(\tH\000\210\001\001\022\025\n\010hostn" +
+      "ame\030\002 \001(\tH\001\210\001\001\022\025\n\010hw_model\030\003 \001(\tH\002\210\001\001\022\024\n" +
+      "\007boot_id\030\004 \001(\tH\003\210\001\001\022-\n\006deploy\030\005 \001(\0132\035.jo" +
+      "n.cvdump.DeployFingerprint\0222\n\017channels_c" +
+      "onfig\030\006 \003(\0132\031.jon.cvdump.ChannelConfig\022\032" +
+      "\n\022machine_incomplete\030\007 \001(\010B\r\n\013_machine_i" +
+      "dB\013\n\t_hostnameB\013\n\t_hw_modelB\n\n\010_boot_id\"" +
+      "e\n\021DeployFingerprint\022\023\n\013fingerprint\030\001 \001(" +
+      "\t\022\024\n\014jettison_sha\030\002 \001(\t\022\020\n\010describe\030\003 \001(" +
+      "\t\022\023\n\013deployed_at\030\004 \001(\t\"|\n\rChannelConfig\022" +
+      "\017\n\007channel\030\001 \001(\t\022\r\n\005width\030\002 \001(\r\022\016\n\006heigh" +
+      "t\030\003 \001(\r\022\021\n\tfps_limit\030\004 \001(\r\022\022\n\nsensor_fps" +
+      "\030\005 \001(\r\022\024\n\014crop_margins\030\006 \001(\r\"\211\003\n\017Integri" +
+      "tyReport\022)\n\006status\030\001 \001(\0162\031.jon.cvdump.Ar" +
+      "chiveStatus\022\027\n\017lapped_segments\030\002 \001(\r\022\031\n\021" +
+      "window_start_lost\030\003 \001(\010\022\032\n\022writer_seg_sk" +
+      "ipped\030\004 \001(\010\022\033\n\023rec_control_unknown\030\005 \001(\010" +
+      "\022\031\n\021rec_enable_failed\030\006 \001(\010\022 \n\030no_window" +
+      "_video_channels\030\007 \003(\t\022\031\n\021truncated_sourc" +
+      "es\030\010 \003(\t\022\034\n\024telemetry_incomplete\030\t \001(\010\022\035" +
+      "\n\025io_records_incomplete\030\n \001(\010\022$\n\034gige_pa" +
+      "cket_rings_incomplete\030\013 \001(\010\022#\n\033gige_stat" +
+      "s_rings_incomplete\030\014 \001(\010\"K\n\014VideoChannel" +
+      "\022\017\n\007channel\030\001 \001(\t\022*\n\010segments\030\002 \003(\0132\030.jo" +
+      "n.cvdump.VideoSegment\"\213\001\n\014VideoSegment\022\020" +
+      "\n\010sequence\030\001 \001(\r\022\014\n\004path\030\002 \001(\t\022\r\n\005bytes\030" +
+      "\003 \001(\004\022\030\n\006sha256\030\004 \001(\tB\010\272H\005r\003\230\001@\022\020\n\010start" +
+      "_ns\030\005 \001(\003\022\016\n\006end_ns\030\006 \001(\003\022\020\n\010open_end\030\007 " +
+      "\001(\010\"\264\002\n\016GigePacketRing\022!\n\007channel\030\001 \001(\tB" +
+      "\020\272H\rr\013R\003dayR\004heat\022\014\n\004path\030\002 \001(\t\022\r\n\005bytes" +
+      "\030\003 \001(\004\022(\n\006sha256\030\004 \001(\tB\030\272H\025r\0232\021^([0-9a-f" +
+      "]{64})?$\022\024\n\014record_count\030\005 \001(\004\022\037\n\027overwr" +
+      "itten_during_copy\030\006 \001(\004\022\026\n\016outside_windo" +
+      "w\030\007 \001(\004\022\031\n\021window_start_lost\030\010 \001(\010\022\025\n\rab" +
+      "sent_reason\030\t \001(\t\022\026\n\016writer_refused\030\n \001(" +
+      "\004\022\037\n\027overwritten_before_copy\030\013 \001(\004\"\307\002\n\rG" +
+      "igeStatsRing\022!\n\007channel\030\001 \001(\tB\020\272H\rr\013R\003da" +
+      "yR\004heat\022\014\n\004path\030\002 \001(\t\022\r\n\005bytes\030\003 \001(\004\022(\n\006" +
+      "sha256\030\004 \001(\tB\030\272H\025r\0232\021^([0-9a-f]{64})?$\022\024" +
+      "\n\014record_count\030\005 \001(\004\022\037\n\027overwritten_duri" +
+      "ng_copy\030\006 \001(\004\022\026\n\016outside_window\030\007 \001(\004\022\031\n" +
+      "\021window_start_lost\030\010 \001(\010\022\025\n\rabsent_reaso" +
+      "n\030\t \001(\t\022\026\n\016writer_refused\030\n \001(\004\022\037\n\027overw" +
+      "ritten_before_copy\030\013 \001(\004\022\022\n\nrecord_len\030\014" +
+      " \001(\r\"\220\002\n\013StreamGroup\022$\n\004kind\030\001 \001(\0162\026.jon" +
+      ".cvdump.StreamKind\022\027\n\006source\030\002 \001(\tB\007\272H\004r" +
+      "\002\020\001\022\'\n\005codec\030\003 \001(\0162\030.jon.cvdump.ArchiveC" +
+      "odec\022\024\n\014record_count\030\004 \001(\004\022\025\n\rdecoded_by" +
+      "tes\030\005 \001(\004\022 \n\016decoded_sha256\030\006 \001(\tB\010\272H\005r\003" +
+      "\230\001@\022\021\n\ttruncated\030\007 \001(\010\022&\n\007columns\030\010 \003(\0132" +
+      "\025.jon.cvdump.ColumnDef\022\017\n\007payload\030\t \001(\014\"" +
+      "\'\n\tColumnDef\022\014\n\004name\030\001 \001(\t\022\014\n\004type\030\002 \001(\t" +
+      "\"D\n\022RedisStreamRecords\022.\n\007records\030\001 \003(\0132" +
+      "\035.jon.cvdump.RedisStreamRecord\"M\n\021RedisS" +
+      "treamRecord\022\n\n\002id\030\001 \001(\t\022,\n\006fields\030\002 \003(\0132" +
+      "\034.jon.cvdump.RedisStreamField\"/\n\020RedisSt" +
+      "reamField\022\014\n\004name\030\001 \001(\t\022\r\n\005value\030\002 \001(\014\"\031" +
+      "\n\tTableRows\022\014\n\004rows\030\001 \003(\014*]\n\024ArchiveForm" +
+      "atVersion\022&\n\"ARCHIVE_FORMAT_VERSION_UNSP" +
+      "ECIFIED\020\000\022\035\n\031ARCHIVE_FORMAT_VERSION_V3\020\003" +
+      "*E\n\014ArchiveCodec\022\035\n\031ARCHIVE_CODEC_UNSPEC" +
+      "IFIED\020\000\022\026\n\022ARCHIVE_CODEC_NONE\020\001*\310\001\n\nStre" +
+      "amKind\022\033\n\027STREAM_KIND_UNSPECIFIED\020\000\022\023\n\017S" +
+      "TREAM_KIND_CAN\020\001\022\033\n\027STREAM_KIND_ROTARY_U" +
+      "ART\020\002\022\031\n\025STREAM_KIND_FRAME_TAP\020\003\022\032\n\026STRE" +
+      "AM_KIND_TSDB_TABLE\020\004\022\036\n\032STREAM_KIND_MOTI" +
+      "ON_HISTORY\020\005\022\024\n\020STREAM_KIND_GIGE\020\006*\203\001\n\rA" +
+      "rchiveStatus\022\036\n\032ARCHIVE_STATUS_UNSPECIFI" +
+      "ED\020\000\022\033\n\027ARCHIVE_STATUS_COMPLETE\020\001\022\032\n\026ARC" +
+      "HIVE_STATUS_PARTIAL\020\002\022\031\n\025ARCHIVE_STATUS_" +
+      "FAILED\020\003*|\n\021SessionProvenance\022\"\n\036SESSION" +
+      "_PROVENANCE_UNSPECIFIED\020\000\022\037\n\033SESSION_PRO" +
+      "VENANCE_EUTROPIA\020\001\022\"\n\036SESSION_PROVENANCE" +
+      "_SYNTHESIZED\020\002BIZGgit-codecommit.eu-cent" +
+      "ral-1.amazonaws.com/v1/repos/jettison/jo" +
+      "np/cvdumpb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -23208,7 +29000,7 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     internal_static_jon_cvdump_CvDumpArchive_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_CvDumpArchive_descriptor,
-        new java.lang.String[] { "Version", "Id", "GeneratedAt", "Window", "Provenance", "Note", "Machine", "Integrity", "Video", "Streams", "Shots", });
+        new java.lang.String[] { "Version", "Id", "GeneratedAt", "Window", "Provenance", "Note", "Machine", "Integrity", "Video", "Streams", "Shots", "GigePacketRings", "GigeStatsRings", });
     internal_static_jon_cvdump_ShotPlane_descriptor =
       getDescriptor().getMessageType(1);
     internal_static_jon_cvdump_ShotPlane_fieldAccessorTable = new
@@ -23250,7 +29042,7 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
     internal_static_jon_cvdump_IntegrityReport_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_IntegrityReport_descriptor,
-        new java.lang.String[] { "Status", "LappedSegments", "WindowStartLost", "WriterSegSkipped", "RecControlUnknown", "RecEnableFailed", "NoWindowVideoChannels", "TruncatedSources", "TelemetryIncomplete", "IoRecordsIncomplete", });
+        new java.lang.String[] { "Status", "LappedSegments", "WindowStartLost", "WriterSegSkipped", "RecControlUnknown", "RecEnableFailed", "NoWindowVideoChannels", "TruncatedSources", "TelemetryIncomplete", "IoRecordsIncomplete", "GigePacketRingsIncomplete", "GigeStatsRingsIncomplete", });
     internal_static_jon_cvdump_VideoChannel_descriptor =
       getDescriptor().getMessageType(8);
     internal_static_jon_cvdump_VideoChannel_fieldAccessorTable = new
@@ -23263,38 +29055,50 @@ public final class JonCvDumpArchive extends com.google.protobuf.GeneratedFile {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_VideoSegment_descriptor,
         new java.lang.String[] { "Sequence", "Path", "Bytes", "Sha256", "StartNs", "EndNs", "OpenEnd", });
-    internal_static_jon_cvdump_StreamGroup_descriptor =
+    internal_static_jon_cvdump_GigePacketRing_descriptor =
       getDescriptor().getMessageType(10);
+    internal_static_jon_cvdump_GigePacketRing_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_jon_cvdump_GigePacketRing_descriptor,
+        new java.lang.String[] { "Channel", "Path", "Bytes", "Sha256", "RecordCount", "OverwrittenDuringCopy", "OutsideWindow", "WindowStartLost", "AbsentReason", "WriterRefused", "OverwrittenBeforeCopy", });
+    internal_static_jon_cvdump_GigeStatsRing_descriptor =
+      getDescriptor().getMessageType(11);
+    internal_static_jon_cvdump_GigeStatsRing_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_jon_cvdump_GigeStatsRing_descriptor,
+        new java.lang.String[] { "Channel", "Path", "Bytes", "Sha256", "RecordCount", "OverwrittenDuringCopy", "OutsideWindow", "WindowStartLost", "AbsentReason", "WriterRefused", "OverwrittenBeforeCopy", "RecordLen", });
+    internal_static_jon_cvdump_StreamGroup_descriptor =
+      getDescriptor().getMessageType(12);
     internal_static_jon_cvdump_StreamGroup_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_StreamGroup_descriptor,
         new java.lang.String[] { "Kind", "Source", "Codec", "RecordCount", "DecodedBytes", "DecodedSha256", "Truncated", "Columns", "Payload", });
     internal_static_jon_cvdump_ColumnDef_descriptor =
-      getDescriptor().getMessageType(11);
+      getDescriptor().getMessageType(13);
     internal_static_jon_cvdump_ColumnDef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_ColumnDef_descriptor,
         new java.lang.String[] { "Name", "Type", });
     internal_static_jon_cvdump_RedisStreamRecords_descriptor =
-      getDescriptor().getMessageType(12);
+      getDescriptor().getMessageType(14);
     internal_static_jon_cvdump_RedisStreamRecords_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_RedisStreamRecords_descriptor,
         new java.lang.String[] { "Records", });
     internal_static_jon_cvdump_RedisStreamRecord_descriptor =
-      getDescriptor().getMessageType(13);
+      getDescriptor().getMessageType(15);
     internal_static_jon_cvdump_RedisStreamRecord_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_RedisStreamRecord_descriptor,
         new java.lang.String[] { "Id", "Fields", });
     internal_static_jon_cvdump_RedisStreamField_descriptor =
-      getDescriptor().getMessageType(14);
+      getDescriptor().getMessageType(16);
     internal_static_jon_cvdump_RedisStreamField_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_RedisStreamField_descriptor,
         new java.lang.String[] { "Name", "Value", });
     internal_static_jon_cvdump_TableRows_descriptor =
-      getDescriptor().getMessageType(15);
+      getDescriptor().getMessageType(17);
     internal_static_jon_cvdump_TableRows_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_jon_cvdump_TableRows_descriptor,
